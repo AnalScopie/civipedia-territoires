@@ -1,0 +1,9 @@
+[
+ {
+  "id": "crossac",
+  "nom": "Crossac",
+  "data": "territoires/crossac.json",
+  "geo": "territoires/crossac.geo.json",
+  "instantane": "11/10/2026 (enrichissement Mobilités / Eau)"
+ }
+]
