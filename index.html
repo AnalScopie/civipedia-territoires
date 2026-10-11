@@ -20,7 +20,7 @@
 html,body{background:var(--bg);color:var(--ink)}
 body{font-family:var(--f-sans);font-size:15px;line-height:1.5}
 a{color:var(--blue-ink)}
-button,input,select{font:inherit;color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .wrap{max-width:1320px;margin:0 auto;padding-inline:20px;padding-block:0 48px}
 
@@ -212,6 +212,40 @@ table.cov button{border:0;background:none;padding:0;color:var(--blue-ink);font-w
 .sheet .back2{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px;flex:0 0 auto}
 .idnote{font-size:12.5px;color:var(--ink-3);margin:0}
 
+/* ===== Contribuer : deux portes d'entrée vers la base (projet / information) ===== */
+.contrib{margin-top:28px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:18px;display:flex;flex-direction:column;gap:14px}
+.contrib-head h2{margin:0;font-size:20px}
+.contrib-head p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px;max-width:70ch}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tabs button{border:1px solid var(--line-strong);background:var(--bg);border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue-ink)}
+.cform{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start}
+.fields{display:flex;flex-direction:column;gap:12px;min-width:0}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field > span,.field legend{font-size:13px;font-weight:600;color:var(--ink-2)}
+.field small{font-size:12px;color:var(--ink-3)}
+.field input,.field select,.field textarea{background:var(--bg);border:1px solid var(--line-strong);border-radius:8px;padding:9px 11px;width:100%;min-width:0}
+.field textarea{min-height:110px;resize:vertical}
+fieldset.field{border:0;padding:0;margin:0}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts label{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;padding:5px 10px;border:1px solid var(--line-strong);border-radius:999px;cursor:pointer;background:var(--bg)}
+.opts input{accent-color:var(--blue)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-2)}
+.consent input{margin-top:3px;accent-color:var(--blue)}
+.send{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.send .go[disabled]{opacity:.5;cursor:not-allowed}
+.msg{font-size:13.5px;color:var(--ink-2)}
+.msg.ok{color:var(--green-ink);font-weight:600}
+.msg.err{color:var(--warn)}
+.trap{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden}
+.match{border:1px dashed var(--line-strong);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.match h3{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.match p{margin:0;font-size:12.5px;color:var(--ink-3)}
+.match .rel{padding:6px 0}
+.flag{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px;align-self:flex-start}
+@media (max-width:820px){ .cform{grid-template-columns:1fr} }
+
 @media (max-width:1000px){ .th-body{grid-template-columns:1fr} }
 
 @media (max-width:1000px){
@@ -284,6 +318,78 @@ table.cov button{border:0;background:none;padding:0;color:var(--blue-ink);font-w
       <div id="couverture"></div>
     </div>
   </section>
+
+  <section class="contrib" id="contribuer" aria-labelledby="contrib-title">
+    <div class="contrib-head">
+      <h2 id="contrib-title">Contribuer</h2>
+      <p>Décrivez votre projet pour trouver des ressources sur le territoire, ou signalez une information qui manque. Tout envoi est relu avant d'apparaître sur la carte ; votre nom et votre contact ne sont jamais publiés.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-demande" aria-selected="true" aria-controls="f-demande">Vous avez un projet ?</button>
+      <button type="button" role="tab" id="tab-apport" aria-selected="false" aria-controls="f-apport">Signaler une information</button>
+    </div>
+
+    <form class="cform" id="f-demande" role="tabpanel" aria-labelledby="tab-demande" novalidate>
+      <div class="fields">
+        <fieldset class="field"><legend>C'est…</legend>
+          <div class="opts">
+            <label><input type="radio" name="type" id="d-type-projet" value="PROJET" checked> un projet</label>
+            <label><input type="radio" name="type" id="d-type-besoin" value="BESOIN"> un besoin</label>
+            <label><input type="radio" name="type" id="d-type-question" value="QUESTION"> une question</label>
+          </div></fieldset>
+        <label class="field"><span>Décrivez-le</span>
+          <textarea id="d-texte" required placeholder="Ex. : je voudrais organiser un atelier de réparation de vélos une fois par mois à Crossac."></textarea></label>
+        <fieldset class="field"><legend>Sujets</legend><div class="opts" id="d-doms"></div></fieldset>
+        <label class="field"><span>Ce que vous cherchez <small>(facultatif)</small></span>
+          <input id="d-recherche" placeholder="Ex. : une salle, une association partenaire, un financement"></label>
+        <label class="field"><span>Pour vous recontacter <small>(facultatif, jamais publié)</small></span>
+          <input id="d-contact" autocomplete="email" placeholder="Courriel ou téléphone"></label>
+        <label class="trap" aria-hidden="true">Site web <input id="d-site" tabindex="-1" autocomplete="off"></label>
+        <label class="consent"><input type="checkbox" id="d-accord"> J'accepte que ce message soit conservé et relu par l'équipe Civipedia. Rien n'est publié sans vérification.</label>
+        <div class="send"><button class="go" type="submit" id="d-send">Envoyer</button><span class="msg" id="d-msg" role="status"></span></div>
+      </div>
+      <div class="match" id="d-match" aria-live="polite">
+        <h3>Ce qui existe déjà</h3>
+        <p>Choisissez des sujets ou décrivez votre projet pour voir les acteurs, lieux et services qui pourraient vous aider.</p>
+      </div>
+    </form>
+
+    <form class="cform" id="f-apport" role="tabpanel" aria-labelledby="tab-apport" hidden novalidate>
+      <div class="fields">
+        <label class="field"><span>Vous signalez</span>
+          <select id="a-etape">
+            <option value="CONTEXTE">Une information sur le territoire</option>
+            <option value="ACTION">Une action ou une initiative</option>
+            <option value="PROBLÈME-BESOIN">Un problème, une difficulté</option>
+            <option value="SOUHAIT HABITANTS">Un souhait d'habitants</option>
+            <option value="OBSERVATION">Une observation, un chiffre</option>
+          </select></label>
+        <label class="field"><span>Votre message</span>
+          <textarea id="a-texte" required placeholder="Ex. : l'association X organise du covoiturage le mardi pour aller au marché de Pontchâteau."></textarea></label>
+        <div class="two">
+          <label class="field"><span>Sujet</span><select id="a-dom"><option value="">Non précisé</option></select></label>
+          <label class="field"><span>Lien ou document <small>(facultatif)</small></span><input id="a-preuve" placeholder="Adresse d'une page qui le montre"></label>
+        </div>
+        <div class="two">
+          <label class="field"><span>Vous êtes</span>
+            <select id="a-qualite"><option>Habitant·e</option><option>Association</option><option>Élu·e ou agent public</option><option>Entreprise</option><option>Autre</option></select></label>
+          <label class="field"><span>Organisation <small>(facultatif)</small></span><input id="a-org"></label>
+        </div>
+        <div class="two">
+          <label class="field"><span>Votre nom <small>(facultatif, jamais publié)</small></span><input id="a-nom" autocomplete="name"></label>
+          <label class="field"><span>Contact <small>(facultatif, jamais publié)</small></span><input id="a-contact" autocomplete="email"></label>
+        </div>
+        <input type="hidden" id="a-objet">
+        <label class="trap" aria-hidden="true">Site web <input id="a-site" tabindex="-1" autocomplete="off"></label>
+        <label class="consent"><input type="checkbox" id="a-accord"> J'accepte que ce message soit conservé et relu par l'équipe Civipedia. Rien n'est publié sans vérification.</label>
+        <div class="send"><button class="go" type="submit" id="a-send">Envoyer</button><span class="msg" id="a-msg" role="status"></span></div>
+      </div>
+      <div class="match" id="a-about">
+        <h3>Ce qui se passe ensuite</h3>
+        <p>Votre message est enregistré avec une référence. L'équipe le compare aux sources existantes, puis décide de l'ajouter à la carte, de le vérifier auprès d'une source publique ou de le garder comme information de contexte.</p>
+      </div>
+    </form>
+  </section>
   </div>
 
   <section id="themeview" hidden aria-live="polite"></section>
@@ -316,6 +422,7 @@ const st = { cats:new Set(ORDER), dom:"", zone:"", q:"", commune:null };
 async function loadJSON(u){ const r = await fetch(u); if(!r.ok) throw new Error(u + " : " + r.status); return r.json(); }
 
 async function boot(){
+  try { GUICHET = (await loadJSON("config.json")).guichet || ""; } catch(_) { GUICHET = ""; }
   let reg;
   try { reg = await loadJSON(REGISTRY); }
   catch(e){ $("#list").innerHTML = `<div class="state">Les données du territoire n'ont pas pu être chargées. Rechargez la page.</div>`; return; }
@@ -379,7 +486,7 @@ function renderStatic(){
   $("#legend").innerHTML = ORDER.filter(k => k !== "projet").map(k => `<div><i style="background:${CATS[k].color}"></i>${CATS[k].label}</div>`).join("") +
     `<div style="color:var(--ink-3)">Cercle = tout ce qui est rattaché à une commune</div>`;
 
-  renderGlance(); renderCoverage();
+  renderGlance(); renderCoverage(); renderContrib();
   $("#foot").innerHTML = `<span>Données publiques, instantané du ${esc(String(T.instantane).split(" ")[0])}. Seules les informations établies par une source sont affichées.</span><span>Civipedia</span>`;
 }
 const shortSrc = s => s.split(/ – | - /)[0];
@@ -574,6 +681,7 @@ function openSheet(id, push = true){
       ${(i.cats||[]).length ? `<div class="sec"><h3>Sujets</h3><div class="tags">${i.cats.map(d => `<button type="button" class="tag" data-dom="${esc(d)}">${esc(d)}</button>`).join("")}</div></div>` : ""}
       ${rel.length ? `<div class="sec"><h3>Liens</h3>${rel.map(l => `<div class="rel">${l.dir > 0 ? `<small>${esc(l.t)}</small>${ref(l.other)}` : `${ref(l.other)}<small>${esc(l.t)} ${esc(i.nom)}</small>`}</div>`).join("")}</div>` : ""}
       ${i.src ? `<div class="srcline">Source : <a href="${esc(i.src.url)}" target="_blank" rel="noopener">${esc(i.src.nom)}</a></div>` : ""}
+      <button type="button" class="flag" data-signal="${esc(i.id)}">Signaler une correction ou un complément</button>
     </div>`, ["item", id], push);
 }
 function closeSheet(){ $("#sheet").hidden = true; $("#scrim").hidden = true; sheetStack = []; }
@@ -585,6 +693,7 @@ $("#sheet").addEventListener("click", e => {
   const ix = e.target.closest("[data-ind]"); if (ix) return openInd(ix.dataset.ind);
   const th = e.target.closest("[data-theme]"); if (th) { closeSheet(); return openTheme(th.dataset.theme); }
   if (e.target.closest("#back2")) return sheetBack();
+  const sg = e.target.closest("[data-signal]"); if (sg) return signaler(sg.dataset.signal);
   const d = e.target.closest("[data-dom]"); if (d) { st.dom = d.dataset.dom; closeSheet(); showHome(true); render(); $("#q").scrollIntoView({block:"start"}); }
   if (e.target.id === "close") closeSheet();
 });
@@ -798,6 +907,83 @@ $("#themeview").addEventListener("click", e => {
   const ob = e.target.closest("[data-obs]"); if (ob) return openObs(ob.dataset.obs);
   const ix = e.target.closest("[data-ind]"); if (ix) return openInd(ix.dataset.ind);
 });
+/* ---------- 8. Contribuer ----------
+   Les envois partent vers le guichet du tableur privé (adresse dans config.json). Ils y arrivent au statut
+   « déclaré » et ne deviennent visibles qu'après vérification et export. Le rapprochement affiché est un calcul
+   de la page (sujets et mots en commun), jamais une mise en relation. */
+let GUICHET = "";
+const t0 = { "f-demande": 0, "f-apport": 0 };
+function renderContrib(){
+  const doms = [...new Set(T.items.flatMap(i => i.cats||[]))].sort((a,b) => a.localeCompare(b,"fr"));
+  $("#d-doms").innerHTML = doms.map((d, n) => `<label><input type="checkbox" id="d-dom-${n}" value="${esc(d)}"> ${esc(d)}</label>`).join("");
+  $("#a-dom").innerHTML = `<option value="">Non précisé</option>` + doms.map(d => `<option>${esc(d)}</option>`).join("");
+  for (const id of ["d-send", "a-send"]) $("#" + id).disabled = !GUICHET;
+  for (const id of ["d-msg", "a-msg"]) { $("#" + id).className = "msg"; $("#" + id).textContent = GUICHET ? "" : "L'envoi en ligne ouvrira prochainement."; }
+  matchDemande();
+}
+function showTab(which){
+  for (const k of ["demande", "apport"]) { $("#tab-" + k).setAttribute("aria-selected", String(k === which)); $("#f-" + k).hidden = k !== which; }
+}
+$("#tab-demande").onclick = () => showTab("demande");
+$("#tab-apport").onclick = () => showTab("apport");
+for (const f of ["f-demande", "f-apport"]) $("#" + f).addEventListener("focusin", () => { if (!t0[f]) t0[f] = Date.now(); });
+
+let proposees = [];
+function matchDemande(){
+  const doms = [...document.querySelectorAll("#d-doms input:checked")].map(x => x.value);
+  const words = norm($("#d-texte").value + " " + $("#d-recherche").value).split(/[^a-z0-9]+/).filter(w => w.length >= 4);
+  const scored = T.items.map(i => {
+    const h = i._h ||= haystack(i);
+    const s = doms.filter(d => (i.cats||[]).includes(d)).length * 2 + new Set(words.filter(w => h.includes(w))).size;
+    return [s, i];
+  }).filter(([s]) => s > 0).sort((a,b) => b[0] - a[0] || a[1].nom.localeCompare(b[1].nom,"fr"))
+    // Varier les réponses : au plus deux éléments du même type (par ex. deux aires de covoiturage).
+    .filter((x, n, arr) => arr.slice(0, n).filter(y => y[1].type === x[1].type).length < 2).slice(0, 6).map(([, i]) => i);
+  proposees = scored.map(i => i.id);
+  $("#d-match").innerHTML = `<h3>Ce qui existe déjà</h3>` + (scored.length
+    ? scored.map(i => `<div class="rel"><button type="button" class="link" data-open="${esc(i.id)}">${esc(i.nom)}</button><small>${esc(CATS[i.k].one)} · ${esc(subline(i))}</small></div>`).join("")
+      + `<p>Rapprochement automatique par sujets et mots communs. Ce n'est pas une mise en relation : ces acteurs n'ont pas été contactés.</p>`
+    : `<p>Choisissez des sujets ou décrivez votre projet pour voir les acteurs, lieux et services qui pourraient vous aider.</p>`);
+}
+let mt; for (const id of ["d-texte", "d-recherche"]) $("#" + id).addEventListener("input", () => { clearTimeout(mt); mt = setTimeout(matchDemande, 200); });
+$("#d-doms").addEventListener("change", matchDemande);
+$("#d-match").addEventListener("click", e => { const o = e.target.closest("[data-open]"); if (o) openSheet(o.dataset.open); });
+
+async function envoyer(form, payload, msg, btn){
+  const m = $(msg);
+  if (payload.texte.trim().length < 10) { m.className = "msg err"; m.textContent = "Écrivez au moins une phrase."; return; }
+  if (!payload.accord) { m.className = "msg err"; m.textContent = "Cochez la case d'accord pour envoyer."; return; }
+  if (!GUICHET) return;
+  $(btn).disabled = true; m.className = "msg"; m.textContent = "Envoi…";
+  try {
+    const r = await fetch(GUICHET, { method:"POST", body: JSON.stringify(payload) });
+    const res = await r.json();
+    if (!res.ok) throw new Error(res.erreur || "Envoi refusé.");
+    m.className = "msg ok";
+    m.textContent = "Merci, c'est enregistré" + (res.reference ? " sous la référence " + res.reference : "") + ". Il sera relu avant toute publication.";
+    $(form).reset(); t0[form.slice(1)] = 0; if (form === "#f-demande") matchDemande();
+  } catch (err) {
+    m.className = "msg err";
+    m.textContent = (err && err.message && !/fetch|network|Load failed/i.test(err.message)) ? err.message : "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez.";
+  } finally { $(btn).disabled = !GUICHET; }
+}
+$("#f-demande").addEventListener("submit", e => { e.preventDefault();
+  envoyer("#f-demande", { genre:"demande", territoire:T.territoire.nom, type:(document.querySelector("#f-demande input[name=type]:checked")||{}).value,
+    texte:$("#d-texte").value, domaines:[...document.querySelectorAll("#d-doms input:checked")].map(x => x.value),
+    recherche:$("#d-recherche").value, contact:$("#d-contact").value, proposees, accord:$("#d-accord").checked,
+    site_web:$("#d-site").value, duree_ms: t0["f-demande"] ? Date.now() - t0["f-demande"] : 0 }, "#d-msg", "#d-send"); });
+$("#f-apport").addEventListener("submit", e => { e.preventDefault();
+  envoyer("#f-apport", { genre:"apport", territoire:T.territoire.nom, etape:$("#a-etape").value, texte:$("#a-texte").value,
+    domaine:$("#a-dom").value, preuve:$("#a-preuve").value, qualite:$("#a-qualite").value, organisation:$("#a-org").value,
+    nom:$("#a-nom").value, contact:$("#a-contact").value, objet:$("#a-objet").value, accord:$("#a-accord").checked,
+    site_web:$("#a-site").value, duree_ms: t0["f-apport"] ? Date.now() - t0["f-apport"] : 0 }, "#a-msg", "#a-send"); });
+function signaler(id){
+  closeSheet(); showHome(false); showTab("apport");
+  $("#a-objet").value = id; $("#a-etape").value = "CONTEXTE";
+  $("#a-texte").value = byId[id] ? `À propos de « ${byId[id].nom} » : ` : "";
+  $("#contribuer").scrollIntoView({block:"start"}); $("#a-texte").focus();
+}
+
 document.addEventListener("click", e => {
   if (e.target.closest("#sheet, #themeview")) return;
   const ob = e.target.closest("[data-obs]"); if (ob) return openObs(ob.dataset.obs);

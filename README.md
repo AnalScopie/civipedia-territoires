@@ -21,6 +21,7 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | Fichier | Rôle |
 |---|---|
 | `index.html` | Page publique : carte, recherche, filtres, fiches, repères chiffrés. Elle ne contient aucune donnée de territoire. |
+| `config.json` | Adresse du guichet qui reçoit les contributions (vide tant qu'il n'est pas installé : l'envoi est alors désactivé). |
 | `territoires/index.json` | Registre des territoires disponibles. |
 | `territoires/<id>.json` | Projection publique d'un territoire. |
 | `territoires/<id>.geo.json` | Fond géographique (contours des communes), séparé des données métier. |
@@ -74,6 +75,10 @@ Un élément de `items` :
 | Selon la nature | `fonction`, `org` (acteur) ; `gest` (lieu) ; `debut`, `fin`, `heure`, `passe`, `lieu`, `organisateur` (événement) ; `periode`, `public`, `moyens`, `perimetre`, `resultats`, `porteurs`, `manque`, `ind` (projet). |
 
 Un champ absent signifie que l'information n'est pas connue ou pas publiable. La page ne l'affiche pas.
+
+## Contributions
+
+La section « Contribuer » de la page envoie deux types de messages au guichet indiqué dans `config.json` : un projet, un besoin ou une question, et le signalement d'une information. Le guichet les écrit dans la zone de vérification du tableur privé, au statut « déclaré ». Rien n'apparaît sur la carte avant vérification et export. Le nom et le contact de la personne ne sont jamais publiés. Les ressources proposées sous un projet sont un rapprochement calculé par la page (sujets et mots communs), pas une mise en relation.
 
 ## Mises à jour
 
