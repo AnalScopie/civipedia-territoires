@@ -1,0 +1,1506 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Civipedia — Crossac (accès réservé)</title><meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : interface sombre de connaissance territoriale — filtres à gauche, carte au centre, liste en surimpression à droite, porte d'entrée « Vous avez un projet ? » sous la carte. Thème sombre unique, choisi délibérément. */
+:root{
+  --bg:#060b16; --surface:#0b1323; --surface-2:#101b30; --line:#18243c; --line-strong:#27375a;
+  --ink:#e9eef8; --ink-2:#a8b5cb; --ink-3:#6f7f99;
+  --blue:#3d7bff; --blue-soft:#10204a; --blue-ink:#a2bdff;
+  --green:#21c383; --green-soft:#0b2a20; --green-ink:#74e2b4;
+  --amber:#e9b04c; --amber-soft:#2c2210; --red:#f2794a; --red-soft:#33180e;
+  --violet:#a88bff; --violet-soft:#1d1840;
+  --k-organisation:#f5c84a; --k-lieu:#2fd394; --k-acteur:#4f93ff; --k-evenement:#b28cff;
+  --sea:#03060d; --land:#0a1222; --land-cx:#11203e; --land-px:#0d1830; --land-el:#0b152a;
+  --border-c:rgba(140,165,210,.16); --border-cx:rgba(120,165,255,.6);
+  --river:#1d5a9e; --road:rgba(205,215,235,.22); --rail:rgba(205,215,235,.16);
+  --ringc:rgba(120,160,255,.32); --rel:rgba(225,233,250,.38); --halo:#3d7bff;
+  --panel:rgba(8,14,27,.86); --panel-solid:#0a1222;
+  --map-water:#03060d; --ring:#2c4170; --commune:#33415c;
+  --f-sans:"Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --r:8px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-sans);font-size:14px;line-height:1.5}
+.wrap{max-width:1360px;margin:0 auto;padding-inline:20px;padding-block:0 40px}
+a{color:var(--blue)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.mono{font-family:var(--f-mono);font-size:12px}
+
+/* En-tête */
+header.top{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:flex-end;justify-content:space-between;padding-block:22px 18px;border-bottom:1px solid var(--line)}
+.brand .eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-ink);font-weight:700}
+.brand h1{margin:2px 0 4px;font-size:28px;line-height:1.1;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.brand h1 span{color:var(--blue)}
+.brand p{margin:0;color:var(--ink-2);max-width:62ch}
+.search{flex:1 1 320px;max-width:460px;position:relative}
+.search input{width:100%;padding:11px 14px 11px 38px;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--bg)}
+.search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+.results{position:absolute;z-index:30;left:0;right:0;top:calc(100% + 4px);background:var(--bg);border:1px solid var(--line-strong);border-radius:var(--r);max-height:360px;overflow:auto;box-shadow:0 8px 24px rgba(10,20,40,.12)}
+.results button{display:flex;gap:10px;width:100%;text-align:left;padding:9px 12px;border:0;background:none;border-bottom:1px solid var(--line);cursor:pointer;align-items:baseline}
+.results button:hover,.results button:focus{background:var(--surface)}
+.results small{color:var(--ink-3)}
+
+/* Compteurs */
+.counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-block:18px 14px}
+.counter{background:var(--bg);padding:12px 14px;border:0;text-align:left;cursor:pointer}
+.counter:hover{background:var(--surface)}
+.counter b{display:block;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.counter span{font-size:12px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em}
+.counter i{font-style:normal;font-size:11px;color:var(--ink-3);display:block}
+
+/* Onglets */
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--line);margin-bottom:16px;scrollbar-width:thin}
+.tab{flex:0 0 auto;padding:10px 14px;border:0;background:none;border-bottom:2px solid transparent;color:var(--ink-2);font-weight:600;cursor:pointer;white-space:nowrap}
+.tab[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+.tab.cta{color:var(--green-ink)}
+
+/* Filtres */
+.filters{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid var(--line-strong);border-radius:999px;background:var(--bg);cursor:pointer;font-size:13px}
+.chip[aria-pressed="true"]{background:var(--blue-soft);border-color:var(--blue);color:var(--blue-ink)}
+.chip .n{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:12px}
+.chip[aria-pressed="true"] .n{color:var(--blue-ink)}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex:0 0 auto}
+select.f{padding:6px 28px 6px 10px;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--bg);max-width:100%}
+.reset{border:0;background:none;color:var(--blue);cursor:pointer;padding:6px 4px;font-weight:600}
+.summary{color:var(--ink-2);font-size:13px;margin:-4px 0 12px}
+
+/* Vue carte */
+.mapview{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;align-items:start}
+.mapbox{position:relative;border:1px solid var(--line);border-radius:var(--r);background:var(--map-water);overflow:hidden;height:min(68vh,640px);min-height:420px;touch-action:none}
+.mapbox > svg{display:block;width:100%;height:100%;cursor:grab}
+.mapbox > svg.drag{cursor:grabbing}
+.legend svg{display:inline-block;flex:0 0 auto}
+.mapctl{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:4px}
+.mapctl button{width:34px;height:34px;border:1px solid var(--line-strong);background:var(--bg);border-radius:6px;cursor:pointer;font-size:18px;line-height:1}
+.legend{position:absolute;left:10px;bottom:10px;background:color-mix(in srgb,var(--bg) 92%,transparent);border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:12px;color:var(--ink-2);max-width:min(330px,calc(100% - 20px))}
+.legend div{display:flex;align-items:center;gap:8px}
+.legend p{margin:6px 0 0;font-size:11px;color:var(--ink-3)}
+.side{border:1px solid var(--line);border-radius:var(--r);background:var(--bg);display:flex;flex-direction:column;max-height:min(68vh,640px);min-height:420px}
+.side header{padding:12px 14px;border-bottom:1px solid var(--line)}
+.side h2{margin:0;font-size:16px}
+.side header p{margin:2px 0 0;color:var(--ink-2);font-size:13px}
+.side .list{overflow:auto;flex:1}
+.zonehead{position:sticky;top:0;background:var(--surface);padding:6px 14px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:700;border-bottom:1px solid var(--line)}
+
+/* Lignes d'entité */
+.row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;width:100%;text-align:left;padding:10px 14px;border:0;border-bottom:1px solid var(--line);background:none;cursor:pointer}
+.row:hover,.row:focus-visible{background:var(--surface)}
+.row .t{font-weight:600;line-height:1.3}
+.row .s{color:var(--ink-2);font-size:12.5px;line-height:1.35;margin-top:2px}
+.row .d{font-size:12px;color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.kdot{width:10px;height:10px;border-radius:3px;margin-top:5px}
+
+/* Badges de statut */
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:4px;white-space:nowrap;text-transform:uppercase}
+.q-VÉRIFIÉ{background:var(--green);color:#fff}
+.q-FAIT{background:var(--green-soft);color:var(--green-ink);border:1px solid color-mix(in srgb,var(--green) 40%,transparent)}
+.q-HYPOTHÈSE{background:var(--amber-soft);color:var(--amber);border:1px dashed var(--amber)}
+.q-ÀVÉRIFIER{background:var(--red-soft);color:var(--red);border:1px dashed var(--red)}
+.layer{font-size:11px;padding:2px 7px;border-radius:4px;border:1px solid var(--line-strong);color:var(--ink-2);white-space:nowrap}
+.layer.enr{border-color:var(--blue);color:var(--blue-ink);background:var(--blue-soft)}
+
+/* Explorer */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;background:var(--bg);text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-width:0}
+.card:hover{border-color:var(--line-strong);background:var(--surface)}
+.card .t{font-weight:600;line-height:1.3}
+.card .s{color:var(--ink-2);font-size:13px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--ink-3)}
+
+/* Fiche */
+.sheet{position:fixed;z-index:50;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--bg);border-left:1px solid var(--line-strong);box-shadow:-12px 0 32px rgba(10,20,40,.14);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.sheet .head{padding:16px 18px 12px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.sheet h2{margin:4px 0 6px;font-size:20px;line-height:1.2;text-wrap:balance}
+.sheet .close{margin-left:auto;border:1px solid var(--line-strong);background:var(--bg);border-radius:6px;width:34px;height:34px;cursor:pointer;font-size:18px;flex:0 0 auto}
+.sheet .body{overflow:auto;padding:14px 18px 24px;display:flex;flex-direction:column;gap:16px}
+.kv{display:grid;grid-template-columns:130px minmax(0,1fr);gap:6px 12px;margin:0}
+.kv dt{color:var(--ink-3);font-size:12.5px}
+.kv dd{margin:0;overflow-wrap:anywhere}
+.sec h3{margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.link{border:0;background:none;padding:0;color:var(--blue);cursor:pointer;text-align:left;font-weight:600}
+.rel{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:8px 0;border-bottom:1px solid var(--line)}
+.rel small{display:block;color:var(--ink-3)}
+.note{background:var(--surface);border-radius:6px;padding:10px 12px;color:var(--ink-2);font-size:13px}
+.srcl{display:flex;flex-direction:column;gap:6px}
+.srcl a{overflow-wrap:anywhere}
+
+/* Tableaux */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r)}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--surface);font-size:12px;color:var(--ink-2);font-weight:600;position:sticky;top:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* Ressources / contexte */
+.needs{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.need{border:1px solid var(--line);border-radius:var(--r);padding:14px;background:var(--bg);display:flex;flex-direction:column;gap:8px;min-width:0}
+.need h3{margin:0;font-size:16px}
+.need .zl{display:flex;flex-direction:column;gap:2px}
+.need .zl b{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-3);margin-top:6px}
+.need .zl .link{font-weight:500}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px}
+.panel{border:1px solid var(--line);border-radius:var(--r);padding:16px;background:var(--bg);min-width:0}
+.panel h2{margin:0 0 4px;font-size:18px}
+.panel > p{margin:0 0 12px;color:var(--ink-2)}
+.chain{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 4px}
+.step{padding:6px 10px;border-radius:6px;font-size:12.5px;font-weight:600;border:1px solid var(--line-strong)}
+.step.ok{background:var(--green-soft);border-color:var(--green);color:var(--green-ink)}
+.step.part{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+.step.no{background:var(--surface);color:var(--ink-3);border-style:dashed}
+.arrow{color:var(--ink-3)}
+.obs{border-top:1px solid var(--line);padding:10px 0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px}
+.obs .v{font-weight:700;font-variant-numeric:tabular-nums}
+.obs small{color:var(--ink-3);grid-column:1/-1}
+.empty{border:1px dashed var(--line-strong);border-radius:var(--r);padding:14px;color:var(--ink-2);background:var(--surface)}
+
+/* Réseau */
+.netbox{border:1px solid var(--line);border-radius:var(--r);background:var(--map-water);height:min(70vh,640px);min-height:420px;overflow:hidden}
+.netbox svg{width:100%;height:100%;display:block}
+
+/* Formulaire */
+form.proj{display:grid;gap:12px;max-width:720px}
+form.proj label{font-weight:600;display:flex;flex-direction:column;gap:4px}
+form.proj input,form.proj select,form.proj textarea{padding:9px 11px;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--bg);font-weight:400}
+.btn{padding:10px 16px;border-radius:var(--r);border:1px solid var(--blue);background:var(--blue);color:#fff;font-weight:700;cursor:pointer;justify-self:start}
+.btn.ghost{background:var(--bg);color:var(--blue)}
+pre.fiche{white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px;font-family:var(--f-mono);font-size:12px;overflow-wrap:anywhere}
+
+/* ===== Mobilités & eau ===== */
+.keyband{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:12px;margin:0 0 14px}
+.kgrp{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.khead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.khead h2{margin:0;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-ink)}
+.kfigs{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px}
+.kfig{display:flex;flex-direction:column;gap:2px;text-align:left;border:1px solid var(--line);border-radius:6px;background:var(--surface-2);padding:8px 10px;cursor:pointer;min-width:0}
+.kfig:hover{border-color:var(--line-strong)}
+.kv1{font-size:16px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.2;overflow-wrap:anywhere}
+.kl1{font-size:12px;color:var(--ink-2);line-height:1.3}
+.kd{font-size:11px;color:var(--ink-3)}
+.kd .badge{font-size:9px;padding:1px 4px}
+.axes{display:flex;flex-direction:column;gap:4px}
+.axbtn{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border:1px solid var(--line-strong);border-radius:6px;background:var(--surface-2);cursor:pointer;font-weight:600}
+.axbtn[aria-pressed="true"]{background:var(--blue-soft);border-color:var(--blue);color:var(--blue-ink)}
+.axbtn .n{font-size:12px;color:var(--ink-3);font-weight:500}
+.axeswitch{display:inline-flex;border:1px solid var(--line-strong);border-radius:8px;overflow:hidden;margin-bottom:12px}
+.axeswitch button{border:0;background:var(--surface);padding:9px 18px;font-weight:700;cursor:pointer;color:var(--ink-2)}
+.axeswitch button[aria-selected="true"]{background:var(--blue);color:#fff}
+.chain2{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:6px}
+.chain2 .st{border:1px solid var(--line-strong);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;background:var(--surface)}
+.chain2 .st b{font-size:12.5px}
+.chain2 .st span{font-size:12px;color:var(--ink-2)}
+.chain2 .st.ok{background:var(--green-soft);border-color:var(--green)}
+.chain2 .st.ok b{color:var(--green-ink)}
+.chain2 .st.part{background:var(--amber-soft);border-color:var(--amber)}
+.chain2 .st.part b{color:var(--amber)}
+.chain2 .st.no{border-style:dashed}
+.chain2 .st.no b{color:var(--ink-3)}
+.h2s{font-size:17px;margin:24px 0 10px}
+.sparks{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.spark{margin:0;border:1px solid var(--line);border-radius:6px;padding:10px;background:var(--surface-2)}
+.spark figcaption{display:flex;flex-direction:column;font-size:12.5px}
+.spark figcaption span{color:var(--ink-3);font-size:11.5px}
+.spark svg{width:100%;height:auto;display:block;margin:4px 0}
+.spark .sv{font-size:11px;fill:var(--ink);font-weight:700;font-family:var(--f-sans)}
+.spark .sl{font-size:10.5px;fill:var(--ink-3);font-family:var(--f-sans)}
+.spark small{color:var(--ink-3);font-size:11px}
+.act h3.ah{margin:4px 0 8px;font-size:16px;line-height:1.3}
+.act .kv{grid-template-columns:110px minmax(0,1fr);font-size:13px}
+.qlist{margin:0 0 12px;padding-left:18px;font-size:13px;color:var(--ink-2);display:flex;flex-direction:column;gap:4px}
+.qlist b{color:var(--ink)}
+.qlist .n{font-size:11px;color:var(--ink-3)}
+.etat{font-size:11px;font-weight:700;padding:2px 6px;border-radius:4px;display:inline-block;letter-spacing:.02em}
+.etat.ok{background:var(--green-soft);color:var(--green-ink)}
+.etat.part{background:var(--amber-soft);color:var(--amber)}
+.etat.col{background:var(--blue-soft);color:var(--blue-ink)}
+.etat.no{border:1px dashed var(--line-strong);color:var(--ink-3)}
+.hl{outline:2px solid var(--blue);outline-offset:2px;border-radius:4px}
+.row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+@media (max-width:900px){.keyband{grid-template-columns:minmax(0,1fr)}.row3{grid-template-columns:minmax(0,1fr)}}
+
+footer.foot{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12px;display:flex;flex-wrap:wrap;gap:6px 18px}
+
+@media (max-width:900px){
+  .mapview{grid-template-columns:minmax(0,1fr)}
+  .side{max-height:none;min-height:0}
+  .mapbox{height:58vh;min-height:360px}
+  .brand h1{font-size:23px}
+  .wrap{padding-inline:16px}
+  .kv{grid-template-columns:105px minmax(0,1fr)}
+}
+/* ===== Habillage sombre ===== */
+body{background:var(--bg)}
+header.top{border-bottom-color:var(--line)}
+.brand .eyebrow,.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-ink);font-weight:700}
+.brand h1 span{color:var(--k-organisation);text-shadow:0 0 18px rgba(245,200,74,.25)}
+.perimtop{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:8px;font-size:12px;color:var(--ink-3);font-family:var(--f-mono)}
+.perimtop b{color:var(--ink-2);font-weight:500}
+.search input{background:var(--surface);border-color:var(--line-strong)}
+.results{background:var(--surface);box-shadow:0 12px 32px rgba(0,0,0,.5)}
+.counters{background:var(--line);border-color:var(--line)}
+.counter{background:var(--surface)}
+.counter:hover{background:var(--surface-2)}
+.sheet{background:var(--surface);box-shadow:-16px 0 40px rgba(0,0,0,.55)}
+.sheet .close,.mapctl button{background:var(--surface-2);color:var(--ink)}
+.q-VÉRIFIÉ{color:#03140c}
+.chip,select.f{background:var(--surface)}
+.card,.need,.panel,.side,.empty{background:var(--surface)}
+.btn{box-shadow:0 0 0 1px rgba(61,123,255,.3),0 0 18px rgba(61,123,255,.25)}
+
+/* ===== Vue carte ===== */
+.mapshell{display:grid;grid-template-columns:268px minmax(0,1fr);gap:14px;align-items:stretch}
+.fpanel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:flex;flex-direction:column;gap:16px;max-height:min(78vh,760px);overflow:auto;scrollbar-width:thin}
+.fp-sec{display:flex;flex-direction:column;gap:6px}
+.fp-sec h3{margin:0 0 2px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.fp-sec label{font-size:12px;color:var(--ink-2);margin-top:4px}
+.fp-sec select.f{width:100%}
+.fq{margin:4px 0 0;font-size:12px;color:var(--blue-ink)}
+.kl{display:flex;flex-direction:column;gap:4px}
+.kbtn{display:grid;grid-template-columns:18px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:transparent;cursor:pointer;text-align:left}
+.kbtn:hover{border-color:var(--line-strong)}
+.kbtn[aria-pressed="true"]{background:var(--surface-2);border-color:var(--line-strong)}
+.kbtn[aria-pressed="false"]{opacity:.5}
+.kbtn .n{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.reset{align-self:flex-start;margin-top:6px;padding:4px 0}
+.sym{width:12px;height:12px;display:inline-block;flex:0 0 auto;position:relative}
+.s-org{border-radius:50%;background:var(--c);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px color-mix(in srgb,var(--c) 55%,transparent),0 0 10px var(--c);transform:scale(.7)}
+.s-lieu{border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c);transform:scale(.8)}
+.s-act{border-radius:50%;background:var(--c);box-shadow:0 0 8px var(--c);transform:scale(.62)}
+.s-ev{background:var(--c);transform:rotate(45deg) scale(.66);box-shadow:0 0 8px var(--c)}
+.s-weak{border-radius:50%;border:1.5px dashed var(--ink-2);transform:scale(.8)}
+.leg{gap:7px;font-size:12.5px;color:var(--ink-2)}
+.leg>div{display:flex;align-items:center;gap:10px}
+.leg p{margin:4px 0 0;font-size:11.5px;line-height:1.45;color:var(--ink-3)}
+
+.mapstage{min-width:0;position:relative}
+.mapbox{position:relative;border:1px solid var(--line);border-radius:var(--r);background:var(--sea);overflow:hidden;height:min(78vh,760px);min-height:440px;touch-action:none}
+.mapbox > svg{display:block;width:100%;height:100%;cursor:grab;font-family:var(--f-sans)}
+.mapbox > svg.drag{cursor:grabbing}
+.sea{fill:var(--sea)}
+.cm{fill:var(--land);stroke:var(--border-c);stroke-width:.7;vector-effect:non-scaling-stroke}
+.cm-el{fill:var(--land-el)}
+.cm-px{fill:var(--land-px)}
+.cm-cx{fill:var(--land-cx);stroke:var(--border-cx);stroke-width:1.3}
+.cm[data-c]{cursor:pointer}
+.cm[data-c]:hover{fill:#13213d}
+.cm.sel{stroke:var(--blue);stroke-width:1.6}
+.river{fill:none;stroke:var(--river);stroke-width:1.6;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.road{fill:none;stroke:var(--road);stroke-width:1;vector-effect:non-scaling-stroke}
+.road.major{stroke-width:1.6}
+.rail{fill:none;stroke:var(--rail);stroke-width:1;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+.ring{fill:none;stroke:var(--ringc);stroke-width:1;stroke-dasharray:3 5;vector-effect:non-scaling-stroke;pointer-events:none}
+.ring.r5{stroke-opacity:.6}
+.ringlab{font-family:var(--f-mono);font-size:10px;fill:rgba(160,185,235,.55);letter-spacing:.06em;pointer-events:none}
+.clab{font-size:10.5px;fill:var(--ink-3);letter-spacing:.04em;pointer-events:none;paint-order:stroke;stroke:var(--sea);stroke-width:3px;stroke-opacity:.8}
+.clab.has{fill:var(--ink-2);font-weight:600}
+.clab.sel{fill:var(--blue-ink)}
+.clab.cx{font-size:13px;font-weight:800;fill:var(--ink);letter-spacing:.18em}
+.mrel{fill:none;stroke:var(--rel);stroke-width:.9;pointer-events:stroke;transition:stroke .15s}
+.mrel.weak{stroke-dasharray:3 3}
+.mrel.on{stroke:var(--k-organisation);stroke-width:1.6}
+.lead{stroke:rgba(200,215,245,.35);stroke-width:.8;stroke-dasharray:2 2}
+.lead0{fill:rgba(200,215,245,.6)}
+.mk{cursor:pointer}
+.mk.weak{opacity:.55}
+.mk.weak circle:not([fill="transparent"]),.mk.weak rect{stroke:var(--ink);stroke-dasharray:2 1.5;stroke-width:1}
+.mk.past{opacity:.6}
+.mk:hover>*:not(title){transform:scale(1.35)}
+.mk>*{transition:transform .12s}
+.mk:focus-visible{outline:none}
+.mk:focus-visible circle:first-child{stroke:var(--blue);stroke-width:2}
+.clu{cursor:pointer}
+.clun{font-family:var(--f-mono);font-size:11px;font-weight:500;fill:var(--ink)}
+.perim{position:absolute;left:12px;top:12px;display:flex;flex-wrap:wrap;gap:4px 12px;padding:7px 10px;background:var(--panel);border:1px solid var(--line);border-radius:6px;font-size:11.5px;color:var(--ink-2);backdrop-filter:blur(6px);max-width:calc(100% - 80px)}
+.perim span{display:inline-flex;align-items:center;gap:6px}
+.pz{width:10px;height:10px;border-radius:2px;display:inline-block;border:1px solid var(--border-c)}
+.pz-cx{background:var(--land-cx);border-color:var(--border-cx)}.pz-px{background:var(--land-px)}.pz-el{background:var(--land-el)}
+.mapctl{position:absolute;top:12px;right:12px;display:flex;flex-direction:column;gap:4px}
+.mapctl button{width:34px;height:34px;border:1px solid var(--line-strong);border-radius:6px;cursor:pointer;font-size:17px;line-height:1}
+.mapnote{position:absolute;left:12px;bottom:12px;margin:0;max-width:min(560px,calc(100% - 24px));padding:7px 10px;background:var(--panel);border:1px solid var(--line);border-radius:6px;font-size:11.5px;color:var(--ink-2);backdrop-filter:blur(6px)}
+.mapnote b{color:var(--ink);font-family:var(--f-mono);font-weight:500}
+@media (min-width:1100px){
+  .mapstage .side{position:absolute;top:13px;right:57px;bottom:13px;width:318px;max-height:none;min-height:0;background:var(--panel);backdrop-filter:blur(8px)}
+  .mapnote{max-width:calc(100% - 420px)}
+}
+.side{border:1px solid var(--line);border-radius:var(--r);display:flex;flex-direction:column;overflow:hidden}
+.side header{padding:12px 14px;border-bottom:1px solid var(--line)}
+.side h2{margin:2px 0 2px;font-size:17px}
+.side header p{margin:0 0 6px;color:var(--ink-2);font-size:12.5px}
+.side .list{overflow:auto;flex:1;scrollbar-width:thin}
+.zonehead{background:var(--surface-2)}
+.row:hover,.row:focus-visible{background:var(--surface-2)}
+.kdot{box-shadow:0 0 6px currentColor}
+
+/* ===== Porte d'entrée projet ===== */
+.pband{margin-top:16px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;padding:26px 28px;border:1px solid color-mix(in srgb,var(--blue) 45%,var(--line));border-radius:10px;background:radial-gradient(120% 140% at 0% 0%,rgba(61,123,255,.16),transparent 55%),radial-gradient(90% 120% at 100% 100%,rgba(33,195,131,.10),transparent 60%),var(--surface)}
+.pb-text h2{margin:4px 0 6px;font-size:30px;font-weight:800;letter-spacing:-.01em;line-height:1.1;text-wrap:balance}
+.pb-lead{font-size:17px;color:var(--ink);margin:0 0 10px}
+.pb-text>p{margin:0 0 12px;color:var(--ink-2);max-width:62ch}
+.pb-flow{display:flex;flex-wrap:wrap;gap:8px}
+.pb-flow span{flex:1 1 220px;font-size:12.5px;color:var(--ink-2);padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:rgba(6,11,22,.5)}
+.pb-flow b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--k-organisation)}
+.pb-form{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-content:center;min-width:0}
+.pb-form label{min-width:0}
+.pb-form input,.pb-form select{width:100%;min-width:0}
+.pb-form label{display:flex;flex-direction:column;gap:5px;font-weight:600;font-size:13px;color:var(--ink-2)}
+.pb-form input,.pb-form select{padding:11px 12px;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--bg);color:var(--ink);font-weight:400;font-size:14px}
+.pb-form input:focus,.pb-form select:focus{border-color:var(--blue)}
+.btn.big{padding:13px 20px;font-size:15px;justify-self:stretch}
+
+@media (max-width:1099px){
+  .mapstage{display:flex;flex-direction:column;gap:12px}
+  .mapstage .side{max-height:60vh;min-height:0}
+}
+@media (max-width:900px){
+  .mapshell{grid-template-columns:minmax(0,1fr)}
+  .fpanel{max-height:none;order:2}
+  .mapstage{order:1}
+  .mapbox{height:64vh;min-height:380px}
+  .pband{grid-template-columns:minmax(0,1fr);padding:20px 18px;gap:18px}
+  .pb-text h2{font-size:25px}
+  .mapnote{font-size:11px;padding:5px 8px}
+  .perim{font-size:11px}
+}
+
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ---------- Vue « Vers la base commune » ---------- */
+:root{--dec-ok:var(--green);--dec-ok-soft:var(--green-soft);--dec-ok-ink:var(--green-ink);
+  --dec-v:var(--amber);--dec-v-soft:var(--amber-soft);
+  --dec-s:var(--violet);--dec-s-soft:var(--violet-soft);
+  --dec-l:var(--ink-3);--dec-l-soft:var(--surface-2)}
+.cm-intro{max-width:78ch;color:var(--ink-2);margin:0 0 14px}
+.cm-intro b{color:var(--ink)}
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:18px}
+.stage{padding:14px 14px 12px;background:var(--bg);border-right:1px solid var(--line);position:relative;min-width:0;display:flex;flex-direction:column;gap:6px}
+.stage:last-child{border-right:0}
+.stage:not(:last-child)::after{content:"";position:absolute;right:-7px;top:50%;width:12px;height:12px;background:var(--bg);border-top:1px solid var(--line);border-right:1px solid var(--line);transform:translateY(-50%) rotate(45deg);z-index:1}
+.stage .lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.stage .big{font-size:26px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.stage .cap{font-size:12.5px;color:var(--ink-2);line-height:1.4}
+.stage.base{background:var(--surface)}
+.stage.ret{background:var(--green-soft)}
+.stage.ret .big{color:var(--green-ink)}
+.decbar{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--surface-2);margin-top:2px}
+.decbar span{display:block;height:100%}
+.declist{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--ink-2)}
+.declist div{display:flex;justify-content:space-between;gap:8px}
+.declist b{font-variant-numeric:tabular-nums;color:var(--ink)}
+.dsw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:baseline}
+.dec{display:inline-flex;align-items:center;font-size:11px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:4px;white-space:nowrap;text-transform:uppercase}
+.dec.ok{background:var(--dec-ok-soft);color:var(--dec-ok-ink);border:1px solid var(--dec-ok)}
+.dec.v{background:var(--dec-v-soft);color:var(--dec-v);border:1px dashed var(--dec-v)}
+.dec.s{background:var(--dec-s-soft);color:var(--dec-s);border:1px solid var(--dec-s)}
+.dec.l{background:var(--dec-l-soft);color:var(--ink-2);border:1px solid var(--line-strong)}
+.td{font-size:11px;padding:2px 6px;border-radius:4px;border:1px solid var(--line-strong);color:var(--ink-2);white-space:nowrap}
+.td.decl,.td.fourn{border-style:dashed;color:var(--amber)}
+.td.verif{border-style:dashed;color:var(--red)}
+.cm-sec{margin:22px 0 0}
+.cm-sec > h2{font-size:17px;margin:0 0 2px;display:flex;gap:10px;align-items:baseline;text-wrap:balance}
+.cm-sec > h2 .q{font-size:12px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums;flex:0 0 auto}
+.cm-sec > p{margin:0 0 10px;color:var(--ink-2);max-width:80ch}
+.cm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+.matrix td.num,.matrix th.num{text-align:right}
+.matrix td.z{color:var(--ink-3)}
+.matrix tfoot td{font-weight:700;background:var(--surface)}
+.env{border:1px solid var(--line);border-radius:var(--r);background:var(--bg);min-width:0}
+.env header{padding:10px 14px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.env header b{font-size:15px}
+.env dl{display:grid;grid-template-columns:150px minmax(0,1fr);gap:6px 12px;margin:0;padding:12px 14px}
+.env dt{color:var(--ink-3);font-size:12.5px}
+.env dd{margin:0;overflow-wrap:anywhere}
+.env dd.new{color:var(--blue-ink)}
+.env footer{padding:8px 14px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3)}
+.legendrow{display:flex;flex-direction:column;gap:6px}
+.legendrow div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:6px}
+.legendrow small{display:block;color:var(--ink-3);font-size:12px}
+.legendrow .n{font-weight:700;font-variant-numeric:tabular-nums}
+.legendrow .n.zero{color:var(--red)}
+.tpl{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.tpl .it{border:1px dashed var(--line-strong);border-radius:var(--r);padding:12px;background:var(--surface);display:flex;flex-direction:column;gap:6px;min-width:0}
+.tpl .it b{font-size:14px}
+.tpl .it p{margin:0;font-size:13px;color:var(--ink-2)}
+.tpl .it .meta{justify-content:space-between}
+.gap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.gap b{font-size:14px}
+.gap .c{font-weight:700;font-variant-numeric:tabular-nums;text-align:right}
+.gap small{grid-column:1/-1;color:var(--ink-2);font-size:12.5px}
+.gap small i{font-style:normal;color:var(--blue-ink)}
+details.cm-all{margin-top:22px;border:1px solid var(--line);border-radius:var(--r)}
+details.cm-all summary{cursor:pointer;padding:12px 14px;font-weight:700}
+details.cm-all .inner{padding:0 14px 14px}
+.cm-all .tablewrap{max-height:560px;overflow:auto}
+.cm-all td small{color:var(--ink-3)}
+@media (max-width:900px){
+  .flow{grid-template-columns:minmax(0,1fr)}
+  .stage{border-right:0;border-bottom:1px solid var(--line)}
+  .stage:last-child{border-bottom:0}
+  .stage:not(:last-child)::after{right:50%;top:auto;bottom:-7px;transform:translateX(50%) rotate(135deg)}
+  .env dl{grid-template-columns:110px minmax(0,1fr)}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="eyebrow">POC Crossac · Civipedia</div>
+      <h1>CIVIPEDIA — <span>CROSSAC</span></h1>
+      <p>Cartographie territoriale des acteurs, organisations, lieux et événements</p>
+      <div class="perimtop"><span><b>Crossac</b> territoire central</span><span><b>Proximité</b> ≈ 5 à 10 km</span><span><b>Territoire élargi</b> ≈ 20 km, repère indicatif</span></div>
+    </div>
+    <div class="search" role="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Rechercher : nom, lieu, service, fonction, source…" autocomplete="off" aria-label="Recherche globale">
+      <div id="qres" class="results" hidden></div>
+    </div>
+  </header>
+
+  <div id="counters" class="counters" aria-label="Compteurs calculés à partir des données"></div>
+
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+
+  <section id="v-carte" class="view"></section>
+  <section id="v-explorer" class="view" hidden></section>
+  <section id="v-ressources" class="view" hidden></section>
+  <section id="v-contexte" class="view" hidden></section>
+  <section id="v-commune" class="view" hidden></section>
+  <section id="v-relations" class="view" hidden></section>
+  <section id="v-sources" class="view" hidden></section>
+  <section id="v-verifier" class="view" hidden></section>
+  <section id="v-projet" class="view" hidden></section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<aside id="sheet" class="sheet" hidden aria-modal="false" role="dialog" aria-labelledby="sheet-title"></aside>
+
+<script>
+/* Normalisation tableur -> données de la carte technique.
+ * Portage fidèle de normalise.py (mêmes règles, même sortie hors `meta`), pour lire le tableur en direct.
+ * Entrée : BRUT = { "<onglet>": [[en-têtes], [ligne], ...] } tel que lu par Apps Script
+ *          (dates déjà converties en jj/mm/aaaa, nombres en nombres, cellules vides en "").
+ * Aucune donnée n'est saisie ici : tout vient du tableur ou des paramètres du territoire.
+ * Vérifié contre normalise.py sur le même instantané (tools/test_normalise_js.py). */
+(function (racine) {
+  const s = v => {
+    if (v === null || v === undefined) return "";
+    if (typeof v === "number") return Number.isInteger(v) ? String(v) : String(v);
+    return String(v).trim();
+  };
+  const iso = v => { const m = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(s(v)); return m ? `${m[3]}-${m[2]}-${m[1]}` : ""; };
+  const num = v => { if (v === null || v === undefined || v === "") return null; const n = Number(String(v).replace(",", ".")); return isFinite(n) ? n : null; };
+  const ids = v => s(v).match(/CR-S-\d{3}/g) || [];
+  const one = (v, re) => { const m = new RegExp(re).exec(s(v)); return m ? m[0] : ""; };
+  const split = v => s(v).split(";").map(x => x.trim()).filter(Boolean);
+
+  function rows(B, tab) {
+    const t = B[tab]; if (!t || !t.length) return [];
+    const head = t[0].map(s), out = [];
+    for (const r of t.slice(1)) {
+      if (!r || r[0] === null || r[0] === undefined || r[0] === "") continue;
+      const o = {}; head.forEach((h, i) => { if (h) o[h] = i < r.length ? r[i] : null; }); out.push(o);
+    }
+    return out;
+  }
+  const col = (row, p) => { for (const k of Object.keys(row)) if (k === p || k.startsWith(p + " ")) return row[k]; return null; };
+
+  function construire(B, P, ctx) {
+    ctx = ctx || {};
+    const COM = Object.fromEntries(P.communes.liste.map(c => [c.nom, c])), T = P.territoire;
+    const catsOf = (notes, eid) => {
+      const m = /Catégories communes\s*:\s*([^.]+)/.exec(s(notes));
+      if (m) return [m[1].split(";").map(x => x.trim()).filter(Boolean), "tableur"];
+      const d = P.categories_derivees.par_id[eid];
+      return d !== undefined ? [d, "dérivée — méthode à vérifier"] : [[], ""];
+    };
+    const place = (e, commune, territoire, justif, lat, lon, geo) => {
+      e.lat = num(lat); e.lon = num(lon);
+      const first = split(territoire)[0] || "";
+      if (e.lat !== null && e.lon !== null) { e.loc = s(geo).includes("pprox") ? "approx_100m" : "precis"; e.map_commune = COM[commune] ? commune : ""; }
+      else if (COM[commune]) { e.loc = "commune"; e.map_commune = commune; }
+      else if (COM[first]) { e.loc = "intervention"; e.map_commune = first; }
+      else if (s(justif).startsWith("Service couvrant") || s(territoire).includes("dont Crossac")) { e.loc = "zone"; e.map_commune = ""; }
+      else { e.loc = "none"; e.map_commune = ""; }
+      const c = COM[e.map_commune];
+      if (e.loc === "zone") { e.zone = "Service couvrant Crossac"; e.km = null; }
+      else if (c) { e.zone = c.zone; e.km = c.km; }
+      else { e.zone = "Sans localisation"; e.km = null; }
+      e.source_geocodage = s(geo);
+    };
+    const base = (r, kind) => ({ kind, id: s(r.ID_CROSSAC), masid: s(r.ID_MASECOTE_SOURCE) });
+    const fin = (e, r) => Object.assign(e, { justification: s(r.JUSTIFICATION_CROSSAC), origine: s(r.ORIGINE_DONNEE), qualif: s(r.Qualification),
+      sources: ids(r.Source), date_verif: s(r.Date_verification), confiance: s(r.Niveau_confiance), notes: s(r.Notes) });
+    const cats = (e, r) => { const [c, o] = catsOf(r.Notes, e.id); e.cats = c; e.cats_origine = o; };
+
+    const ent = [];
+    for (const r of rows(B, "01_ACTEURS")) {
+      const e = Object.assign(base(r, "acteur"), { nom: (s(r["Prénom"]) + " " + s(r.Nom)).trim(), fonction: s(r.Fonction),
+        org: one(r.Organisation, "CR-ORG-\\d{3}"), type: s(r.Type_acteur), domaine: s(r.Domaine), expertise: s(r.Expertise),
+        territoire: s(r.Territoire), commune: COM[s(r.Territoire)] ? s(r.Territoire) : "", lieu: one(r.Localisation, "CR-LIEU-\\d{3}"),
+        site: s(r.Site_web), linkedin: s(r.LinkedIn) });
+      fin(e, r); cats(e, r); place(e, e.commune, r.Territoire, r.JUSTIFICATION_CROSSAC, null, null, ""); ent.push(e);
+    }
+    for (const r of rows(B, "02_ORGANISATIONS")) {
+      const e = Object.assign(base(r, "organisation"), { nom: s(r.Nom), type: s(r.Type_organisation), domaine: s(r.Domaine), desc: s(r.Description),
+        adresse: s(r.Adresse), commune: s(r.Commune), territoire: s(r.Territoire), site: s(r.Site_web) });
+      fin(e, r); cats(e, r); place(e, e.commune, r.Territoire, r.JUSTIFICATION_CROSSAC, r.Latitude, r.Longitude, r.Source_geocodage); ent.push(e);
+    }
+    for (const r of rows(B, "03_LIEUX")) {
+      const e = Object.assign(base(r, "lieu"), { nom: s(r.Nom), type: s(r.Type_lieu), adresse: s(r.Adresse), commune: s(r.Commune), territoire: s(r.Territoire),
+        gest: one(r.Organisation_gestionnaire, "CR-ORG-\\d{3}"), gest_texte: s(r.Organisation_gestionnaire), desc: s(r.Fonction) });
+      fin(e, r); cats(e, r); place(e, e.commune, r.Territoire, r.JUSTIFICATION_CROSSAC, r.Latitude, r.Longitude, r.Source_geocodage); ent.push(e);
+    }
+    const LIEU_COMMUNE = Object.fromEntries(ent.filter(e => e.kind === "lieu").map(e => [e.id, e.commune]));
+    for (const r of rows(B, "04_EVENEMENTS")) {
+      const lieu = one(r.Lieu, "CR-LIEU-\\d{3}"), commune = LIEU_COMMUNE[lieu] || (COM[s(r.Lieu)] ? s(r.Lieu) : "");
+      const e = Object.assign(base(r, "evenement"), { nom: s(r.Nom), date_debut: iso(r.Date_debut), date_fin: iso(r.Date_fin), heure: s(r.Heure),
+        lieu, lieu_texte: s(r.Lieu), organisateur: one(r.Organisateur, "CR-ORG-\\d{3}"), type: s(r.Type_evenement), domaine: s(r.Domaine),
+        desc: s(r.Description), url: s(r.URL), commune });
+      fin(e, r); e.statut_src = s(r.Statut); cats(e, r); place(e, commune, "", r.JUSTIFICATION_CROSSAC, null, null, ""); ent.push(e);
+    }
+    const rel = rows(B, "05_RELATIONS").map(r => ({ id: s(r.ID_CROSSAC), masid: s(r.ID_MASECOTE_SOURCE), src_type: s(r.Source_Type), src: s(r.Source_ID),
+      cible_type: s(r.Cible_Type), cible: s(r.Cible_ID), type: s(r.Type_relation), desc: s(r.Description), statut: s(r.Statut_relation),
+      justification: s(r.JUSTIFICATION_CROSSAC), origine: s(r.ORIGINE_DONNEE), qualif: s(r.Qualification), sources: ids(r.Source),
+      date_verif: s(r.Date_verification), confiance: s(r.Niveau_confiance), notes: s(r.Notes) }));
+    // DONNÉES DÉRIVÉES (règles explicites, identiques à normalise.py)
+    const E = Object.fromEntries(ent.map(e => [e.id, e]));
+    for (const r of rel) if ((r.type === "Organise" || r.type === "Service de") && E[r.cible] && E[r.cible].kind === "organisation" && !("gest" in E[r.cible])) E[r.cible].gest = r.src;
+    for (const l of ent) if (l.kind === "lieu" && l.nom.startsWith("Siège") && E[l.gest]) {
+      const o = E[l.gest];
+      if ((o.loc === "none" || o.loc === "zone") && COM[l.commune]) { const c = COM[l.commune]; Object.assign(o, { loc: "commune", loc_regle: "siège", map_commune: l.commune, zone: c.zone, km: c.km }); }
+    }
+    const src = rows(B, "06_SOURCES").map(r => ({ id: s(r.ID_SOURCE), masid: s(r.ID_MASECOTE_SOURCE), nom: s(r.Nom_source), type: s(r.Type_source), url: s(r.URL),
+      pub: s(r.Date_publication), consult: s(r.Date_consultation), fiab: s(r.Fiabilite), notes: s(r.Notes) }));
+    const obs = rows(B, "07_CONTEXTE").map(r => ({ id: s(r.ID_OBSERVATION), indicateur: s(r.Indicateur), valeur: s(r.Valeur), date: s(r.Date_ou_millesime),
+      echelle: s(r.Echelle), cats: split(r.Categories_communes), sources: ids(r.Source), qualif: s(r.Qualification), notes: s(r.Notes), ind: s(r.Indicateur_suivi) }));
+    const actInd = P.indicateurs_des_actions.par_id, actions = rows(B, "08_ACTIONS").map(r => ({ id: s(r.ID_ACTION), masid: s(r.ID_MASECOTE_SOURCE), nom: s(r.Nom),
+      domaine: split(r.Domaine), porteurs: [...s(r["Porteurs (ID : rôle)"]).matchAll(/(CR-(?:ORG|ACT)-\d{3})\s*:\s*([^;]+)/g)].map(m => [m[1], m[2].trim()]),
+      objectif: s(r.Objectif), periode: s(r.Periode), suivi: s(r.Donnees_de_suivi), resultats: s(r.Resultats), sources: ids(r.Source), qualif: s(r.Qualification),
+      manque: s(r.Elements_manquants), probleme: s(r.Probleme_cible), public: s(r.Public_concerne), moyens: s(r.Moyens_mobilises), territoire: s(r.Territoire),
+      origine: s(r.ORIGINE_DONNEE), date_verif: s(r.Date_verification), ind: actInd[s(r.ID_ACTION)] || [] }));
+    const ind = rows(B, "09_INDICATEURS").map(r => ({ id: s(r.ID_INDICATEUR), domaine: s(r.Domaine), nom: s(r.Indicateur), question: s(r.Question_servie),
+      source: s(r.Source_ou_producteur), echelle: s(r.Echelle), frequence: s(r.Frequence), etat: s(r.Etat_disponibilite),
+      obs: s(r.Observations_liees).match(/OBS-\d{3}/g) || [], todo: s(r.Action_a_mener), validite: s(col(r, "Delai_validite")),
+      derniere_collecte: s(r.Derniere_collecte), prochaine_collecte: s(r.Prochaine_collecte) }));
+    const av = rows(B, "A_VERIFIER").map(r => { const d = s(r.Decision); return { id: s(r.ID_A_VERIFIER), masid: s(r.ID_MASECOTE_SOURCE), cat: s(r.Categorie),
+      libelle: s(r.Libelle), motif: s(r.Motif), lien_crossac: s(r.Lien_Crossac_etabli), decision: d, verification: s(r.Verification_necessaire), sources: ids(r.Source),
+      origine: s(r.ORIGINE_DONNEE), resolu: d.startsWith("Résolu") || s(r.Verification_necessaire).startsWith("Aucune") }; });
+    const generic = tab => rows(B, tab).map(r => Object.fromEntries(Object.entries(r).map(([k, v]) => [k, s(v)])));
+    const valeurs = rows(B, "13_OBSERVATIONS_VALEURS").map(r => { const v = Object.fromEntries(Object.entries(r).map(([k, x]) => [k, s(x)]));
+      v.Valeur_num = typeof r.Valeur_num === "number" ? r.Valeur_num : null; return v; });
+
+    return { communes: P.communes.liste, entities: ent, relations: rel, sources: src, observations: obs, valeurs,
+      actions: actions.filter(a => !a.qualif.startsWith("À documenter")),
+      actions_attendues: actions.filter(a => a.qualif.startsWith("À documenter")).map(a => ({ id: a.id, nom: a.nom, statut: a.qualif, note: a.manque, ind: a.ind })),
+      indicateurs: ind, a_verifier: av, cles: P.reperes.par_domaine, apports: generic("10_APPORTS_ACTEURS"), demandes: generic("11_DEMANDES"),
+      collectes: generic("12_JOURNAL_COLLECTE"), exports: generic("14_EXPORTS"),
+      meta: { territoire: T.id, nom: T.nom, code_insee: T.code_insee, centre: T.centre, rayon_km: T.rayon_km, cc_membres: T.cc_membres,
+        sheet: T.tableur ? `https://docs.google.com/spreadsheets/d/${T.tableur}/edit` : "", today: ctx.today || "", snapshot: ctx.snapshot || "",
+        derives: ["entities[].gest (organisations, via relations Organise / Service de)", "entities[].map_commune (organisations, via lieu Siège)"],
+        calcules: ["entities[].loc", "entities[].map_commune", "entities[].zone", "entities[].km", "communes[].km", "communes[].zone"],
+        derives_a_verifier: ent.filter(e => e.cats_origine.startsWith("dérivée")).map(e => e.id).sort() } };
+  }
+
+  /* Compléments pour l'interface de la carte technique (DONNÉES CALCULÉES, règles explicites) :
+   * - origine lisible de chaque élément (champ ORIGINE_DONNEE du tableur) ;
+   * - séries temporelles : valeurs numériques de 13_OBSERVATIONS_VALEURS ayant même indicateur (hors précision entre parenthèses),
+   *   même unité et même échelle, à au moins deux dates ponctuelles ; rattachées à l'observation qui en porte le plus de points. */
+  const ORIGINES = { MASECOTE_EXISTANTE: "Base commune", ENRICHISSEMENT_PUBLIC: "Enrichissement public", "À_VÉRIFIER": "À vérifier" };
+  const origineLisible = o => ORIGINES[o] || (o ? o : "Non renseignée");
+  function completer(D) {
+    for (const e of D.entities) {
+      e.layer = origineLisible(e.origine);
+      for (const k of ["adresse", "desc", "site", "url", "territoire", "domaine", "fonction", "commune", "type"]) if (e[k] === undefined) e[k] = "";
+    }
+    for (const r of D.relations) r.layer = origineLisible(r.origine);
+    const groupes = new Map();
+    for (const v of D.valeurs) {
+      if (v.Valeur_num === null) continue;
+      const deb = v.Periode_debut, fin = v.Periode_fin;
+      if (deb && fin && deb !== fin) continue;            // une période n'est pas une date ponctuelle
+      if (!deb && !fin) continue;
+      const cle = [v.Indicateur.replace(/\s*\([^)]*\)\s*$/, ""), v.Unite, v.Echelle].join("|");
+      if (!groupes.has(cle)) groupes.set(cle, []);
+      groupes.get(cle).push({ obs: v.ID_OBS_ORIGINE, tri: deb || fin, lab: deb ? (fin ? deb : "dès " + deb) : "jusqu'à " + fin, val: v.Valeur_num, unite: v.Unite });
+    }
+    const OBS = Object.fromEntries(D.observations.map(o => [o.id, o]));
+    for (const pts of groupes.values()) {
+      if (new Set(pts.map(p => p.tri)).size < 2) continue;
+      const n = {}; pts.forEach(p => { n[p.obs] = (n[p.obs] || 0) + 1; });
+      const cible = Object.keys(n).sort((a, b) => n[b] - n[a] || a.localeCompare(b))[0];
+      const o = OBS[cible]; if (!o || o.serie) continue;
+      o.serie = pts.slice().sort((a, b) => a.tri.localeCompare(b.tri)).map(p => [p.lab, p.val]); o.unite = pts[0].unite; o.serie_calculee = true;
+    }
+    D.meta.calcules.push("entities[].layer (ORIGINE_DONNEE)", "observations[].serie (13_OBSERVATIONS_VALEURS)");
+    return D;
+  }
+
+  racine.NORMALISE = { construire, completer };
+  if (typeof module !== "undefined") module.exports = racine.NORMALISE;
+})(typeof window !== "undefined" ? window : globalThis);
+
+</script>
+<script>
+/*__DONNEES__*/
+if(typeof BRUT==="undefined"){document.body.innerHTML='<p style="padding:24px;font:16px system-ui;color:#e9eef8;background:#060b16">Cette carte s’ouvre depuis l’accès réservé aux comptes Civipedia.</p>';throw new Error("accès réservé")}
+// Données lues en direct dans le tableur par le script Google, puis normalisées ici (mêmes règles que l’export).
+const DATA=NORMALISE.completer(NORMALISE.construire(BRUT,PRIVE.params,CONTEXTE));
+const REM=PRIVE.rem, BASE=PRIVE.base;
+
+/* ---------- 1. Modèle ---------- */
+const KINDS={acteur:{label:"Acteurs",one:"Acteur",color:"var(--k-acteur)"},organisation:{label:"Organisations",one:"Organisation",color:"var(--k-organisation)"},lieu:{label:"Lieux et équipements",one:"Lieu / équipement",color:"var(--k-lieu)"},evenement:{label:"Événements",one:"Événement",color:"var(--k-evenement)"}};
+const ZONES=["Crossac","Proximité immédiate","Territoire élargi","Service couvrant Crossac","Sans localisation"];
+const CATS=["Accès à l'eau","Adelphité","Alimentation","Démocratie créative","Éducation","Emploi","Énergie","Justice sociale","Logement","Mobilités","Pouvoir d'achat","Résilience","Santé","Environnement","Vivre ensemble","Démographie et dynamiques territoriales","Économie locale et tissu productif","Aménagement foncier et numérique","Gouvernance, finances publiques et action collective","Culture, patrimoine et création"];
+const LOC={approx_100m:"Coordonnées précises à ~100 m (agrégateur, à confirmer BAN)",commune:"Position au centre de la commune",intervention:"Intervient à Crossac ; siège non indiqué",zone:"Service couvrant un territoire (pas de point unique)",none:"Non géolocalisé"};
+const E=DATA.entities, byId=Object.fromEntries(E.map(e=>[e.id,e])), SRC=Object.fromEntries(DATA.sources.map(s=>[s.id,s]));
+const COM=Object.fromEntries(DATA.communes.map(c=>[c.nom,c]));
+const TODAY=DATA.meta.today;
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm=s=>String(s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+const fmtDate=iso=>{if(!iso)return"";const[y,m,d]=iso.split("-");return`${d}/${m}/${y}`};
+const evState=e=>e.kind!=="evenement"?"":((e.date_fin||e.date_debut)<TODAY?"Passé":"À venir");
+const qClass=q=>"q-"+String(q).replace(/\s/g,"");
+const qBadge=q=>`<span class="badge ${qClass(q)}" title="Statut de l'information">${esc(q)}</span>`;
+const layerBadge=e=>`<span class="layer${e.layer==="Enrichissement public"?" enr":""}" title="Origine de la donnée (colonne ORIGINE_DONNEE du tableur)">${esc(e.layer)}</span>`;
+const LAYERS=[...new Set(DATA.entities.map(e=>e.layer))].sort();
+const relsOf=id=>DATA.relations.filter(r=>r.src===id||r.cible===id);
+const searchText=e=>norm([e.id,e.nom,e.type,e.fonction,e.desc,e.adresse,e.commune,e.territoire,e.notes,(e.cats||[]).join(" "),e.domaine,
+  e.org&&byId[e.org]?.nom,e.lieu&&byId[e.lieu]?.nom,e.organisateur&&byId[e.organisateur]?.nom,
+  ...(e.sources||[]).map(s=>SRC[s]?.nom)].join(" "));
+E.forEach(e=>e._s=searchText(e));
+
+/* ---------- 2. Filtres (état partagé carte + explorer) ---------- */
+const F={kinds:new Set(Object.keys(KINDS)),cat:"",zone:"",q:"",statut:"",layer:"",commune:""};
+function pass(e,ignore){
+  if(ignore!=="kind"&&!F.kinds.has(e.kind))return false;
+  if(F.cat&&!(e.cats||[]).includes(F.cat))return false;
+  if(F.zone&&e.zone!==F.zone)return false;
+  if(F.statut&&e.qualif!==F.statut)return false;
+  if(F.layer&&e.layer!==F.layer)return false;
+  if(F.q&&!norm(F.q).split(/\s+/).every(w=>e._s.includes(w)))return false;
+  return true;
+}
+const filtered=()=>E.filter(e=>pass(e));
+function filterBar(id){
+  const kc=k=>E.filter(e=>e.kind===k&&pass(e,"kind")).length;
+  const usedCats=CATS.filter(c=>E.some(e=>(e.cats||[]).includes(c)));
+  const statuts=[...new Set(E.map(e=>e.qualif))];
+  return `<div class="filters" id="${id}">
+    <div class="chips">${Object.entries(KINDS).map(([k,v])=>`<button class="chip" data-kind="${k}" aria-pressed="${F.kinds.has(k)}"><span class="dot" style="background:${v.color}"></span>${v.label}<span class="n">${kc(k)}</span></button>`).join("")}</div>
+    <select class="f" data-f="cat" aria-label="Catégorie"><option value="">Toutes les catégories</option>${usedCats.map(c=>`<option ${F.cat===c?"selected":""}>${esc(c)}</option>`).join("")}</select>
+    <select class="f" data-f="zone" aria-label="Localisation"><option value="">Tout le territoire</option>${ZONES.map(z=>`<option ${F.zone===z?"selected":""}>${z}</option>`).join("")}</select>
+    <select class="f" data-f="statut" aria-label="Statut de l'information"><option value="">Tous les statuts</option>${statuts.map(s=>`<option ${F.statut===s?"selected":""}>${s}</option>`).join("")}</select>
+    <select class="f" data-f="layer" aria-label="Origine"><option value="">Toutes origines</option>${LAYERS.map(l=>`<option ${F.layer===l?"selected":""}>${esc(l)}</option>`).join("")}</select>
+    <button class="reset" data-reset>Réinitialiser</button>
+  </div>`;
+}
+function bindFilters(root){
+  root.querySelectorAll("[data-kind]").forEach(b=>b.onclick=()=>{const k=b.dataset.kind;F.kinds.has(k)&&F.kinds.size>1?F.kinds.delete(k):F.kinds.add(k);rerender()});
+  root.querySelectorAll("[data-axe]").forEach(b=>b.onclick=()=>{F.cat=F.cat===b.dataset.axe?"":b.dataset.axe;rerender()});
+  root.querySelectorAll("select[data-f]").forEach(s=>s.onchange=()=>{F[s.dataset.f]=s.value;rerender()});
+  root.querySelector("[data-reset]").onclick=()=>{F.kinds=new Set(Object.keys(KINDS));F.cat=F.zone=F.statut=F.layer=F.commune="";F.q="";document.getElementById("q").value="";rerender()};
+}
+
+/* ---------- 3. Compteurs ---------- */
+function renderCounters(){
+  const c=k=>E.filter(e=>e.kind===k).length, enr=k=>E.filter(e=>e.kind===k&&e.qualif==="VÉRIFIÉ").length;
+  const items=[["acteur","Acteurs"],["organisation","Organisations"],["lieu","Lieux"],["evenement","Événements"]].map(([k,l])=>`<button class="counter" data-ck="${k}"><b>${c(k)}</b><span>${l}</span><i>dont ${enr(k)} vérifié(s)</i></button>`);
+  items.push(`<button class="counter" data-go="contexte"><b>${DATA.observations.length}</b><span>Observations</span><i>${DATA.indicateurs.length} indicateurs suivis</i></button>`);
+  items.push(`<button class="counter" data-go="contexte"><b>${DATA.actions.length}</b><span>Actions</span><i>${DATA.actions_attendues.length} attendue(s)</i></button>`);
+  items.push(`<button class="counter" data-go="relations"><b>${DATA.relations.length}</b><span>Relations</span><i>documentées</i></button>`);
+  items.push(`<button class="counter" data-go="sources"><b>${DATA.sources.length}</b><span>Sources</span><i>${DATA.sources.filter(s=>s.fiab==="Source officielle").length} officielles</i></button>`);
+  items.push(`<button class="counter" data-go="verifier"><b>${DATA.a_verifier.length}</b><span>À vérifier</span><i>points ouverts</i></button>`);
+  const el=document.getElementById("counters");el.innerHTML=items.join("");
+  el.querySelectorAll("[data-ck]").forEach(b=>b.onclick=()=>{F.kinds=new Set([b.dataset.ck]);show("explorer")});
+  el.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>show(b.dataset.go));
+}
+
+/* ---------- 4. Carte territoriale (fond géographique + couche de connaissance) ---------- */
+/* Fond : limites communales (france-geojson, d'après IGN Admin Express), Loire et Vilaine, routes et voies ferrées (Natural Earth 1:10M).
+   Données : entités du tableur placées à leurs coordonnées si connues, sinon regroupées autour du centre de leur commune. */
+const MAP={cx:0,cy:0,s:0,sel:"Crossac",focus:null,fitted:false};
+const LAT0=DATA.meta.centre[0],LON0=DATA.meta.centre[1],KX=111.32*Math.cos(LAT0*Math.PI/180),KY=110.57;
+const proj=(lat,lon)=>[(lon-LON0)*KX,-(lat-LAT0)*KY];
+const KORDER=["organisation","lieu","acteur","evenement"];
+const COM_BY_CODE=Object.fromEntries(DATA.communes.map(c=>[c.code,c]));
+const GEOK=(()=>{
+  const pt=([lon,lat])=>{const[x,y]=proj(lat,lon);return x.toFixed(2)+","+y.toFixed(2)};
+  const path=r=>"M"+r.map(pt).join("L");
+  return{
+    communes:GEO.communes.map(c=>({code:c.c,nom:c.n,d:c.r.map(r=>path(r)+"Z").join(""),data:COM_BY_CODE[c.c]})),
+    rivers:GEO.rivers.map(r=>({n:r.name,d:path(r.l)})),
+    roads:GEO.roads.map(r=>({n:r.label||r.name||"",major:r.type==="Major Highway",d:path(r.l)})),
+    rail:GEO.rail.map(r=>path(r.l))
+  };
+})();
+const sideW=()=>window.matchMedia("(min-width:1100px)").matches?340:0;
+
+function renderMapView(){
+  const v=document.getElementById("v-carte");
+  v.innerHTML=`${keyBand()}<div class="mapshell">
+    ${filterPanel("fb-map")}
+    <div class="mapstage">
+      <div class="mapbox" id="mapbox">
+        <svg id="map" role="img" aria-label="Carte de Crossac et de son territoire dans un rayon d'environ 20 km">
+          <defs>
+            <filter id="glow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <radialGradient id="halo"><stop offset="0" stop-color="var(--halo)" stop-opacity=".22"/><stop offset="1" stop-color="var(--halo)" stop-opacity="0"/></radialGradient>
+          </defs>
+          <g id="base">${baseSVG()}</g>
+          <g id="dyn"></g>
+        </svg>
+        <div class="perim" aria-label="Périmètre">
+          <span><i class="pz pz-cx"></i>Crossac</span><span><i class="pz pz-px"></i>Proximité · 10 km</span><span><i class="pz pz-el"></i>Territoire élargi · 20 km</span>
+        </div>
+        <div class="mapctl"><button id="zin" aria-label="Zoomer">+</button><button id="zout" aria-label="Dézoomer">−</button><button id="zfit" aria-label="Recentrer sur Crossac" title="Recentrer sur Crossac">⌖</button></div>
+        <p class="mapnote" id="map-sum"></p>
+      </div>
+      <aside class="side" id="side"></aside>
+    </div>
+  </div>
+  ${projectBand()}`;
+  bindFilters(v.querySelector("#fb-map"));bindBand(v);bindKeyBand(v);
+  const box=v.querySelector("#mapbox"),svg=v.querySelector("#map");
+  if(!MAP.fitted)fitMap();
+  drawMap();drawSide();
+  let drag=null;
+  svg.addEventListener("pointerdown",e=>{if(e.target.closest("[data-e]"))return;drag={x:e.clientX,y:e.clientY,cx:MAP.cx,cy:MAP.cy,moved:false,t:e.target};svg.classList.add("drag");svg.setPointerCapture(e.pointerId)});
+  svg.addEventListener("pointermove",e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>4)drag.moved=true;MAP.cx=drag.cx-dx/MAP.s;MAP.cy=drag.cy-dy/MAP.s;drawMap()});
+  const end=()=>{if(drag&&!drag.moved){const c=drag.t.closest&&drag.t.closest("[data-c]");if(c){MAP.sel=c.dataset.c;MAP.focus=null;drawMap();drawSide()}}drag=null;svg.classList.remove("drag")};
+  svg.addEventListener("pointerup",end);svg.addEventListener("pointercancel",()=>{drag=null;svg.classList.remove("drag")});
+  svg.addEventListener("wheel",e=>{e.preventDefault();const r=svg.getBoundingClientRect();zoomAt(e.deltaY<0?1.2:1/1.2,e.clientX-r.left,e.clientY-r.top)},{passive:false});
+  v.querySelector("#zin").onclick=()=>zoomAt(1.3);v.querySelector("#zout").onclick=()=>zoomAt(1/1.3);
+  v.querySelector("#zfit").onclick=()=>{fitMap();MAP.sel="Crossac";MAP.focus=null;drawMap();drawSide()};
+}
+function fitMap(){
+  const svg=document.getElementById("map");if(!svg)return;
+  const W=svg.clientWidth||800,H=svg.clientHeight||600,sw=sideW();
+  MAP.s=Math.min((W-sw)/46,H/46);
+  MAP.cx=sw/2/MAP.s;MAP.cy=0;MAP.fitted=true;
+}
+function zoomAt(f,px,py){
+  const svg=document.getElementById("map"),W=svg.clientWidth,H=svg.clientHeight;
+  if(px==null){px=(W-sideW())/2;py=H/2}
+  const ns=Math.max(4,Math.min(220,MAP.s*f)),wx=MAP.cx+(px-W/2)/MAP.s,wy=MAP.cy+(py-H/2)/MAP.s;
+  MAP.cx=wx-(px-W/2)/ns;MAP.cy=wy-(py-H/2)/ns;MAP.s=ns;drawMap();
+}
+function baseSVG(){
+  let g=`<rect x="-400" y="-400" width="800" height="800" class="sea"/>`;
+  GEOK.communes.forEach(c=>{
+    const z=c.data?.zone,cls=z==="Crossac"?" cm-cx":z==="Proximité immédiate"?" cm-px":z==="Territoire élargi"?" cm-el":"";
+    g+=`<path class="cm${cls}" d="${c.d}"${c.data?` data-c="${esc(c.data.nom)}"`:""}><title>${esc(c.nom)}</title></path>`;
+  });
+  GEOK.rail.forEach(d=>g+=`<path class="rail" d="${d}"/>`);
+  GEOK.rivers.forEach(r=>g+=`<path class="river" d="${r.d}"><title>${esc(r.n)}</title></path>`);
+  GEOK.roads.forEach(r=>g+=`<path class="road${r.major?" major":""}" d="${r.d}"><title>${esc(r.n)}</title></path>`);
+  [20,10,5].forEach(r=>g+=`<circle class="ring r${r}" cx="0" cy="0" r="${r}"/>`);
+  return g;
+}
+/* Positions écran des entités : coordonnées propres si connues, sinon grappe autour du centre de la commune */
+function layout(list,P,sc){
+  const pos={},groups={},precise=[];
+  list.forEach(e=>{
+    if(sc>=60&&e.lat!=null&&e.lon!=null&&e.loc==="approx_100m"){precise.push(e);return}
+    if(e.map_commune&&COM[e.map_commune])(groups[e.map_commune]=groups[e.map_commune]||[]).push(e);
+  });
+  const clusters=[];
+  Object.entries(groups).forEach(([nom,l])=>{
+    const c=COM[nom],[x,y]=P(...proj(c.lat,c.lon));
+    l.sort((a,b)=>KORDER.indexOf(a.kind)-KORDER.indexOf(b.kind)||a.nom.localeCompare(b.nom));
+    const sp=Math.max(7.6,Math.min(15,7.6*Math.sqrt(sc/12)));
+    clusters.push({nom,x0:x,y0:y,x,y,R:sp*Math.sqrt(l.length-.4)+8,sp,l});
+  });
+  // Écarte légèrement les grappes qui se chevauchent ; un trait relie chaque grappe déplacée au centre de sa commune
+  for(let it=0;it<40;it++){let moved=false;
+    for(let i=0;i<clusters.length;i++)for(let j=i+1;j<clusters.length;j++){
+      const A=clusters[i],B=clusters[j],dx=B.x-A.x,dy=B.y-A.y,d=Math.hypot(dx,dy)||.01,need=A.R+B.R+6;
+      if(d<need){const o=need-d,wa=B.l.length/(A.l.length+B.l.length),wb=1-wa;
+        A.x-=dx/d*o*wa;A.y-=dy/d*o*wa;B.x+=dx/d*o*wb;B.y+=dy/d*o*wb;moved=true}}
+    if(!moved)break}
+  clusters.forEach(c=>c.l.forEach((e,i)=>{const r=c.sp*Math.sqrt(i+.6),a=i*2.39996+.6;pos[e.id]=[c.x+r*Math.cos(a),c.y+r*Math.sin(a)]}));
+  const seen={};precise.forEach(e=>{const p=P(...proj(e.lat,e.lon)),k=Math.round(p[0]/6)+":"+Math.round(p[1]/6),n=seen[k]=(seen[k]||0)+1;
+    pos[e.id]=n>1?[p[0]+9*Math.cos(n*2.1),p[1]+9*Math.sin(n*2.1)]:p});
+  return{pos,clusters,precise};
+}
+function markSVG(e,x,y,foc){
+  const k=e.kind,past=k==="evenement"&&evState(e)==="Passé",weak=e.qualif==="HYPOTHÈSE"||e.qualif==="À VÉRIFIER";
+  const col=`var(--k-${k})`,cls=`mk${weak?" weak":""}${past?" past":""}${foc?" foc":""}`;
+  let s;
+  if(k==="organisation")s=`<circle r="5" fill="none" stroke="${col}" stroke-width="1.2" opacity=".55"/><circle r="3" fill="${col}"/>`;
+  else if(k==="lieu")s=`<circle r="3.8" fill="${col}"/>`;
+  else if(k==="acteur")s=`<circle r="3.1" fill="${col}"/>`;
+  else s=`<rect x="-3.6" y="-3.6" width="7.2" height="7.2" transform="rotate(45)" fill="${past?"none":col}" stroke="${col}" stroke-width="1.3"/>`;
+  if(e.loc==="approx_100m")s+=`<circle r="8.5" fill="none" stroke="${col}" stroke-width=".8" stroke-dasharray="2 2"/>`;
+  if(foc)s+=`<circle r="10" fill="none" stroke="var(--ink)" stroke-width="1.4"/>`;
+  return `<g class="${cls}" data-e="${e.id}" transform="translate(${x.toFixed(1)},${y.toFixed(1)})" tabindex="0" role="button" aria-label="${esc(KINDS[k].one)} : ${esc(e.nom)}"><circle r="9" fill="transparent"/>${s}<title>${esc(e.nom)} · ${esc(e.type||KINDS[k].one)} · ${esc(e.qualif)}</title></g>`;
+}
+function drawMap(){
+  const svg=document.getElementById("map");if(!svg)return;
+  const W=svg.clientWidth||800,H=svg.clientHeight||600,s=MAP.s;
+  const P=(x,y)=>[W/2+(x-MAP.cx)*s,H/2+(y-MAP.cy)*s];
+  svg.querySelector("#base").setAttribute("transform",`translate(${W/2-MAP.cx*s},${H/2-MAP.cy*s}) scale(${s})`);
+  svg.querySelectorAll(".cm[data-c]").forEach(p=>p.classList.toggle("sel",p.dataset.c===MAP.sel));
+  const f=filtered(),{pos,clusters,precise}=layout(f,P,s),grouped=s<9.5;
+  const [ox,oy]=P(0,0);let g="";
+  // Étiquettes des anneaux de proximité
+  [[5,"5 km"],[10,"Proximité · 10 km"],[20,"Territoire élargi · 20 km"]].forEach(([r,t])=>g+=`<text class="ringlab" x="${ox}" y="${oy-r*s-5}" text-anchor="middle">${t}</text>`);
+  // Halo des grappes
+  clusters.forEach(c=>{const x=grouped?c.x0:c.x,y=grouped?c.y0:c.y;g+=`<circle cx="${x}" cy="${y}" r="${grouped?18+Math.sqrt(c.l.length)*3:c.R+10}" fill="url(#halo)"/>`});
+  if(!grouped)clusters.forEach(c=>{if(Math.hypot(c.x-c.x0,c.y-c.y0)>5)g+=`<line class="lead" x1="${c.x0}" y1="${c.y0}" x2="${c.x}" y2="${c.y}"/><circle class="lead0" cx="${c.x0}" cy="${c.y0}" r="2"/>`});
+  // Noms des communes (toutes celles du périmètre ; les autres apparaissent en zoomant)
+  const withData=new Set(clusters.map(c=>c.nom));
+  const boxes=[],rank=c=>c.nom==="Crossac"?0:withData.has(c.nom)?1:2;
+  [...DATA.communes].sort((a,b)=>rank(a)-rank(b)||a.km-b.km).forEach(c=>{
+    const [x,y]=P(...proj(c.lat,c.lon)),cl=clusters.find(k=>k.nom===c.nom),isCx=c.nom==="Crossac";
+    if(!cl&&s<9&&c.km>12)return;
+    if(!cl&&clusters.some(k=>Math.hypot((grouped?k.x0:k.x)-x,(grouped?k.y0:k.y)-y)<(grouped?16+Math.sqrt(k.l.length)*2.6:k.R)+10))return;
+    const lx=cl&&!grouped?cl.x:x,ly=cl&&!grouped?cl.y:y,dy=cl?(grouped?10+Math.sqrt(cl.l.length)*1.8:cl.R-2)+12:4;
+    const bw=(isCx?"CROSSAC":c.nom).length*(isCx?9.5:6.1)/2+4,bx=lx,by=ly+dy-5;
+    if(boxes.some(b=>Math.abs(b.x-bx)<b.w+bw&&Math.abs(b.y-by)<13))return;
+    boxes.push({x:bx,y:by,w:bw});
+    g+=`<text class="clab${isCx?" cx":""}${withData.has(c.nom)?" has":""}${MAP.sel===c.nom?" sel":""}" x="${lx}" y="${ly+dy}" text-anchor="middle">${esc(isCx?"CROSSAC":c.nom)}</text>`;
+  });
+  // Relations documentées (aucune ligne n'est déduite)
+  const shown=[];
+  if(!grouped)DATA.relations.forEach(r=>{const a=pos[r.src],b=pos[r.cible];if(!a||!b)return;shown.push(r);
+    const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,dx=b[0]-a[0],dy=b[1]-a[1],k=.18;
+    const on=MAP.focus&&(r.src===MAP.focus||r.cible===MAP.focus);
+    g+=`<path class="mrel${on?" on":""}${r.qualif==="HYPOTHÈSE"||r.qualif==="À VÉRIFIER"?" weak":""}" data-a="${r.src}" data-b="${r.cible}" d="M${a[0]},${a[1]}Q${mx-dy*k},${my+dx*k} ${b[0]},${b[1]}"><title>${esc(r.type)} · ${esc(r.qualif)}</title></path>`});
+  // Entités
+  if(grouped){
+    clusters.forEach(c=>{
+      const n=c.l.length,R=6+Math.sqrt(n)*1.8,C=2*Math.PI*R;let off=0;c={...c,x:c.x0,y:c.y0};
+      g+=`<g class="clu" data-c="${esc(c.nom)}" tabindex="0" role="button" aria-label="${esc(c.nom)} : ${n} élément(s)"><circle cx="${c.x}" cy="${c.y}" r="${R+3}" fill="var(--panel-solid)" stroke="var(--line-strong)"/>`;
+      KORDER.forEach(k=>{const m=c.l.filter(e=>e.kind===k).length;if(!m)return;const len=C*m/n;
+        g+=`<circle cx="${c.x}" cy="${c.y}" r="${R}" fill="none" stroke="var(--k-${k})" stroke-width="3" stroke-dasharray="${Math.max(len-1.5,.5)} ${C}" stroke-dashoffset="${-off}" transform="rotate(-90 ${c.x} ${c.y})" filter="url(#glow)"/>`;off+=len});
+      g+=`<text x="${c.x}" y="${c.y+4}" text-anchor="middle" class="clun">${n}</text></g>`;
+    });
+    precise.forEach(e=>g+=markSVG(e,...pos[e.id],MAP.focus===e.id));
+  }else{
+    g+=`<g filter="url(#glow)">`;
+    [...clusters.flatMap(c=>c.l),...precise].forEach(e=>g+=markSVG(e,...pos[e.id],MAP.focus===e.id));
+    g+=`</g>`;
+  }
+  const dyn=svg.querySelector("#dyn");dyn.innerHTML=g;
+  dyn.querySelectorAll("[data-e]").forEach(n=>{
+    const go=()=>{MAP.focus=n.dataset.e;drawMap();openSheet(n.dataset.e)};
+    n.onclick=go;n.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}};
+    n.onpointerenter=()=>dyn.querySelectorAll(`.mrel[data-a="${n.dataset.e}"],.mrel[data-b="${n.dataset.e}"]`).forEach(l=>l.classList.add("on"));
+    n.onpointerleave=()=>dyn.querySelectorAll(".mrel.on").forEach(l=>{if(!(MAP.focus&&(l.dataset.a===MAP.focus||l.dataset.b===MAP.focus)))l.classList.remove("on")});
+  });
+  dyn.querySelectorAll(".clu").forEach(n=>{const go=()=>{MAP.sel=n.dataset.c;const c=COM[n.dataset.c];const[x,y]=proj(c.lat,c.lon);MAP.cx=x+sideW()/2/14;MAP.cy=y;MAP.s=14;drawMap();drawSide()};n.onclick=go;n.onkeydown=e=>{if(e.key==="Enter"){e.preventDefault();go()}}});
+  const placed=Object.keys(pos).length;
+  const sum=document.getElementById("map-sum");
+  if(sum)sum.innerHTML=`<b>${placed}</b> élément(s) sur la carte sur ${f.length} filtré(s) · ${grouped?"relations documentées visibles en zoomant":`<b>${shown.length}</b> relation(s) documentée(s) tracée(s)`} · ${f.length-placed} sans position (services couvrant le territoire, sièges non relevés), dans la liste.`;
+}
+function drawSide(){
+  const side=document.getElementById("side");if(!side)return;
+  const f=filtered();
+  let list,title,sub;
+  if(MAP.sel==="__all"){list=f;title="Tout le territoire";sub=`${f.length} élément(s) correspondant aux filtres`}
+  else{const c=COM[MAP.sel];list=f.filter(e=>e.map_commune===MAP.sel);
+    title=MAP.sel;sub=`${c.zone}${c.km?` · ${String(c.km).replace(".",",")} km de Crossac`:""} · ${c.pop.toLocaleString("fr-FR")} hab. (CR-S-019)${c.cc?" · membre de la CC":""}`;}
+  const extra=MAP.sel==="Crossac"?f.filter(e=>e.zone==="Service couvrant Crossac"):[];
+  side.innerHTML=`<header><div class="eyebrow">${MAP.sel==="__all"?"Liste":"Commune sélectionnée"}</div><h2>${esc(title)}</h2><p>${esc(sub)}</p>
+    ${MAP.sel==="__all"?"":`<button class="link" id="allbtn">Voir tout le territoire →</button>`}</header>
+    <div class="list">${list.length?groupByKind(list):`<p class="empty" style="margin:14px">Aucun élément documenté ne correspond aux filtres dans cette commune.</p>`}
+    ${extra.length?`<div class="zonehead">Services couvrant Crossac</div>${extra.map(rowHTML).join("")}`:""}</div>`;
+  const ab=side.querySelector("#allbtn");if(ab)ab.onclick=()=>{MAP.sel="__all";drawMap();drawSide()};
+  bindRows(side);
+}
+/* Panneau de filtres vertical (même état F que l'explorateur) */
+function filterPanel(id){
+  const kc=k=>E.filter(e=>e.kind===k&&pass(e,"kind")).length;
+  const usedCats=CATS.filter(c=>E.some(e=>(e.cats||[]).includes(c)));
+  const statuts=[...new Set(E.map(e=>e.qualif))];
+  const shape={organisation:"org",lieu:"lieu",acteur:"act",evenement:"ev"};
+  return `<aside class="fpanel" id="${id}">
+    <div class="fp-sec"><h3>Ressources du territoire</h3>
+      <div class="kl">${KORDER.map(k=>`<button class="kbtn" data-kind="${k}" aria-pressed="${F.kinds.has(k)}"><span class="sym s-${shape[k]}" style="--c:var(--k-${k})"></span><span>${KINDS[k].label}</span><span class="n">${kc(k)}</span></button>`).join("")}</div></div>
+    <div class="fp-sec"><h3>Axes prioritaires</h3>
+      <div class="axes">${AXES.map(([c,l])=>`<button class="axbtn" data-axe="${esc(c)}" aria-pressed="${F.cat===c}">${l}<span class="n">${E.filter(e=>(e.cats||[]).includes(c)).length}</span></button>`).join("")}</div></div>
+    <div class="fp-sec"><h3>Affiner</h3>
+      <label for="${id}-cat">Catégorie</label><select class="f" id="${id}-cat" data-f="cat"><option value="">Toutes les catégories</option>${usedCats.map(c=>`<option ${F.cat===c?"selected":""}>${esc(c)}</option>`).join("")}</select>
+      <label for="${id}-zone">Périmètre</label><select class="f" id="${id}-zone" data-f="zone"><option value="">Tout le territoire</option>${ZONES.map(z=>`<option ${F.zone===z?"selected":""}>${z}</option>`).join("")}</select>
+      <label for="${id}-st">Statut de l'information</label><select class="f" id="${id}-st" data-f="statut"><option value="">Tous les statuts</option>${statuts.map(s=>`<option ${F.statut===s?"selected":""}>${s}</option>`).join("")}</select>
+      <label for="${id}-or">Origine</label><select class="f" id="${id}-or" data-f="layer"><option value="">Toutes origines</option>${LAYERS.map(l=>`<option ${F.layer===l?"selected":""}>${esc(l)}</option>`).join("")}</select>
+      ${F.q?`<p class="fq">Recherche : « ${esc(F.q)} »</p>`:""}
+      <button class="reset" data-reset>Réinitialiser les filtres</button></div>
+    <div class="fp-sec leg"><h3>Lecture de la carte</h3>
+      <div><span class="sym s-org" style="--c:var(--k-organisation)"></span>Organisation</div>
+      <div><span class="sym s-lieu" style="--c:var(--k-lieu)"></span>Lieu, équipement, ressource</div>
+      <div><span class="sym s-act" style="--c:var(--k-acteur)"></span>Acteur</div>
+      <div><span class="sym s-ev" style="--c:var(--k-evenement)"></span>Événement (contour seul : passé)</div>
+      <div><span class="sym s-weak"></span>Hypothèse ou à vérifier</div>
+      <div><svg width="22" height="10" aria-hidden="true"><path d="M1 8Q11 0 21 8" fill="none" stroke="var(--rel)" stroke-width="1.2"/></svg>Relation documentée</div>
+      <p>Sans coordonnées propres, un élément est regroupé autour du centre de sa commune : sa place dans le groupe n'est pas une adresse. Si des groupes se chevauchent, ils sont légèrement écartés et un trait pointillé les relie au centre de leur commune. Les éléments dont les coordonnées sont connues (~100 m, cercle pointillé) prennent leur position réelle en zoomant fortement.</p>
+      <p>Fond : limites communales (france-geojson / IGN), Loire, Vilaine, routes et voies ferrées principales (Natural Earth). Anneaux : 5, 10 et 20 km autour de Crossac, repères indicatifs.</p>
+    </div>
+  </aside>`;
+}
+/* Porte d'entrée « Vous avez un projet ? » */
+function projectBand(){
+  const usedCats=CATS.filter(c=>E.some(e=>(e.cats||[]).includes(c)));
+  return `<section class="pband" aria-labelledby="pb-t">
+    <div class="pb-text">
+      <div class="eyebrow">Deuxième niveau du POC</div>
+      <h2 id="pb-t">Vous avez un projet ?</h2>
+      <p class="pb-lead">Décrivez votre projet et dites-nous ce dont vous avez besoin.</p>
+      <p>Votre projet est rapproché des acteurs, ressources, expertises, événements et opportunités documentés sur le territoire, à partir de la même base que la carte. Un rapprochement indique une ressource à examiner, pas un partenariat.</p>
+      <div class="pb-flow"><span><b>Carte</b> Je veux comprendre ce qui existe sur mon territoire.</span><span><b>Projet</b> J'ai un besoin et je veux voir les ressources autour de moi.</span></div>
+    </div>
+    <form class="pb-form" id="bandform">
+      <label for="b-nom">Nom du projet<input id="b-nom" required placeholder="Ex. : covoiturage vers la gare de Pontchâteau"></label>
+      <label for="b-cat">Domaine<select id="b-cat">${usedCats.map(c=>`<option>${esc(c)}</option>`).join("")}</select></label>
+      <label for="b-com">Territoire<select id="b-com">${DATA.communes.slice().sort((a,b)=>a.km-b.km).map(c=>`<option ${c.nom==="Crossac"?"selected":""}>${esc(c.nom)}</option>`).join("")}</select></label>
+      <button class="btn big" type="submit">Décrire mon projet →</button>
+    </form>
+  </section>`;
+}
+function bindBand(root){
+  const f=root.querySelector("#bandform");if(!f)return;
+  f.addEventListener("submit",ev=>{ev.preventDefault();
+    PREFILL={nom:f.querySelector("#b-nom").value.trim(),cat:f.querySelector("#b-cat").value,com:f.querySelector("#b-com").value};
+    show("projet");window.scrollTo({top:document.getElementById("tabs").offsetTop-8,behavior:"smooth"});
+  });
+}
+let PREFILL=null;
+
+function groupByKind(list){return Object.keys(KINDS).map(k=>{const l=list.filter(e=>e.kind===k);return l.length?`<div class="zonehead">${KINDS[k].label} · ${l.length}</div>`+l.map(rowHTML).join(""):""}).join("")}
+function subline(e){
+  if(e.kind==="acteur")return e.fonction;
+  if(e.kind==="evenement")return `${fmtDate(e.date_debut)} · ${evState(e)}${e.lieu&&byId[e.lieu]?" · "+byId[e.lieu].nom:e.commune?" · "+e.commune:""}`;
+  return [e.type,e.desc].filter(Boolean).join(" — ");
+}
+function rowHTML(e){
+  const d=e.km?`${String(e.km).replace(".",",")} km`:(e.zone==="Crossac"?"Crossac":"");
+  return `<button class="row" data-id="${e.id}"><span class="kdot" style="background:${KINDS[e.kind].color}"></span><span><span class="t">${esc(e.nom)}</span><span class="s" style="display:block">${esc(subline(e))}</span><span class="meta" style="margin-top:4px">${qBadge(e.qualif)}${layerBadge(e)}</span></span><span class="d">${esc(d)}</span></button>`;
+}
+function bindRows(root){root.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>openSheet(b.dataset.id))}
+
+/* ---------- 5. Explorer ---------- */
+function renderExplorer(){
+  const v=document.getElementById("v-explorer"),f=filtered();
+  const zones=ZONES.filter(z=>f.some(e=>e.zone===z));
+  v.innerHTML=filterBar("fb-exp")+`<p class="summary">${f.length} élément(s). Tri par zone puis par distance à Crossac.</p>`+
+    (f.length?zones.map(z=>{const l=f.filter(e=>e.zone===z).sort((a,b)=>(a.km??99)-(b.km??99)||a.nom.localeCompare(b.nom,"fr"));
+      return `<h2 style="font-size:15px;margin:18px 0 8px">${z} <span style="color:var(--ink-3);font-weight:500">· ${l.length}</span></h2><div class="grid">${l.map(cardHTML).join("")}</div>`}).join("")
+     :`<p class="empty">Aucun élément ne correspond. Élargissez les filtres.</p>`);
+  bindFilters(v.querySelector("#fb-exp"));bindRows(v);
+}
+function cardHTML(e){
+  return `<button class="card" data-id="${e.id}"><span class="meta"><span class="dot" style="background:${KINDS[e.kind].color}"></span>${KINDS[e.kind].one}${e.type?" · "+esc(e.type):""}</span>
+  <span class="t">${esc(e.nom)}</span><span class="s">${esc(e.kind==="acteur"?e.fonction:e.kind==="evenement"?subline(e)+(e.desc?" — "+e.desc:""):e.desc||e.adresse)}</span>
+  <span class="meta">${qBadge(e.qualif)}${layerBadge(e)}<span>${esc(e.map_commune||e.territoire||"")}${e.km?" · "+String(e.km).replace(".",",")+" km":""}</span></span></button>`;
+}
+
+/* ---------- 6. Fiche ---------- */
+function openSheet(id){
+  const e=byId[id];if(!e)return;const sh=document.getElementById("sheet");
+  const kv=[];const add=(k,v)=>{if(v!==undefined&&v!==null&&String(v).trim()!=="")kv.push(`<dt>${k}</dt><dd>${v}</dd>`)};
+  const ref=x=>x&&byId[x]?`<button class="link" data-id="${x}">${esc(byId[x].nom)}</button>`:"";
+  add("Identifiant",`<span class="mono">${e.id}</span>`);
+  add("Type",esc(e.type));
+  if(e.kind==="acteur"){add("Fonction",esc(e.fonction));add("Organisation",ref(e.org));add("Lieu d'exercice",ref(e.lieu))}
+  if(e.kind==="evenement"){add("Date",`${fmtDate(e.date_debut)}${e.date_fin&&e.date_fin!==e.date_debut?" → "+fmtDate(e.date_fin):""} · <b>${evState(e)}</b>`);add("Horaires",esc(e.heure));add("Lieu",ref(e.lieu)||esc(e.commune));add("Organisateur",ref(e.organisateur));add("Statut (source)",esc(e.statut_src))}
+  add("Description",esc(e.desc));
+  add("Domaine (tableur)",esc(e.domaine));
+  add("Catégories",esc((e.cats||[]).join(" · ")));
+  add("Adresse",esc(e.adresse));
+  add("Commune",esc(e.commune));
+  add("Territoire",esc(e.territoire));
+  add("Localisation",`${esc(e.zone)}${e.km?` · ${String(e.km).replace(".",",")} km`:""}<br><small style="color:var(--ink-3)">${esc(LOC[e.loc]||"")}${e.lat?` · ${e.lat}, ${e.lon}`:""}</small>`);
+  add("Gestionnaire",ref(e.gest));
+  if(e.site)add("Site web",`<a href="${esc(e.site)}" target="_blank" rel="noopener">${esc(e.site)}</a>`);
+  if(e.url)add("Page",`<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.url)}</a>`);
+  add("Niveau de confiance",esc(e.confiance));
+  add("Vérifié le",esc(e.date_verif));
+  const rels=relsOf(id);
+  const relHTML=rels.map(r=>{const other=r.src===id?r.cible:r.src,dir=r.src===id?r.type:`${r.type} (←)`;
+    return `<div class="rel"><div><button class="link" data-id="${other}">${esc(byId[other].nom)}</button><small>${esc(dir)} — ${esc(r.desc)}</small><small class="mono">${r.id} · ${r.sources.join(", ")}${r.notes?" · "+esc(r.notes):""}</small></div><div>${qBadge(r.qualif)}</div></div>`}).join("");
+  const evs=E.filter(x=>x.kind==="evenement"&&(x.lieu===id||x.organisateur===id));
+  sh.innerHTML=`<div class="head"><div style="min-width:0"><div class="meta"><span class="dot" style="background:${KINDS[e.kind].color}"></span>${KINDS[e.kind].one} ${qBadge(e.qualif)} ${layerBadge(e)}</div>
+    <h2 id="sheet-title">${esc(e.nom)}</h2></div><button class="close" aria-label="Fermer la fiche">×</button></div>
+    <div class="body"><dl class="kv">${kv.join("")}</dl>
+    ${e.notes||e.enrich_note?`<div class="note">${esc(e.notes)}${e.enrich_note?`<br><b>Enrichissement :</b> ${esc(e.enrich_note)}`:""}</div>`:""}
+    ${evs.length?`<div class="sec"><h3>Événements associés</h3>${evs.map(x=>`<div class="rel"><div><button class="link" data-id="${x.id}">${esc(x.nom)}</button><small>${fmtDate(x.date_debut)} · ${evState(x)}</small></div></div>`).join("")}</div>`:""}
+    <div class="sec"><h3>Relations documentées · ${rels.length}</h3>${rels.length?relHTML:`<p class="note">Aucune relation documentée. Une proximité ou une complémentarité n'est pas une relation.</p>`}</div>
+    <div class="sec"><h3>Sources</h3><div class="srcl">${e.sources.map(s=>{const o=SRC[s];return`<div><span class="mono">${s}</span> · ${esc(o.nom)} <small style="color:var(--ink-3)">(${esc(o.fiab)}${o.pub?", publiée "+o.pub:""}, consultée ${o.consult})</small><br><a href="${esc(o.url)}" target="_blank" rel="noopener">${esc(o.url)}</a></div>`}).join("")}</div></div>
+    </div>`;
+  sh.hidden=false;
+  sh.querySelector(".close").onclick=closeSheet;bindRows(sh);sh.querySelector(".close").focus();
+}
+function closeSheet(){document.getElementById("sheet").hidden=true;if(MAP.focus){MAP.focus=null;if(CUR==="carte")drawMap()}}
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSheet()});
+
+/* ---------- 7. Ressources par besoin ---------- */
+const NEEDS=[
+  ["Se déplacer",["Mobilités"],"Transport à la demande, covoiturage, vélo, train, car."],
+  ["Eau potable",["Accès à l'eau"],"Qui produit, distribue et contrôle l'eau ; situation actuelle."],
+  ["Se soigner",["Santé"],"Pharmacie, associations de santé, équipements."],
+  ["Emploi et démarches",["Emploi","Justice sociale"],"Emploi, insertion, France Services, solidarité."],
+  ["Enfance, école, jeunesse",["Éducation"],"Écoles, enfance jeunesse, collège, associations de parents."],
+  ["Déchets et environnement",["Environnement"],"Déchetteries, nature, haies, Parc de Brière."],
+  ["Culture et patrimoine",["Culture, patrimoine et création"],"Associations culturelles, salles, bibliothèque."],
+  ["Vie associative et lien social",["Vivre ensemble","Adelphité"],"Associations, salles, sport, entraide."],
+  ["Économie locale",["Économie locale et tissu productif"],"Commerçants, zone artisanale, tourisme."],
+  ["Institutions",["Gouvernance, finances publiques et action collective"],"Mairie, élus, intercommunalité."],
+];
+function renderResources(){
+  const v=document.getElementById("v-ressources");
+  v.innerHTML=`<p class="summary">Les ressources sont classées par besoin, puis par zone : à Crossac, à proximité (≤ 10 km), dans le territoire élargi, ou couvrant Crossac sans point fixe. Le classement par catégorie est celui du POC.</p><div class="needs">`+
+  NEEDS.map(([t,cats,sub])=>{const l=E.filter(e=>e.kind!=="acteur"&&(e.cats||[]).some(c=>cats.includes(c)));
+    const zs=ZONES.map(z=>{const zl=l.filter(e=>e.zone===z).sort((a,b)=>(a.km??99)-(b.km??99));return zl.length?`<b>${z} · ${zl.length}</b>`+zl.slice(0,8).map(e=>`<button class="link" data-id="${e.id}">${esc(e.nom)}${e.map_commune&&e.map_commune!=="Crossac"?` <span style="color:var(--ink-3);font-weight:400">(${esc(e.map_commune)})</span>`:""}</button>`).join("")+(zl.length>8?`<button class="link" data-need="${esc(cats[0])}" data-zone="${z}" style="font-weight:400">+ ${zl.length-8} autres</button>`:""):""}).join("");
+    return `<div class="need"><h3>${t} <span style="color:var(--ink-3);font-weight:500;font-size:13px">· ${l.length}</span></h3><p style="margin:0;color:var(--ink-2);font-size:13px">${sub}</p><div class="zl">${zs||'<span class="empty">Aucune ressource documentée.</span>'}</div></div>`}).join("")+`</div>`;
+  bindRows(v);
+  v.querySelectorAll("[data-need]").forEach(b=>b.onclick=()=>{F.cat=b.dataset.need;F.zone=b.dataset.zone;show("explorer")});
+}
+
+/* ---------- 8. Mobilités & eau : contexte → problème → action → observation → évolution ---------- */
+/* Tout est lu dans DATA (observations, actions, indicateurs) et dans les apports des acteurs (stockage partagé).
+   Une évolution observée n'est jamais présentée comme un impact. */
+const AXES=[["Mobilités","Mobilités"],["Accès à l'eau","Accès à l'eau"]];
+const OBS_BY=Object.fromEntries(DATA.observations.map(o=>[o.id,o]));
+const IND_BY=Object.fromEntries(DATA.indicateurs.map(i=>[i.id,i]));
+const axeOf=c=>c==="Mobilités"?"Mobilités":"Accès à l'eau";
+const obsOf=c=>DATA.observations.filter(o=>o.cats.includes(c));
+const actOf=c=>DATA.actions.filter(a=>(a.domaine||[]).includes(c));
+const indOf=c=>DATA.indicateurs.filter(i=>i.domaine===c);
+const solid=q=>q==="FAIT"||q==="VÉRIFIÉ";
+function obsHTML(o){return `<div class="obs"><span>${esc(o.indicateur)}<br><small style="grid-column:auto">${esc(o.echelle)} · ${esc(o.date)}</small></span><span style="text-align:right"><span class="v">${esc(o.valeur)}</span><br>${qBadge(o.qualif)}</span><small>${esc(o.notes)} <span class="mono">${o.id} · ${o.sources.join(", ")}</span></small></div>`}
+
+/* Bandeau d'accueil : chiffres clés des deux axes, lus dans DATA.cles */
+function keyBand(){
+  const card=([id,val,lab])=>{const o=OBS_BY[id];return `<button class="kfig" data-obs="${id}"><span class="kv1">${esc(val)}</span><span class="kl1">${esc(lab)}</span><span class="kd"><span class="mono">${id}</span> ${qBadge(o.qualif)}</span></button>`};
+  return `<section class="keyband" aria-label="Chiffres clés">${AXES.map(([c,l])=>`<div class="kgrp"><div class="khead"><h2>${l}</h2><button class="link" data-axgo="${esc(c)}">Situation, actions, évolutions →</button></div><div class="kfigs">${(DATA.cles[c]||[]).filter(k=>OBS_BY[k[0]]).map(card).join("")}</div></div>`).join("")}</section>`;
+}
+function bindKeyBand(root){
+  root.querySelectorAll("[data-axgo]").forEach(b=>b.onclick=()=>{CTX.axe=b.dataset.axgo;show("contexte")});
+  root.querySelectorAll("[data-obs]").forEach(b=>b.onclick=()=>{const o=OBS_BY[b.dataset.obs];CTX.axe=o.cats.includes("Mobilités")?"Mobilités":"Accès à l'eau";CTX.focus=o.id;show("contexte")});
+}
+
+/* Petite courbe d'évolution : uniquement des valeurs publiées, points étiquetés */
+function spark(o){
+  const s=o.serie,W=300,H=96,pl=12,pr=12,pt=22,pb=22;
+  const vs=s.map(p=>p[1]),mn=Math.min(...vs),mx=Math.max(...vs),span=(mx-mn)||1;
+  const x=i=>pl+(s.length===1?0:i*(W-pl-pr)/(s.length-1)),y=v=>pt+(1-(v-mn)/span)*(H-pt-pb);
+  const fmt=v=>String(v).replace(".",",");
+  return `<figure class="spark"><figcaption><b>${esc(o.indicateur)}</b><span>${esc(o.unite)}</span></figcaption>
+   <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(o.indicateur)} : ${s.map(p=>p[0]+" "+fmt(p[1])).join(", ")}">
+    <path d="M${s.map((p,i)=>x(i).toFixed(1)+","+y(p[1]).toFixed(1)).join("L")}" fill="none" stroke="var(--blue)" stroke-width="2"/>
+    ${s.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p[1])}" r="3.5" fill="var(--blue)"/><text x="${x(i)}" y="${y(p[1])-8}" text-anchor="${i===0?"start":i===s.length-1?"end":"middle"}" class="sv">${fmt(p[1])}</text><text x="${x(i)}" y="${H-5}" text-anchor="${i===0?"start":i===s.length-1?"end":"middle"}" class="sl">${esc(p[0])}</text>`).join("")}
+   </svg><small>${o.id} · ${o.sources.join(", ")} · ${qBadge(o.qualif)} Évolution observée : aucune cause établie.</small></figure>`;
+}
+const ETATCLS=e=>/^DISPONIBLE/.test(e)?"ok":/^(PARTIEL|ANCIEN)/.test(e)?"part":/^(À COLLECTER|À VÉRIFIER)/.test(e)?"col":"no";
+
+const CTX={axe:"Mobilités",focus:null};
+function renderContext(){
+  const v=document.getElementById("v-contexte"),c=CTX.axe;
+  const ob=obsOf(c),acts=actOf(c),inds=indOf(c);
+  const att=DATA.actions_attendues.filter(()=>c==="Mobilités");
+  const ap=APP.items.filter(x=>x.domaine===c);
+  const apE=k=>ap.filter(x=>x.etape===k).length;
+  const ser=ob.filter(o=>o.serie&&o.serie.length>1);
+  const indOk=inds.filter(i=>ETATCLS(i.etat)==="ok").length;
+  const probAct=acts.filter(a=>a.probleme&&!/^Non/.test(a.probleme)).length;
+  const st=(n,full)=>n>=full?"ok":n>0?"part":"no";
+  const steps=[
+    ["Situation",`${ob.filter(o=>solid(o.qualif)).length} observations`,st(ob.filter(o=>solid(o.qualif)).length,3)],
+    ["Problème / besoin",`${probAct} énoncé(s) par une source · ${apE("PROBLÈME-BESOIN")} apport(s)`,st(probAct+apE("PROBLÈME-BESOIN"),2)],
+    ["Souhaits des habitants",`${apE("SOUHAIT HABITANTS")} apport(s)`,st(apE("SOUHAIT HABITANTS"),1)],
+    ["Actions",`${acts.length} documentée(s)${att.length?` · ${att.length} attendue`:""}`,st(acts.length,1)],
+    ["Indicateurs",`${indOk} / ${inds.length} disponibles`,st(indOk,inds.length)],
+    ["Évolution observée",`${ser.length} série(s)`,ser.length?"part":"no"],
+    ["Impact démontré","aucun",'no'],
+  ];
+  const dl=(k,x)=>x&&String(x).trim()?`<dt>${k}</dt><dd>${x}</dd>`:"";
+  const actCard=a=>`<div class="panel act"><div class="meta">Action · ${qBadge(a.qualif)} <span class="mono">${a.id}</span></div><h3 class="ah">${esc(a.nom)}</h3>
+    <dl class="kv">${dl("Porteurs",a.porteurs.map(([id,r])=>`${byId[id]?`<button class="link" data-id="${id}">${esc(byId[id].nom)}</button>`:esc(id)} (${esc(r)})`).join("<br>"))}
+    ${dl("Problème ciblé",esc(a.probleme))}${dl("Objectif",esc(a.objectif))}${dl("Public",esc(a.public))}${dl("Territoire",esc(a.territoire))}${dl("Moyens",esc(a.moyens))}${dl("Période",esc(a.periode))}
+    ${dl("Suivi",esc(a.suivi))}${dl("Résultats",esc(a.resultats))}${dl("Indicateurs",(a.ind||[]).map(i=>`<span class="mono">${i}</span> ${esc(IND_BY[i]?.nom||"")}`).join("<br>"))}${dl("Manque",esc(a.manque))}${dl("Sources",`<span class="mono">${a.sources.join(", ")}</span>`)}</dl></div>`;
+  const attCard=x=>`<div class="panel empty act"><div class="meta">Action attendue · <span class="badge q-ÀVÉRIFIER">À documenter</span></div><h3 class="ah">${esc(x.nom)}</h3>
+    <p style="margin:6px 0 10px">${esc(x.note)}</p><p style="margin:0 0 6px;font-weight:600">Ce que le porteur peut apporter (rien n'est pré-rempli) :</p>
+    <ul class="qlist">${REM.apports_acteurs.map(q=>{const n=APP.items.filter(i=>i.objet===x.nom&&i.rubrique===q.objet).length;return `<li><b>${esc(q.objet)}</b> — ${esc(q.question)} <span class="n">${n?n+" reçu(s)":"aucun"}</span></li>`}).join("")}</ul>
+    <button class="btn ghost" data-apport="${esc(x.nom)}">Apporter une information sur ${esc(x.nom)}</button></div>`;
+  const indRow=i=>`<tr><td><span class="mono">${i.id}</span></td><td><b>${esc(i.nom)}</b><br><small style="color:var(--ink-3)">${esc(i.question)}</small></td><td>${esc(i.source)}<br><small style="color:var(--ink-3)">${esc(i.echelle)} · ${esc(i.frequence)}</small></td><td><span class="etat ${ETATCLS(i.etat)}">${esc(i.etat)}</span>${i.todo?`<br><small style="color:var(--ink-3)">${esc(i.todo)}</small>`:""}</td><td class="mono">${i.obs.join("<br>")||"—"}</td></tr>`;
+  const others=DATA.observations.filter(o=>!o.cats.includes("Mobilités")&&!o.cats.includes("Accès à l'eau"));
+  v.innerHTML=`<div class="axeswitch" role="tablist">${AXES.map(([k,l])=>`<button role="tab" aria-selected="${k===c}" data-sw="${esc(k)}">${l}</button>`).join("")}</div>
+  <p class="summary">Situation → problème → souhaits → action → indicateur → observation → évolution. Vert : documenté ; orange : partiel ; pointillé : absent. Une évolution observée n'est pas un impact ; rien n'est complété par déduction.</p>
+  <div class="chain2">${steps.map(([l,s,cl])=>`<div class="st ${cl}"><b>${l}</b><span>${s}</span></div>`).join("")}</div>
+  <div class="cols" style="margin-top:16px">
+   <div class="panel"><h2>Situation</h2><p>Données de contexte datées et sourcées · ${ob.length} observations. <button class="link" data-mapcat="${esc(c)}">Voir les ${E.filter(e=>(e.cats||[]).includes(c)).length} ressources sur la carte →</button></p>
+    ${ob.map(o=>`<div id="o-${o.id}" class="${CTX.focus===o.id?"hl":""}">${obsHTML(o)}</div>`).join("")}</div>
+   <div class="panel"><h2>Évolutions observées</h2><p>Séries publiées à au moins deux dates, à la même échelle.</p>
+    ${ser.length?`<div class="sparks">${ser.map(spark).join("")}</div>`:`<p class="empty">Aucune série avant/après disponible pour l'instant.</p>`}
+    <p class="note" style="margin-top:12px">${c==="Mobilités"?"La part des ménages motorisés progresse de 94,1 % à 96,7 % entre 2012 et 2023 : c'est une observation, pas l'effet d'une action. Les données d'usage des services (TAD, VéliBrivet, covoiturage, WoodyBus) ne sont pas publiées : sans elles, aucun avant/après n'est possible.":"Seuls des instantanés sont disponibles (prix 2024, contrôle sanitaire 2025-2026, arrêté sécheresse 2026). La série des contrôles sanitaires existe chez l'ARS (IND-E04) et peut être extraite pour suivre l'évolution."}</p></div>
+  </div>
+  <h2 class="h2s">Actions · ${acts.length}${att.length?` + ${att.length} attendue`:""}</h2>
+  <div class="cols">${att.map(attCard).join("")}${acts.map(actCard).join("")}</div>
+  <h2 class="h2s">Indicateurs de suivi · ${inds.length}</h2>
+  <p class="summary">Ce qu'il faudrait suivre pour observer une évolution, et où en est chaque donnée (onglet 09_INDICATEURS du tableur).</p>
+  <div class="tablewrap"><table><thead><tr><th>ID</th><th>Indicateur et question</th><th>Source</th><th>État</th><th>Observations</th></tr></thead><tbody>${inds.map(indRow).join("")}</tbody></table></div>
+  ${apportsHTML(c)}
+  <h2 class="h2s">Autres données de contexte</h2>
+  <div class="panel">${others.map(obsHTML).join("")}</div>`;
+  bindRows(v);
+  v.querySelectorAll("[data-sw]").forEach(b=>b.onclick=()=>{CTX.axe=b.dataset.sw;CTX.focus=null;renderContext()});
+  v.querySelectorAll("[data-mapcat]").forEach(b=>b.onclick=()=>{F.cat=b.dataset.mapcat;show("carte")});
+  v.querySelectorAll("[data-apport]").forEach(b=>b.onclick=()=>{const f=v.querySelector("#aform");f.querySelector("#a-obj").value=b.dataset.apport;f.scrollIntoView({behavior:"smooth",block:"start"});f.querySelector("#a-rub").focus()});
+  bindApports(v,c);
+  if(CTX.focus){const el=v.querySelector("#o-"+CTX.focus);if(el)el.scrollIntoView({block:"center"})}
+}
+
+/* ---------- 8 bis. Apports des acteurs (stockage partagé de l'artifact) ----------
+   Chaque contributeur écrit son propre document apports/<id> ; seuls les éditeurs lisent l'ensemble.
+   Un apport est DÉCLARÉ : il n'entre dans le tableur qu'après qualification. */
+const APP={db:null,uid:null,canEdit:false,state:"loading",items:[],mine:[],all:[],unsub:[]};
+const ETAPES=["CONTEXTE","PROBLÈME-BESOIN","SOUHAIT HABITANTS","ACTION","OBSERVATION","ÉVOLUTION"];
+function apRow(x){return [x.id,x.date,x.apporteur,x.role,x.organisation,"Crossac",x.domaine,x.objet,x.etape,x.contenu,x.indicateur,x.valeur,x.unite,x.periode,x.preuve,"DÉCLARÉ","","","À DÉCIDER",x.rubrique?"Rubrique : "+x.rubrique:""].map(s=>String(s??"").replace(/[\t\n]+/g," ")).join("\t")}
+function apportsHTML(c){
+  const objs=["Autre / général",...(c==="Mobilités"?DATA.actions_attendues.map(a=>a.nom):[]),...DATA.actions.filter(a=>(a.domaine||[]).includes(c)).map(a=>a.id+" "+a.nom)];
+  const list=(APP.canEdit?APP.all:APP.mine).filter(x=>x.domaine===c);
+  const stateMsg={loading:"Connexion au stockage partagé…",off:"Stockage partagé indisponible dans cette vue : la ligne est préparée pour être copiée dans l'onglet 10_APPORTS_ACTEURS.",ro:"Votre accès ne permet pas d'enregistrer ici : copiez la ligne préparée.",on:"Enregistrement direct dans l'onglet 10_APPORTS_ACTEURS, au statut déclaré. La liste montre les apports présents dans le tableur à l'ouverture de la page."}[APP.state];
+  return `<h2 class="h2s" id="apports">Apporter une information · ${c}</h2>
+  <div class="cols"><div class="panel"><p>Habitants, associations, élus, porteurs d'action : décrivez une situation, un problème, un souhait, une action ou une observation. L'information est enregistrée comme <b>déclarée</b> et sera qualifiée avant d'entrer dans le tableur puis, si elle est retenue, dans la base commune.</p>
+  <form class="proj" id="aform">
+    <label for="a-who">Votre nom ou votre structure<input id="a-who" required maxlength="120" placeholder="Ex. : nom, association"></label>
+    <label for="a-role">Votre rôle<select id="a-role"><option>Habitante / habitant</option><option>Porteur d'une action</option><option>Association</option><option>Élue / élu</option><option>Agent public</option><option>Entreprise</option><option>Autre</option></select></label>
+    <label for="a-org">Organisation (facultatif)<input id="a-org" maxlength="120"></label>
+    <label for="a-obj">Sujet<select id="a-obj">${objs.map(o=>`<option>${esc(o)}</option>`).join("")}</select></label>
+    <label for="a-rub">Rubrique<select id="a-rub">${REM.apports_acteurs.map(q=>`<option>${esc(q.objet)}</option>`).join("")}</select></label>
+    <label for="a-et">Étape du modèle<select id="a-et">${ETAPES.map(e=>`<option>${e}</option>`).join("")}</select></label>
+    <label for="a-txt">Contenu<textarea id="a-txt" rows="4" required maxlength="3000" placeholder="Décrivez ce que vous savez, avec dates et lieux si possible."></textarea></label>
+    <div class="row3"><label for="a-val">Valeur (facultatif)<input id="a-val" maxlength="60" placeholder="Ex. : 25"></label><label for="a-un">Unité<input id="a-un" maxlength="60" placeholder="Ex. : trajets / semaine"></label><label for="a-per">Date ou période<input id="a-per" maxlength="60"></label></div>
+    <label for="a-ind">Indicateur concerné (facultatif)<select id="a-ind"><option value="">—</option>${indOf(c).map(i=>`<option value="${i.id}">${i.id} · ${esc(i.nom)}</option>`).join("")}</select></label>
+    <label for="a-pr">Preuve ou document (lien, facultatif)<input id="a-pr" maxlength="300"></label>
+    <button class="btn" type="submit">Enregistrer l'apport</button>
+  </form><p class="note" id="a-state">${esc(stateMsg)}</p><div id="a-out"></div></div>
+  <div class="panel"><h2>${APP.canEdit?"Apports reçus":"Vos apports"} · ${list.length}</h2>
+   ${list.length?list.slice().reverse().map(x=>`<div class="obs"><span><b>${esc(x.etape)}</b> · ${esc(x.objet)}<br><small style="grid-column:auto">${esc(x.apporteur)} (${esc(x.role)}) · ${esc(x.date)}</small></span><span style="text-align:right"><span class="badge q-ÀVÉRIFIER">Déclaré</span></span><small>${esc(x.contenu)}${x.valeur?` — <b>${esc(x.valeur)} ${esc(x.unite)}</b>`:""}${x.periode?` (${esc(x.periode)})`:""} <span class="mono">${esc(x.id)}</span></small></div>`).join(""):`<p class="empty">Aucun apport pour l'instant. Rien n'est affiché tant qu'un acteur ne l'a pas fourni.</p>`}
+   ${APP.copier&&list.length?`<button class="btn ghost" id="a-copyall" type="button">Copier ces lignes pour 10_APPORTS_ACTEURS</button> <span id="a-copied" style="color:var(--green-ink);font-weight:600"></span>`:""}
+  </div></div>`;
+}
+function copyText(t,okEl,fallbackEl){const done=()=>{if(okEl)okEl.textContent="Copié"};
+  const sel=()=>{if(!fallbackEl)return;const rg=document.createRange();rg.selectNodeContents(fallbackEl);const s=getSelection();s.removeAllRanges();s.addRange(rg);if(okEl)okEl.textContent="Texte sélectionné : copiez-le"};
+  try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}}
+function bindApports(v,c){
+  const f=v.querySelector("#aform");if(!f)return;
+  f.addEventListener("submit",async ev=>{ev.preventDefault();
+    const g=id=>f.querySelector(id).value.trim();
+    const now=new Date(),pad=n=>String(n).padStart(2,"0");
+    const x={id:"AP-"+now.getFullYear()+pad(now.getMonth()+1)+pad(now.getDate())+"-"+pad(now.getHours())+pad(now.getMinutes())+pad(now.getSeconds()),
+      date:`${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()}`,apporteur:g("#a-who"),role:g("#a-role"),organisation:g("#a-org"),
+      domaine:c,objet:g("#a-obj"),rubrique:g("#a-rub"),etape:g("#a-et"),contenu:g("#a-txt"),indicateur:g("#a-ind"),valeur:g("#a-val"),unite:g("#a-un"),periode:g("#a-per"),preuve:g("#a-pr"),statut:"DÉCLARÉ"};
+    const row=apRow(x),out=v.querySelector("#a-out");
+    let saved=false,msg="";
+    if(APP.state==="on"){
+      f.querySelector("button[type=submit]").disabled=true;
+      try{const r=await enregistrerApport(x);x.id=r.reference;x.date=r.date||x.date;APP.all.push(x);saved=true}
+      catch(e){msg=(e&&(e.erreur||e.message))||"Enregistrement impossible pour l'instant."}
+      f.querySelector("button[type=submit]").disabled=false;
+    }
+    if(saved){apChanged();const o=document.querySelector("#a-out");if(o)o.innerHTML=`<p style="color:var(--green-ink);font-weight:600">Apport enregistré dans 10_APPORTS_ACTEURS : ${esc(x.id)} (statut : déclaré).</p>`;return}
+    out.innerHTML=`${saved?`<p style="color:var(--green-ink);font-weight:600">Apport enregistré (statut : déclaré).</p>`:`<p class="note">${esc(msg||"Non enregistré ici.")} Copiez la ligne pour l'onglet 10_APPORTS_ACTEURS.</p>`}
+      <pre class="fiche" id="a-row">${esc(row)}</pre><button class="btn ghost" type="button" id="a-copy">Copier la ligne</button> <span id="a-ok" style="color:var(--green-ink);font-weight:600"></span>`;
+    out.querySelector("#a-copy").onclick=()=>copyText(row,out.querySelector("#a-ok"),out.querySelector("#a-row"));
+    if(saved){f.querySelector("#a-txt").value="";f.querySelector("#a-val").value="";f.querySelector("#a-per").value="";f.querySelector("#a-pr").value=""}
+  });
+  const ca=v.querySelector("#a-copyall");
+  if(ca)ca.onclick=()=>copyText(APP.all.filter(x=>x.domaine===c).map(apRow).join("\n"),v.querySelector("#a-copied"),null);
+}
+function apChanged(){APP.items=APP.canEdit?APP.all:APP.mine;if(CUR==="contexte"){const y=scrollY;renderContext();scrollTo(0,y)}}
+function apDeLigne(r){const c=p=>{for(const k in r)if(k===p||k.startsWith(p+" "))return r[k];return ""};const m=/Rubrique : ([^;]+)/.exec(c("Notes"));
+  return {id:c("ID_APPORT"),date:c("Date_apport"),apporteur:c("Apporteur"),role:c("Role_apporteur"),organisation:c("Organisation_apporteur"),domaine:c("Domaine"),
+    objet:c("Objet_concerne"),rubrique:m?m[1].trim():"",etape:c("Etape"),contenu:c("Contenu"),indicateur:c("Indicateur"),valeur:c("Valeur"),unite:c("Unite"),
+    periode:c("Periode_ou_date_de_la_donnee"),preuve:c("Preuve_ou_document"),statut:c("Statut")}}
+const enregistrerApport=x=>new Promise((ok,ko)=>{
+  if(!(window.google&&google.script&&google.script.run))return ko({erreur:"Enregistrement indisponible hors de l'accès réservé."});
+  google.script.run.withSuccessHandler(r=>r&&r.ok?ok(r):ko(r)).withFailureHandler(ko).enregistrerApport(x)});
+(function initApports(){
+  APP.canEdit=true;APP.all=(DATA.apports||[]).map(apDeLigne);
+  APP.state=(window.google&&google.script&&google.script.run)?"on":"off";
+  APP.items=APP.all;   // rendu au premier affichage (pas d'appel à apChanged ici : la vue n'existe pas encore)
+})();
+
+/* ---------- 9. Réseau des relations ---------- */
+let NET=null;
+function renderNetwork(){
+  const v=document.getElementById("v-relations");
+  v.innerHTML=`<p class="summary">${DATA.relations.length} relations documentées entre ${new Set(DATA.relations.flatMap(r=>[r.src,r.cible])).size} entités. Seules les relations présentes dans les données sont tracées. Trait plein : FAIT ou VÉRIFIÉ ; pointillé : à vérifier. Cliquez sur un nœud pour ouvrir sa fiche.</p>
+  <div class="netbox"><svg id="net" role="img" aria-label="Réseau des relations documentées"></svg></div>
+  <h2 style="font-size:15px;margin:18px 0 8px">Liste des relations</h2>
+  <div class="tablewrap"><table><thead><tr><th>ID</th><th>Source</th><th>Relation</th><th>Cible</th><th>Statut</th><th>Origine</th></tr></thead><tbody>
+  ${DATA.relations.map(r=>`<tr><td class="mono">${r.id}</td><td><button class="link" data-id="${r.src}">${esc(byId[r.src].nom)}</button></td><td>${esc(r.type)}<br><small style="color:var(--ink-3)">${esc(r.desc)}</small></td><td><button class="link" data-id="${r.cible}">${esc(byId[r.cible].nom)}</button></td><td>${qBadge(r.qualif)}</td><td>${r.layer}</td></tr>`).join("")}</tbody></table></div>`;
+  bindRows(v);
+  const svg=v.querySelector("#net"),W=svg.clientWidth||900,H=svg.clientHeight||600;
+  if(!NET){
+    const ids=[...new Set(DATA.relations.flatMap(r=>[r.src,r.cible]))];
+    const nodes=ids.map((id,i)=>({id,x:W/2+Math.cos(i*2.4)*W*.3*Math.sqrt((i+1)/ids.length),y:H/2+Math.sin(i*2.4)*H*.3*Math.sqrt((i+1)/ids.length),vx:0,vy:0}));
+    const ix=Object.fromEntries(nodes.map((n,i)=>[n.id,i]));
+    const links=DATA.relations.map(r=>({a:ix[r.src],b:ix[r.cible],r}));
+    for(let it=0;it<400;it++){
+      const k=1-it/400;
+      for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i],b=nodes[j];let dx=a.x-b.x,dy=a.y-b.y,d2=dx*dx+dy*dy+.01,f=3500/d2;a.vx+=dx*f*.05;a.vy+=dy*f*.05;b.vx-=dx*f*.05;b.vy-=dy*f*.05}
+      links.forEach(l=>{const a=nodes[l.a],b=nodes[l.b],dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,f=(d-120)*.02;a.vx+=dx/d*f*d*.05;a.vy+=dy/d*f*d*.05;b.vx-=dx/d*f*d*.05;b.vy-=dy/d*f*d*.05});
+      nodes.forEach(n=>{n.vx+=(W/2-n.x)*.03;n.vy+=(H/2-n.y)*.03;n.x+=n.vx*k;n.y+=n.vy*k;n.vx*=.5;n.vy*=.5;n.x=Math.max(90,Math.min(W-90,n.x));n.y=Math.max(30,Math.min(H-24,n.y))});
+    }
+    NET={nodes,links};
+  }
+  const deg={};NET.links.forEach(l=>{deg[l.a]=(deg[l.a]||0)+1;deg[l.b]=(deg[l.b]||0)+1});
+  let g=NET.links.map(l=>{const a=NET.nodes[l.a],b=NET.nodes[l.b],dash=l.r.qualif==="À VÉRIFIER"?'stroke-dasharray="4 4"':"";return`<line x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" stroke="var(--line-strong)" stroke-width="1.4" ${dash}><title>${esc(l.r.type)} — ${esc(l.r.desc)}</title></line>`}).join("");
+  g+=NET.nodes.map((n,i)=>{const e=byId[n.id],r=5+Math.sqrt(deg[i]||1)*2.6,big=(deg[i]||0)>=4,lbl=e.nom.length>26?e.nom.slice(0,24)+"…":e.nom;
+    return `<g data-id="${n.id}" tabindex="0" role="button" style="cursor:pointer"><circle cx="${n.x}" cy="${n.y}" r="${r}" fill="${KINDS[e.kind].color}" stroke="var(--bg)" stroke-width="2"><title>${esc(e.nom)}</title></circle><text x="${n.x}" y="${n.y-r-4}" text-anchor="middle" font-size="${big?12.5:10.5}" font-weight="${big?700:500}" fill="${big?"var(--ink)":"var(--ink-2)"}" paint-order="stroke" stroke="var(--map-water)" stroke-width="3" font-family="var(--f-sans)">${esc(lbl)}</text></g>`}).join("");
+  svg.setAttribute("viewBox",`0 0 ${W} ${H}`);svg.innerHTML=g;
+  svg.querySelectorAll("[data-id]").forEach(n=>{n.onclick=()=>openSheet(n.dataset.id);n.onkeydown=ev=>{if(ev.key==="Enter")openSheet(n.dataset.id)}});
+}
+
+/* ---------- 10. Sources ---------- */
+function renderSources(){
+  const v=document.getElementById("v-sources");
+  const uses=id=>E.filter(e=>e.sources.includes(id)).length+DATA.relations.filter(r=>r.sources.includes(id)).length+DATA.observations.filter(o=>o.sources.includes(id)).length;
+  v.innerHTML=`<p class="summary">${DATA.sources.length} sources : lues en direct dans l'onglet 06_SOURCES. Les agrégateurs privés servent de seconde source ou sont signalés à vérifier.</p>
+  <div class="tablewrap"><table><thead><tr><th>ID</th><th>Source</th><th>Fiabilité</th><th>Publiée</th><th>Consultée</th><th>Utilisations</th><th>Type</th></tr></thead><tbody>
+  ${DATA.sources.map(s=>`<tr><td class="mono">${s.id}</td><td><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.nom)}</a>${s.notes?`<br><small style="color:var(--ink-3)">${esc(s.notes)}</small>`:""}</td><td>${esc(s.fiab)}</td><td class="num">${esc(s.pub||"—")}</td><td class="num">${esc(s.consult)}</td><td class="num">${uses(s.id)}</td><td>${esc(s.type)}</td></tr>`).join("")}</tbody></table></div>`;
+}
+
+/* ---------- 11. À vérifier ---------- */
+function renderVerify(){
+  const v=document.getElementById("v-verifier");
+  const weak=E.filter(e=>e.qualif==="HYPOTHÈSE"||e.qualif==="À VÉRIFIER"||e.confiance==="Faible");
+  v.innerHTML=`<p class="summary">Ces points ne sont pas présentés comme validés. AV-001 à AV-017 viennent du tableur ; AV-018 à AV-024 de l'enrichissement.</p>
+  <div class="tablewrap"><table><thead><tr><th>ID</th><th>Catégorie</th><th>Élément</th><th>Motif</th><th>Décision / vérification</th></tr></thead><tbody>
+  ${DATA.a_verifier.map(a=>`<tr><td class="mono">${a.id}</td><td>${esc(a.cat)}</td><td><b>${esc(a.libelle)}</b></td><td>${esc(a.motif)}</td><td>${esc(a.decision)}</td></tr>`).join("")}</tbody></table></div>
+  <h2 style="font-size:15px;margin:18px 0 8px">Entités à statut faible · ${weak.length}</h2><div class="grid">${weak.map(cardHTML).join("")}</div>`;
+  bindRows(v);
+}
+
+/* ---------- 12. Vous avez un projet ? ---------- */
+function renderProject(){
+  const v=document.getElementById("v-projet");
+  const usedCats=CATS.filter(c=>E.some(e=>(e.cats||[]).includes(c)));
+  v.innerHTML=`<div class="cols"><div class="panel"><h2>Vous avez un projet, une question, un besoin ?</h2><p>Décrivez-le : la carte propose les ressources du territoire qui peuvent aider à l'examiner. Rien n'est envoyé ; une fiche au format du modèle est préparée pour être ajoutée au tableur.</p>
+  <form class="proj" id="pform">
+    <label for="p-qui">Vous êtes<select id="p-qui"><option>Habitante / habitant</option><option>Association</option><option>Élue / élu</option><option>Entreprise</option><option>Autre</option></select></label>
+    <label for="p-txt">Votre question ou votre besoin<textarea id="p-txt" rows="4" required placeholder="Ex. : comment me rendre à Saint-Nazaire sans voiture ?"></textarea></label>
+    <label for="p-type">Il s'agit d'<select id="p-type"><option>une question</option><option>un problème constaté</option><option>un besoin</option><option>un souhait</option><option>un projet</option></select></label>
+    <label for="p-cat">Domaine<select id="p-cat">${usedCats.map(c=>`<option>${esc(c)}</option>`).join("")}</select></label>
+    <label for="p-com">Commune concernée<select id="p-com">${DATA.communes.slice().sort((a,b)=>a.km-b.km).map(c=>`<option ${c.nom==="Crossac"?"selected":""}>${esc(c.nom)}</option>`).join("")}</select></label>
+    <button class="btn" type="submit">Voir les ressources</button>
+  </form></div><div class="panel" id="presult"><h2>Ressources proposées</h2><p>Remplissez le formulaire pour voir les ressources liées au domaine, de la plus proche à la plus éloignée de la commune choisie.</p></div></div>`;
+  v.querySelector("#pform").addEventListener("submit",ev=>{ev.preventDefault();
+    const cat=v.querySelector("#p-cat").value,com=COM[v.querySelector("#p-com").value],txt=v.querySelector("#p-txt").value.trim();
+    const dist=e=>{if(e.zone==="Service couvrant Crossac")return -1;const c=COM[e.map_commune];if(!c)return 999;const R=6371,toR=x=>x*Math.PI/180,dl=toR(c.lat-com.lat),dn=toR(c.lon-com.lon);return 2*R*Math.asin(Math.sqrt(Math.sin(dl/2)**2+Math.cos(toR(c.lat))*Math.cos(toR(com.lat))*Math.sin(dn/2)**2))};
+    const res=E.filter(e=>e.kind!=="acteur"&&(e.cats||[]).includes(cat)).map(e=>[e,dist(e)]).sort((a,b)=>a[1]-b[1]);
+    const obs=DATA.observations.filter(o=>o.cats.includes(cat));
+    const fiche=`QUESTION / BESOIN — POC Crossac\nDate : ${fmtDate(TODAY)}\nPosé par : ${v.querySelector("#p-qui").value}\nNature : ${v.querySelector("#p-type").value}\nÉnoncé : ${txt}\nDomaine : ${cat}\nCommune : ${com.nom}\nRessources liées : ${res.slice(0,8).map(([e])=>e.id).join(", ")||"aucune"}\nDonnées de contexte : ${obs.map(o=>o.id).join(", ")||"aucune"}\nStatut : À examiner\n--- Provenance (modèle commun) ---\nTerritoire d'origine : Crossac (POC)\nObjet commun : à structurer (QUESTION / BESOIN)\nType de donnée : DONNÉE FOURNIE PAR UN ACTEUR — déclarée, à vérifier\nContributeur : à renseigner (nom, rôle)\nIdentifiant base commune : à attribuer à l'intégration`;
+    const r=v.querySelector("#presult");
+    r.innerHTML=`<h2>Ressources proposées · ${res.length}</h2><p>Domaine « ${esc(cat)} », autour de ${esc(com.nom)}. Une ressource proposée n'est pas une réponse validée.</p>
+    <div style="border:1px solid var(--line);border-radius:var(--r);overflow:hidden">${res.length?res.slice(0,14).map(([e,d])=>rowHTML(e).replace('<span class="d">',`<span class="d">${d<0?"couvre Crossac":d>=999?"—":String(Math.round(d*10)/10).replace(".",",")+" km"}</span><span hidden>`)).join(""):'<p class="empty" style="margin:0">Aucune ressource documentée dans ce domaine pour l\'instant : c\'est une donnée à collecter.</p>'}</div>
+    ${obs.length?`<h3 style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:16px 0 4px">Données de contexte</h3>${obs.map(obsHTML).join("")}`:""}
+    <h3 style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:16px 0 6px">Fiche à ajouter au tableur</h3><pre class="fiche" id="fiche">${esc(fiche)}</pre><button class="btn ghost" id="copy" type="button">Copier la fiche</button> <span id="copied" style="color:var(--green-ink);font-weight:600"></span>`;
+    bindRows(r);
+    r.querySelector("#copy").onclick=()=>{const done=()=>r.querySelector("#copied").textContent="Fiche copiée";
+      try{navigator.clipboard.writeText(fiche).then(done,()=>selectFiche())}catch(e){selectFiche()}};
+    function selectFiche(){const rg=document.createRange();rg.selectNodeContents(r.querySelector("#fiche"));const s=getSelection();s.removeAllRanges();s.addRange(rg);r.querySelector("#copied").textContent="Texte sélectionné : copiez-le"}
+  });
+  if(PREFILL){const p=PREFILL;PREFILL=null;
+    v.querySelector("#p-txt").value=`Projet : ${p.nom}`;v.querySelector("#p-type").value="un projet";
+    v.querySelector("#p-cat").value=p.cat;v.querySelector("#p-com").value=p.com;
+    v.querySelector("#pform").requestSubmit();}
+}
+
+
+/* ---------- 12 bis. Vers la base commune ---------- */
+/* Données : REM (classement produit par classify.py le 11/10/2026) et BASE (base commune lue en lecture seule). */
+const DEC=[["PROPOSABLE","ok","Proposable"],["PROPOSABLE APRÈS VÉRIFICATION","v","Après vérification"],["À STRUCTURER","s","À structurer"],["RESTE LOCAL","l","Reste local"]];
+const DECC={"PROPOSABLE":"var(--dec-ok)","PROPOSABLE APRÈS VÉRIFICATION":"var(--dec-v)","À STRUCTURER":"var(--dec-s)","RESTE LOCAL":"var(--dec-l)"};
+const decBadge=d=>{const x=DEC.find(z=>z[0]===d);return `<span class="dec ${x[1]}">${x[2]}</span>`};
+const TDCLS={"DONNÉE DÉCLARÉE":"decl","DONNÉE FOURNIE PAR UN ACTEUR":"fourn","DONNÉE À VÉRIFIER":"verif"};
+const tdBadge=t=>`<span class="td ${TDCLS[t]||""}">${esc(t.replace("DONNÉE ","").toLowerCase())}</span>`;
+const P=REM.propositions;
+const cnt=(arr,f)=>arr.reduce((m,x)=>{const k=f(x);m[k]=(m[k]||0)+1;return m},{});
+
+function renderCommons(){
+  const v=document.getElementById("v-commune");
+  const byDec=cnt(P,r=>r.decision), N=P.length;
+  const up=P.filter(r=>r.decision==="PROPOSABLE"||r.decision==="PROPOSABLE APRÈS VÉRIFICATION");
+  const nTab=P.filter(r=>r.couche==="Tableur POC").length, nEnr=P.filter(r=>r.couche!=="Tableur POC").length-P.filter(r=>r.couche==="Cadrage interne").length;
+  const addTot=Object.entries(REM.integration.ajouts).filter(([k])=>k!=="Liens").reduce((a,[,n])=>a+n,0);
+  const acc=P.filter(r=>r.accord).length, div=P.filter(r=>!r.accord);
+  const ETAT={"Intégré":"ok","Intégré comme lien":"v","Non intégré":"l"};
+  const etBadge=r=>`<span class="dec ${ETAT[r.etat]}">${esc(r.etat)}</span>`;
+  const bar=DEC.map(([d])=>`<span style="width:${(byDec[d]||0)/N*100}%;background:${DECC[d]}" title="${d} : ${byDec[d]||0}"></span>`).join("");
+
+  /* 1. objets communs alimentés */
+  const tgt={};
+  up.forEach(r=>{const k=(r.cibles[0]||"").replace(/ \(.*\)$/,"");(tgt[k]=tgt[k]||[]).push(r)});
+  const order=["Territoires","Contacts","CONTACT_ORGANISATION","Organisations","ORGANISATION_TERRITOIRE","Événements","Relations","Projets","Sources"];
+  const tgtRows=Object.keys(tgt).sort((a,b)=>(order.indexOf(a)+99)%99-(order.indexOf(b)+99)%99||a.localeCompare(b)).map(k=>{
+    const l=tgt[k],nv=l.filter(r=>r.decision!=="PROPOSABLE").length;
+    return `<tr><td><b>${esc(k)}</b></td><td class="num">${l.length}</td><td class="num">${nv||"—"}</td><td class="num">${l.filter(r=>r.etat!=="Non intégré").length}</td><td>${l.slice(0,4).map(r=>esc(r.libelle.split(" — ")[0].split(" → ")[0])).join(" ; ")}${l.length>4?" …":""}</td></tr>`}).join("");
+
+  /* 4. matrice objet local × décision */
+  const objs=["Territoire","Acteur","Organisation","Service","Lieu","Événement","Action","Projet","Relation","Observation","Source","Périmètre d'exploration","À vérifier"];
+  const mrow=o=>{const l=P.filter(r=>r.objet_poc===o);if(!l.length)return"";const c=cnt(l,r=>r.decision);
+    const cible=[...new Set(l.flatMap(r=>r.cibles))].slice(0,3).join(", ")||"aucun objet d'accueil";
+    return `<tr><td><b>${esc(o)}</b><br><small style="color:var(--ink-3)">${esc(cible)}</small></td>${DEC.map(([d])=>`<td class="num${c[d]?"":" z"}">${c[d]||"·"}</td>`).join("")}<td class="num"><b>${l.length}</b></td></tr>`};
+
+  /* 5. provenance */
+  const tdC=cnt(P,r=>r.type_donnee), tsC={};P.forEach(r=>r.types_source.forEach(t=>tsC[t]=(tsC[t]||0)+1));
+  const TD=[["DONNÉE PUBLIQUE","Publiée par une source ouverte ; à la date de collecte"],["DONNÉE OBSERVÉE","Mesure ou constat daté, à une échelle donnée"],["DONNÉE CALCULÉE","Produite par nous à partir d'autres données (comptage, distance)"],["DONNÉE DÉCLARÉE","Dite par l'intéressé lui-même (texte d'association, complémentarité annoncée)"],["DONNÉE FOURNIE PAR UN ACTEUR","Apportée directement par un porteur d'action, la mairie, un habitant"],["DONNÉE À VÉRIFIER","Hypothèse, agrégateur seul, contradiction"]];
+  const TS=[["SOURCE TERRITORIALE","Commune de Crossac, communauté de communes"],["SOURCE INSTITUTIONNELLE","État et opérateurs publics (API Géo, Santé.fr)"],["SOURCE PUBLIQUE","Autre source ouverte (encyclopédie)"],["SOURCE FOURNIE PAR UN ACTEUR","Document ou échange avec un acteur du territoire"],["SOURCE À VÉRIFIER","Agrégateur privé : seconde source seulement"]];
+  const legend=(L,C)=>L.map(([k,d])=>`<div><span>${esc(k.replace(/^(DONNÉE|SOURCE) /,"").replace(/^./,c=>c.toUpperCase()).toLowerCase().replace(/^./,c=>c.toUpperCase()))}<small>${esc(d)}</small></span><span class="n${C[k]?"":" zero"}">${C[k]||0}</span></div>`).join("");
+  const ex=P.find(r=>r.id_poc==="CR-ORG-017"), exE=byId["CR-ORG-017"], s0=SRC[ex.sources[0]];
+  const envReal=`<div class="env"><header><b>${esc(ex.libelle)}</b>${decBadge(ex.decision)}${tdBadge(ex.type_donnee)}</header><dl>
+    <dt>Objet commun</dt><dd>${esc(ex.cibles.join(" + "))}</dd>
+    <dt>Identifiant base commune</dt><dd class="mono">${esc(ex.id_reel)} <small style="color:var(--ink-3);font-family:var(--f-sans)">attribué le ${REM.integration.date}</small></dd>
+    <dt>Identifiant local</dt><dd class="new mono">${ex.id_poc}</dd>
+    <dt>Territoire d'origine</dt><dd class="new">${esc(ex.territoire_origine)}</dd>
+    <dt>Lien au territoire</dt><dd class="new">${esc(ex.lien_territoire||"")}</dd>
+    <dt>Donnée</dt><dd>${esc(exE.desc)}</dd>
+    <dt>Type de donnée</dt><dd class="new">${esc(ex.type_donnee)}</dd>
+    <dt>Source</dt><dd><span class="mono">${s0.id}</span> · <a href="${esc(s0.url)}" target="_blank" rel="noopener">${esc(s0.nom)}</a></dd>
+    <dt>Type de source</dt><dd class="new">${esc(ex.types_source.join(", "))}</dd>
+    <dt>Collectée / vérifiée</dt><dd>${esc(s0.consult)} / ${esc(exE.date_verif||"—")}</dd>
+    <dt>Qualification POC</dt><dd>${qBadge(ex.qualif_poc)}</dd>
+    <dt>Statut commun</dt><dd>${esc(ex.statut_commun)} <small style="color:var(--ink-3)">(« Vérifié » exige une seconde source)</small></dd>
+    <dt>Contributeur</dt><dd class="new">Équipe POC (collecte publique)</dd></dl>
+    <footer>Champs en bleu : présents aujourd'hui seulement en texte dans les Notes de la base commune ; à transformer en colonnes pour pouvoir les filtrer.</footer></div>`;
+  const envActor=`<div class="env" style="border-style:dashed"><header><b>WoodyBus</b><span class="dec l">Aucune donnée reçue</span>${tdBadge("DONNÉE FOURNIE PAR UN ACTEUR")}</header><dl>
+    <dt>Objet commun</dt><dd>Projets + Relations (existants) ; Indicateurs, Observations (à structurer)</dd>
+    <dt>Identifiant base commune</dt><dd class="new">à attribuer à l'intégration</dd>
+    <dt>Territoire d'origine</dt><dd class="new">Crossac (POC)</dd>
+    <dt>Porteur, période, public</dt><dd style="color:var(--ink-3)">à fournir par le porteur de l'action</dd>
+    <dt>Problème visé</dt><dd style="color:var(--ink-3)">à fournir</dd>
+    <dt>Données de suivi</dt><dd style="color:var(--ink-3)">à fournir (avant / pendant / après)</dd>
+    <dt>Type de donnée</dt><dd class="new">DONNÉE FOURNIE PAR UN ACTEUR → déclarée</dd>
+    <dt>Source</dt><dd class="new">document ou échange daté, versé comme source</dd>
+    <dt>Contributeur</dt><dd class="new">nom et rôle de la personne qui fournit</dd>
+    <dt>Statut commun</dt><dd>À vérifier, jusqu'à confirmation par une seconde source</dd></dl>
+    <footer>Gabarit vide : rien n'est inventé. Une déclaration ne devient jamais un fait vérifié sans seconde source.</footer></div>`;
+
+  /* 6. manques */
+  const lieuxSansCoord=E.filter(e=>e.kind==="lieu"&&(e.lat==null)).length, nLieux=E.filter(e=>e.kind==="lieu").length;
+  const orgSansType=E.filter(e=>e.kind==="organisation"&&!e.type).length;
+
+  v.innerHTML=`
+  <p class="cm-intro">Crossac n'est pas une base à part. Chaque donnée collectée ici est classée selon <b>ce que la base commune peut en faire</b> : la recevoir telle quelle, la recevoir après vérification, attendre que le modèle commun sache l'accueillir, ou rester dans la vue locale. La remontée a été exécutée le ${REM.integration.date} : la vue confronte ce classement, établi de façon indépendante, à ce qui a réellement été ajouté dans la base commune.</p>
+  <div class="flow" aria-label="Chaîne de traitement, du territoire à la base commune">
+    <div class="stage base"><span class="lab">Base commune avant</span><span class="big">0</span><span class="cap">donnée Crossac sur ${BASE.contacts} contacts, ${BASE.organisations} organisations, ${BASE.territoires} territoires et ${BASE.projets} projets</span></div>
+    <div class="stage"><span class="lab">Territoire Crossac</span><span class="big">${N}</span><span class="cap">données locales : ${nTab} du tableur POC, ${nEnr} de l'enrichissement public, 1 de cadrage</span></div>
+    <div class="stage"><span class="lab">Apports des acteurs</span><span class="big">0</span><span class="cap">reçu à ce jour ; ${REM.apports_acteurs.length} types d'apport attendus, dont le WoodyBus</span></div>
+    <div class="stage"><span class="lab">Structuration</span><div class="decbar" aria-hidden="true">${bar}</div><div class="declist">${DEC.map(([d,c,l])=>`<div><span><span class="dsw" style="background:${DECC[d]}"></span>${l}</span><b>${byDec[d]||0}</b></div>`).join("")}</div></div>
+    <div class="stage ret"><span class="lab">Base commune après</span><span class="big">${addTot}</span><span class="cap">lignes ajoutées le ${REM.integration.date} (${Object.entries(REM.integration.ajouts).filter(([k])=>k!=="Liens").map(([k,n])=>n+" "+(n>1?k.toLowerCase():k.toLowerCase().replace(/s$/,""))).join(", ")}) et ${REM.integration.ajouts.Liens} liens ; ${REM.ecarts.length} évolutions du modèle proposées</span></div>
+  </div>
+
+  <section class="cm-sec"><h2><span class="q">0</span>Classement et intégration réelle : ${acc} sur ${N} concordent</h2>
+    <p>La règle de classement et l'intégration ont été appliquées séparément. Elles donnent le même résultat pour ${acc} données sur ${N}. Les ${div.length} écarts ne portent sur aucune donnée erronée : ce sont des choix de modélisation, à trancher une fois pour tous les territoires.</p>
+    <div class="tablewrap"><table><thead><tr><th>Donnée</th><th>Classement</th><th>Intégration réelle</th><th>Lecture de l'écart</th></tr></thead><tbody>
+    ${div.map(r=>`<tr><td><span class="mono">${esc(r.id_poc)}</span><br>${esc(r.libelle)}</td><td>${decBadge(r.decision)}</td><td>${etBadge(r)}<br><small class="mono" style="color:var(--ink-3)">${esc(r.id_reel||"—")}</small></td><td>${esc(r.commentaire_rapprochement||"")}</td></tr>`).join("")}</tbody></table></div>
+  </section>
+
+  <section class="cm-sec"><h2><span class="q">1</span>Ce qui alimente la base commune</h2>
+    <p>${up.length} données classées « remontables », réparties dans les feuilles existantes. La base ne contenait aucune donnée Crossac : il n'y avait pas de doublon à fusionner. Chaque ligne ajoutée cite son identifiant CR-… et le tableur du POC (${REM.integration.source_poc}) dans ses Notes.</p>
+    <div class="tablewrap"><table><thead><tr><th>Feuille de la base commune</th><th class="num">Classées</th><th class="num">Après vérif.</th><th class="num">Intégrées</th><th>Exemples</th></tr></thead><tbody>${tgtRows}</tbody></table></div>
+  </section>
+
+  <section class="cm-sec"><h2><span class="q">2</span>Ce que les acteurs du territoire peuvent produire</h2>
+    <p>Rien n'a encore été fourni. Chaque apport arrivera comme donnée déclarée, avec son auteur et sa date, puis sera classé comme le reste. Le formulaire « Vous avez un projet ? » prépare déjà une fiche dans ce format.</p>
+    <div class="tpl">${REM.apports_acteurs.map(a=>`<div class="it"><b>${esc(a.objet)}</b><p>${esc(a.question)}</p><div class="meta"><span>${esc(a.cible)}</span><span>${esc(a.fournisseur)}</span></div></div>`).join("")}</div>
+  </section>
+
+  <section class="cm-sec"><h2><span class="q">3</span>Données publiques qui pourraient enrichir le territoire</h2>
+    <p>Sources identifiées, pas encore collectées. Chacune répond à une question précise ou confirme une donnée en attente. L'accès automatique n'est pas acquis : il reste à tester source par source.</p>
+    <div class="tablewrap"><table><thead><tr><th>Donnée</th><th>Source</th><th>Échelle</th><th>Pour répondre à</th><th>Domaine</th></tr></thead><tbody>
+    ${REM.publiques.map(p=>`<tr><td><b>${esc(p.donnee)}</b></td><td>${esc(p.source)}<br><small style="color:var(--ink-3)">${esc(p.type_source.toLowerCase())}</small></td><td>${esc(p.echelle)}</td><td>${esc(p.question)}</td><td>${esc(p.domaine)}</td></tr>`).join("")}</tbody></table></div>
+  </section>
+
+  <section class="cm-sec"><h2><span class="q">4</span>Rattachement aux objets du modèle commun</h2>
+    <p>Chaque objet local, et l'objet commun qui peut l'accueillir. Les lieux, les services et les observations n'ont aujourd'hui aucun objet d'accueil.</p>
+    <div class="tablewrap"><table class="matrix"><thead><tr><th>Objet local → objet commun</th>${DEC.map(([d,c,l])=>`<th class="num">${l}</th>`).join("")}<th class="num">Total</th></tr></thead>
+    <tbody>${objs.map(mrow).join("")}</tbody><tfoot><tr><td>Total</td>${DEC.map(([d])=>`<td class="num">${byDec[d]||0}</td>`).join("")}<td class="num">${N}</td></tr></tfoot></table></div>
+  </section>
+
+  <section class="cm-sec"><h2><span class="q">5</span>Conserver la provenance</h2>
+    <p>Une donnée remonte avec son enveloppe : d'où elle vient, de quel type elle est, qui l'a apportée et quand. À gauche une donnée réelle du POC, à droite le gabarit d'un apport d'acteur.</p>
+    <div class="cm-grid">${envReal}${envActor}</div>
+    <div class="cm-grid" style="margin-top:12px">
+      <div class="panel"><h2 style="font-size:15px">Types de donnée · ${N}</h2><div class="legendrow">${legend(TD,tdC)}</div></div>
+      <div class="panel"><h2 style="font-size:15px">Types de source</h2><p style="font-size:12.5px">Une donnée peut s'appuyer sur plusieurs sources.</p><div class="legendrow">${legend(TS,tsC)}</div></div>
+    </div>
+  </section>
+
+  <section class="cm-sec"><h2><span class="q">6</span>Ce qui manque encore</h2>
+    <p>Deux sortes de manques : ce que le modèle commun ne sait pas encore accueillir, et ce que Crossac ne nous a pas encore dit.</p>
+    <div class="cm-grid">
+      <div class="panel"><h2 style="font-size:15px">Évolutions du modèle commun</h2><p style="font-size:12.5px">Nombre de données Crossac concernées, et proposition.</p>
+        ${REM.ecarts.map(g=>`<div class="gap"><b>${esc(g.objet)}</b><span class="c">${g.donnees_concernees||"—"}</span><small>${esc(g.contenu)}. <i>${esc(g.proposition)}.</i></small></div>`).join("")}</div>
+      <div class="panel"><h2 style="font-size:15px">Données absentes</h2>
+        <div class="gap"><b>Action WoodyBus</b><span class="c">0</span><small>Porteur, période, problème visé, public, moyens et suivi : à fournir par le porteur de l'action.</small></div>
+        <div class="gap"><b>Problèmes et souhaits exprimés</b><span class="c">0</span><small>Aucune consultation d'habitants documentée, en mobilité comme en eau.</small></div>
+        <div class="gap"><b>Situation de départ en mobilité</b><span class="c">0</span><small>Ni flux domicile-travail, ni motorisation des ménages : sources INSEE à collecter.</small></div>
+        <div class="gap"><b>Mesures avant / après</b><span class="c">0</span><small>Aucun indicateur suivi dans le temps : aucune évolution ne peut être observée.</small></div>
+        <div class="gap"><b>Lieux sans coordonnées précises</b><span class="c">${lieuxSansCoord}/${nLieux}</span><small>Positionnés au centre de leur commune ; géocodage BAN à faire.</small></div>
+        <div class="gap"><b>Organisations sans type</b><span class="c">${orgSansType}</span><small>Type non indiqué par la source : statut « Incomplet » à l'intégration.</small></div>
+        <div class="gap"><b>Données d'eau à confirmer</b><span class="c">${DATA.observations.filter(o=>o.qualif!=="FAIT"&&o.cats.includes("Accès à l'eau")).length}</span><small>Prix, conformité et PFAS repris par un agrégateur : à vérifier sur SISPEA et auprès de l'ARS.</small></div>
+      </div>
+    </div>
+  </section>
+
+  <details class="cm-all"><summary>Détail des ${N} données classées</summary><div class="inner">
+    <div class="filters"><select class="f" id="cm-dec" aria-label="Décision"><option value="">Toutes les décisions</option>${DEC.map(([d,c,l])=>`<option value="${d}">${l}</option>`).join("")}</select>
+    <select class="f" id="cm-obj" aria-label="Objet"><option value="">Tous les objets</option>${objs.filter(o=>P.some(r=>r.objet_poc===o)).map(o=>`<option>${esc(o)}</option>`).join("")}</select>
+    <select class="f" id="cm-td" aria-label="Type de donnée"><option value="">Tous les types de donnée</option>${Object.keys(tdC).map(t=>`<option>${esc(t)}</option>`).join("")}</select></div>
+    <p class="summary" id="cm-n"></p><div class="tablewrap"><table><thead><tr><th>ID local</th><th>Donnée</th><th>Décision</th><th>Intégration</th><th>Objet commun</th><th>Type</th><th>Sources</th></tr></thead><tbody id="cm-rows"></tbody></table></div>
+  </div></details>`;
+
+  const fill=()=>{const d=v.querySelector("#cm-dec").value,o=v.querySelector("#cm-obj").value,t=v.querySelector("#cm-td").value;
+    const l=P.filter(r=>(!d||r.decision===d)&&(!o||r.objet_poc===o)&&(!t||r.type_donnee===t));
+    v.querySelector("#cm-n").textContent=`${l.length} donnée${l.length>1?"s":""}`;
+    v.querySelector("#cm-rows").innerHTML=l.map(r=>`<tr><td class="mono">${byId[r.id_poc]?`<button class="link" data-id="${r.id_poc}">${r.id_poc}</button>`:r.id_poc}</td><td>${esc(r.libelle)}<br><small>${esc(r.motif)}${r.ecart_modele?" "+esc(r.ecart_modele):""}</small></td><td>${decBadge(r.decision)}</td><td>${etBadge(r)}${r.id_reel?`<br><small class="mono">${esc(r.id_reel)}</small>`:""}</td><td>${esc(r.cibles.join(" + ")||"—")}</td><td>${tdBadge(r.type_donnee)}</td><td class="mono">${esc(r.sources.join(", ")||"—")}</td></tr>`).join("");
+    v.querySelectorAll("#cm-rows [data-id]").forEach(b=>b.onclick=()=>openSheet(b.dataset.id));};
+  ["#cm-dec","#cm-obj","#cm-td"].forEach(s=>v.querySelector(s).onchange=fill);fill();
+}
+
+/* ---------- 13. Recherche globale ---------- */
+const qi=document.getElementById("q"),qr=document.getElementById("qres");
+qi.addEventListener("input",()=>{const t=qi.value.trim();if(!t){qr.hidden=true;F.q="";rerender();return}
+  const ws=norm(t).split(/\s+/),hits=E.filter(e=>ws.every(w=>e._s.includes(w)));
+  qr.innerHTML=(hits.length?hits.slice(0,12).map(e=>`<button data-id="${e.id}"><span class="dot" style="background:${KINDS[e.kind].color}"></span><span><b>${esc(e.nom)}</b><br><small>${KINDS[e.kind].one} · ${esc(e.map_commune||e.zone)}</small></span></button>`).join(""):`<div style="padding:10px 12px;color:var(--ink-3)">Aucun résultat</div>`)+
+   (hits.length?`<button data-filter="1"><span></span><span style="color:var(--blue);font-weight:600">Filtrer la carte et la liste sur « ${esc(t)} » (${hits.length})</span></button>`:"");
+  qr.hidden=false;
+  qr.querySelectorAll("[data-id]").forEach(b=>b.onclick=()=>{qr.hidden=true;openSheet(b.dataset.id)});
+  const fb=qr.querySelector("[data-filter]");if(fb)fb.onclick=()=>{qr.hidden=true;F.q=t;rerender()};
+});
+qi.addEventListener("keydown",e=>{if(e.key==="Enter"){qr.hidden=true;F.q=qi.value.trim();rerender()}});
+document.addEventListener("click",e=>{if(!e.target.closest(".search"))qr.hidden=true});
+
+/* ---------- 14. Navigation ---------- */
+const VIEWS=[["carte","Carte",renderMapView],["explorer","Explorer",renderExplorer],["ressources","Ressources par besoin",renderResources],["contexte","Mobilités & eau",renderContext],["commune","Vers la base commune",renderCommons],["relations","Relations",renderNetwork],["sources","Sources",renderSources],["verifier","À vérifier",renderVerify],["projet","Vous avez un projet ?",renderProject]];
+let CUR="carte";
+function show(id){CUR=id;
+  document.getElementById("tabs").innerHTML=VIEWS.map(([k,l])=>`<button class="tab${k==="projet"?" cta":""}" role="tab" aria-selected="${k===id}" data-v="${k}">${l}</button>`).join("");
+  document.querySelectorAll("#tabs .tab").forEach(b=>b.onclick=()=>show(b.dataset.v));
+  VIEWS.forEach(([k])=>document.getElementById("v-"+k).hidden=k!==id);
+  VIEWS.find(v=>v[0]===id)[2]();
+  try{localStorage.setItem("crossac-tab",id)}catch(e){}
+}
+function rerender(){if(CUR==="carte"){const v=document.getElementById("v-carte");v.querySelector("#fb-map").outerHTML=filterPanel("fb-map");bindFilters(v.querySelector("#fb-map"));drawMap();drawSide()}else if(CUR==="explorer")renderExplorer();else show(CUR)}
+window.addEventListener("resize",()=>{if(CUR==="carte")drawMap()});
+
+document.getElementById("foot").innerHTML=`<span>Données : lecture en direct du <a href="${DATA.meta.sheet}" target="_blank" rel="noopener">tableur du POC Crossac</a> (${esc(DATA.meta.snapshot)}). Séries d'évolution : calculées depuis 13_OBSERVATIONS_VALEURS.</span><span>Distances à vol d'oiseau entre centres de communes.</span><span>Catégories : classement POC, distinct du domaine indiqué au tableur.</span><span>Vers la base commune : classement du ${REM.genere_le}, rapproché de l'intégration du ${REM.integration.date} (base commune et tableur relus le 11/10/2026).</span>`;
+renderCounters();
+let start="carte";try{const s=localStorage.getItem("crossac-tab");if(s&&VIEWS.some(v=>v[0]===s))start=s}catch(e){}
+show(start);
+</script>
+
+</body></html>

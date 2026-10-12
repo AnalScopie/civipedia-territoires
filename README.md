@@ -25,6 +25,7 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | `territoires/index.json` | Registre des territoires disponibles. |
 | `territoires/<id>.json` | Projection publique d'un territoire. |
 | `territoires/<id>.geo.json` | Fond géographique (contours des communes), séparé des données métier. |
+| `technique/carte.html` | Interface de la carte technique réservée aux comptes Civipedia. Code seul : elle ne contient aucune donnée et ne fonctionne pas ouverte directement. Le script Google de l'accès réservé y injecte, à chaque ouverture, les données lues en direct dans le tableur privé. |
 
 Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`. La page n'a pas besoin d'être modifiée.
 
@@ -79,6 +80,10 @@ Un champ absent signifie que l'information n'est pas connue ou pas publiable. La
 ## Contributions
 
 La section « Contribuer » de la page envoie deux types de messages au guichet indiqué dans `config.json` : un projet, un besoin ou une question, et le signalement d'une information. Le guichet les écrit dans la zone de vérification du tableur privé, au statut « déclaré ». Rien n'apparaît sur la carte avant vérification et export. Le nom et le contact de la personne ne sont jamais publiés. Les ressources proposées sous un projet sont un rapprochement calculé par la page (sujets et mots communs), pas une mise en relation.
+
+## Carte technique réservée
+
+La carte technique (sources, qualifications, points à vérifier, analyse vers la base commune) n'est accessible qu'avec un compte `@civipedia.org`. Elle est servie par un script Google qui vérifie le compte, lit le tableur en direct et assemble la page. Seule son interface est ici ; ses données ne transitent jamais par ce dépôt.
 
 ## Mises à jour
 
