@@ -25,7 +25,7 @@
   },
   {
    "objet": "Relations documentées",
-   "nombre": 98
+   "nombre": 250
   }
  ],
  "evenements": [
@@ -37,7 +37,7 @@
    "territoire": "Strasbourg",
    "organisateur": "Conseil de l'Europe",
    "src": {
-    "nom": "Conseil de l'Europe",
+    "nom": "Conseil de l'Europe – Appel à initiatives du 14e Forum mondial de la démocratie",
     "url": "https://rm.coe.int/appel-a-presentation-d-initiative-pour-le-forum-mondial-de-la-democrat/48802b61b5"
    }
   },
@@ -45,11 +45,11 @@
    "titre": "Rencontres européennes de la participation 2026 (10e édition)",
    "debut": "2026-11-23",
    "fin": "2026-11-27",
-   "lieu": "Dijon (23-25/11) ; en ligne (26-27/11)",
+   "lieu": "Parc des Expositions et des Congrès de Dijon (23-25/11) ; en ligne (26-27/11)",
    "territoire": "Dijon",
-   "organisateur": "Décider ensemble, avec la Ville de Dijon",
+   "organisateur": "Décider ensemble ; Ville de Dijon",
    "src": {
-    "nom": "Décider ensemble",
+    "nom": "Décider ensemble – Rencontres européennes de la participation 2026",
     "url": "https://www.deciderensemble.com/rencontres-2/rencontres-2026"
    }
   },
@@ -57,11 +57,11 @@
    "titre": "Salon des maires et des collectivités locales 2026",
    "debut": "2026-11-24",
    "fin": "2026-11-26",
-   "lieu": "Paris Expo Porte de Versailles, Pavillon 7",
+   "lieu": "Paris Expo Porte de Versailles, Pavillon 7, Paris",
    "territoire": "Paris",
    "organisateur": "",
    "src": {
-    "nom": "Salon des maires",
+    "nom": "Salon des maires et des collectivités locales – site officiel",
     "url": "https://www.salondesmaires.com/"
    }
   }
@@ -71,21 +71,21 @@
    "titre": "CERV – Engagement et participation des citoyens",
    "organisme": "Commission européenne (EACEA)",
    "objet": "Projets de participation citoyenne à la vie démocratique de l'UE",
-   "derniere_edition": "Édition 2026 : publiée en décembre 2025, close le 29/04/2026",
+   "derniere_edition": "Édition 2026 : publication décembre 2025 → clôture 29/04/2026",
    "montant": "",
    "src": {
-    "nom": "EACEA",
+    "nom": "EACEA – Appels 2026 du programme CERV (actualité du 17/12/2025)",
     "url": "https://www.eacea.ec.europa.eu/news-events/news/2026-cerv-programme-calls-proposals-funding-and-tenders-portal-2025-12-17_en"
    }
   },
   {
-   "titre": "CERV – Réseaux de villes",
+   "titre": "CERV – Réseaux de villes (Networks of Towns)",
    "organisme": "Commission européenne (EACEA)",
    "objet": "Coopération entre collectivités de plusieurs pays européens",
-   "derniere_edition": "Édition 2026 : du 17/12/2025 au 16/04/2026, budget 12 M€",
+   "derniere_edition": "Édition 2026 : 17/12/2025 → 16/04/2026 ; budget 12 M€",
    "montant": "Subvention minimale 100 000 €",
    "src": {
-    "nom": "Portail des programmes de financement de Chypre",
+    "nom": "Portail des programmes de financement de Chypre – CERV Networks of Towns 2026",
     "url": "https://www.fundingprogrammesportal.gov.cy/en/call/networks-of-towns-en-2026/"
    }
   },
@@ -93,60 +93,55 @@
    "titre": "Fondation de France – Territoires et habitat résilients",
    "organisme": "Fondation de France",
    "objet": "Initiatives citoyennes de résilience face aux crises (inondations, canicules, incendies)",
-   "derniere_edition": "Édition 2026 : du 22/06 au 21/09/2026",
+   "derniere_edition": "Édition 2026 : formulaire ouvert le 22 juin → clôture 21/09/2026",
    "montant": "Jusqu'à 50 000 € par projet",
    "src": {
-    "nom": "Fondation de France",
+    "nom": "Fondation de France – appels à projets",
     "url": "https://www.fondationdefrance.org/fr/appels-a-projets"
+   }
+  },
+  {
+   "titre": "Fonds citoyen franco-allemand – Apprendre, renforcer, vivre la démocratie",
+   "organisme": "Fonds citoyen franco-allemand",
+   "objet": "Projets franco-allemands pour la démocratie",
+   "derniere_edition": "Édition 2025-2026 : publiée le 24/11/2025, dépôt au fil de l'eau 6 semaines avant le projet, projets février-décembre 2026",
+   "montant": "5 000 €, 10 000 € ou 50 000 € (80 % des frais)",
+   "src": {
+    "nom": "Fonds citoyen franco-allemand – appel « Démocratie » 2025-2026",
+    "url": "https://www.fondscitoyen.eu/appel-a-projets-democratie-2025-2026"
+   }
+  },
+  {
+   "titre": "Centre d'appui de la participation citoyenne (CAPC) Pays de la Loire",
+   "organisme": "État'LIN – SGAR Pays de la Loire",
+   "objet": "Accompagnement de projets participatifs des services de l'État (collectivités avec un service de l'État partenaire)",
+   "derniere_edition": "Promotion 4 (2026-2027) : clôture 15/06/2026",
+   "montant": "Contribution de 5 850 € par projet sélectionné",
+   "src": {
+    "nom": "Préfecture de la région Pays de la Loire – Règlement du Centre d'appui de la participation citoyenne (CAPC), promotion 4",
+    "url": "https://www.prefectures-regions.gouv.fr/irecontenu/telechargement/137433/1004091/file/Reglement CAPC.odt.pdf"
    }
   },
   {
    "titre": "Forum mondial de la démocratie – appel à initiatives",
    "organisme": "Conseil de l'Europe",
    "objet": "Présenter une initiative démocratique innovante au Forum de Strasbourg",
-   "derniere_edition": "Édition 2026 : close le 31/05/2026",
+   "derniere_edition": "Édition 2026 : clôture 31/05/2026 ; Forum les 2-3/11/2026",
    "montant": "Frais de voyage et d'hébergement possibles pour un intervenant",
    "src": {
-    "nom": "Conseil de l'Europe",
+    "nom": "Conseil de l'Europe – Appel à initiatives du 14e Forum mondial de la démocratie",
     "url": "https://rm.coe.int/appel-a-presentation-d-initiative-pour-le-forum-mondial-de-la-democrat/48802b61b5"
-   }
-  },
-  {
-   "titre": "Centre d'appui de la participation citoyenne (CAPC) Pays de la Loire",
-   "organisme": "État'LIN – SGAR Pays de la Loire",
-   "objet": "Accompagnement de projets participatifs des services de l'État, avec des collectivités partenaires",
-   "derniere_edition": "Promotion 4 (2026-2027) : close le 15/06/2026",
-   "montant": "Contribution de 5 850 € par projet sélectionné",
-   "src": {
-    "nom": "Préfecture de la région Pays de la Loire",
-    "url": "https://www.prefectures-regions.gouv.fr/irecontenu/telechargement/137433/1004091/file/Reglement CAPC.odt.pdf"
    }
   }
  ],
  "territoires": [
   {
-   "nom": "Crossac",
-   "type": "Commune",
-   "organisations": 29,
-   "personnes": 9,
-   "projets": 1,
-   "evenements": 3
-  },
-  {
-   "nom": "Pau",
-   "type": "Commune",
-   "organisations": 2,
-   "personnes": 0,
-   "projets": 5,
-   "evenements": 0
-  },
-  {
-   "nom": "Paris",
-   "type": "Commune",
+   "nom": "Île-de-France",
+   "type": "Région",
    "organisations": 1,
-   "personnes": 0,
+   "personnes": 2,
    "projets": 0,
-   "evenements": 4
+   "evenements": 0
   },
   {
    "nom": "Pyrénées-Atlantiques (64)",
@@ -157,10 +152,34 @@
    "evenements": 0
   },
   {
-   "nom": "Île-de-France",
+   "nom": "Hautes-Pyrénées (65)",
+   "type": "Département",
+   "organisations": 0,
+   "personnes": 1,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Bretagne",
    "type": "Région",
    "organisations": 1,
-   "personnes": 2,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Grand Ouest",
+   "type": "Zone d'action non administrative (supra-régionale)",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Hainaut occidental (Wallonie picarde)",
+   "type": "Zone / sous-région (infra-régionale)",
+   "organisations": 1,
+   "personnes": 0,
    "projets": 0,
    "evenements": 0
   },
@@ -171,6 +190,150 @@
    "personnes": 1,
    "projets": 0,
    "evenements": 0
+  },
+  {
+   "nom": "Vendée",
+   "type": "Département",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Finistère (29)",
+   "type": "Département",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Ille-et-Vilaine (35)",
+   "type": "Département",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Puy-de-Dôme",
+   "type": "Département",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Nantes – Saint-Nazaire – Plessé",
+   "type": "Zone d'action, territoire pilote (infra-départementale)",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Brest",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 1
+  },
+  {
+   "nom": "Aubervilliers",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Saint-Nazaire",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 1
+  },
+  {
+   "nom": "Châteauroux",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 1
+  },
+  {
+   "nom": "Tours",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 1
+  },
+  {
+   "nom": "Paris",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 4
+  },
+  {
+   "nom": "Nantes",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 1,
+   "projets": 0,
+   "evenements": 1
+  },
+  {
+   "nom": "Morlaix",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 1
+  },
+  {
+   "nom": "Orvault",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 1
+  },
+  {
+   "nom": "Ariège",
+   "type": "Département",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Pau",
+   "type": "Commune",
+   "organisations": 2,
+   "personnes": 0,
+   "projets": 5,
+   "evenements": 0
+  },
+  {
+   "nom": "Hérault (34)",
+   "type": "Département",
+   "organisations": 0,
+   "personnes": 1,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Crossac",
+   "type": "Commune",
+   "organisations": 29,
+   "personnes": 9,
+   "projets": 1,
+   "evenements": 3
   },
   {
    "nom": "Pays de Pont-Château – Saint-Gildas-des-Bois",
@@ -189,153 +352,9 @@
    "evenements": 0
   },
   {
-   "nom": "Brest",
-   "type": "Commune",
-   "organisations": 0,
-   "personnes": 0,
-   "projets": 1,
-   "evenements": 1
-  },
-  {
-   "nom": "Morlaix",
-   "type": "Commune",
-   "organisations": 0,
-   "personnes": 0,
-   "projets": 1,
-   "evenements": 1
-  },
-  {
-   "nom": "Nantes",
-   "type": "Commune",
-   "organisations": 0,
-   "personnes": 1,
-   "projets": 0,
-   "evenements": 1
-  },
-  {
-   "nom": "Orvault",
-   "type": "Commune",
-   "organisations": 1,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 1
-  },
-  {
    "nom": "Saint-Gildas-des-Bois",
    "type": "Commune",
    "organisations": 2,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 0
-  },
-  {
-   "nom": "Ariège",
-   "type": "Département",
-   "organisations": 0,
-   "personnes": 0,
-   "projets": 1,
-   "evenements": 0
-  },
-  {
-   "nom": "Aubervilliers",
-   "type": "Commune",
-   "organisations": 0,
-   "personnes": 0,
-   "projets": 1,
-   "evenements": 0
-  },
-  {
-   "nom": "Bretagne",
-   "type": "Région",
-   "organisations": 1,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 0
-  },
-  {
-   "nom": "Châteauroux",
-   "type": "Commune",
-   "organisations": 0,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 1
-  },
-  {
-   "nom": "Dijon",
-   "type": "Commune",
-   "organisations": 0,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 1
-  },
-  {
-   "nom": "Donges",
-   "type": "Commune",
-   "organisations": 0,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 1
-  },
-  {
-   "nom": "Finistère (29)",
-   "type": "Département",
-   "organisations": 1,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 0
-  },
-  {
-   "nom": "Grand Ouest",
-   "type": "Zone d'action",
-   "organisations": 1,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 0
-  },
-  {
-   "nom": "Hainaut occidental (Wallonie picarde)",
-   "type": "Zone (Belgique)",
-   "organisations": 1,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 0
-  },
-  {
-   "nom": "Hautes-Pyrénées (65)",
-   "type": "Département",
-   "organisations": 0,
-   "personnes": 1,
-   "projets": 0,
-   "evenements": 0
-  },
-  {
-   "nom": "Hérault (34)",
-   "type": "Département",
-   "organisations": 0,
-   "personnes": 1,
-   "projets": 0,
-   "evenements": 0
-  },
-  {
-   "nom": "Ille-et-Vilaine (35)",
-   "type": "Département",
-   "organisations": 1,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 0
-  },
-  {
-   "nom": "Nantes – Saint-Nazaire – Plessé",
-   "type": "Territoire pilote",
-   "organisations": 0,
-   "personnes": 0,
-   "projets": 1,
-   "evenements": 0
-  },
-  {
-   "nom": "Puy-de-Dôme",
-   "type": "Département",
-   "organisations": 1,
    "personnes": 0,
    "projets": 0,
    "evenements": 0
@@ -349,7 +368,7 @@
    "evenements": 0
   },
   {
-   "nom": "Saint-Nazaire",
+   "nom": "Donges",
    "type": "Commune",
    "organisations": 0,
    "personnes": 0,
@@ -365,20 +384,12 @@
    "evenements": 1
   },
   {
-   "nom": "Tours",
+   "nom": "Dijon",
    "type": "Commune",
    "organisations": 0,
    "personnes": 0,
    "projets": 0,
    "evenements": 1
-  },
-  {
-   "nom": "Vendée",
-   "type": "Département",
-   "organisations": 1,
-   "personnes": 0,
-   "projets": 0,
-   "evenements": 0
   }
  ],
  "expertises": [
@@ -388,17 +399,22 @@
    "personnes": 3
   },
   {
-   "libelle": "Animation de la coopération territoriale",
-   "organisations": 3,
-   "personnes": 1
-  },
-  {
    "libelle": "Formation des élus locaux",
    "organisations": 2,
    "personnes": 2
   },
   {
-   "libelle": "Création et animation de tiers-lieux",
+   "libelle": "Animation de la coopération territoriale",
+   "organisations": 3,
+   "personnes": 1
+  },
+  {
+   "libelle": "Coopération entre élus et agents territoriaux",
+   "organisations": 0,
+   "personnes": 0
+  },
+  {
+   "libelle": "Mobilisation citoyenne",
    "organisations": 2,
    "personnes": 0
   },
@@ -408,37 +424,12 @@
    "personnes": 1
   },
   {
-   "libelle": "Mobilisation citoyenne",
-   "organisations": 2,
-   "personnes": 0
-  },
-  {
-   "libelle": "Réponse aux marchés publics et appels à projets",
-   "organisations": 2,
-   "personnes": 0
-  },
-  {
-   "libelle": "Bien vieillir et lien social",
-   "organisations": 1,
-   "personnes": 0
-  },
-  {
-   "libelle": "Média citoyen et communication démocratique",
-   "organisations": 1,
+   "libelle": "Médiation et dialogue entre institutions et habitants",
+   "organisations": 0,
    "personnes": 0
   },
   {
    "libelle": "Mesure de l'impact et de la valeur sociale",
-   "organisations": 1,
-   "personnes": 0
-  },
-  {
-   "libelle": "Mobilités en territoire rural",
-   "organisations": 1,
-   "personnes": 0
-  },
-  {
-   "libelle": "Ressource en eau et résilience territoriale",
    "organisations": 1,
    "personnes": 0
   },
@@ -448,23 +439,43 @@
    "personnes": 0
   },
   {
-   "libelle": "Coopération entre élus et agents territoriaux",
-   "organisations": 0,
-   "personnes": 0
-  },
-  {
    "libelle": "Évaluation et gouvernance de l'intelligence artificielle",
-   "organisations": 0,
-   "personnes": 0
-  },
-  {
-   "libelle": "Médiation et dialogue entre institutions et habitants",
    "organisations": 0,
    "personnes": 0
   },
   {
    "libelle": "Souveraineté numérique et données publiques fiables",
    "organisations": 0,
+   "personnes": 0
+  },
+  {
+   "libelle": "Création et animation de tiers-lieux",
+   "organisations": 2,
+   "personnes": 0
+  },
+  {
+   "libelle": "Réponse aux marchés publics et appels à projets",
+   "organisations": 2,
+   "personnes": 0
+  },
+  {
+   "libelle": "Média citoyen et communication démocratique",
+   "organisations": 1,
+   "personnes": 0
+  },
+  {
+   "libelle": "Ressource en eau et résilience territoriale",
+   "organisations": 1,
+   "personnes": 0
+  },
+  {
+   "libelle": "Mobilités en territoire rural",
+   "organisations": 1,
+   "personnes": 0
+  },
+  {
+   "libelle": "Bien vieillir et lien social",
+   "organisations": 1,
    "personnes": 0
   }
  ]

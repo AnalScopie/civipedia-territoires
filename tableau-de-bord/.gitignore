@@ -1,0 +1,3 @@
+# Exports privés de la base Civipédia : ne jamais publier
+*.xlsx
+*.csv
