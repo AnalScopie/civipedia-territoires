@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tableau de bord Civipédia</title>
+<meta name="description" content="Rendez-vous à venir, appels qui reviennent, territoires et expertises de la base Civipédia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;800&display=swap">
+<style>
+/* Charte Civipédia : noir, blanc, jaune vif. Clair par défaut, sombre au choix (?theme=sombre). */
+:root {
+  --bg: #FFFFFF; --panneau: #F4F4F0; --ligne: #E0E0DA; --fg: #0A0A0A; --gris: #595959;
+  --jaune: #FFE500; --accent-txt: #0A0A0A; --trait: #0A0A0A;
+  --c-pers: #0A0A0A; --c-proj: #8C8C8C; --c-evt: #CFCFC8;
+  --hi: linear-gradient(transparent 58%, #FFE500 58%, #FFE500 92%, transparent 92%);
+  --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color-scheme: light;
+}
+:root[data-theme="sombre"] {
+  --bg: #0A0A0A; --panneau: #161616; --ligne: #2C2C2C; --fg: #FFFFFF; --gris: #A8A8A8;
+  --accent-txt: #FFE500; --trait: #FFFFFF;
+  --c-pers: #FFFFFF; --c-proj: #A3A3A3; --c-evt: #5C5C5C;
+  --hi: none;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.45; }
+::selection { background: var(--jaune); color: #0A0A0A; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--jaune); text-decoration-thickness: 3px; }
+.hi { color: var(--accent-txt); background: var(--hi); }
+
+.page { max-width: 1180px; margin: 0 auto; padding: clamp(20px, 4vw, 48px) max(16px, env(safe-area-inset-right, 0px)) clamp(20px, 4vw, 48px) max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: clamp(32px, 5vw, 56px); }
+.top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .75rem; }
+.eyebrow { margin: 0; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; }
+h1 { font-size: clamp(2rem, 5.5vw, 3.6rem); line-height: 1.02; font-weight: 800; letter-spacing: -.02em; text-transform: uppercase; margin: .45em 0 0; text-wrap: balance; }
+.lead { margin: 1rem 0 0; font-size: 1.1rem; max-width: 62ch; line-height: 1.55; }
+.lead b { font-weight: 800; }
+.sub { margin: .5rem 0 0; font-size: 13px; color: var(--gris); max-width: 62ch; }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); border-top: 3px solid var(--jaune); }
+.kpi { padding: 1rem 1rem 1rem 0; border-bottom: 1px solid var(--ligne); display: flex; flex-direction: column; gap: .25rem; }
+.kpi-v { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.kpi-l { font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--gris); }
+.kpis-note { grid-column: 1 / -1; font-size: 12px; color: var(--gris); padding-top: .6rem; }
+
+section { min-width: 0; }
+.sechead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: .75rem 1.5rem; border-bottom: 1px solid var(--ligne); padding-bottom: .75rem; }
+h2 { margin: 0; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; text-transform: uppercase; letter-spacing: -.01em; line-height: 1.1; }
+.note { margin: .5rem 0 0; font-size: 13px; color: var(--gris); max-width: 62ch; }
+
+.seg { display: inline-flex; border: 1px solid var(--fg); }
+.seg button { font: inherit; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: .45rem .8rem; background: transparent; color: var(--fg); border: 0; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--fg); }
+.seg button[aria-pressed="true"] { background: var(--jaune); color: #0A0A0A; }
+button:focus-visible, a:focus-visible, .paysage:focus-visible { outline: 2px solid var(--fg); outline-offset: 2px; }
+
+.filtre { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: .9rem; font-size: 13px; color: var(--gris); }
+.btn { font: inherit; font-size: 12px; font-weight: 800; padding: .3rem .7rem; background: var(--jaune); color: #0A0A0A; border: 0; cursor: pointer; text-transform: uppercase; letter-spacing: .06em; }
+
+/* Frise paysage */
+.paysage { margin-top: 1rem; overflow-x: auto; overflow-y: hidden; border-top: 1px solid var(--ligne); border-bottom: 1px solid var(--ligne); scrollbar-color: var(--gris) transparent; }
+.pz { position: relative; }
+.axe { position: absolute; height: 4px; background: var(--trait); }
+.tick { position: absolute; width: 1px; background: var(--ligne); }
+.mois { position: absolute; transform: translateX(-50%); font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--gris); white-space: nowrap; }
+.mois.debut { transform: none; }
+.today { position: absolute; width: 0; border-left: 2px dashed var(--trait); }
+.today-lab { position: absolute; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; background: var(--jaune); color: #0A0A0A; padding: 1px 5px; white-space: nowrap; }
+.plage { position: absolute; height: 12px; background: var(--jaune); border: 2px solid var(--trait); border-radius: 6px; }
+.pt { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid var(--trait); background: var(--jaune); border-radius: 50%; }
+.tige { position: absolute; z-index: 1; width: 1px; background: var(--trait); opacity: .55; }
+.carte { position: absolute; z-index: 2; width: 200px; padding: .45rem .65rem .5rem; background: var(--panneau); border-left: 4px solid var(--jaune); display: flex; flex-direction: column; gap: .15rem; overflow: hidden; }
+.carte-jour { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.carte-titre { font-size: 14px; font-weight: 700; line-height: 1.25; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.carte-titre a { text-decoration: none; }
+.carte-titre a:hover { text-decoration: underline; text-decoration-color: var(--jaune); text-decoration-thickness: 3px; }
+.carte-lieu { font-size: 12px; color: var(--gris); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.defile, .vide { margin: .5rem 0 0; font-size: 13px; color: var(--gris); }
+
+/* Appels */
+.appels { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 1rem; }
+.appel { border-top: 3px solid var(--trait); padding-top: .6rem; display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
+.appel h3 { margin: 0; font-size: 15px; font-weight: 800; line-height: 1.25; }
+.appel .org { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--gris); font-weight: 700; }
+.appel p { margin: 0; font-size: 13px; }
+.appel .ed { font-weight: 700; }
+.appel .src { font-size: 12px; color: var(--gris); }
+
+/* Barres */
+.legend { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-size: 12px; color: var(--gris); margin: 1rem 0 .25rem; text-transform: uppercase; letter-spacing: .08em; }
+.legend span { display: inline-flex; align-items: center; gap: .45rem; }
+.key { width: .75rem; height: .75rem; display: inline-block; flex: none; }
+.bars { position: relative; margin-top: .75rem; display: flex; flex-direction: column; }
+.bars.scroll { max-height: 34rem; overflow: auto; }
+.row { display: grid; grid-template-columns: minmax(0, 16rem) minmax(0, 1fr) 2.5rem; gap: .75rem; align-items: center; padding: .55rem 0; border-bottom: 1px solid var(--ligne); font-size: 13px; }
+button.row { cursor: pointer; background: none; border: 0; border-bottom: 1px solid var(--ligne); color: inherit; font: inherit; font-size: 13px; text-align: left; width: 100%; }
+button.row:hover .nom, button.row.actif .nom { color: var(--accent-txt); background: var(--hi); }
+button.row.actif .nom { text-decoration: underline; text-decoration-color: var(--jaune); text-decoration-thickness: 3px; }
+.nom { font-weight: 700; font-size: 14px; }
+.type { display: block; color: var(--gris); font-weight: 400; font-size: 12px; }
+.track { display: flex; height: 14px; background: var(--panneau); min-width: 0; }
+.track span { height: 100%; }
+.n { text-align: right; font-weight: 800; font-size: 16px; font-variant-numeric: tabular-nums; }
+.row.zero .nom { color: var(--gris); }
+.c-org { background: var(--jaune); } .c-pers { background: var(--c-pers); } .c-proj { background: var(--c-proj); } .c-evt { background: var(--c-evt); }
+.tip { position: absolute; z-index: 3; background: var(--bg); border: 1px solid var(--trait); padding: .5rem .7rem; font-size: 12px; pointer-events: none; max-width: 17rem; }
+.tip .t { font-weight: 700; } .tip .m { color: var(--gris); }
+@media (max-width: 560px) { .row { grid-template-columns: minmax(0, 1fr) 2.5rem; } .lab { grid-column: 1 / -1; } }
+
+footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne); padding-top: 1rem; max-width: 70ch; }
+.erreur { padding: 2rem 0; color: var(--gris); }
+@media (prefers-reduced-motion: no-preference) {
+  .carte { animation: entree .4s ease-out both; }
+  @keyframes entree { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+}
+</style>
+</head>
+<body>
+<main class="page" id="page">
+  <header>
+    <div class="top">
+      <p class="eyebrow"><span class="hi">Civipédia</span> · base de connaissance</p>
+      <div class="seg" role="group" aria-label="Affichage">
+        <button type="button" data-th="clair">Clair</button>
+        <button type="button" data-th="sombre">Sombre</button>
+      </div>
+    </div>
+    <h1>Ce qui se <span class="hi">prépare</span></h1>
+    <p class="lead" id="lead">Chargement…</p>
+    <p class="sub">Civipédia relie les personnes, organisations, territoires, projets et rendez-vous qui font la coopération territoriale. Chaque information de la base renvoie à sa source.</p>
+  </header>
+
+  <section class="kpis" id="chiffres" aria-label="Chiffres clés"></section>
+
+  <section id="frise">
+    <div class="sechead">
+      <div>
+        <h2>Les rendez-vous <span class="hi">à venir</span></h2>
+        <p class="note">Événements suivis par Civipédia, de gauche à droite dans le temps. Seuls les événements dont la fiche est vérifiée sont publiés ici.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Période affichée">
+        <button type="button" data-h="3">3 mois</button>
+        <button type="button" data-h="6">6 mois</button>
+        <button type="button" data-h="12">12 mois</button>
+      </div>
+    </div>
+    <div class="filtre" id="filtre" hidden></div>
+    <div class="paysage" id="paysage" tabindex="0" aria-label="Frise chronologique, défilement horizontal"></div>
+    <p class="defile" id="defile" hidden>Faites défiler la frise vers la droite pour voir la suite.</p>
+    <p class="vide" id="vide" hidden>Aucun rendez-vous publié dans cette période.</p>
+  </section>
+
+  <section id="appels">
+    <div class="sechead">
+      <div>
+        <h2>Les appels <span class="hi">qui reviennent</span></h2>
+        <p class="note">Appels à projets et dispositifs ouverts presque chaque année. La dernière édition connue aide à anticiper la suivante.</p>
+      </div>
+    </div>
+    <ul class="appels" id="liste-appels"></ul>
+  </section>
+
+  <section id="territoires">
+    <div class="sechead">
+      <div>
+        <h2>Par <span class="hi">territoire</span></h2>
+        <p class="note">Nombre d'organisations, de personnes, de projets et d'événements reliés à chaque territoire dans la base. Cliquez sur un territoire pour filtrer la frise.</p>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="key c-org"></i>Organisations</span>
+      <span><i class="key c-pers"></i>Personnes</span>
+      <span><i class="key c-proj"></i>Projets</span>
+      <span><i class="key c-evt"></i>Événements</span>
+    </div>
+    <div class="bars scroll" id="terr"></div>
+  </section>
+
+  <section id="expertises">
+    <div class="sechead">
+      <div>
+        <h2>Qui sait faire <span class="hi">quoi</span></h2>
+        <p class="note">Personnes et organisations reliées à chaque expertise du référentiel. Une ligne vide signale une expertise encore sans acteur identifié.</p>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="key c-org"></i>Organisations</span>
+      <span><i class="key c-pers"></i>Personnes</span>
+    </div>
+    <div class="bars" id="exp"></div>
+  </section>
+
+  <footer id="pied">Projection publique de la base Civipédia : événements vérifiés, appels décrits par leur source officielle et comptes agrégés. Aucun nom de personne ni aucune coordonnée n'est publié.</footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var MOIS = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
+  var DAY = 86400000;
+  var now = new Date();
+  var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  var params = new URLSearchParams(location.search);
+  var state = { theme: params.get('theme') === 'sombre' ? 'sombre' : 'clair', horizon: [3, 6, 12].indexOf(Number(params.get('mois'))) >= 0 ? Number(params.get('mois')) : 6, territoire: null };
+  var DATA = null;
+
+  function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined && txt !== null) e.textContent = txt; return e; }
+  function pos(n, l, t, w, h) { n.style.left = l + 'px'; n.style.top = t + 'px'; if (w !== undefined) n.style.width = w + 'px'; if (h !== undefined) n.style.height = h + 'px'; return n; }
+  function iso(s) { return Date.parse(s + 'T00:00:00Z'); }
+  function addMonths(t, n) { var d = new Date(t); return Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + n, d.getUTCDate()); }
+  function jour(ev) {
+    var d = new Date(iso(ev.debut)), f = new Date(iso(ev.fin || ev.debut));
+    if (+d === +f) return d.getUTCDate() + ' ' + MOIS[d.getUTCMonth()];
+    if (d.getUTCMonth() === f.getUTCMonth()) return d.getUTCDate() + '–' + f.getUTCDate() + ' ' + MOIS[d.getUTCMonth()];
+    return d.getUTCDate() + ' ' + MOIS[d.getUTCMonth()] + ' – ' + f.getUTCDate() + ' ' + MOIS[f.getUTCMonth()];
+  }
+  function fr(n) { return n.toLocaleString('fr-FR'); }
+
+  // Hauteur pour l'iframe
+  var lastH = 0;
+  function signalHeight() {
+    var h = Math.ceil(document.documentElement.scrollHeight);
+    if (h !== lastH && window.parent !== window) { lastH = h; window.parent.postMessage({ type: 'civipedia-tableau-de-bord', height: h }, '*'); }
+  }
+
+  function applyTheme() {
+    if (state.theme === 'sombre') document.documentElement.setAttribute('data-theme', 'sombre');
+    else document.documentElement.removeAttribute('data-theme');
+    document.querySelectorAll('[data-th]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.th === state.theme)); });
+  }
+  document.querySelectorAll('[data-th]').forEach(function (b) { b.addEventListener('click', function () { state.theme = b.dataset.th; applyTheme(); }); });
+  document.querySelectorAll('[data-h]').forEach(function (b) { b.addEventListener('click', function () { state.horizon = Number(b.dataset.h); render(); }); });
+  applyTheme();
+
+  function drawKpis() {
+    var box = document.getElementById('chiffres');
+    box.replaceChildren();
+    DATA.chiffres.forEach(function (c) {
+      var k = el('div', 'kpi');
+      k.append(el('span', 'kpi-v', fr(c.nombre)), el('span', 'kpi-l', c.objet));
+      box.appendChild(k);
+    });
+    box.appendChild(el('p', 'kpis-note', 'Fiches de la base Civipédia au ' + new Date(iso(DATA.genere_le)).toLocaleDateString('fr-FR', { timeZone: 'UTC' }) + ', vérifiées ou en cours de vérification.'));
+  }
+
+  function drawLead(items) {
+    var lead = document.getElementById('lead');
+    lead.replaceChildren();
+    var next = items[0];
+    if (!next) { lead.textContent = state.territoire ? 'Aucun rendez-vous publié à venir pour ' + state.territoire + ' dans la période choisie.' : 'Aucun rendez-vous publié dans la période choisie.'; return; }
+    lead.append('Prochain rendez-vous' + (state.territoire ? ' à ' + state.territoire : '') + ' : ', el('b', null, next.titre), ', ', el('span', 'hi', jour(next)), '.');
+  }
+
+  function drawFiltre() {
+    var box = document.getElementById('filtre');
+    box.replaceChildren();
+    box.hidden = !state.territoire;
+    if (!state.territoire) return;
+    var b = el('button', 'btn', state.territoire + ' ×');
+    b.type = 'button';
+    b.setAttribute('aria-label', 'Retirer le filtre ' + state.territoire);
+    b.addEventListener('click', function () { state.territoire = null; render(); });
+    box.append('Frise filtrée sur', b);
+  }
+
+  function drawPaysage(items, start, end) {
+    var box = document.getElementById('paysage');
+    box.replaceChildren();
+    var CW = 200, CH = 104, LH = CH + 12, m = 16;
+    var nMois = Math.max(1, (end - start) / (30.4 * DAY));
+    var W = Math.max(box.clientWidth, Math.round(nMois * 180), 640);
+    var x0 = m + 8, x1 = W - CW - m;
+    function x(t) { return x0 + (t - start) / (end - start) * (x1 - x0); }
+
+    var ends = [[], []];
+    var placed = items.map(function (it, i) {
+      var xx = x(Math.max(iso(it.debut), start));
+      var pref = i % 2, best = null;
+      [pref, 1 - pref].forEach(function (side) {
+        var lvl = ends[side].findIndex(function (e) { return e < xx - 10; });
+        if (lvl === -1) lvl = ends[side].length;
+        if (!best || lvl < best.lvl) best = { side: side, lvl: lvl };
+      });
+      ends[best.side][best.lvl] = xx + CW;
+      return { it: it, x: xx, side: best.side, lvl: best.lvl };
+    });
+    var A = Math.max(1, ends[0].length), B = ends[1].length;
+    var topPad = 30, axisY = topPad + A * LH + 24, H = axisY + 30 + B * LH + 34;
+    var pz = el('div', 'pz'); pz.style.width = W + 'px'; pz.style.height = H + 'px';
+
+    var d = new Date(start), mo = Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1), i = 0;
+    while (mo <= end) {
+      var xm = x(mo), dm = new Date(mo);
+      pz.appendChild(pos(el('div', 'tick'), xm, topPad - 6, undefined, H - topPad - 22));
+      pz.appendChild(pos(el('div', 'mois' + (i === 0 && xm < 40 ? ' debut' : ''), MOIS[dm.getUTCMonth()] + (dm.getUTCMonth() === 0 || i === 0 ? ' ' + dm.getUTCFullYear() : '')), xm, H - 20));
+      mo = Date.UTC(dm.getUTCFullYear(), dm.getUTCMonth() + 1, 1); i++;
+    }
+    pz.appendChild(pos(el('div', 'axe'), m, axisY, W - 2 * m));
+    var tx = x(today);
+    pz.appendChild(pos(el('div', 'today'), tx, 22, undefined, H - 44));
+    pz.appendChild(pos(el('div', 'today-lab', "Aujourd'hui"), tx - 2, 2));
+
+    placed.forEach(function (p) {
+      var it = p.it, dd = iso(it.debut), ff = iso(it.fin || it.debut);
+      var xe = x(Math.min(ff + DAY, end));
+      if (ff > dd && xe - p.x > 14) pz.appendChild(pos(el('div', 'plage'), p.x, axisY - 4, xe - p.x));
+      else pz.appendChild(pos(el('div', 'pt'), p.x, axisY + 2));
+      var top = p.side === 0 ? axisY - 22 - p.lvl * LH - CH : axisY + 30 + p.lvl * LH;
+      var tTop = p.side === 0 ? top + CH : axisY + 6;
+      var tH = p.side === 0 ? axisY - 2 - (top + CH) : top - (axisY + 6);
+      pz.appendChild(pos(el('div', 'tige'), p.x, tTop, undefined, Math.max(0, tH)));
+      var c = pos(el('article', 'carte'), p.x - 2, top, CW, CH);
+      c.appendChild(el('div', 'carte-jour', jour(it)));
+      var t = el('div', 'carte-titre');
+      if (it.src && it.src.url) { var a = el('a', null, it.titre); a.href = it.src.url; a.target = '_blank'; a.rel = 'noopener'; t.appendChild(a); }
+      else t.textContent = it.titre;
+      c.appendChild(t);
+      if (it.lieu) c.appendChild(el('div', 'carte-lieu', it.lieu));
+      if (it.organisateur) c.appendChild(el('div', 'carte-lieu', it.organisateur));
+      pz.appendChild(c);
+    });
+    box.appendChild(pz);
+    document.getElementById('defile').hidden = !(W > box.clientWidth + 4) || !items.length;
+    document.getElementById('vide').hidden = items.length > 0;
+  }
+
+  function drawAppels() {
+    var ul = document.getElementById('liste-appels');
+    ul.replaceChildren();
+    DATA.appels.forEach(function (a) {
+      var li = el('li', 'appel');
+      li.append(el('span', 'org', a.organisme), el('h3', null, a.titre), el('p', null, a.objet), el('p', 'ed', a.derniere_edition));
+      if (a.montant) li.appendChild(el('p', null, a.montant));
+      if (a.src && a.src.url) {
+        var p = el('p', 'src'), l = el('a', null, 'Source : ' + a.src.nom);
+        l.href = a.src.url; l.target = '_blank'; l.rel = 'noopener';
+        p.appendChild(l); li.appendChild(p);
+      }
+      ul.appendChild(li);
+    });
+  }
+
+  function drawBars(boxId, rows, nom, sous, segs, clickable) {
+    var box = document.getElementById(boxId);
+    box.replaceChildren();
+    var max = 1;
+    rows.forEach(function (r) { r._total = segs.reduce(function (s, g) { return s + r[g[0]]; }, 0); max = Math.max(max, r._total); });
+    var tip = el('div', 'tip'); tip.hidden = true;
+    rows.slice().sort(function (a, b) { return b._total - a._total || a[nom].localeCompare(b[nom], 'fr'); }).forEach(function (r) {
+      var row = clickable ? el('button', 'row') : el('div', 'row');
+      if (!r._total) row.classList.add('zero');
+      if (clickable) {
+        row.type = 'button';
+        var actif = state.territoire === r[nom];
+        if (actif) row.classList.add('actif');
+        row.setAttribute('aria-pressed', String(actif));
+        row.addEventListener('click', function () { state.territoire = state.territoire === r[nom] ? null : r[nom]; render(); document.getElementById('frise').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      }
+      var lab = el('div', 'lab');
+      lab.appendChild(el('span', 'nom', r[nom]));
+      if (sous && r[sous]) lab.appendChild(el('span', 'type', r[sous]));
+      var track = el('div', 'track');
+      segs.forEach(function (g) { if (!r[g[0]]) return; var s = el('span', g[1]); s.style.width = (r[g[0]] / max * 100) + '%'; track.appendChild(s); });
+      row.append(lab, track, el('div', 'n', fr(r._total)));
+      track.addEventListener('mousemove', function (e) {
+        tip.replaceChildren(el('div', 't', r[nom]));
+        segs.forEach(function (g) { tip.appendChild(el('div', 'm', r[g[0]] + ' ' + g[2] + (r[g[0]] > 1 ? 's' : ''))); });
+        tip.hidden = false;
+        var b = box.getBoundingClientRect(), xx = e.clientX - b.left + 14;
+        if (xx + tip.offsetWidth > box.clientWidth) xx = Math.max(0, e.clientX - b.left - tip.offsetWidth - 14);
+        tip.style.left = xx + 'px'; tip.style.top = (e.clientY - b.top + box.scrollTop + 14) + 'px';
+      });
+      track.addEventListener('mouseleave', function () { tip.hidden = true; });
+      box.appendChild(row);
+    });
+    box.appendChild(tip);
+  }
+
+  function render() {
+    if (!DATA) return;
+    document.querySelectorAll('[data-h]').forEach(function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.h) === state.horizon)); });
+    var start = today - 10 * DAY, end = addMonths(today, state.horizon);
+    var items = DATA.evenements.filter(function (ev) {
+      return iso(ev.fin || ev.debut) >= today && iso(ev.debut) <= end && (!state.territoire || ev.territoire === state.territoire);
+    }).sort(function (a, b) { return iso(a.debut) - iso(b.debut); });
+    drawLead(items);
+    drawFiltre();
+    drawPaysage(items, start, end);
+    drawBars('terr', DATA.territoires, 'nom', 'type', [['organisations', 'c-org', 'organisation'], ['personnes', 'c-pers', 'personne'], ['projets', 'c-proj', 'projet'], ['evenements', 'c-evt', 'événement']], true);
+    signalHeight();
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 150); });
+  if ('ResizeObserver' in window) new ResizeObserver(signalHeight).observe(document.body);
+
+  fetch('data.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
+    DATA = d;
+    drawKpis();
+    drawAppels();
+    drawBars('exp', DATA.expertises, 'libelle', null, [['organisations', 'c-org', 'organisation'], ['personnes', 'c-pers', 'personne']], false);
+    var pied = document.getElementById('pied');
+    pied.textContent = pied.textContent + ' Données au ' + new Date(iso(d.genere_le)).toLocaleDateString('fr-FR', { timeZone: 'UTC' }) + '.';
+    render();
+  }).catch(function () {
+    document.getElementById('lead').textContent = 'Les données n’ont pas pu être chargées. Réessayez dans un instant.';
+  });
+})();
+</script>
+</body>
+</html>

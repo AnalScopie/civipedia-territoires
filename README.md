@@ -29,6 +29,29 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 
 Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`. La page n'a pas besoin d'être modifiée.
 
+## Tableau de bord public
+
+| Fichier | Rôle |
+|---|---|
+| `tableau-de-bord/index.html` | Page publique intégrable (iframe) : rendez-vous à venir en frise, appels qui reviennent, comptes par territoire et par expertise. Mode clair par défaut, sombre avec `?theme=sombre`, période avec `?mois=3`, `6` ou `12`. Elle ne contient aucune donnée. |
+| `tableau-de-bord/data.json` | Projection publique de la base commune, produite à la demande. Elle ne contient que des événements dont la fiche est vérifiée, des appels décrits par leur source officielle et des comptes agrégés : aucun nom de personne, aucune coordonnée, aucun identifiant interne, aucun projet interne. |
+
+Intégration sur un site :
+
+```html
+<iframe id="civipedia-tdb" src="https://analscopie.github.io/civipedia-territoires/tableau-de-bord/"
+        title="Tableau de bord Civipédia" style="width:100%;height:1800px;border:0" loading="lazy"></iframe>
+<script>
+  window.addEventListener('message', function (e) {
+    if (e.origin === 'https://analscopie.github.io' && e.data && e.data.type === 'civipedia-tableau-de-bord') {
+      document.getElementById('civipedia-tdb').style.height = e.data.height + 'px';
+    }
+  });
+</script>
+```
+
+Le script est facultatif : il ajuste la hauteur de l'iframe à son contenu.
+
 ## Schéma
 
 ### `territoires/index.json`
