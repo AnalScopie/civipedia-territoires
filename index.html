@@ -3,18 +3,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&display=swap">
 <style>
-/* Layout : vue de découverte. En-tête court, barre d'exploration (recherche + 5 catégories), carte et liste côte à côte, puis grands sujets et repères. Thème sombre unique, aligné sur la carte technique. */
+/* Layout : vue de découverte. En-tête court, barre d'exploration (recherche + 5 catégories), carte et liste côte à côte, puis grands sujets et repères. Thème clair, charte Civipedia (fond blanc, bleu #1F5BFF, vert #199C68). */
 :root{
-  --bg:#060b16; --surface:#0b1323; --surface-2:#101b30; --line:#18243c; --line-strong:#27375a;
-  --ink:#e9eef8; --ink-2:#a8b5cb; --ink-3:#7686a0;
-  --blue:#3d7bff; --blue-soft:#10204a; --blue-ink:#a2bdff; --green-ink:#74e2b4;
-  --k-acteur:#4f93ff; --k-organisation:#f5c84a; --k-ressource:#2fd394; --k-projet:#ff8f6b; --k-evenement:#b28cff;
-  --land:#0a1222; --land-home:#13264a; --land-line:rgba(140,165,210,.18); --home-line:rgba(130,170,255,.7);
-  --river:#1d5a9e; --road:rgba(205,215,235,.2); --rail:rgba(205,215,235,.14); --ring:rgba(120,160,255,.35); --sea:#03060d;
+  --bg:#ffffff; --surface:#f7f9fc; --surface-2:#eef2f8; --line:#e4e9f1; --line-strong:#cfd7e4;
+  --ink:#111827; --ink-2:#465166; --ink-3:#667085;
+  --blue:#1F5BFF; --blue-soft:#eaf0ff; --blue-ink:#1a4fe0; --green-ink:#137a52;
+  --k-acteur:#1F5BFF; --k-organisation:#d99400; --k-ressource:#199C68; --k-projet:#e8613a; --k-evenement:#8b5cf6;
+  --land:#eef2f7; --land-home:#dce7ff; --land-line:rgba(70,90,130,.28); --home-line:#1F5BFF;
+  --river:#7fb0e6; --road:rgba(60,70,90,.22); --rail:rgba(60,70,90,.18); --ring:rgba(31,91,255,.45); --sea:#fafbfd;
   --f-sans:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif;
   --r:10px;
-  --warn:#e9b04c; --warn-soft:#2c2210; --ok:#21c383; --ok-soft:#0b2a20; --none-ink:#8b99b2;
-  color-scheme:dark;
+  --warn:#a86a00; --warn-soft:#fdf3e1; --ok:#199C68; --ok-soft:#e7f6ef; --none-ink:#667085;
+  color-scheme:light;
 }
 *{box-sizing:border-box}
 html,body{background:var(--bg);color:var(--ink)}
@@ -62,10 +62,10 @@ button,input,select,textarea{font:inherit;color:inherit}
 .mapbox svg.drag{cursor:grabbing}
 .ctl{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:4px}
 .ctl button{width:36px;height:36px;border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;cursor:pointer;font-size:18px;line-height:1}
-.legend{position:absolute;left:10px;bottom:10px;display:flex;flex-direction:column;gap:4px;background:rgba(8,14,27,.88);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--ink-2);max-width:calc(100% - 20px)}
+.legend{position:absolute;left:10px;bottom:10px;display:flex;flex-direction:column;gap:4px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--ink-2);max-width:calc(100% - 20px)}
 .legend div{display:flex;align-items:center;gap:8px}
 .legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
-.hint{position:absolute;left:10px;top:10px;font-size:12px;color:var(--ink-3);background:rgba(8,14,27,.8);border-radius:6px;padding:4px 8px}
+.hint{position:absolute;left:10px;top:10px;font-size:12px;color:var(--ink-3);background:rgba(255,255,255,.9);border-radius:6px;padding:4px 8px}
 .bub{cursor:pointer}
 .bub:focus{outline:none}
 .bub:focus-visible circle.hit{stroke:var(--ink);stroke-width:2}
@@ -107,7 +107,7 @@ footer.foot{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);co
 footer.foot a{color:var(--ink-2)}
 
 /* Fiche */
-.scrim{position:fixed;inset:0;z-index:40;background:rgba(2,5,12,.5)}
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(15,23,42,.3)}
 .sheet{position:fixed;z-index:50;top:0;right:0;bottom:0;width:min(480px,100%);background:var(--bg);border-left:1px solid var(--line-strong);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 .sheet .head{padding:18px 18px 14px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
 .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line-strong)}
@@ -261,6 +261,13 @@ fieldset.field{border:0;padding:0;margin:0}
   .kv dt{margin-top:4px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Logos des collectivités du territoire (fichiers officiels, affichés sans retouche) */
+.tlogos{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:16px}
+.tlogos > span{font-size:12px;color:var(--ink-3);letter-spacing:.04em}
+.tlogos .plate{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;display:flex;align-items:center;height:84px}
+.tlogos img{display:block;height:100%;width:auto;max-width:240px;object-fit:contain}
+@media (max-width:520px){.tlogos .plate{height:70px}.tlogos img{max-width:170px}}
 </style>
 
 <div class="wrap">
@@ -273,6 +280,7 @@ fieldset.field{border:0;padding:0;margin:0}
     <div>
       <h1 id="title">Crossac</h1>
       <p id="lead">Qui agit sur le territoire, où, et sur quels sujets : acteurs, organisations, ressources, projets et événements.</p>
+      <div class="tlogos" id="tlogos" hidden></div>
     </div>
     <div class="facts" id="facts"></div>
   </section>
@@ -404,11 +412,11 @@ fieldset.field{border:0;padding:0;margin:0}
 /* ---------- 1. Socle : registre des territoires et données publiées ---------- */
 const REGISTRY = "territoires/index.json";
 const CATS = {
-  acteur:{label:"Acteurs",one:"Acteur",color:"var(--k-acteur)",hex:"#4f93ff"},
-  organisation:{label:"Organisations",one:"Organisation",color:"var(--k-organisation)",hex:"#f5c84a"},
-  ressource:{label:"Ressources et lieux",one:"Ressource / lieu",color:"var(--k-ressource)",hex:"#2fd394"},
-  projet:{label:"Projets",one:"Projet",color:"var(--k-projet)",hex:"#ff8f6b"},
-  evenement:{label:"Événements",one:"Événement",color:"var(--k-evenement)",hex:"#b28cff"}
+  acteur:{label:"Acteurs",one:"Acteur",color:"var(--k-acteur)",hex:"#1F5BFF"},
+  organisation:{label:"Organisations",one:"Organisation",color:"var(--k-organisation)",hex:"#d99400"},
+  ressource:{label:"Ressources et lieux",one:"Ressource / lieu",color:"var(--k-ressource)",hex:"#199C68"},
+  projet:{label:"Projets",one:"Projet",color:"var(--k-projet)",hex:"#e8613a"},
+  evenement:{label:"Événements",one:"Événement",color:"var(--k-evenement)",hex:"#8b5cf6"}
 };
 const ORDER = Object.keys(CATS);
 const $ = s => document.querySelector(s);
@@ -447,6 +455,9 @@ async function openTerritory(entry){
   $("#q").value = "";
   document.title = "Découvrir " + T.territoire.nom;
   $("#title").textContent = T.territoire.nom;
+  const lg = $("#tlogos"), logos = entry.logos || [];
+  lg.hidden = !logos.length;
+  lg.innerHTML = logos.length ? `<span>Avec</span>` + logos.map(l => `<div class="plate" title="${esc(l.nom)}"><img src="${esc(l.src)}" alt="${esc(l.alt)}" loading="lazy"></div>`).join("") : "";
   setupMap(); renderStatic(); render();
 }
 
@@ -599,14 +610,14 @@ function drawMarkers(vis){
     }
     const sel = st.commune === com;
     h += `<g class="bub" tabindex="0" role="button" data-com="${esc(com)}" aria-label="${esc(com)} : ${n} éléments">
-      <circle class="hit" cx="${x}" cy="${y}" r="${r}" fill="#0b1323" stroke="${sel?"#e9eef8":"none"}" stroke-width="2"/>${seg}
-      <text x="${x}" y="${y+4.5}" text-anchor="middle" font-size="${n>=10?13:12}" font-weight="700" fill="#e9eef8">${n}</text>
-      ${showLabel ? "" : "<!--"}<text x="${x}" y="${y+r+14}" text-anchor="middle" font-size="11.5" font-weight="600" fill="#a8b5cb" stroke="#060b16" stroke-width="3" paint-order="stroke">${esc(com)}</text>${showLabel ? "" : "-->"}<title>${esc(com)}</title></g>`;
+      <circle class="hit" cx="${x}" cy="${y}" r="${r}" fill="#ffffff" stroke="${sel?"#111827":"#cfd7e4"}" stroke-width="2"/>${seg}
+      <text x="${x}" y="${y+4.5}" text-anchor="middle" font-size="${n>=10?13:12}" font-weight="700" fill="#111827">${n}</text>
+      ${showLabel ? "" : "<!--"}<text x="${x}" y="${y+r+14}" text-anchor="middle" font-size="11.5" font-weight="600" fill="#465166" stroke="#ffffff" stroke-width="3" paint-order="stroke">${esc(com)}</text>${showLabel ? "" : "-->"}<title>${esc(com)}</title></g>`;
   }
   for (const i of dots) {
     const [x,y] = scr(P(i.pt[0], i.pt[1]));
-    h += `<g class="bub" tabindex="0" role="button" data-id="${esc(i.id)}" aria-label="${esc(i.nom)}"><circle class="hit" cx="${x}" cy="${y}" r="8" fill="${CATS[i.k].hex}" stroke="#060b16" stroke-width="2"/>
-      ${view.s >= 140 ? `<text x="${x+12}" y="${y+4}" font-size="11.5" fill="#e9eef8" stroke="#060b16" stroke-width="3" paint-order="stroke">${esc(i.nom)}</text>` : ""}</g>`;
+    h += `<g class="bub" tabindex="0" role="button" data-id="${esc(i.id)}" aria-label="${esc(i.nom)}"><circle class="hit" cx="${x}" cy="${y}" r="8" fill="${CATS[i.k].hex}" stroke="#ffffff" stroke-width="2"/>
+      ${view.s >= 140 ? `<text x="${x+12}" y="${y+4}" font-size="11.5" fill="#111827" stroke="#ffffff" stroke-width="3" paint-order="stroke">${esc(i.nom)}</text>` : ""}</g>`;
   }
   gMark.innerHTML = h;
 }

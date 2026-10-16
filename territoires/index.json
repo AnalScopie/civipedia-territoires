@@ -4,6 +4,20 @@
   "nom": "Crossac",
   "data": "territoires/crossac.json",
   "geo": "territoires/crossac.geo.json",
-  "instantane": "2026-10-11 (tableur modifié 2026-10-11T18:56:25Z)"
+  "instantane": "2026-10-11 (tableur modifié 2026-10-11T18:56:25Z)",
+  "logos": [
+   {
+    "src": "territoires/logos/crossac-commune.jpg",
+    "alt": "Logo de la commune de Crossac",
+    "nom": "Commune de Crossac",
+    "origine": "Fichier transmis par Samuel Tiercelin-Moreau, mail du 13/10/2026"
+   },
+   {
+    "src": "territoires/logos/cc-pont-chateau-saint-gildas.png",
+    "alt": "Logo de la Communauté de communes du Pays de Pont-Château Saint-Gildas-des-Bois",
+    "nom": "Communauté de communes du Pays de Pont-Château Saint-Gildas-des-Bois",
+    "origine": "Fichier transmis par Samuel Tiercelin-Moreau, mail du 13/10/2026"
+   }
+  ]
  }
 ]
