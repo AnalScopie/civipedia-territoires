@@ -107,6 +107,8 @@ button.row.actif .nom { text-decoration: underline; text-decoration-color: var(-
 .n { text-align: right; font-weight: 800; font-size: 16px; font-variant-numeric: tabular-nums; }
 .row.zero .nom { color: var(--gris); }
 .c-org { background: var(--jaune); } .c-pers { background: var(--c-pers); } .c-proj { background: var(--c-proj); } .c-evt { background: var(--c-evt); }
+.vcarte { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; margin-left: .5rem; white-space: nowrap; }
+.carte-orig { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--gris); }
 .tip { position: absolute; z-index: 3; background: var(--bg); border: 1px solid var(--trait); padding: .5rem .7rem; font-size: 12px; pointer-events: none; max-width: 17rem; }
 .tip .t { font-weight: 700; } .tip .m { color: var(--gris); }
 @media (max-width: 560px) { .row { grid-template-columns: minmax(0, 1fr) 2.5rem; } .lab { grid-column: 1 / -1; } }
@@ -140,7 +142,7 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
     <div class="sechead">
       <div>
         <h2>Les rendez-vous <span class="hi">à venir</span></h2>
-        <p class="note">Événements suivis par Civipédia, de gauche à droite dans le temps. Seuls les événements dont la fiche est vérifiée sont publiés ici.</p>
+        <p class="note">Événements suivis par Civipédia, de gauche à droite dans le temps. Seuls les événements dont la fiche est vérifiée sont publiés ici, avec ceux des cartes territoriales publiées.</p>
       </div>
       <div class="seg" role="group" aria-label="Période affichée">
         <button type="button" data-h="3">3 mois</button>
@@ -168,7 +170,7 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
     <div class="sechead">
       <div>
         <h2>Par <span class="hi">territoire</span></h2>
-        <p class="note">Nombre d'organisations, de personnes, de projets et d'événements reliés à chaque territoire dans la base. Cliquez sur un territoire pour filtrer la frise.</p>
+        <p class="note">Nombre d'organisations, de personnes, de projets et d'événements reliés à chaque territoire dans la base. Cliquez sur un territoire pour filtrer la frise. « Carte » ouvre la carte publique du territoire quand elle existe.</p>
       </div>
     </div>
     <div class="legend">
@@ -205,8 +207,9 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
   var now = new Date();
   var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
   var params = new URLSearchParams(location.search);
-  var state = { theme: params.get('theme') === 'sombre' ? 'sombre' : 'clair', horizon: [3, 6, 12].indexOf(Number(params.get('mois'))) >= 0 ? Number(params.get('mois')) : 6, territoire: null };
+  var state = { theme: params.get('theme') === 'sombre' ? 'sombre' : 'clair', horizon: [3, 6, 12].indexOf(Number(params.get('mois'))) >= 0 ? Number(params.get('mois')) : 6, territoire: params.get('territoire') || null };
   var DATA = null;
+  var CARTES = {}; // nom du territoire → adresse de sa carte publique
 
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt !== undefined && txt !== null) e.textContent = txt; return e; }
   function pos(n, l, t, w, h) { n.style.left = l + 'px'; n.style.top = t + 'px'; if (w !== undefined) n.style.width = w + 'px'; if (h !== undefined) n.style.height = h + 'px'; return n; }
@@ -321,6 +324,7 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
       c.appendChild(t);
       if (it.lieu) c.appendChild(el('div', 'carte-lieu', it.lieu));
       if (it.organisateur) c.appendChild(el('div', 'carte-lieu', it.organisateur));
+      if (it.carte) c.appendChild(el('div', 'carte-orig', 'Carte ' + it.carte));
       pz.appendChild(c);
     });
     box.appendChild(pz);
@@ -362,6 +366,12 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
       }
       var lab = el('div', 'lab');
       lab.appendChild(el('span', 'nom', r[nom]));
+      if (clickable && CARTES[r[nom]]) {
+        var vc = el('a', 'vcarte', 'Carte ›');
+        vc.href = CARTES[r[nom]]; vc.target = '_top';
+        vc.addEventListener('click', function (e) { e.stopPropagation(); });
+        lab.appendChild(vc);
+      }
       if (sous && r[sous]) lab.appendChild(el('span', 'type', r[sous]));
       var track = el('div', 'track');
       segs.forEach(function (g) { if (!r[g[0]]) return; var s = el('span', g[1]); s.style.width = (r[g[0]] / max * 100) + '%'; track.appendChild(s); });
@@ -398,7 +408,32 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
   window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 150); });
   if ('ResizeObserver' in window) new ResizeObserver(signalHeight).observe(document.body);
 
-  fetch('data.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
+  function getJSON(u) { return fetch(u, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  function cle(ev) { return (ev.titre || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase() + '|' + ev.debut; }
+
+  // Cartes territoriales publiées : elles nourrissent la frise (événements à venir)
+  // et les lignes « Par territoire » (lien vers la carte). Une carte absente ou
+  // illisible n'empêche jamais le tableau de s'afficher.
+  function chargerCartes() {
+    return getJSON('../territoires/index.json').then(function (reg) {
+      return Promise.all(reg.map(function (t) {
+        return getJSON('../' + t.data).then(function (d) {
+          var nom = d.territoire.nom, noms = {};
+          CARTES[nom] = '../#' + t.id;
+          d.items.forEach(function (i) { noms[i.id] = i.nom; });
+          return d.items.filter(function (i) { return i.k === 'evenement' && i.debut && i.src && i.src.url; }).map(function (i) {
+            return { titre: i.nom, debut: i.debut, fin: i.fin || i.debut, lieu: noms[i.lieu] || i.commune || '', territoire: i.commune || nom,
+                     organisateur: noms[i.organisateur] || '', src: i.src, carte: nom };
+          });
+        }).catch(function () { return []; });
+      }));
+    }).then(function (l) { return [].concat.apply([], l); }).catch(function () { return []; });
+  }
+
+  Promise.all([getJSON('data.json'), chargerCartes()]).then(function (res) {
+    var d = res[0], vus = {};
+    d.evenements.forEach(function (ev) { vus[cle(ev)] = true; });
+    res[1].forEach(function (ev) { if (!vus[cle(ev)]) { vus[cle(ev)] = true; d.evenements.push(ev); } });
     DATA = d;
     drawKpis();
     drawAppels();

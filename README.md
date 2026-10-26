@@ -27,13 +27,37 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | `territoires/<id>.geo.json` | Fond géographique (contours des communes), séparé des données métier. |
 | `technique/carte.html` | Interface de la carte technique réservée aux comptes Civipedia. Code seul : elle ne contient aucune donnée et ne fonctionne pas ouverte directement. Le script Google de l'accès réservé y injecte, à chaque ouverture, les données lues en direct dans le tableur privé. |
 
-Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`. La page n'a pas besoin d'être modifiée.
+| `verifier_territoires.py` | Contrôle des cartes avant publication (voir ci-dessous). |
+
+Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`, puis à lancer le contrôle. La page n'a pas besoin d'être modifiée.
+
+## Contrôle avant publication
+
+Aucune carte n'est publiée sans passer `python3 verifier_territoires.py` (ou `python3 verifier_territoires.py crossac` pour un seul territoire). Le script lit le registre, chaque fichier de données et chaque fond géographique. Il refuse (code de sortie 1, la version précédente reste en ligne) si :
+
+- la structure est incomplète : clé absente, identifiant en double, nature inconnue, événement sans date, élément sans source web ;
+- une relation ou un renvoi (`lieu`, `organisateur`) désigne un élément absent de la carte ;
+- un élément est dit « Sans adresse sur la carte » alors qu'un point est publié ;
+- une observation n'est ni FAIT ni VÉRIFIÉ, ou un chiffre en attente publie sa valeur ;
+- une adresse électronique, un numéro de téléphone ou un identifiant interne de la base commune (`MASE-…`, `OPP-…`, `APP-…`, `VEI-…`) apparaît ;
+- le registre ne correspond pas au fichier (nom, instantané, logo absent).
+
+Il signale sans bloquer les éléments sans position et les points très éloignés du périmètre.
+
+## Circulation entre les cartes et le tableau de bord
+
+Les deux pages se nourrissent l'une l'autre, uniquement à partir de projections déjà publiques : aucune donnée privée ne circule par ce chemin.
+
+- **Carte → tableau de bord** : le tableau lit `territoires/index.json` et chaque carte publiée. Les événements d'une carte entrent dans la frise (sans doublon avec la base commune), rattachés à leur commune et marqués « Carte <territoire> ». Dans « Par territoire », un territoire qui a une carte porte un lien « Carte ».
+- **Tableau de bord → carte** : la carte lit `tableau-de-bord/data.json` et affiche, dans « Dans la base commune Civipédia », les territoires de la base qui correspondent au territoire ou à une commune de son périmètre, leurs rendez-vous vérifiés à venir, et un lien vers le tableau filtré (`tableau-de-bord/?territoire=<nom>`).
+
+Si l'une des deux sources manque, l'autre page s'affiche normalement, sans cette partie.
 
 ## Tableau de bord public
 
 | Fichier | Rôle |
 |---|---|
-| `tableau-de-bord/index.html` | Page publique intégrable (iframe) : rendez-vous à venir en frise, appels qui reviennent, comptes par territoire et par expertise. Mode clair par défaut, sombre avec `?theme=sombre`, période avec `?mois=3`, `6` ou `12`. Elle ne contient aucune donnée. |
+| `tableau-de-bord/index.html` | Page publique intégrable (iframe) : rendez-vous à venir en frise, appels qui reviennent, comptes par territoire et par expertise. Mode clair par défaut, sombre avec `?theme=sombre`, période avec `?mois=3`, `6` ou `12`, territoire avec `?territoire=<nom>`. Elle ne contient aucune donnée. |
 | `tableau-de-bord/data.json` | Projection publique de la base commune, produite à la demande. Elle ne contient que des événements dont la fiche est vérifiée, des appels décrits par leur source officielle et des comptes agrégés : aucun nom de personne, aucune coordonnée, aucun identifiant interne, aucun projet interne. |
 | `tableau-de-bord/generer_data.py` | Générateur de `data.json` à partir d'un export .xlsx de la base Civipédia. Il ne lit pas la base Crossac. |
 
