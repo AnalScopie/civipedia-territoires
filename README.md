@@ -44,7 +44,8 @@ Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `te
 - **Règles** :
   - chiffres clés = nombre de fiches de chaque onglet ;
   - « Relations documentées » = lignes de `Relations` dont les deux identifiants existent, avec type et source, hors HYPOTHÈSE ;
-  - événements publiés = fiches « Vérifié » datées au jour près ;
+  - événements publiés = fiches « Vérifié » de type « Événement public », datées au jour près (les réunions et rencontres internes ne sont jamais publiées) ;
+  - sources publiées = liens publics seulement (jamais un document Drive, Docs ou Canva) ;
   - appels = `Opportunites` « Clos — à guetter », FAIT ou VÉRIFIÉ, avec une source à URL ;
   - territoires et expertises = organisations et personnes reliées dans `Relations` (hors HYPOTHÈSE et « à valider »), projets et événements par `ID_territoire`.
 - **Contrôles** : le script vérifie la structure attendue par `index.html` et refuse d'écrire si un identifiant interne, un nom de personne ou une coordonnée apparaît. Il liste ce qu'il écarte.

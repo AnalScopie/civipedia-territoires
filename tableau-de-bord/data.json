@@ -1,15 +1,15 @@
 {
- "instantane": "Base Civipédia, export du 26/10/2026",
- "genere_le": "2026-10-26",
+ "instantane": "Base Civipédia, export du 30/10/2026",
+ "genere_le": "2026-10-30",
  "regles": "Projection publique : seuls les événements dont la fiche est vérifiée, des appels décrits par leur source officielle, et des comptes agrégés. Aucun nom de personne, aucune coordonnée, aucun identifiant interne.",
  "chiffres": [
   {
    "objet": "Personnes",
-   "nombre": 88
+   "nombre": 94
   },
   {
    "objet": "Organisations",
-   "nombre": 100
+   "nombre": 109
   },
   {
    "objet": "Territoires",
@@ -17,15 +17,15 @@
   },
   {
    "objet": "Projets",
-   "nombre": 31
+   "nombre": 41
   },
   {
    "objet": "Événements",
-   "nombre": 30
+   "nombre": 42
   },
   {
    "objet": "Relations documentées",
-   "nombre": 338
+   "nombre": 435
   }
  ],
  "evenements": [
@@ -51,6 +51,18 @@
    "src": {
     "nom": "Décider ensemble – Rencontres européennes de la participation 2026",
     "url": "https://www.deciderensemble.com/rencontres-2/rencontres-2026"
+   }
+  },
+  {
+   "titre": "108e Congrès des maires et des présidents d'intercommunalité de France",
+   "debut": "2026-11-24",
+   "fin": "2026-11-26",
+   "lieu": "Parc des expositions de la Porte de Versailles, Paris",
+   "territoire": "Paris",
+   "organisateur": "Association des maires de France et des présidents d'intercommunalité (AMF)",
+   "src": {
+    "nom": "AMF – 108e Congrès des maires et des présidents d'intercommunalité de France (2026)",
+    "url": "https://www.amf.asso.fr/m/congres26/programme.php"
    }
   },
   {
@@ -132,6 +144,17 @@
     "nom": "Conseil de l'Europe – Appel à initiatives du 14e Forum mondial de la démocratie",
     "url": "https://rm.coe.int/appel-a-presentation-d-initiative-pour-le-forum-mondial-de-la-democrat/48802b61b5"
    }
+  },
+  {
+   "titre": "Prix de la démocratie",
+   "organisme": "Association pour le Soutien des Principes de la Démocratie Humaniste (ASPDH)",
+   "objet": "Quatre prix en 2026 : Grand Prix (avec le CESE), Démocratie locale (avec l'AMF, communes et intercommunalités), Jeunesse, Désinfox ; ouvert aux associations, clubs sportifs, collectivités, citoyens.",
+   "derniere_edition": "Édition 2026 (3e sous l'ASPDH) : clôture 28/02/2026 ; remise des prix le 18/06/2026 à Rennes",
+   "montant": "",
+   "src": {
+    "nom": "AMF – « Le Prix de la Démocratie revient pour une nouvelle édition ! »",
+    "url": "https://www.amf.asso.fr/documents-le-prix-la-democratie-revient-pour-une-nouvelle-edition-/42920"
+   }
   }
  ],
  "territoires": [
@@ -139,7 +162,7 @@
    "nom": "Île-de-France",
    "type": "Région",
    "organisations": 1,
-   "personnes": 2,
+   "personnes": 4,
    "projets": 0,
    "evenements": 0
   },
@@ -251,7 +274,7 @@
    "nom": "Saint-Nazaire",
    "type": "Commune",
    "organisations": 2,
-   "personnes": 0,
+   "personnes": 1,
    "projets": 0,
    "evenements": 1
   },
@@ -277,13 +300,13 @@
    "organisations": 1,
    "personnes": 0,
    "projets": 0,
-   "evenements": 4
+   "evenements": 5
   },
   {
    "nom": "Nantes",
    "type": "Commune",
    "organisations": 0,
-   "personnes": 1,
+   "personnes": 2,
    "projets": 0,
    "evenements": 1
   },
@@ -332,7 +355,7 @@
    "type": "Commune",
    "organisations": 29,
    "personnes": 9,
-   "projets": 2,
+   "projets": 3,
    "evenements": 3
   },
   {
@@ -357,7 +380,7 @@
    "organisations": 2,
    "personnes": 0,
    "projets": 0,
-   "evenements": 0
+   "evenements": 1
   },
   {
    "nom": "Saint-Joachim",
@@ -444,12 +467,12 @@
   {
    "libelle": "Cartographie des acteurs et des coopérations",
    "organisations": 0,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Évaluation et gouvernance de l'intelligence artificielle",
    "organisations": 0,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Souveraineté numérique et données publiques fiables",

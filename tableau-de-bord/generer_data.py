@@ -49,6 +49,9 @@ CLES = {
     "expertises": ["libelle", "organisations", "personnes"],
 }
 
+# Liens vers des documents internes (Drive, Docs, Canva) : jamais publiés.
+URL_PRIVEE = re.compile(r"(docs|drive)\.google\.com|canva\.com", re.I)
+
 alertes = []
 
 
@@ -106,7 +109,8 @@ def lire(chemin):
 def source_publique(champ, sources, contexte):
     for i in ids(champ):
         s = sources.get(i)
-        if s and txt(s.get("URL_source")):
+        url = txt(s.get("URL_source")) if s else ""
+        if url and not URL_PRIVEE.search(url):
             return {"nom": txt(s.get("Nom_source")), "url": txt(s.get("URL_source"))}
     alerte(f"{contexte} : aucune source avec URL ({txt(champ) or 'Source vide'})")
     return None
@@ -170,6 +174,8 @@ def construire(base, jour, exclure):
         eid = txt(e["ID_evenement"])
         if txt(e.get("Statut")) != "Vérifié":
             continue
+        if txt(e.get("Type")) != "Événement public":
+            continue  # réunions et rencontres internes : jamais publiées
         if txt(e.get("Statut_evenement")).lower().startswith("annul"):
             continue
         debut, fin = date_iso(e.get("Date_debut")), date_iso(e.get("Date_fin")) or date_iso(e.get("Date_debut"))
