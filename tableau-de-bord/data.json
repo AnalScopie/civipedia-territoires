@@ -1,7 +1,7 @@
 {
- "instantane": "Base Civipédia, export du 30/10/2026",
- "genere_le": "2026-10-30",
- "regles": "Projection publique : seuls les événements dont la fiche est vérifiée, des appels décrits par leur source officielle, et des comptes agrégés. Aucun nom de personne, aucune coordonnée, aucun identifiant interne.",
+ "instantane": "Base Civipédia, export du 01/11/2026",
+ "genere_le": "2026-11-01",
+ "regles": "Projection publique : événements publics vérifiés, rendez-vous de l'équipe Civipédia décrits sans nom de personne, appels décrits par leur source officielle et comptes agrégés. Aucun nom de personne, aucune coordonnée, aucun identifiant interne, aucun document interne.",
  "chiffres": [
   {
    "objet": "Personnes",
@@ -9,26 +9,260 @@
   },
   {
    "objet": "Organisations",
-   "nombre": 109
+   "nombre": 111
   },
   {
    "objet": "Territoires",
-   "nombre": 33
+   "nombre": 34
   },
   {
    "objet": "Projets",
-   "nombre": 41
-  },
-  {
-   "objet": "Événements",
    "nombre": 42
   },
   {
+   "objet": "Événements",
+   "nombre": 44
+  },
+  {
    "objet": "Relations documentées",
-   "nombre": 435
+   "nombre": 502
   }
  ],
  "evenements": [
+  {
+   "titre": "Rencontre avec Convergences citoyennes, Empreintes citoyennes et Opération Milliard",
+   "debut": "2025-02-20",
+   "fin": "2025-02-20",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "1 membre de Civipédia, 2 personnes extérieures",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Webinaire avec Empreintes citoyennes, Labo de la Fraternité et Pacte civique",
+   "debut": "2025-02-20",
+   "fin": "2025-02-20",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "1 membre de Civipédia, 1 personne extérieure",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Printemps des fragilités (3e édition)",
+   "debut": "2025-05-24",
+   "fin": "2025-05-25",
+   "lieu": "Nantes",
+   "territoire": "Nantes",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "à confirmer",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec CNCD",
+   "debut": "2026-06-18",
+   "fin": "2026-06-18",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "4 membres de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Présentation (équipe Civipédia)",
+   "debut": "2026-06-22",
+   "fin": "2026-06-22",
+   "lieu": "Saint-Nazaire",
+   "territoire": "Saint-Nazaire",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Participation de Civipédia",
+   "projet": "MACECOTE (Matrice de coopération territoriale)",
+   "src": null
+  },
+  {
+   "titre": "Session de travail avec Cafés citoyens",
+   "debut": "2026-08-12",
+   "fin": "2026-08-12",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "1 membre de Civipédia",
+   "projet": "Candidature Fondation Michelin « Nouveaux modèles collaboratifs »",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Act4Global Impact",
+   "debut": "2026-09-09",
+   "fin": "2026-09-09",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "4 membres de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre (équipe Civipédia)",
+   "debut": "2026-09-21",
+   "fin": "2026-09-21",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "5 membres de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Coop-Ère",
+   "debut": "2026-09-29",
+   "fin": "2026-09-29",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "1 membre de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Les Ateliers du Cami Salié",
+   "debut": "2026-10-01",
+   "fin": "2026-10-01",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "1 membre de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Act4Global Impact",
+   "debut": "2026-10-12",
+   "fin": "2026-10-12",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "2 membres de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Coop-Ère",
+   "debut": "2026-10-12",
+   "fin": "2026-10-12",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "3 membres de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre (équipe Civipédia)",
+   "debut": "2026-10-14",
+   "fin": "2026-10-14",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "1 membre de Civipédia, 1 personne extérieure",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Les Ateliers du Cami Salié",
+   "debut": "2026-10-14",
+   "fin": "2026-10-14",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "3 membres de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Act4Global Impact",
+   "debut": "2026-10-22",
+   "fin": "2026-10-22",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "2 membres de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre (équipe Civipédia)",
+   "debut": "2026-10-27",
+   "fin": "2026-10-27",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "3 membres de Civipédia, 1 personne extérieure",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Coop-Ère",
+   "debut": "2026-10-29",
+   "fin": "2026-10-29",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "1 membre de Civipédia, 1 personne extérieure",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Labo de la Fraternité",
+   "debut": "2026-10-30",
+   "fin": "2026-10-30",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "à confirmer",
+   "participants": "1 membre de Civipédia",
+   "projet": "Récits fraternels et démocratiques – Nos jours heureux – ateliers citoyens pour un avenir désirable",
+   "src": null
+  },
   {
    "titre": "14e Forum mondial de la démocratie",
    "debut": "2026-11-02",
@@ -36,10 +270,53 @@
    "lieu": "Strasbourg",
    "territoire": "Strasbourg",
    "organisateur": "Conseil de l'Europe",
+   "categorie": "public",
+   "etat": "prévu",
+   "participants": "",
+   "projet": "",
    "src": {
     "nom": "Conseil de l'Europe – Appel à initiatives du 14e Forum mondial de la démocratie",
     "url": "https://rm.coe.int/appel-a-presentation-d-initiative-pour-le-forum-mondial-de-la-democrat/48802b61b5"
    }
+  },
+  {
+   "titre": "Session de travail avec Act4Global Impact",
+   "debut": "2026-11-03",
+   "fin": "2026-11-03",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "1 membre de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Formation avec IHEMI",
+   "debut": "2026-11-17",
+   "fin": "2026-11-19",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "1 membre de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Session de travail avec Couleur Talents",
+   "debut": "2026-11-19",
+   "fin": "2026-11-19",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "2 membres de Civipédia",
+   "projet": "",
+   "src": null
   },
   {
    "titre": "Rencontres européennes de la participation 2026 (10e édition)",
@@ -48,6 +325,10 @@
    "lieu": "Parc des Expositions et des Congrès de Dijon (23-25/11) ; en ligne (26-27/11)",
    "territoire": "Dijon",
    "organisateur": "Décider ensemble ; Ville de Dijon",
+   "categorie": "public",
+   "etat": "prévu",
+   "participants": "",
+   "projet": "",
    "src": {
     "nom": "Décider ensemble – Rencontres européennes de la participation 2026",
     "url": "https://www.deciderensemble.com/rencontres-2/rencontres-2026"
@@ -60,6 +341,10 @@
    "lieu": "Parc des expositions de la Porte de Versailles, Paris",
    "territoire": "Paris",
    "organisateur": "Association des maires de France et des présidents d'intercommunalité (AMF)",
+   "categorie": "public",
+   "etat": "prévu",
+   "participants": "",
+   "projet": "",
    "src": {
     "nom": "AMF – 108e Congrès des maires et des présidents d'intercommunalité de France (2026)",
     "url": "https://www.amf.asso.fr/m/congres26/programme.php"
@@ -72,10 +357,27 @@
    "lieu": "Paris Expo Porte de Versailles, Pavillon 7, Paris",
    "territoire": "Paris",
    "organisateur": "",
+   "categorie": "public",
+   "etat": "prévu",
+   "participants": "",
+   "projet": "",
    "src": {
     "nom": "Salon des maires et des collectivités locales – site officiel",
     "url": "https://www.salondesmaires.com/"
    }
+  },
+  {
+   "titre": "Rencontre avec AMF et Labo de la Fraternité",
+   "debut": "2026-12-10",
+   "fin": "2026-12-10",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Participation de Civipédia",
+   "projet": "Récits fraternels et démocratiques – Nos jours heureux – ateliers citoyens pour un avenir désirable",
+   "src": null
   }
  ],
  "appels": [
@@ -273,8 +575,8 @@
   {
    "nom": "Saint-Nazaire",
    "type": "Commune",
-   "organisations": 2,
-   "personnes": 1,
+   "organisations": 3,
+   "personnes": 2,
    "projets": 0,
    "evenements": 1
   },
@@ -421,23 +723,31 @@
    "personnes": 0,
    "projets": 0,
    "evenements": 1
+  },
+  {
+   "nom": "Saint-Nazaire Agglomération (CARENE)",
+   "type": "Intercommunalité",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 0
   }
  ],
  "expertises": [
   {
    "libelle": "Ingénierie de la participation citoyenne",
    "organisations": 4,
-   "personnes": 3
+   "personnes": 6
   },
   {
    "libelle": "Formation des élus locaux",
    "organisations": 2,
-   "personnes": 2
+   "personnes": 7
   },
   {
    "libelle": "Animation de la coopération territoriale",
    "organisations": 3,
-   "personnes": 1
+   "personnes": 3
   },
   {
    "libelle": "Coopération entre élus et agents territoriaux",
@@ -447,12 +757,12 @@
   {
    "libelle": "Mobilisation citoyenne",
    "organisations": 2,
-   "personnes": 0
+   "personnes": 3
   },
   {
    "libelle": "Culture de coopération",
    "organisations": 1,
-   "personnes": 1
+   "personnes": 3
   },
   {
    "libelle": "Médiation et dialogue entre institutions et habitants",
@@ -477,12 +787,12 @@
   {
    "libelle": "Souveraineté numérique et données publiques fiables",
    "organisations": 0,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Création et animation de tiers-lieux",
    "organisations": 2,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Réponse aux marchés publics et appels à projets",
@@ -492,7 +802,7 @@
   {
    "libelle": "Média citoyen et communication démocratique",
    "organisations": 1,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Ressource en eau et résilience territoriale",
@@ -502,12 +812,57 @@
   {
    "libelle": "Mobilités en territoire rural",
    "organisations": 1,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Bien vieillir et lien social",
    "organisations": 1,
    "personnes": 0
+  },
+  {
+   "libelle": "Hydraulique urbaine et assainissement des eaux usées",
+   "organisations": 0,
+   "personnes": 0
+  },
+  {
+   "libelle": "SIG et données géographiques des réseaux",
+   "organisations": 0,
+   "personnes": 0
+  },
+  {
+   "libelle": "Mise en récit et médiation artistique",
+   "organisations": 0,
+   "personnes": 1
+  },
+  {
+   "libelle": "Facilitation et intelligence collective",
+   "organisations": 0,
+   "personnes": 3
+  },
+  {
+   "libelle": "Coaching et accompagnement managérial",
+   "organisations": 0,
+   "personnes": 3
+  },
+  {
+   "libelle": "Ingénierie de formation et pédagogie",
+   "organisations": 0,
+   "personnes": 3
+  },
+  {
+   "libelle": "GPEC et gestion des compétences",
+   "organisations": 0,
+   "personnes": 2
+  },
+  {
+   "libelle": "Partenariat en santé et savoirs expérientiels",
+   "organisations": 0,
+   "personnes": 3
+  },
+  {
+   "libelle": "Architecture numérique et bases de connaissances",
+   "organisations": 0,
+   "personnes": 2
   }
  ]
 }

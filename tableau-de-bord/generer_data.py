@@ -43,7 +43,7 @@ ID_INTERNE = re.compile(r"\b(MASE-[A-Z]-\d{3,4}|OPP-\d{4}|APP-\d{3}|CR-[A-Z]+-\d
 CLES = {
     "racine": ["instantane", "genere_le", "regles", "chiffres", "evenements", "appels", "territoires", "expertises"],
     "chiffres": ["objet", "nombre"],
-    "evenements": ["titre", "debut", "fin", "lieu", "territoire", "organisateur", "src"],
+    "evenements": ["titre", "debut", "fin", "lieu", "territoire", "organisateur", "categorie", "etat", "participants", "projet", "src"],
     "appels": ["titre", "organisme", "objet", "derniere_edition", "montant", "src"],
     "territoires": ["nom", "type", "organisations", "personnes", "projets", "evenements"],
     "expertises": ["libelle", "organisations", "personnes"],
@@ -51,6 +51,12 @@ CLES = {
 
 # Liens vers des documents internes (Drive, Docs, Canva) : jamais publiés.
 URL_PRIVEE = re.compile(r"(docs|drive)\.google\.com|canva\.com", re.I)
+
+CIVIPEDIA = "MASE-O-0028"
+# Projets qu'Anne Povie a validés comme publics (01/11/2026). Les autres projets ne sont jamais nommés.
+PROJETS_PUBLICS = {"MASE-P-0001", "MASE-P-0007", "MASE-P-0030"}
+TYPES_RDV = {"Réunion / rencontre": "Rencontre"}
+EN_LIGNE = re.compile(r"en ligne|meet|zoom|teams|visio|whatsapp", re.I)
 
 alertes = []
 
@@ -163,34 +169,123 @@ def construire(base, jour, exclure):
         {"objet": "Relations documentées", "nombre": len(valides)},
     ]
 
-    # Événements publiés : fiche « Vérifié », dates au jour près, non annulés.
-    evenements = []
-    org_evt = {}
+    # Agenda : événements publics vérifiés et rendez-vous de l'équipe Civipédia, passés et à venir.
+    # Règles validées par Anne Povie (01/11/2026) :
+    # - un rendez-vous de l'équipe est un événement relié à Civipédia ou à l'un de ses membres ;
+    # - il est décrit sans aucun nom de personne : nombre de membres, organisations nommées,
+    #   « personne extérieure » pour qui n'est rattaché à aucune organisation ;
+    # - son projet n'est nommé que s'il figure dans PROJETS_PUBLICS ;
+    # - aucun lien vers un document interne, aucun lieu précis (« En ligne » ou le territoire) ;
+    # - les rendez-vous annulés ou abandonnés ne sont pas publiés.
+    def nature_ok(r):
+        return not txt(r.get("Nature_info")).upper().startswith("HYPOTH")
+
+    membres = {txt(r["ID_de"]) for r in base["Relations"]
+               if txt(r.get("ID_vers")) == CIVIPEDIA and prefixe(txt(r.get("ID_de"))) == "MASE-C" and nature_ok(r)}
+    org_evt, liens_evt = {}, {}
+    for r in base["Relations"]:
+        de, vers = txt(r.get("ID_de")), txt(r.get("ID_vers"))
+        if not nature_ok(r) or txt(r.get("Statut_relation")).lower().startswith(("abandon", "annul")):
+            continue
+        if prefixe(vers) == "MASE-V":
+            liens_evt.setdefault(vers, []).append((de, r))
+        elif prefixe(de) == "MASE-V":
+            liens_evt.setdefault(de, []).append((vers, r))
     for r in valides:
         t = txt(r["Type_relation"]).lower()
         if t in ("organisateur", "co-organisateur") and prefixe(txt(r["ID_de"])) == "MASE-O" and prefixe(txt(r["ID_vers"])) == "MASE-V":
             org_evt.setdefault(txt(r["ID_vers"]), []).append((t != "organisateur", txt(idx["Organisations"][txt(r["ID_de"])].get("Nom"))))
+
+    def nom_org(oid):
+        """Nom usuel le plus court : « IHEMI (Institut des hautes études…) » → « IHEMI »."""
+        nom = txt(idx["Organisations"].get(oid, {}).get("Nom"))
+        m = re.fullmatch(r"(.+?)\s*\((.+)\)", nom)
+        return min(m.groups(), key=len).strip() if m else nom
+
+    org_contact = {}
+    for r in valides:
+        de, vers = txt(r["ID_de"]), txt(r["ID_vers"])
+        if prefixe(de) == "MASE-C" and prefixe(vers) == "MASE-O" and vers != CIVIPEDIA:
+            org_contact.setdefault(de, vers)
+
+    evenements = []
     for e in base["Événements"]:
         eid = txt(e["ID_evenement"])
-        if txt(e.get("Statut")) != "Vérifié":
+        etat_base = txt(e.get("Statut_evenement")).lower()
+        if etat_base.startswith(("annul", "abandon")):
             continue
-        if txt(e.get("Type")) != "Événement public":
-            continue  # réunions et rencontres internes : jamais publiées
-        if txt(e.get("Statut_evenement")).lower().startswith("annul"):
+        liens = liens_evt.get(eid, [])
+        objets = {o for o, _ in liens}
+        equipe = CIVIPEDIA in objets or bool(objets & membres)
+        if not equipe and txt(e.get("Statut")) != "Vérifié":
             continue
         debut, fin = date_iso(e.get("Date_debut")), date_iso(e.get("Date_fin")) or date_iso(e.get("Date_debut"))
         if not debut:
-            alerte(f"{eid} vérifié mais non publié : Date_debut illisible ({txt(e.get('Date_debut'))})")
+            if equipe or txt(e.get("Statut")) == "Vérifié":
+                alerte(f"{eid} non publié : Date_debut illisible ({txt(e.get('Date_debut')) or 'vide'})")
             continue
         terr = idx["Territoires"].get(txt(e.get("ID_territoire")))
+        territoire = txt(terr.get("Nom_territoire")) if terr else ""
+        public = txt(e.get("Type")) == "Événement public"
+        if etat_base.startswith("réalis"):
+            etat = "réalisé"
+        elif (fin or debut) < jour.isoformat():
+            etat = "à confirmer"
+        else:
+            etat = "prévu"
+        projets = sorted(o for o in objets if o in PROJETS_PUBLICS and o in idx["Projets"])
+        projet = " ; ".join(txt(idx["Projets"][p].get("Nom")) for p in projets)
+
+        if public:
+            titre, lieu = txt(e.get("Nom")), txt(e.get("Lieu_source"))
+            src = source_publique(e.get("Source"), sources, eid)
+        else:
+            lieu = "En ligne" if EN_LIGNE.search(txt(e.get("Lieu_source"))) else territoire
+            src = None
+        participants = ""
+        if equipe:
+            n_membres, orgs, exterieurs = 0, [], 0
+            for o, r in liens:
+                if o in membres:
+                    n_membres += 1
+                elif prefixe(o) == "MASE-C":
+                    m = re.search(r"Au titre de : (MASE-O-\d{4})", txt(r.get("Notes")))
+                    oid = m[1] if m else org_contact.get(o)
+                    if oid and oid != CIVIPEDIA and nom_org(oid):
+                        orgs.append(nom_org(oid))
+                    else:
+                        exterieurs += 1
+                elif prefixe(o) == "MASE-O" and o != CIVIPEDIA and nom_org(o):
+                    orgs.append(nom_org(o))
+            orgs = sorted(set(orgs), key=str.lower)
+            morceaux = []
+            if n_membres:
+                morceaux.append(f"{n_membres} membre{'s' if n_membres > 1 else ''} de Civipédia")
+            elif CIVIPEDIA in objets:
+                morceaux.append("Participation de Civipédia")
+            if exterieurs:
+                morceaux.append(f"{exterieurs} personne{'s' if exterieurs > 1 else ''} extérieure{'s' if exterieurs > 1 else ''}")
+            participants = ", ".join(morceaux)
+            if not public:
+                genre = TYPES_RDV.get(txt(e.get("Type")), txt(e.get("Type")) or "Rendez-vous")
+                if orgs:
+                    titre = f"{genre} avec " + (", ".join(orgs[:-1]) + " et " + orgs[-1] if len(orgs) > 1 else orgs[0])
+                else:
+                    titre = f"{genre} (équipe Civipédia)"
+            elif orgs and not org_evt.get(eid):
+                participants += " · avec " + ", ".join(orgs)
         evenements.append({
-            "titre": txt(e.get("Nom")),
+            "titre": titre,
             "debut": debut,
             "fin": fin,
-            "lieu": txt(e.get("Lieu_source")),
-            "territoire": txt(terr.get("Nom_territoire")) if terr else "",
-            "organisateur": " ; ".join(n for _, n in sorted(org_evt.get(eid, []))),
-            "src": source_publique(e.get("Source"), sources, eid),
+            "lieu": lieu,
+            "territoire": territoire,
+            "organisateur": " ; ".join(n for _, n in sorted(org_evt.get(eid, []))) if public else "",
+            "categorie": "equipe" if equipe else "public",
+            "etat": etat,
+            "participants": participants,
+            "projet": projet,
+            "src": src,
         })
     evenements.sort(key=lambda x: (x["debut"], x["titre"]))
 
@@ -250,9 +345,9 @@ def construire(base, jour, exclure):
     data = {
         "instantane": f"Base Civipédia, export du {jour.strftime('%d/%m/%Y')}",
         "genere_le": jour.isoformat(),
-        "regles": ("Projection publique : seuls les événements dont la fiche est vérifiée, des appels décrits "
-                   "par leur source officielle, et des comptes agrégés. Aucun nom de personne, aucune "
-                   "coordonnée, aucun identifiant interne."),
+        "regles": ("Projection publique : événements publics vérifiés, rendez-vous de l'équipe Civipédia "
+                   "décrits sans nom de personne, appels décrits par leur source officielle et comptes agrégés. "
+                   "Aucun nom de personne, aucune coordonnée, aucun identifiant interne, aucun document interne."),
         "chiffres": chiffres,
         "evenements": evenements,
         "appels": appels,
@@ -273,6 +368,10 @@ def controler(data, base):
             if list(x) != CLES[liste]:
                 erreurs.append(f"{liste}[{i}] : clés {list(x)}")
     for e in data["evenements"]:
+        if e["categorie"] not in ("public", "equipe") or e["etat"] not in ("prévu", "réalisé", "à confirmer"):
+            erreurs.append(f"catégorie ou état invalide : {e['titre']}")
+        if e["src"] and URL_PRIVEE.search(e["src"]["url"]):
+            erreurs.append(f"lien vers un document interne : {e['titre']}")
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["debut"]) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["fin"]) or e["fin"] < e["debut"]:
             erreurs.append(f"dates invalides : {e['titre']}")
     for liste, champs in (("territoires", ("organisations", "personnes", "projets", "evenements")), ("expertises", ("organisations", "personnes"))):
