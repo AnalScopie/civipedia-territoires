@@ -25,6 +25,7 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | `territoires/index.json` | Registre des territoires disponibles. |
 | `territoires/<id>.json` | Projection publique d'un territoire. |
 | `territoires/<id>.geo.json` | Fond géographique (contours des communes), séparé des données métier. |
+| `outils/verifier_mesures.py` | Contrôle des valeurs chiffrées (`mesures`) avant publication ; peut aussi en sortir une table CSV. |
 | `technique/carte.html` | Interface de la carte technique réservée aux comptes Civipedia. Code seul : elle ne contient aucune donnée et ne fonctionne pas ouverte directement. Le script Google de l'accès réservé y injecte, à chaque ouverture, les données lues en direct dans le tableur privé. |
 | `maquette/` | Maquette de l'application Civipédia Conseil (HTML interactif, PDF, capture). Exemples fictifs uniquement, aucune donnée réelle. Copie de celle du dépôt `civipedia-conseil`. |
 | `fiche-contact/` | Fiche de contact numérique pour les salons et événements (version en ligne de la fiche papier), à remplir sur téléphone par un membre de Civipédia ou par la personne rencontrée. La page ne contient aucune donnée : les fiches partent vers le tableur privé `FICHES_CONTACT_CIVIPEDIA` par le guichet `guichet.gs` (Google Apps Script, à installer avec `installation.html`). Chaque lundi, un résumé signale les nouvelles fiches ; celles marquées OUI sont versées dans l'onglet Contacts de la base commune, au statut « À vérifier ». Adresse de la page : `fiche-contact/` (avec `?equipe` pour le mode membre, `?evenement=…&date=AAAA-MM-JJ` pour pré-remplir, par exemple dans un QR code). |
@@ -96,7 +97,7 @@ Liste d'objets :
 | `reperes` | Chiffres clés par domaine. |
 | `themes` | Domaines travaillés sur ce territoire. |
 | `indicateurs` | Ce que l'on cherche à mesurer : question servie, source, échelle, fréquence, état de disponibilité. |
-| `observations` | Valeurs effectivement observées et établies, avec date, échelle, limites et sources. |
+| `observations` | Valeurs effectivement observées et établies, avec date, échelle, limites et sources. Les chiffres y sont aussi rangés sous forme de nombres, avec unité et date, dans `mesures` (voir plus bas). |
 | `en_attente` | Chiffres connus mais pas encore établis : seuls leur existence et le motif d'attente sont publiés, jamais la valeur. |
 | `ouverts` | Questions ouvertes publiables (desserte, information à confirmer…), sans détail interne. |
 | `attendues` | Actions annoncées dont les données ne sont pas encore fournies. |
@@ -117,6 +118,29 @@ Un élément de `items` :
 | Selon la nature | `fonction`, `org` (acteur) ; `gest` (lieu) ; `debut`, `fin`, `heure`, `passe`, `lieu`, `organisateur` (événement) ; `periode`, `public`, `moyens`, `perimetre`, `resultats`, `porteurs`, `manque`, `ind` (projet). |
 
 Un champ absent signifie que l'information n'est pas connue ou pas publiable. La page ne l'affiche pas.
+
+### Valeurs chiffrées des observations (`mesures`)
+
+Le texte `valeur` d'une observation (« 2 808 (2012) → 2 952 (2017) → 2 974 (2023) ») reste ce que la page affiche. Les mêmes chiffres sont aussi rangés dans `mesures`, une ligne par nombre, pour qu'ils puissent être comparés, additionnés ou suivis dans le temps (tableaux de bord, observatoire, modèles d'analyse).
+
+| Champ | Contenu |
+|---|---|
+| `variable` | Ce qui est mesuré, en code stable (`population`, `taux_pauvrete`, `prix_eau_potable_ttc_120m3`…). Une même variable garde toujours la même unité. |
+| `valeur` | Le nombre (point décimal). |
+| `min`, `max` | À la place de `valeur` quand la source donne une fourchette (« 13 à 14 mg/L ») ou un maximum (« jusqu'à 25 mg/L »). |
+| `unite` | Unité, prise dans la liste `UNITES` de `outils/verifier_mesures.py` (`habitants`, `%`, `€/m³`, `mg/L`…). |
+| `date` | Date de la mesure : `AAAA`, `AAAA-MM` ou `AAAA-MM-JJ`, aussi précise que la source et pas plus. |
+| `date_fin` | Fin de la période, quand la mesure couvre une période. |
+| `date_nature` | Quand `date` n'est pas la date de la mesure elle-même : `prix_au` (prix en vigueur à cette date), `consultation` (état constaté à la date de consultation), `mise_a_jour_source` (date de mise à jour de la page source). |
+| `echelle` | Seulement si elle diffère de celle de l'observation (deux sites, commune et CC…). |
+| `seuil` | Limite de référence citée avec la mesure (limite de qualité de l'eau…), dans la même unité. |
+
+Règles :
+
+- **Aucun chiffre n'est calculé ni deviné.** Chaque nombre et chaque date doivent se lire dans le texte publié de l'observation (`valeur`, `limites`, `date`). Une évolution (« +7 % ») n'est pas recopiée, elle se recalcule. Un chiffre sans date connue (« 8 auparavant ») reste dans le texte seulement.
+- Une observation sans chiffre (description d'un réseau, niveau d'alerte « Crise ») n'a pas de `mesures`.
+- Avant chaque publication : `python3 outils/verifier_mesures.py`. Le script refuse un nombre ou une date absents du texte, une unité inconnue, une variable qui change d'unité, deux chiffres contradictoires pour la même variable, la même date et la même échelle. Avec `--csv mesures.csv`, il écrit aussi la table à plat (une ligne par mesure : variable, valeur, unité, date, échelle, source).
+- Le tableur privé et l'export doivent conserver ces colonnes, sinon la prochaine génération les efface.
 
 ## Contributions
 
