@@ -27,6 +27,7 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | `territoires/<id>.geo.json` | Fond géographique (contours des communes), séparé des données métier. |
 | `technique/carte.html` | Interface de la carte technique réservée aux comptes Civipedia. Code seul : elle ne contient aucune donnée et ne fonctionne pas ouverte directement. Le script Google de l'accès réservé y injecte, à chaque ouverture, les données lues en direct dans le tableur privé. |
 | `maquette/` | Maquette de l'application Civipédia Conseil (HTML interactif, PDF, capture). Exemples fictifs uniquement, aucune donnée réelle. Copie de celle du dépôt `civipedia-conseil`. |
+| `fiche-contact/` | Fiche de contact numérique pour les salons et événements (version en ligne de la fiche papier), à remplir sur téléphone par un membre de Civipédia ou par la personne rencontrée. La page ne contient aucune donnée : les fiches partent vers le tableur privé `FICHES_CONTACT_CIVIPEDIA` par le guichet `guichet.gs` (Google Apps Script, à installer avec `installation.html`). Chaque lundi, un résumé signale les nouvelles fiches ; celles marquées OUI sont versées dans l'onglet Contacts de la base commune, au statut « À vérifier ». Adresse de la page : `fiche-contact/` (avec `?equipe` pour le mode membre, `?evenement=…&date=AAAA-MM-JJ` pour pré-remplir, par exemple dans un QR code). |
 
 Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`. La page n'a pas besoin d'être modifiée.
 

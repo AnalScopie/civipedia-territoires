@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Installer le guichet des fiches de contact — Civipédia</title>
+<style>
+body { margin:0; background:#F5F6F3; color:#17202B; font:17px/1.55 Roboto, system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { background:#111; color:#fff; padding:18px 16px; }
+header h1 { font-size:20px; margin:0; max-width:680px; margin:0 auto; }
+.tuile { display:inline-block; background:#F2D24B; color:#111; font-weight:700; padding:2px 8px; border-radius:4px; margin-right:8px; }
+main { max-width:680px; margin:0 auto; padding:20px 16px 48px; }
+ol { padding-left:1.3em; display:grid; gap:12px; }
+b { font-weight:700; }
+button { font:700 1.05rem inherit; font-family:inherit; background:#111; color:#FFE14D; border:0; border-radius:10px; min-height:56px; width:100%; cursor:pointer; }
+#etat { min-height:1.5em; color:#1C5E3C; font-weight:500; text-align:center; }
+.note { color:#4A5563; font-size:.92rem; }
+details { background:#fff; border:1px solid #D9DDE3; border-radius:10px; padding:12px 14px; }
+pre { font:12px/1.45 ui-monospace, monospace; overflow-x:auto; max-height:50vh; white-space:pre; }
+a { color:#1F4FB8; }
+</style>
+</head>
+<body>
+<header><h1><span class="tuile">Civipédia</span> Installer le guichet des fiches de contact</h1></header>
+<main>
+  <p>À faire une seule fois. Le guichet reçoit les fiches remplies sur la page <a href="./">Fiche de contact</a> et les range dans le tableur privé <b>FICHES_CONTACT_CIVIPEDIA</b>.</p>
+  <ol>
+    <li>Appuyez sur le bouton noir ci-dessous : le texte est copié.</li>
+    <li>Ouvrez le tableur <a href="https://docs.google.com/spreadsheets/d/1gmHLONYhgq48S8tQqgQGbRlrhQSCVHpi1R8o8Jdf6j0/edit" target="_blank" rel="noopener">FICHES_CONTACT_CIVIPEDIA</a>, puis le menu <b>Extensions → Apps Script</b>.</li>
+    <li>Dans le fichier <b>Code.gs</b>, <b>effacez</b> ce qui s'y trouve, puis <b>collez</b> le texte. Cliquez sur l'icône <b>Enregistrer</b> (la disquette).</li>
+    <li>En haut à droite : <b>Déployer → Nouveau déploiement</b>. Cliquez sur la roue dentée et choisissez <b>Application Web</b>.
+      <br>« Exécuter en tant que » : <b>Moi</b>. « Qui a accès » : <b>Tout le monde</b>. Puis <b>Déployer</b>.</li>
+    <li>Google demande d'autoriser l'accès : choisissez votre compte @civipedia.org. S'il affiche « Google n'a pas validé cette application », cliquez sur <b>Paramètres avancés</b> puis <b>Accéder à… (non sécurisé)</b> : c'est votre propre script.</li>
+    <li>Copiez l'<b>URL de l'application Web</b> (elle se termine par <b>/exec</b>) et envoyez-la à Claude : il l'ajoutera à la page.</li>
+    <li>Revenez au tableur et rechargez la page : un menu <b>Civipédia</b> apparaît. Choisissez <b>Activer le résumé du lundi</b> et autorisez une dernière fois.</li>
+  </ol>
+  <div>
+    <button id="copier" type="button">Copier le texte</button>
+    <p id="etat" role="status"></p>
+  </div>
+  <p class="note">« Tout le monde » permet aux personnes rencontrées d'envoyer une fiche sans compte Google. Elles peuvent seulement <b>ajouter</b> une fiche : personne ne peut lire le tableur par ce guichet. Le texte ne contient ni mot de passe ni donnée.</p>
+  <details>
+    <summary>Voir le texte</summary>
+    <pre id="code">Chargement…</pre>
+  </details>
+</main>
+<script>
+const bloc = document.getElementById("code"), etat = document.getElementById("etat");
+fetch("guichet.gs", { cache: "no-store" }).then(r => r.text()).then(t => { bloc.textContent = t; })
+  .catch(() => { bloc.textContent = "Le texte n'a pas pu être chargé. Rechargez la page."; });
+document.getElementById("copier").addEventListener("click", () => {
+  navigator.clipboard.writeText(bloc.textContent).then(
+    () => { etat.textContent = "Copié. Vous pouvez le coller dans Apps Script."; },
+    () => {
+      bloc.closest("details").open = true;
+      const r = document.createRange(); r.selectNodeContents(bloc);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      etat.textContent = "Le texte est sélectionné : choisissez Copier dans le menu.";
+    });
+});
+</script>
+</body>
+</html>
