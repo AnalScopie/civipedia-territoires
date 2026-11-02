@@ -26,6 +26,7 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | `territoires/<id>.json` | Projection publique d'un territoire. |
 | `territoires/<id>.geo.json` | Fond géographique (contours des communes), séparé des données métier. |
 | `technique/carte.html` | Interface de la carte technique réservée aux comptes Civipedia. Code seul : elle ne contient aucune donnée et ne fonctionne pas ouverte directement. Le script Google de l'accès réservé y injecte, à chaque ouverture, les données lues en direct dans le tableur privé. |
+| `technique/kleroterion-apps-script/` | Script Google de l'accès réservé au klèrôtèrion : lit l'onglet `Contacts` de la grande base en direct et enregistre les tirages dans l'onglet `Tirages_au_sort`. Code seul, aucune donnée. |
 | `maquette/` | Maquette de l'application Civipédia Conseil (HTML interactif, PDF, capture). Exemples fictifs uniquement, aucune donnée réelle. Copie de celle du dépôt `civipedia-conseil`. |
 
 Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`. La page n'a pas besoin d'être modifiée.
@@ -84,7 +85,7 @@ Tirer au sort dans la grande base (`JOURNAL_TRAITEMENT_CIVIPEDIA_LAB`) :
 
 Les lignes collées restent dans le navigateur : la page n'envoie et n'enregistre rien, et rien n'est publié dans ce dépôt. Chaque personne garde son `ID_contact` entre parenthèses, ce qui rattache le résultat à sa fiche.
 
-Accès réservé : comme `technique/carte.html`, la page contient un repère `/*__DONNEES__*/`. Un script Google qui vérifie le compte peut le remplacer par `const BRUT = { "Contacts": [[en-têtes], [ligne], …] };` : l'onglet est alors chargé directement, sans copier-coller.
+**Accès réservé (usage courant)** : le script Google de `technique/kleroterion-apps-script/` sert la même page aux comptes `@civipedia.org` avec l'onglet `Contacts` lu en direct (sans coordonnées, LinkedIn ni notes), et le bouton « Enregistrer dans la grande base » inscrit le tirage et son procès-verbal dans l'onglet `Tirages_au_sort`. Il remplace le repère `/*__DONNEES__*/` de la page, comme pour `technique/carte.html`. Installation et évolution : `technique/kleroterion-apps-script/LISEZMOI.md`. Le copier-coller ci-dessus reste possible sans compte.
 
 ## Schéma
 

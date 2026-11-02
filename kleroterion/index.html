@@ -25,6 +25,7 @@
   --ink:#e8ebe9; --ink-soft:#a9b4b8; --bronze:#d4a95e; --bronze-soft:#3d3324;
   --white-cube:#f1f1ec; --black-cube:#0c0e0f; --ok:#7cc495; --muted:#6c777b; color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{background:var(--page);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
 .wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
@@ -110,8 +111,9 @@ input[type=file]{font-family:var(--f-mono);font-size:.78rem;max-width:100%}
 
   <details class="base" id="base">
     <summary>Tirer au sort dans la grande base Civipédia</summary>
-    <p class="hint">Dans le classeur de la base commune (JOURNAL_TRAITEMENT_CIVIPEDIA_LAB), ouvrez l'onglet <b>Contacts</b> (ou un autre onglet de personnes), sélectionnez tout (Ctrl+A), copiez et collez ci-dessous. Vous pouvez aussi ouvrir l'onglet téléchargé en CSV (Fichier → Télécharger → .csv). Les lignes restent dans votre navigateur : cette page n'envoie et n'enregistre rien.</p>
-    <div class="field">
+    <p class="hint" id="blive" hidden></p>
+    <p class="hint" id="bmanual">Dans le classeur de la base commune (JOURNAL_TRAITEMENT_CIVIPEDIA_LAB), ouvrez l'onglet <b>Contacts</b> (ou un autre onglet de personnes), sélectionnez tout (Ctrl+A), copiez et collez ci-dessous. Vous pouvez aussi ouvrir l'onglet téléchargé en CSV (Fichier → Télécharger → .csv). Les lignes restent dans votre navigateur : cette page n'envoie et n'enregistre rien.</p>
+    <div class="field" id="bpastebox">
       <label class="label" for="bpaste">Copie de l'onglet, avec sa ligne d'en-têtes</label>
       <textarea id="bpaste" spellcheck="false" placeholder="ID_contact&#9;Nom&#9;Prénom&#9;Organisation&#9;Fonction&#9;Ville&#9;…"></textarea>
       <input type="file" id="bfile" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values" aria-label="Ouvrir un fichier CSV">
@@ -180,7 +182,8 @@ input[type=file]{font-family:var(--f-mono);font-size:.78rem;max-width:100%}
     <h2>Désignés par le sort</h2>
     <div class="meta" id="rmeta"></div>
     <ol id="rlist"></ol>
-    <div class="btns" style="margin-top:12px"><button id="copy">Copier la liste et le procès-verbal</button><button id="copybase" hidden>Copier pour la grande base</button></div>
+    <div class="btns" style="margin-top:12px"><button id="copy">Copier la liste et le procès-verbal</button><button id="copybase" hidden>Copier pour la grande base</button><button class="primary" id="savebase" hidden>Enregistrer dans la grande base</button></div>
+    <p class="summary" id="savemsg" hidden aria-live="polite"></p>
     <p class="hint" id="basehint" hidden>« Copier pour la grande base » produit un tableau (identifiant, nom, groupe, rangée, date) à coller dans le classeur, par exemple dans l'onglet Journal ou dans les relations d'un projet.</p>
     <div class="log" id="log"></div>
   </section>
@@ -287,7 +290,7 @@ function load(){
   const t = new Date().toLocaleString("fr-FR");
   state.log.push(`${t} — ${p.rows * p.k} plaquettes insérées dans ${p.k} colonnes × ${p.rows} rangées.`);
   state.log.push(`Tube : ${p.whites} blanc(s), ${p.rows - p.whites} noir(s), mélangés.`);
-  if (SOURCE.base) state.log.push(`Candidats issus de la grande base Civipédia (${SOURCE.filtre}${SOURCE.groupe ? ` ; colonnes par ${SOURCE.groupe}` : ""}).`);
+  if (SOURCE.base) state.log.push(`Candidats issus de la grande base Civipédia, onglet ${SOURCE.onglet}${LIVE ? " lu en direct" : ""} (${SOURCE.filtre}${SOURCE.groupe ? ` ; colonnes par ${SOURCE.groupe}` : ""}).`);
   const out = p.columns.flatMap(c => c.items.slice(p.rows).map(x => x.name));
   state.surplus = out;
   render();
@@ -424,12 +427,17 @@ function useBase(){
     return line;
   }).join("\n");
   const f = $("bfcol").value;
-  SOURCE = { base: true, filtre: f === "" ? "aucun filtre" : `${BASE.head[+f]} = ${$("bfval").value}`, groupe: g === "" ? null : BASE.head[+g] };
+  SOURCE = { base: true, onglet: ONGLET, filtre: f === "" ? "aucun filtre" : `${BASE.head[+f]} = ${$("bfval").value}`, groupe: g === "" ? null : BASE.head[+g] };
   updateSummary();
   clearTimeout(timer); load();
   $("names").scrollIntoView({ behavior: "smooth", block: "center" });
 }
 let SOURCE = { base: false };
+let LIVE = false, ONGLET = "Contacts";
+
+function designes(){
+  return state.picked.map(p => { const m = ID_RE.exec(p.name); return { id: m ? m[1] : "", nom: m ? p.name.replace(ID_RE, "").trim() : p.name, groupe: p.group, rangee: p.row }; });
+}
 
 function finish(){
   $("one").disabled = $("all").disabled = true;
@@ -439,6 +447,8 @@ function finish(){
   $("log").innerHTML = state.log.map(esc).join("<br>");
   const fromBase = state.selected.some(n => ID_RE.test(n));
   $("copybase").hidden = $("basehint").hidden = !fromBase;
+  $("savebase").hidden = !(fromBase && LIVE && window.google && google.script && google.script.run);
+  $("savebase").disabled = false; $("savemsg").hidden = true;
   $("result").hidden = false;
 }
 
@@ -452,14 +462,19 @@ $("copy").addEventListener("click", async () => {
 });
 $("copybase").addEventListener("click", async () => {
   const date = new Date().toLocaleString("fr-FR");
-  const rows = [["ID", "Nom", "Groupe", "Rangée", "Tirage"]].concat(state.picked.map(p => {
-    const m = ID_RE.exec(p.name);
-    return [m ? m[1] : "", m ? p.name.replace(ID_RE, "").trim() : p.name, p.group, String(p.row), "Klèrôtèrion " + date];
-  }));
+  const rows = [["ID", "Nom", "Groupe", "Rangée", "Tirage"]].concat(designes().map(d => [d.id, d.nom, d.groupe, String(d.rangee), "Klèrôtèrion " + date]));
   const txt = rows.map(r => r.join("\t")).join("\n");
   try { await navigator.clipboard.writeText(txt); $("copybase").textContent = "Copié : collez dans le classeur"; }
   catch { prompt("Copiez ce tableau :", txt); }
   setTimeout(() => $("copybase").textContent = "Copier pour la grande base", 2500);
+});
+$("savebase").addEventListener("click", () => {
+  const t = { onglet: SOURCE.onglet || "Contacts", filtre: SOURCE.filtre || "", groupe: SOURCE.groupe || "", sieges: state.seats, candidats: state.people.length, designes: designes(), pv: state.log };
+  $("savebase").disabled = true; $("savemsg").hidden = false; $("savemsg").textContent = "Enregistrement…";
+  google.script.run
+    .withSuccessHandler(r => { $("savemsg").textContent = `Enregistré dans l'onglet Tirages_au_sort : ${r.id} (${r.lignes} ligne(s)).`; state.log.push(`Enregistré dans la grande base : ${r.id}.`); $("log").innerHTML = state.log.map(esc).join("<br>"); })
+    .withFailureHandler(e => { $("savemsg").textContent = "Échec de l'enregistrement : " + (e && e.message || e); $("savebase").disabled = false; })
+    .enregistrerTirage(t);
 });
 $("bpaste").addEventListener("input", () => setBase(parseTable($("bpaste").value)));
 $("bfile").addEventListener("change", async e => { const f = e.target.files[0]; if (!f) return; const t = await f.text(); $("bpaste").value = t; setBase(parseTable(t)); });
@@ -470,8 +485,15 @@ $("buse").addEventListener("click", useBase);
 $("names").addEventListener("input", () => { SOURCE = { base: false }; });
 setBase([]);
 if (typeof BRUT !== "undefined" && BRUT){
-  const tab = BRUT.Contacts || BRUT[Object.keys(BRUT)[0]];
-  if (Array.isArray(tab)){ setBase(tab.map(r => r.map(x => x == null ? "" : String(x)))); $("base").open = true; }
+  const onglet = BRUT.Contacts ? "Contacts" : Object.keys(BRUT)[0];
+  const tab = BRUT[onglet];
+  if (Array.isArray(tab)){
+    LIVE = true; ONGLET = onglet;
+    setBase(tab.map(r => r.map(x => x == null ? "" : String(x))));
+    $("base").open = true; $("bpastebox").hidden = $("bmanual").hidden = true;
+    $("blive").hidden = false;
+    $("blive").textContent = `Onglet ${onglet} de la grande base lu en direct à l'ouverture de la page (${Math.max(0, tab.length - 1)} lignes). Le résultat pourra être enregistré dans l'onglet Tirages_au_sort.`;
+  }
 }
 $("names").value = SAMPLE;
 ["names", "cols", "seats"].forEach(id => $(id).addEventListener("input", updateSummary));
