@@ -1,6 +1,6 @@
 {
- "instantane": "Base Civipédia, export du 01/11/2026",
- "genere_le": "2026-11-01",
+ "instantane": "Base Civipédia, export du 02/11/2026",
+ "genere_le": "2026-11-02",
  "regles": "Projection publique : événements publics vérifiés, rendez-vous de l'équipe Civipédia décrits sans nom de personne, appels décrits par leur source officielle et comptes agrégés. Aucun nom de personne, aucune coordonnée, aucun identifiant interne, aucun document interne.",
  "chiffres": [
   {
@@ -17,7 +17,7 @@
   },
   {
    "objet": "Projets",
-   "nombre": 42
+   "nombre": 44
   },
   {
    "objet": "Événements",
@@ -25,7 +25,7 @@
   },
   {
    "objet": "Relations documentées",
-   "nombre": 502
+   "nombre": 513
   }
  ],
  "evenements": [
@@ -38,7 +38,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "1 membre de Civipédia, 2 personnes extérieures",
+   "participants": "Thomas N'Dem (Civipédia), 2 personnes extérieures",
    "projet": "",
    "src": null
   },
@@ -51,7 +51,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "1 membre de Civipédia, 1 personne extérieure",
+   "participants": "Thomas N'Dem (Civipédia), 1 personne extérieure",
    "projet": "",
    "src": null
   },
@@ -77,7 +77,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "4 membres de Civipédia",
+   "participants": "Armelle Marès de Vismes, Christophe Dumais, Matthieu Sanchez et Thomas N'Dem (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -103,7 +103,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "1 membre de Civipédia",
+   "participants": "Thomas N'Dem (Civipédia)",
    "projet": "Candidature Fondation Michelin « Nouveaux modèles collaboratifs »",
    "src": null
   },
@@ -116,7 +116,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "4 membres de Civipédia",
+   "participants": "Anne Povie, Corine Navarro et Thomas N'Dem (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -129,7 +129,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "5 membres de Civipédia",
+   "participants": "Anne Povie, Armelle Marès de Vismes, Corine Navarro, David Lardier et Samuel Tiercelin (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -142,7 +142,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "1 membre de Civipédia",
+   "participants": "Anne Povie (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -155,7 +155,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "1 membre de Civipédia",
+   "participants": "Armelle Marès de Vismes (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -168,7 +168,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "2 membres de Civipédia",
+   "participants": "Anne Povie et Corine Navarro (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -181,7 +181,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "3 membres de Civipédia",
+   "participants": "Anne Povie, Christophe Dumais et Samuel Tiercelin (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -194,7 +194,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "1 membre de Civipédia, 1 personne extérieure",
+   "participants": "Armelle Marès de Vismes (Civipédia), 1 personne extérieure",
    "projet": "",
    "src": null
   },
@@ -207,7 +207,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "3 membres de Civipédia",
+   "participants": "Armelle Marès de Vismes, Béatrice Motte-Decoop et Thomas N'Dem (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -220,7 +220,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "2 membres de Civipédia",
+   "participants": "Anne Povie et Thomas N'Dem (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -233,7 +233,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "3 membres de Civipédia, 1 personne extérieure",
+   "participants": "Anne Povie, Corine Navarro et Thomas N'Dem (Civipédia), 1 personne extérieure",
    "projet": "",
    "src": null
   },
@@ -246,7 +246,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "réalisé",
-   "participants": "1 membre de Civipédia, 1 personne extérieure",
+   "participants": "Anne Povie (Civipédia), 1 personne extérieure",
    "projet": "",
    "src": null
   },
@@ -259,7 +259,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "à confirmer",
-   "participants": "1 membre de Civipédia",
+   "participants": "Thomas N'Dem (Civipédia)",
    "projet": "Récits fraternels et démocratiques – Nos jours heureux – ateliers citoyens pour un avenir désirable",
    "src": null
   },
@@ -288,7 +288,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "prévu",
-   "participants": "1 membre de Civipédia",
+   "participants": "Anne Povie (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -301,7 +301,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "prévu",
-   "participants": "1 membre de Civipédia",
+   "participants": "Armelle Marès de Vismes (Civipédia)",
    "projet": "",
    "src": null
   },
@@ -314,7 +314,7 @@
    "organisateur": "",
    "categorie": "equipe",
    "etat": "prévu",
-   "participants": "2 membres de Civipédia",
+   "participants": "Anne Povie et Corine Navarro (Civipédia)",
    "projet": "",
    "src": null
   },
