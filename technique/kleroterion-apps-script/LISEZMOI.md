@@ -1,9 +1,9 @@
 # Klèrôtèrion : accès réservé à la grande base
 
-Ce script Google sert le klèrôtèrion aux comptes `@civipedia.org` avec l'onglet `Contacts` de la grande base (`JOURNAL_TRAITEMENT_CIVIPEDIA_LAB`) lu en direct. Chaque tirage s'enregistre dans l'onglet `Tirages_au_sort` de la même base.
+Ce script Google sert le klèrôtèrion aux comptes `@civipedia.org` avec les onglets de noms de la grande base (`JOURNAL_TRAITEMENT_CIVIPEDIA_LAB`) lus en direct : `Contacts` (personnes), `Organisations` et `Conseil_Vue_Personnes` (personnes, vue Conseil). L'utilisateur choisit le type de noms, la colonne des noms, les types à garder et coche les noms. Chaque tirage s'enregistre dans l'onglet `Tirages_au_sort` de la même base.
 
 ```
-grande base (Contacts)  →  script Google (compte vérifié)  →  page kleroterion/ + données  →  tirage
+grande base (onglets de noms)  →  script Google (compte vérifié)  →  page kleroterion/ + données  →  tirage
                                                                                               ↓
 grande base (Tirages_au_sort)  ←────────────  « Enregistrer dans la grande base »  ←──────────┘
 ```
@@ -12,7 +12,12 @@ La page elle-même n'est pas copiée dans le script. Le script la lit à chaque 
 
 ## Ce qui transite
 
-- **Vers la page** : uniquement `ID_contact, Nom, Prénom, Organisation, Fonction, Ville, Statut` (liste `ONGLETS` dans `Code.gs`). Les colonnes `Coordonnées`, `LinkedIn_URL`, `Notes`, `Source` et les dates ne sont pas transmises. Les lignes sans `ID_contact` sont ignorées.
+- **Vers la page** : uniquement les colonnes listées dans `ONGLETS` (`Code.gs`) :
+  - `Contacts` : `ID_contact, Nom, Prénom, Organisation, Fonction, Ville, Statut` ;
+  - `Organisations` : `ID_organisation, Nom, Type_acteur, Domaine, Ville, Statut` ;
+  - `Conseil_Vue_Personnes` : `ID_contact, Personne, Organisation (fiche), Type de structure, Lieu, Domaines, Statut de la fiche`.
+
+  Les coordonnées, LinkedIn, notes, sources et dates ne sont jamais transmises. Les lignes sans identifiant sont ignorées ; un onglet absent de la base est simplement omis.
 - **Vers la base** : une ligne par personne désignée dans `Tirages_au_sort` : `ID_tirage` (TIR-aaaammjj-hhmmss), date, compte qui a enregistré, onglet, filtre, colonnes, sièges demandés, nombre de candidats, `ID_contact`, nom, groupe, rangée, et le procès-verbal complet (sur la première ligne du tirage). L'onglet est créé au premier enregistrement.
 - Rien n'est écrit dans ce dépôt.
 
@@ -25,7 +30,7 @@ La page elle-même n'est pas copiée dans le script. Le script la lit à chaque 
    - Exécuter en tant que : **Moi** ;
    - Qui a accès : **Tous les utilisateurs de civipedia.org**.
 5. Autoriser les accès demandés (tableurs, requêtes externes pour lire la page, adresse e-mail pour vérifier le compte).
-6. Ouvrir l'URL `…/exec` donnée par le déploiement. L'onglet Contacts doit apparaître comme « lu en direct ». Cette URL est l'adresse du tirage dans la grande base : à garder dans les favoris de l'équipe, pas sur le site public.
+6. Ouvrir l'URL `…/exec` donnée par le déploiement. La page doit indiquer « Grande base lue en direct » et proposer les types de noms. `…/exec?onglet=Organisations` ne charge qu'un type. Cette URL est l'adresse du tirage dans la grande base : à garder dans les favoris de l'équipe, pas sur le site public.
 
 Réglages facultatifs (Paramètres du projet → Propriétés du script) :
 
@@ -36,6 +41,6 @@ Réglages facultatifs (Paramètres du projet → Propriétés du script) :
 
 ## Faire évoluer
 
-- **Ajouter un onglet de personnes** (par exemple `Conseil_Vue_Personnes`) : ajouter une entrée dans `ONGLETS` avec les colonnes à transmettre (la première doit être l'identifiant), redéployer (Gérer les déploiements → modifier → nouvelle version), puis ouvrir `…/exec?onglet=Conseil_Vue_Personnes`.
+- **Ajouter un type de noms** (un autre onglet) : ajouter une entrée dans `ONGLETS` avec les colonnes à transmettre (la première doit être l'identifiant), puis redéployer (Gérer les déploiements → modifier → nouvelle version). Pour un libellé plus lisible dans la liste « Type de noms », l'ajouter aussi dans `TYPES` en tête du script de `kleroterion/index.html`.
 - **Modifier la page** : modifier `kleroterion/index.html` dans ce dépôt ; aucun redéploiement du script n'est nécessaire.
-- La page doit garder le repère `/*__DONNEES__*/` dans son script : le script le remplace par `const BRUT = { "Contacts": [[en-têtes], [ligne], …] };`.
+- La page doit garder le repère `/*__DONNEES__*/` dans son script : le script le remplace par `const BRUT = { "Contacts": [[en-têtes], [ligne], …], "Organisations": […], … };`.

@@ -2,7 +2,7 @@
  * Klèrôtèrion — accès réservé aux comptes @civipedia.org.
  *
  * Sert la page publique kleroterion/index.html (lue sur GitHub Pages, donc toujours à jour)
- * en y injectant l'onglet Contacts de la grande base, lu en direct, à la place du repère
+ * en y injectant les onglets de noms de la grande base (Contacts, Organisations, vue Conseil), lus en direct, à la place du repère
  * /*__DONNEES__*\/. Enregistre ensuite chaque tirage dans l'onglet Tirages_au_sort de la base.
  *
  * Installation : voir LISEZMOI.md dans ce dossier.
@@ -14,9 +14,12 @@ const PAGE_URL = PropertiesService.getScriptProperties().getProperty('PAGE_URL')
   || 'https://analscopie.github.io/civipedia-territoires/kleroterion/';
 const DOMAINE = '@civipedia.org';
 
-// Onglets lisibles et colonnes transmises à la page. Minimisation : ni coordonnées, ni LinkedIn, ni notes.
+// Types de noms proposés (onglets) et colonnes transmises à la page ; la première colonne est l'identifiant.
+// Minimisation : ni coordonnées, ni LinkedIn, ni notes, ni sources. Un onglet absent de la base est ignoré.
 const ONGLETS = {
   Contacts: ['ID_contact', 'Nom', 'Prénom', 'Organisation', 'Fonction', 'Ville', 'Statut'],
+  Organisations: ['ID_organisation', 'Nom', 'Type_acteur', 'Domaine', 'Ville', 'Statut'],
+  Conseil_Vue_Personnes: ['ID_contact', 'Personne', 'Organisation (fiche)', 'Type de structure', 'Lieu', 'Domaines', 'Statut de la fiche'],
 };
 const ONGLET_TIRAGES = 'Tirages_au_sort';
 const ENTETES_TIRAGES = ['ID_tirage', 'Date_tirage', 'Opérateur', 'Onglet', 'Filtre', 'Colonnes_par',
@@ -32,11 +35,16 @@ function doGet(e) {
   try { compte_(); }
   catch (err) { return HtmlService.createHtmlOutput('<p style="font:16px system-ui;padding:24px">Le tirage dans la grande base est réservé aux comptes Civipedia.</p>'); }
 
-  const onglet = (e && e.parameter && e.parameter.onglet) || 'Contacts';
-  if (!ONGLETS[onglet]) return HtmlService.createHtmlOutput('Onglet non autorisé.');
-
+  // ?onglet=Organisations : ne charger qu'un type de noms ; sinon tous les types autorisés.
+  const demande = e && e.parameter && e.parameter.onglet;
+  if (demande && !ONGLETS[demande]) return HtmlService.createHtmlOutput('Onglet non autorisé.');
+  const classeur = SpreadsheetApp.openById(BASE_ID);
   const brut = {};
-  brut[onglet] = lireOnglet_(onglet, ONGLETS[onglet]);
+  (demande ? [demande] : Object.keys(ONGLETS)).forEach(function (nom) {
+    const t = lireOnglet_(classeur, nom, ONGLETS[nom]);
+    if (t) brut[nom] = t;
+  });
+  if (!Object.keys(brut).length) return HtmlService.createHtmlOutput('Aucun onglet de noms trouvé dans la base.');
 
   const rep = UrlFetchApp.fetch(PAGE_URL, { muteHttpExceptions: true });
   if (rep.getResponseCode() !== 200) return HtmlService.createHtmlOutput('Page du klèrôtèrion indisponible (' + rep.getResponseCode() + ').');
@@ -53,9 +61,9 @@ function doGet(e) {
 }
 
 /** Lit un onglet par noms de colonnes (jamais par position) ; renvoie [[en-têtes], [ligne], ...]. */
-function lireOnglet_(nom, colonnes) {
-  const feuille = SpreadsheetApp.openById(BASE_ID).getSheetByName(nom);
-  if (!feuille) throw new Error('Onglet absent : ' + nom);
+function lireOnglet_(classeur, nom, colonnes) {
+  const feuille = classeur.getSheetByName(nom);
+  if (!feuille) return null;
   const valeurs = feuille.getDataRange().getDisplayValues();
   const entetes = valeurs[0].map(function (h) { return String(h).trim(); });
   const idx = colonnes.map(function (c) { return entetes.indexOf(c); });
