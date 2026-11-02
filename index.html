@@ -498,7 +498,7 @@ function renderStatic(){
     `<div style="color:var(--ink-3)">Cercle = tout ce qui est rattaché à une commune</div>`;
 
   renderGlance(); renderCoverage(); renderContrib();
-  $("#foot").innerHTML = `<span>Données publiques, instantané du ${esc(String(T.instantane).split(" ")[0])}. Seules les informations établies par une source sont affichées.</span><span>Civipedia</span>`;
+  $("#foot").innerHTML = `<span>Données publiques, instantané du ${esc(String(T.instantane).split(" ")[0])}. Seules les informations établies par une source sont affichées.</span><span><a href="kleroterion/">Tirage au sort (klèrôtèrion)</a> · Civipedia</span>`;
 }
 const shortSrc = s => s.split(/ – | - /)[0];
 
