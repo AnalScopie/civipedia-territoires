@@ -35,7 +35,7 @@ Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `te
 | Fichier | Rôle |
 |---|---|
 | `tableau-de-bord/index.html` | Page publique intégrable (iframe) : agenda passé et à venir en frise (événements publics et rendez-vous de l'équipe), appels qui reviennent, comptes par territoire et par expertise. Mode clair par défaut, sombre avec `?theme=sombre`, période de part et d'autre d'aujourd'hui avec `?mois=3`, `6`, `12` ou `0` (tout). Elle ne contient aucune donnée. |
-| `tableau-de-bord/data.json` | Projection publique de la base commune, produite à la demande. Elle ne contient que des événements publics vérifiés, des rendez-vous de l'équipe décrits sans nom de personne, des appels décrits par leur source officielle et des comptes agrégés : aucun nom de personne, aucune coordonnée, aucun identifiant interne, aucun projet interne. |
+| `tableau-de-bord/data.json` | Projection publique de la base commune, produite à la demande. Elle ne contient que des événements publics vérifiés, des rendez-vous de l'équipe où seuls les membres de Civipédia ayant donné leur accord sont nommés, des appels décrits par leur source officielle et des comptes agrégés : aucun autre nom de personne, aucune coordonnée, aucun identifiant interne, aucun projet interne. |
 | `tableau-de-bord/generer_data.py` | Générateur de `data.json` à partir d'un export .xlsx de la base Civipédia. Il ne lit pas la base Crossac. |
 
 ### Régénérer `data.json`
@@ -46,11 +46,11 @@ Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `te
   - chiffres clés = nombre de fiches de chaque onglet ;
   - « Relations documentées » = lignes de `Relations` dont les deux identifiants existent, avec type et source, hors HYPOTHÈSE ;
   - agenda (passé et à venir) = événements publics « Vérifié » datés au jour près, et rendez-vous de l'équipe Civipédia (événements reliés à Civipédia ou à l'un de ses membres), hors rendez-vous annulés ou abandonnés ;
-  - rendez-vous de l'équipe (règles validées par Anne Povie le 01/11/2026) : aucun nom de personne, seulement le nombre de membres de Civipédia et de « personnes extérieures » ; les organisations rencontrées sont nommées ; le projet n'est nommé que s'il figure dans `PROJETS_PUBLICS` (en tête de `generer_data.py`) ; lieu réduit à « En ligne » ou au territoire ; aucun lien ;
+  - rendez-vous de l'équipe (règles validées par Anne Povie le 01/11/2026, complétées le 02/11/2026) : les membres de Civipédia listés dans `MEMBRES_NOMMES` (en tête de `generer_data.py`, accord de chacun) sont nommés, sous une même écriture (« Anne Povie ») ; les autres membres et les « personnes extérieures » sont seulement comptés ; les organisations rencontrées sont nommées ; le projet n'est nommé que s'il figure dans `PROJETS_PUBLICS` (en tête de `generer_data.py`) ; lieu réduit à « En ligne » ou au territoire ; aucun lien ;
   - sources publiées = liens publics seulement (jamais un document Drive, Docs ou Canva) ;
   - appels = `Opportunites` « Clos — à guetter », FAIT ou VÉRIFIÉ, avec une source à URL ;
   - territoires et expertises = organisations et personnes reliées dans `Relations` (hors HYPOTHÈSE et « à valider »), projets et événements par `ID_territoire`.
-- **Contrôles** : le script vérifie la structure attendue par `index.html` et refuse d'écrire si un identifiant interne, un nom de personne ou une coordonnée apparaît. Il liste ce qu'il écarte.
+- **Contrôles** : le script vérifie la structure attendue par `index.html` et refuse d'écrire si un identifiant interne, un nom de personne (hors membres de `MEMBRES_NOMMES`) ou une coordonnée apparaît. Il liste ce qu'il écarte.
 - **Fréquence** : après chaque mise à jour intégrée des événements ou des opportunités, et au moins une fois par mois.
 
 Intégration sur un site :

@@ -59,7 +59,19 @@ TYPES_RDV = {"Réunion / rencontre": "Rencontre"}
 # Membres de Civipédia nommés dans les rendez-vous de l'équipe (décision d'Anne Povie du 02/11/2026 :
 # membres seulement, chacun avec son accord). Un membre absent de cette liste reste compté sans nom.
 # Les personnes extérieures ne sont jamais nommées.
-MEMBRES_NOMMES = set()
+MEMBRES_NOMMES = {  # accord des 9 membres confirmé par Anne Povie le 02/11/2026
+    "MASE-C-0036", "MASE-C-0037", "MASE-C-0038", "MASE-C-0039", "MASE-C-0041",
+    "MASE-C-0044", "MASE-C-0056", "MASE-C-0072", "MASE-C-0090",
+}
+PARTICULES = {"de", "du", "des", "la", "le", "d'"}
+
+
+def nom_affiche(nom):
+    """« MARÈS DE VISMES » → « Marès de Vismes », « N'DEM » → « N'Dem » : une seule écriture pour tous."""
+    def mot(m):
+        w = m.group(0)
+        return w.lower() if w.lower() in PARTICULES and m.start() > 0 else w[:1].upper() + w[1:].lower()
+    return re.sub(r"[^\s'’-]+['’]?", mot, nom)
 EN_LIGNE = re.compile(r"en ligne|meet|zoom|teams|visio|whatsapp", re.I)
 
 alertes = []
@@ -208,7 +220,7 @@ def construire(base, jour, exclure):
 
     def nom_personne(cid):
         c = idx["Contacts"].get(cid, {})
-        return " ".join(x for x in (txt(c.get("Prénom")), txt(c.get("Nom"))) if x)
+        return " ".join(x for x in (txt(c.get("Prénom")), nom_affiche(txt(c.get("Nom")))) if x)
 
     org_contact = {}
     for r in valides:
