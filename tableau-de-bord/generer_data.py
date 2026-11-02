@@ -56,6 +56,10 @@ CIVIPEDIA = "MASE-O-0028"
 # Projets qu'Anne Povie a validés comme publics (01/11/2026). Les autres projets ne sont jamais nommés.
 PROJETS_PUBLICS = {"MASE-P-0001", "MASE-P-0007", "MASE-P-0030"}
 TYPES_RDV = {"Réunion / rencontre": "Rencontre"}
+# Membres de Civipédia nommés dans les rendez-vous de l'équipe (décision d'Anne Povie du 02/11/2026 :
+# membres seulement, chacun avec son accord). Un membre absent de cette liste reste compté sans nom.
+# Les personnes extérieures ne sont jamais nommées.
+MEMBRES_NOMMES = set()
 EN_LIGNE = re.compile(r"en ligne|meet|zoom|teams|visio|whatsapp", re.I)
 
 alertes = []
@@ -202,6 +206,10 @@ def construire(base, jour, exclure):
         m = re.fullmatch(r"(.+?)\s*\((.+)\)", nom)
         return min(m.groups(), key=len).strip() if m else nom
 
+    def nom_personne(cid):
+        c = idx["Contacts"].get(cid, {})
+        return " ".join(x for x in (txt(c.get("Prénom")), txt(c.get("Nom"))) if x)
+
     org_contact = {}
     for r in valides:
         de, vers = txt(r["ID_de"]), txt(r["ID_vers"])
@@ -244,10 +252,13 @@ def construire(base, jour, exclure):
             src = None
         participants = ""
         if equipe:
-            n_membres, orgs, exterieurs = 0, [], 0
+            n_membres, noms, orgs, exterieurs = 0, [], [], 0
             for o, r in liens:
                 if o in membres:
-                    n_membres += 1
+                    if o in MEMBRES_NOMMES and nom_personne(o):
+                        noms.append(nom_personne(o))
+                    else:
+                        n_membres += 1
                 elif prefixe(o) == "MASE-C":
                     m = re.search(r"Au titre de : (MASE-O-\d{4})", txt(r.get("Notes")))
                     oid = m[1] if m else org_contact.get(o)
@@ -259,7 +270,13 @@ def construire(base, jour, exclure):
                     orgs.append(nom_org(o))
             orgs = sorted(set(orgs), key=str.lower)
             morceaux = []
-            if n_membres:
+            if noms:
+                noms = sorted(set(noms), key=str.lower)
+                liste = ", ".join(noms[:-1]) + " et " + noms[-1] if len(noms) > 1 else noms[0]
+                if n_membres:
+                    liste += f" et {n_membres} autre{'s' if n_membres > 1 else ''} membre{'s' if n_membres > 1 else ''}"
+                morceaux.append(f"{liste} (Civipédia)")
+            elif n_membres:
                 morceaux.append(f"{n_membres} membre{'s' if n_membres > 1 else ''} de Civipédia")
             elif CIVIPEDIA in objets:
                 morceaux.append("Participation de Civipédia")
@@ -383,7 +400,9 @@ def controler(data, base):
         erreurs.append(f"identifiant interne publié : {m}")
     for c in base["Contacts"]:
         nom, prenom = txt(c.get("Nom")), txt(c.get("Prénom"))
-        if nom and prenom and (f"{prenom} {nom}" in texte or f"{nom} {prenom}" in texte):
+        if txt(c.get("ID_contact")) in MEMBRES_NOMMES:
+            pass  # membre de Civipédia ayant donné son accord : son nom peut figurer
+        elif nom and prenom and (f"{prenom} {nom}" in texte or f"{nom} {prenom}" in texte):
             erreurs.append(f"nom de personne publié : {txt(c.get('ID_contact'))}")
         for coord in re.split(r"\s*;\s*", txt(c.get("Coordonnées"))):
             if len(coord) > 5 and coord in texte:
