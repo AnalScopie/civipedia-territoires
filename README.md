@@ -69,6 +69,23 @@ Intégration sur un site :
 
 Le script est facultatif : il ajuste la hauteur de l'iframe à son contenu.
 
+## Tirage au sort (klèrôtèrion)
+
+| Fichier | Rôle |
+|---|---|
+| `kleroterion/index.html` | Machine à tirer au sort inspirée du klèrôtèrion athénien (reconstitution IRAA-CNRS) : plaquettes en colonnes, cubes blancs et noirs, procès-verbal. Hasard tiré du générateur cryptographique du navigateur. Elle ne contient aucune donnée réelle (exemple fictif). Lien en pied de la page publique. |
+
+Tirer au sort dans la grande base (`JOURNAL_TRAITEMENT_CIVIPEDIA_LAB`) :
+
+1. ouvrir « Tirer au sort dans la grande base Civipédia » ;
+2. copier l'onglet `Contacts` (ou un autre onglet de personnes) avec sa ligne d'en-têtes et le coller, ou ouvrir l'onglet téléchargé en .csv ;
+3. filtrer sur une colonne (par défaut `Statut` = « Vérifié »), choisir la colonne qui forme les colonnes de fentes (par exemple `Ville` ou `Organisation`), puis « Placer ces personnes dans la machine » ;
+4. après le tirage, « Copier pour la grande base » donne un tableau `ID / Nom / Groupe / Rangée / Tirage` à coller dans le classeur (onglet `Journal`, relations d'un projet…).
+
+Les lignes collées restent dans le navigateur : la page n'envoie et n'enregistre rien, et rien n'est publié dans ce dépôt. Chaque personne garde son `ID_contact` entre parenthèses, ce qui rattache le résultat à sa fiche.
+
+Accès réservé : comme `technique/carte.html`, la page contient un repère `/*__DONNEES__*/`. Un script Google qui vérifie le compte peut le remplacer par `const BRUT = { "Contacts": [[en-têtes], [ligne], …] };` : l'onglet est alors chargé directement, sans copier-coller.
+
 ## Schéma
 
 ### `territoires/index.json`

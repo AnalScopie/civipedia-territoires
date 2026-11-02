@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Klèrôtèrion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : une stèle de marbre au centre — tube à cubes à gauche, rangées de fentes à droite ; réglages au-dessus, résultat en dessous. */
+:root{
+  --marble:#eceeec; --marble-2:#dfe3e1; --vein:#c7cdcb; --page:#f6f7f5;
+  --ink:#1d272c; --ink-soft:#56636a; --bronze:#8a6326; --bronze-soft:#e8dcc4;
+  --white-cube:#fbfbf8; --black-cube:#1f2326; --ok:#2f6b45; --muted:#9aa4a8;
+  --f-display:"Marcellus","Trajan Pro",Georgia,serif;
+  --f-body:"Gentium Book Plus","Gentium Plus",Georgia,serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --marble:#2b3133; --marble-2:#353c3f; --vein:#465055; --page:#1a1f21;
+  --ink:#e8ebe9; --ink-soft:#a9b4b8; --bronze:#d4a95e; --bronze-soft:#3d3324;
+  --white-cube:#f1f1ec; --black-cube:#0c0e0f; --ok:#7cc495; --muted:#6c777b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --marble:#2b3133; --marble-2:#353c3f; --vein:#465055; --page:#1a1f21;
+  --ink:#e8ebe9; --ink-soft:#a9b4b8; --bronze:#d4a95e; --bronze-soft:#3d3324;
+  --white-cube:#f1f1ec; --black-cube:#0c0e0f; --ok:#7cc495; --muted:#6c777b; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.55;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
+.wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header h1{font-family:var(--f-display);font-weight:400;font-size:clamp(2rem,6vw,3rem);letter-spacing:.06em;margin:0;line-height:1.1;text-wrap:balance}
+header .greek{font-family:var(--f-body);color:var(--bronze);letter-spacing:.2em;font-size:.95rem}
+header p{margin:.6em 0 0;max-width:62ch;color:var(--ink-soft)}
+h2{font-family:var(--f-display);font-weight:400;font-size:1.35rem;letter-spacing:.04em;margin:0 0 .5em;text-wrap:balance}
+.label{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.panel{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+@media (max-width:640px){.panel{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+textarea,input[type=number]{font:inherit;font-size:.95rem;color:var(--ink);background:var(--marble);border:1px solid var(--vein);border-radius:4px;padding:10px 12px;width:100%}
+textarea{min-height:230px;font-family:var(--f-mono);font-size:.82rem;line-height:1.6;resize:vertical}
+.settings{display:flex;flex-direction:column;gap:14px}
+.hint{font-size:.85rem;color:var(--ink-soft);margin:0}
+.summary{font-family:var(--f-mono);font-size:.8rem;background:var(--bronze-soft);border-radius:4px;padding:10px 12px;color:var(--ink);line-height:1.6}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+button{font-family:var(--f-display);font-size:1rem;letter-spacing:.05em;border-radius:3px;padding:10px 18px;cursor:pointer;border:1px solid var(--ink);background:transparent;color:var(--ink)}
+button.primary{background:var(--ink);color:var(--page)}
+button:disabled{opacity:.35;cursor:not-allowed}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--bronze);outline-offset:2px}
+
+/* La stèle */
+.stele-wrap{overflow-x:auto;padding-bottom:6px}
+.stele{position:relative;margin:0 auto;width:max-content;min-width:100%;background:
+  linear-gradient(115deg,transparent 40%,color-mix(in srgb,var(--vein) 45%,transparent) 41%,transparent 43%),
+  linear-gradient(160deg,var(--marble) 0%,var(--marble-2) 100%);
+  border:1px solid var(--vein);border-radius:2px;padding:0 18px 22px}
+.architrave{margin:0 -18px 16px;padding:10px 18px;border-bottom:3px double var(--vein);text-align:center;font-family:var(--f-body);letter-spacing:.35em;color:var(--ink-soft);font-size:.85rem}
+.body{display:flex;gap:14px}
+.tube{width:34px;flex:none;border:1px solid var(--vein);border-radius:16px;background:color-mix(in srgb,var(--marble-2) 70%,var(--page));display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 0;position:relative}
+.cube{width:16px;height:16px;border-radius:2px;border:1px solid var(--muted);flex:none;transition:transform .35s,opacity .35s}
+.cube.w{background:var(--white-cube)} .cube.b{background:var(--black-cube);border-color:var(--black-cube)}
+.cube.hidden{background:repeating-linear-gradient(45deg,var(--vein) 0 3px,var(--marble-2) 3px 6px);border-color:var(--vein)}
+.cube.out{opacity:.25}
+.cols-head,.row{display:grid;gap:6px;align-items:center}
+.cols-head{margin-bottom:6px}
+.cols-head span{font-family:var(--f-body);font-weight:700;text-align:center;color:var(--bronze);font-size:.95rem}
+.grid{display:flex;flex-direction:column;gap:4px}
+.row{position:relative;border-radius:3px;padding:2px 4px;transition:background .3s}
+.rowno{font-family:var(--f-mono);font-size:.68rem;color:var(--muted);text-align:right}
+.slot{height:24px;min-width:96px;border-radius:2px;background:color-mix(in srgb,var(--ink) 8%,transparent);box-shadow:inset 0 1px 2px color-mix(in srgb,var(--ink) 25%,transparent);display:flex;align-items:center;padding:0 6px;font-family:var(--f-mono);font-size:.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--ink)}
+.slot.p{background:var(--bronze-soft);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--bronze) 50%,transparent)}
+.row.cur{background:color-mix(in srgb,var(--bronze) 18%,transparent)}
+.row.sel .slot.p{background:var(--white-cube);box-shadow:inset 0 0 0 2px var(--ok);font-weight:500}
+.row.rej .slot.p{opacity:.38}
+.marker{width:16px;height:16px;border-radius:2px;justify-self:center}
+.surplus{margin-top:12px;font-size:.85rem;color:var(--ink-soft)}
+.surplus b{font-family:var(--f-mono);font-weight:500;font-size:.78rem}
+
+.result ol{margin:.4em 0 0;padding-left:1.6em;columns:2;column-gap:28px;font-size:.95rem}
+@media (max-width:520px){.result ol{columns:1}}
+.result li{break-inside:avoid}
+.result .meta{font-family:var(--f-mono);font-size:.75rem;color:var(--ink-soft)}
+.log{font-family:var(--f-mono);font-size:.74rem;color:var(--ink-soft);max-height:160px;overflow:auto;border-left:2px solid var(--vein);padding-left:10px;margin-top:10px}
+.about{border-top:1px solid var(--vein);padding-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:.92rem}
+@media (max-width:640px){.about{grid-template-columns:1fr}}
+.about p{margin:.3em 0;max-width:62ch}
+.about a{color:var(--bronze)}
+/* Source « grande base » */
+.base{border:1px solid var(--vein);border-radius:4px;background:color-mix(in srgb,var(--marble) 55%,var(--page));padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.base summary{cursor:pointer;font-family:var(--f-display);font-size:1.15rem;letter-spacing:.04em}
+.base[open] summary{margin-bottom:4px}
+.base textarea{min-height:110px}
+.base .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:640px){.base .row3{grid-template-columns:1fr}}
+select,input[type=text]{font:inherit;font-size:.9rem;color:var(--ink);background:var(--marble);border:1px solid var(--vein);border-radius:4px;padding:8px 10px;width:100%;min-width:0}
+input[type=file]{font-family:var(--f-mono);font-size:.78rem;max-width:100%}
+.back{font-family:var(--f-mono);font-size:.75rem;color:var(--ink-soft)}
+.back a{color:var(--bronze)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <div class="back"><a href="../">← Civipedia, cartes territoriales</a></div>
+  <header>
+    <div class="greek">ΚΛΗΡΩΤΗΡΙΟΝ</div>
+    <h1>Klèrôtèrion</h1>
+    <p>La machine à tirer au sort de l'Athènes démocratique, telle que l'ont reconstituée les chercheurs de l'IRAA (CNRS). Chaque candidat a sa plaquette dans une fente. Des cubes blancs et noirs tombent du tube un à un : un cube blanc retient la rangée entière, un cube noir l'écarte.</p>
+  </header>
+
+  <details class="base" id="base">
+    <summary>Tirer au sort dans la grande base Civipédia</summary>
+    <p class="hint">Dans le classeur de la base commune (JOURNAL_TRAITEMENT_CIVIPEDIA_LAB), ouvrez l'onglet <b>Contacts</b> (ou un autre onglet de personnes), sélectionnez tout (Ctrl+A), copiez et collez ci-dessous. Vous pouvez aussi ouvrir l'onglet téléchargé en CSV (Fichier → Télécharger → .csv). Les lignes restent dans votre navigateur : cette page n'envoie et n'enregistre rien.</p>
+    <div class="field">
+      <label class="label" for="bpaste">Copie de l'onglet, avec sa ligne d'en-têtes</label>
+      <textarea id="bpaste" spellcheck="false" placeholder="ID_contact&#9;Nom&#9;Prénom&#9;Organisation&#9;Fonction&#9;Ville&#9;…"></textarea>
+      <input type="file" id="bfile" accept=".csv,.tsv,.txt,text/csv,text/tab-separated-values" aria-label="Ouvrir un fichier CSV">
+    </div>
+    <div class="row3">
+      <div class="field">
+        <label class="label" for="bfcol">Ne garder que si la colonne</label>
+        <select id="bfcol"></select>
+      </div>
+      <div class="field">
+        <label class="label" for="bfval">vaut</label>
+        <select id="bfval"></select>
+      </div>
+      <div class="field">
+        <label class="label" for="bgroup">Une colonne de fentes par</label>
+        <select id="bgroup"></select>
+      </div>
+    </div>
+    <div class="summary" id="bsummary" aria-live="polite">Aucune ligne de la base chargée.</div>
+    <div class="btns"><button class="primary" id="buse" disabled>Placer ces personnes dans la machine</button></div>
+  </details>
+
+  <section class="panel" aria-label="Préparer le tirage">
+    <div class="field">
+      <label class="label" for="names">Les candidats, un par ligne</label>
+      <textarea id="names" spellcheck="false"></textarea>
+      <p class="hint">Facultatif : ajoutez un groupe après un point-virgule (« Nom ; quartier »). Chaque groupe aura alors sa propre colonne, comme les sections athéniennes.</p>
+    </div>
+    <div class="settings">
+      <div class="field">
+        <label class="label" for="cols">Colonnes de fentes</label>
+        <input type="number" id="cols" min="2" max="10" value="5">
+      </div>
+      <div class="field">
+        <label class="label" for="seats">Personnes à désigner</label>
+        <input type="number" id="seats" min="1" value="10">
+      </div>
+      <div class="summary" id="summary" aria-live="polite"></div>
+      <div class="btns">
+        <button class="primary" id="load">Insérer les plaquettes</button>
+      </div>
+    </div>
+  </section>
+
+  <section aria-label="La machine">
+    <div class="stele-wrap">
+      <div class="stele">
+        <div class="architrave">ΚΛΗΡΩΤΗΡΙΟΝ</div>
+        <div class="body">
+          <div class="tube" id="tube" aria-label="Tube à cubes"></div>
+          <div style="min-width:0">
+            <div class="cols-head" id="head"></div>
+            <div class="grid" id="grid"></div>
+          </div>
+        </div>
+        <div class="surplus" id="surplus"></div>
+      </div>
+    </div>
+    <div class="btns" style="margin-top:14px">
+      <button class="primary" id="one" disabled>Extraire un cube</button>
+      <button id="all" disabled>Extraire jusqu'au bout</button>
+    </div>
+  </section>
+
+  <section class="result" id="result" hidden>
+    <h2>Désignés par le sort</h2>
+    <div class="meta" id="rmeta"></div>
+    <ol id="rlist"></ol>
+    <div class="btns" style="margin-top:12px"><button id="copy">Copier la liste et le procès-verbal</button><button id="copybase" hidden>Copier pour la grande base</button></div>
+    <p class="hint" id="basehint" hidden>« Copier pour la grande base » produit un tableau (identifiant, nom, groupe, rangée, date) à coller dans le classeur, par exemple dans l'onglet Journal ou dans les relations d'un projet.</p>
+    <div class="log" id="log"></div>
+  </section>
+
+  <section class="about">
+    <div>
+      <div class="label">Le principe</div>
+      <p>Les fentes reçoivent les plaquettes d'identité. Seules les rangées complètes participent : les plaquettes en trop dans une colonne restent hors tirage. Le tube contient autant de cubes que de rangées, dont un nombre de blancs égal aux sièges divisé par le nombre de colonnes. On extrait les cubes un par un en commençant par la rangée du haut.</p>
+      <p>Le hasard vient du générateur cryptographique de votre navigateur, et chaque étape est consignée dans le procès-verbal.</p>
+      <p>Avec la grande base, chaque personne garde son identifiant (ID_contact) entre parenthèses : le résultat se rattache sans ambiguïté à sa fiche.</p>
+    </div>
+    <div>
+      <div class="label">Sources</div>
+      <p>Projet « Par le choix des dieux et la main des hommes », Liliane Lopez-Rabatel et Nicolas Bresch, IRAA (CNRS-AMU), avec l'École française d'Athènes. Fondé sur la <i>Constitution des Athéniens</i> d'Aristote et les stèles retrouvées sur l'agora.</p>
+      <p><a href="https://www.iraa.mom.fr/sites/iraa.mom.fr/files/pdf/KLEROTERION%20PLAQUETTE%20PRESENTATION-FR.pdf" target="_blank" rel="noopener">Plaquette de présentation (IRAA)</a> · <a href="https://news.cnrs.fr/node/1238" target="_blank" rel="noopener">Reportage CNRS</a></p>
+    </div>
+  </section>
+</div>
+
+<script>
+const SAMPLE = `Aglaé Moreau ; Centre
+Bastien Le Goff ; Centre
+Chloé Diallo ; Centre
+Damien Rousseau ; Centre
+Élise Tanguy ; Centre
+Farid Benali ; Centre
+Gaëlle Perrin ; Méan-Penhoët
+Hugo Marchand ; Méan-Penhoët
+Inès Carvalho ; Méan-Penhoët
+Jules Hamon ; Méan-Penhoët
+Karine Lebreton ; Méan-Penhoët
+Léo Nguyen ; Méan-Penhoët
+Maëlle Guérin ; Ouest
+Nathan Bouvier ; Ouest
+Océane Le Floch ; Ouest
+Paul Mendy ; Ouest
+Quentin Rio ; Ouest
+Rose Kerbrat ; Ouest
+Sami Haddad ; Immaculée
+Tiphaine Joly ; Immaculée
+Ugo Fontaine ; Immaculée
+Valérie Cosson ; Immaculée
+William Daniel ; Immaculée
+Yasmine Ait ; Immaculée
+Zoé Lemaire ; Saint-Marc
+Arthur Pichon ; Saint-Marc
+Bérénice Laot ; Saint-Marc
+Camille Royer ; Saint-Marc
+Dorian Salaün ; Saint-Marc
+Emma Vidal ; Saint-Marc
+Félix Morvan ; Saint-Marc`;
+
+const LETTERS = "ΑΒΓΔΕΖΗΘΙΚ";
+const $ = id => document.getElementById(id);
+let state = null;
+
+function rnd(n){ const a = new Uint32Array(1); const lim = Math.floor(0x100000000 / n) * n; let x; do { crypto.getRandomValues(a); x = a[0]; } while (x >= lim); return x % n; }
+function shuffle(arr){ for (let i = arr.length - 1; i > 0; i--){ const j = rnd(i + 1); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
+
+function parse(){
+  const lines = $("names").value.split("\n").map(l => l.trim()).filter(Boolean);
+  const people = lines.map(l => { const [n, g] = l.split(";").map(s => s && s.trim()); return { name: n, group: g || null }; }).filter(p => p.name);
+  const grouped = people.length > 0 && people.every(p => p.group);
+  return { people, grouped };
+}
+
+function plan(){
+  const { people, grouped } = parse();
+  let columns;
+  if (grouped){
+    const groups = [...new Set(people.map(p => p.group))].slice(0, 10);
+    columns = groups.map(g => ({ title: g, items: people.filter(p => p.group === g) }));
+  } else {
+    const n = Math.max(2, Math.min(10, parseInt($("cols").value) || 5));
+    columns = Array.from({ length: n }, () => ({ title: null, items: [] }));
+    shuffle([...people]).forEach((p, i) => columns[i % n].items.push(p));
+  }
+  const k = columns.length;
+  const rows = k ? Math.min(...columns.map(c => c.items.length)) : 0;
+  const seats = Math.max(1, parseInt($("seats").value) || 1);
+  const whites = Math.min(rows, Math.max(1, Math.floor(seats / k)));
+  return { people, grouped, columns, k, rows, seats, whites };
+}
+
+function updateSummary(){
+  const p = plan();
+  $("cols").disabled = p.grouped;
+  const lines = [];
+  lines.push(`${p.people.length} candidats · ${p.k} colonnes${p.grouped ? " (une par groupe)" : ""}`);
+  lines.push(`${p.rows} rangées complètes · ${p.rows * p.k} plaquettes en jeu`);
+  lines.push(`Tube : ${p.whites} cube(s) blanc(s), ${p.rows - p.whites} noir(s)`);
+  const real = p.whites * p.k;
+  lines.push(`→ ${real} personne(s) désignée(s)` + (real !== p.seats ? ` (au lieu de ${p.seats} : le sort retient des rangées entières de ${p.k})` : ""));
+  if (p.rows < 1) lines.push("Il faut au moins une plaquette par colonne.");
+  $("summary").innerHTML = lines.join("<br>");
+  $("load").disabled = p.rows < 1;
+}
+
+function load(){
+  const p = plan();
+  p.columns.forEach(c => shuffle(c.items));
+  const cubes = shuffle([...Array(p.whites).fill("w"), ...Array(p.rows - p.whites).fill("b")]);
+  state = { ...p, cubes, next: 0, selected: [], picked: [], log: [] };
+  const t = new Date().toLocaleString("fr-FR");
+  state.log.push(`${t} — ${p.rows * p.k} plaquettes insérées dans ${p.k} colonnes × ${p.rows} rangées.`);
+  state.log.push(`Tube : ${p.whites} blanc(s), ${p.rows - p.whites} noir(s), mélangés.`);
+  if (SOURCE.base) state.log.push(`Candidats issus de la grande base Civipédia (${SOURCE.filtre}${SOURCE.groupe ? ` ; colonnes par ${SOURCE.groupe}` : ""}).`);
+  const out = p.columns.flatMap(c => c.items.slice(p.rows).map(x => x.name));
+  state.surplus = out;
+  render();
+  $("one").disabled = $("all").disabled = false;
+  $("result").hidden = true;
+}
+
+function render(){
+  const s = state, k = s.k;
+  const tpl = `28px repeat(${k}, minmax(96px,1fr)) 22px`;
+  $("head").style.gridTemplateColumns = tpl;
+  $("head").innerHTML = "<span></span>" + s.columns.map((c, i) => `<span title="${esc(c.title || "")}">${LETTERS[i]}${c.title ? `<br><small style="font-family:var(--f-mono);font-weight:400;font-size:.62rem;color:var(--ink-soft)">${esc(c.title)}</small>` : ""}</span>`).join("") + "<span></span>";
+  let html = "";
+  for (let r = 0; r < s.rows; r++){
+    const done = r < s.next, cls = done ? (s.cubes[r] === "w" ? "sel" : "rej") : (r === s.next ? "cur" : "");
+    html += `<div class="row ${cls}" style="grid-template-columns:${tpl}"><span class="rowno">${r + 1}</span>`;
+    for (let c = 0; c < k; c++) html += `<div class="slot p" title="${esc(s.columns[c].items[r].name)}">${esc(s.columns[c].items[r].name)}</div>`;
+    html += done ? `<span class="marker cube ${s.cubes[r]}"></span>` : `<span></span>`;
+    html += "</div>";
+  }
+  $("grid").innerHTML = html;
+  $("tube").innerHTML = s.cubes.map((c, i) => `<span class="cube ${i < s.next ? c + " out" : "hidden"}"></span>`).join("");
+  $("surplus").innerHTML = s.surplus.length ? `Hors tirage (rangées incomplètes) : <b>${s.surplus.map(esc).join(" · ")}</b>` : "";
+}
+
+function step(){
+  const s = state; if (!s || s.next >= s.rows) return;
+  const r = s.next, cube = s.cubes[r];
+  const names = s.columns.map(c => c.items[r].name);
+  if (cube === "w"){ s.selected.push(...names); s.picked.push(...s.columns.map(c => ({ name: c.items[r].name, group: c.items[r].group || c.title || "", row: r + 1 }))); }
+  s.log.push(`Cube ${r + 1} : ${cube === "w" ? "BLANC" : "noir"} → rangée ${r + 1} ${cube === "w" ? "retenue" : "écartée"} (${names.join(", ")}).`);
+  s.next++;
+  render();
+  if (s.next >= s.rows) finish();
+}
+
+let timer = null;
+function runAll(){
+  $("one").disabled = $("all").disabled = true;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const tick = () => { step(); if (state.next < state.rows) timer = setTimeout(tick, reduce ? 0 : 450); };
+  tick();
+}
+
+/* ---------- Grande base Civipédia ----------
+ * Lecture d'une copie d'onglet (tabulations, depuis Google Sheets) ou d'un CSV (virgule ou point-virgule).
+ * Si la page est servie par l'accès réservé, le script Google peut injecter l'onglet à la place du commentaire
+ * ci-dessous, sous la forme BRUT = { "Contacts": [[en-têtes], [ligne], ...] } (même convention que technique/carte.html). */
+/*__DONNEES__*/
+const ID_RE = /\(([A-Z]+(?:-[A-Z])?-\d{3,})\)$/;
+let BASE = { head: [], rows: [] };
+
+function parseTable(txt){
+  txt = String(txt || "").replace(/^\ufeff/, "");
+  const first = txt.split(/\r?\n/, 1)[0] || "";
+  const d = first.includes("\t") ? "\t" : ((first.match(/;/g) || []).length > (first.match(/,/g) || []).length ? ";" : ",");
+  const rows = []; let row = [], cell = "", q = false;
+  for (let i = 0; i < txt.length; i++){
+    const c = txt[i];
+    if (q){
+      if (c === '"'){ if (txt[i + 1] === '"'){ cell += '"'; i++; } else q = false; }
+      else cell += c;
+    } else if (c === '"' && cell === "") q = true;
+    else if (c === d){ row.push(cell); cell = ""; }
+    else if (c === "\n" || c === "\r"){ if (c === "\r" && txt[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; }
+    else cell += c;
+  }
+  if (cell !== "" || row.length){ row.push(cell); rows.push(row); }
+  return rows.map(r => r.map(x => x.trim())).filter(r => r.some(Boolean));
+}
+
+function setBase(table){
+  const [head = [], ...rows] = table;
+  BASE = { head: head.map(h => String(h).trim()), rows: rows.map(r => r.map(x => x == null ? "" : String(x).trim())) };
+  const opts = ['<option value="">(toutes les lignes)</option>'].concat(BASE.head.map((h, i) => h ? `<option value="${i}">${esc(h)}</option>` : "")).join("");
+  $("bfcol").innerHTML = opts;
+  $("bgroup").innerHTML = ['<option value="">(répartition au hasard)</option>'].concat(BASE.head.map((h, i) => h ? `<option value="${i}">${esc(h)}</option>` : "")).join("");
+  const st = BASE.head.indexOf("Statut");
+  if (st >= 0) $("bfcol").value = String(st);
+  fillValues();
+  const ok = [...$("bfval").options].find(o => /^v[ée]rifi/i.test(o.value));
+  if (ok){ $("bfval").value = ok.value; baseSummary(); }
+}
+
+function col(name){ return BASE.head.indexOf(name); }
+function personName(r){
+  const n = col("Nom"), p = col("Prénom");
+  const full = [p >= 0 ? r[p] : "", n >= 0 ? r[n] : ""].filter(Boolean).join(" ");
+  return full || r.find(Boolean) || "";
+}
+function personId(r){
+  const k = BASE.head.findIndex(h => /^ID_/.test(h));
+  return k >= 0 ? r[k] : "";
+}
+
+function fillValues(){
+  const c = $("bfcol").value;
+  if (c === ""){ $("bfval").innerHTML = '<option value="">—</option>'; $("bfval").disabled = true; }
+  else {
+    const counts = {};
+    BASE.rows.forEach(r => { const v = r[+c] || "(vide)"; counts[v] = (counts[v] || 0) + 1; });
+    $("bfval").innerHTML = Object.keys(counts).sort((a, b) => a.localeCompare(b, "fr")).map(v => `<option value="${esc(v)}">${esc(v)} (${counts[v]})</option>`).join("");
+    $("bfval").disabled = false;
+  }
+  baseSummary();
+}
+
+function baseSelection(){
+  const c = $("bfcol").value, v = $("bfval").value;
+  return BASE.rows.filter(r => personName(r) && (c === "" || (r[+c] || "(vide)") === v));
+}
+
+function baseSummary(){
+  if (!BASE.rows.length){ $("bsummary").textContent = BASE.head.length ? "En-têtes lus, mais aucune ligne." : "Aucune ligne de la base chargée."; $("buse").disabled = true; return; }
+  const sel = baseSelection(), g = $("bgroup").value;
+  const lines = [`${BASE.rows.length} lignes lues · ${sel.length} retenues par le filtre`];
+  if (col("Nom") < 0) lines.push("Colonne « Nom » introuvable : la première cellule non vide sert de nom.");
+  if (!BASE.head.some(h => /^ID_/.test(h))) lines.push("Aucune colonne d'identifiant (ID_…) : le résultat ne pourra pas être rattaché aux fiches.");
+  if (g !== ""){
+    const groups = new Set(sel.map(r => r[+g] || "(vide)"));
+    lines.push(`${groups.size} groupe(s) dans « ${BASE.head[+g]} »` + (groups.size > 10 ? " : la machine n'a que 10 colonnes, seuls les 10 premiers seront utilisés." : groups.size < 2 ? " : il en faut au moins 2." : ""));
+  }
+  $("bsummary").innerHTML = lines.map(esc).join("<br>");
+  $("buse").disabled = sel.length < 2;
+}
+
+function useBase(){
+  const sel = baseSelection(), g = $("bgroup").value;
+  const clean = s => String(s).replace(/[;\n]/g, ",").trim();
+  $("names").value = sel.map(r => {
+    const id = personId(r);
+    let line = clean(personName(r)) + (id ? ` (${clean(id)})` : "");
+    if (g !== "") line += " ; " + clean(r[+g] || "(vide)");
+    return line;
+  }).join("\n");
+  const f = $("bfcol").value;
+  SOURCE = { base: true, filtre: f === "" ? "aucun filtre" : `${BASE.head[+f]} = ${$("bfval").value}`, groupe: g === "" ? null : BASE.head[+g] };
+  updateSummary();
+  clearTimeout(timer); load();
+  $("names").scrollIntoView({ behavior: "smooth", block: "center" });
+}
+let SOURCE = { base: false };
+
+function finish(){
+  $("one").disabled = $("all").disabled = true;
+  state.log.push(`Tirage terminé : ${state.selected.length} personne(s) désignée(s).`);
+  $("rmeta").textContent = `${state.selected.length} sur ${state.people.length} candidats · ${new Date().toLocaleString("fr-FR")}`;
+  $("rlist").innerHTML = state.selected.map(n => `<li>${esc(n)}</li>`).join("");
+  $("log").innerHTML = state.log.map(esc).join("<br>");
+  const fromBase = state.selected.some(n => ID_RE.test(n));
+  $("copybase").hidden = $("basehint").hidden = !fromBase;
+  $("result").hidden = false;
+}
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+$("copy").addEventListener("click", async () => {
+  const txt = "Désignés par le sort :\n" + state.selected.map((n, i) => `${i + 1}. ${n}`).join("\n") + "\n\nProcès-verbal :\n" + state.log.join("\n");
+  try { await navigator.clipboard.writeText(txt); $("copy").textContent = "Copié"; }
+  catch { const r = document.createRange(); r.selectNodeContents($("result")); const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); $("copy").textContent = "Texte sélectionné, copiez-le"; }
+  setTimeout(() => $("copy").textContent = "Copier la liste et le procès-verbal", 2000);
+});
+$("copybase").addEventListener("click", async () => {
+  const date = new Date().toLocaleString("fr-FR");
+  const rows = [["ID", "Nom", "Groupe", "Rangée", "Tirage"]].concat(state.picked.map(p => {
+    const m = ID_RE.exec(p.name);
+    return [m ? m[1] : "", m ? p.name.replace(ID_RE, "").trim() : p.name, p.group, String(p.row), "Klèrôtèrion " + date];
+  }));
+  const txt = rows.map(r => r.join("\t")).join("\n");
+  try { await navigator.clipboard.writeText(txt); $("copybase").textContent = "Copié : collez dans le classeur"; }
+  catch { prompt("Copiez ce tableau :", txt); }
+  setTimeout(() => $("copybase").textContent = "Copier pour la grande base", 2500);
+});
+$("bpaste").addEventListener("input", () => setBase(parseTable($("bpaste").value)));
+$("bfile").addEventListener("change", async e => { const f = e.target.files[0]; if (!f) return; const t = await f.text(); $("bpaste").value = t; setBase(parseTable(t)); });
+$("bfcol").addEventListener("change", fillValues);
+$("bfval").addEventListener("change", baseSummary);
+$("bgroup").addEventListener("change", baseSummary);
+$("buse").addEventListener("click", useBase);
+$("names").addEventListener("input", () => { SOURCE = { base: false }; });
+setBase([]);
+if (typeof BRUT !== "undefined" && BRUT){
+  const tab = BRUT.Contacts || BRUT[Object.keys(BRUT)[0]];
+  if (Array.isArray(tab)){ setBase(tab.map(r => r.map(x => x == null ? "" : String(x)))); $("base").open = true; }
+}
+$("names").value = SAMPLE;
+["names", "cols", "seats"].forEach(id => $(id).addEventListener("input", updateSummary));
+$("load").addEventListener("click", () => { clearTimeout(timer); load(); });
+$("one").addEventListener("click", step);
+$("all").addEventListener("click", runAll);
+updateSummary();
+load();
+</script>
+
+</body>
+</html>
