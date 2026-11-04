@@ -43,11 +43,11 @@ ID_INTERNE = re.compile(r"\b(MASE-[A-Z]-\d{3,4}|OPP-\d{4}|APP-\d{3}|CR-[A-Z]+-\d
 CLES = {
     "racine": ["instantane", "genere_le", "regles", "chiffres", "evenements", "appels", "territoires", "expertises", "ressources"],
     "chiffres": ["objet", "nombre"],
-    "evenements": ["titre", "debut", "fin", "lieu", "territoire", "organisateur", "categorie", "etat", "participants", "projet", "src"],
+    "evenements": ["titre", "debut", "fin", "lieu", "territoire", "organisateur", "categorie", "etat", "participants", "projet", "src", "restitution"],
     "appels": ["titre", "organisme", "objet", "derniere_edition", "montant", "src"],
     "territoires": ["nom", "type", "organisations", "personnes", "projets", "evenements"],
     "expertises": ["libelle", "organisations", "personnes"],
-    "ressources": ["theme", "titre", "genre", "url"],
+    "ressources": ["theme", "titre", "genre", "url", "evenement"],
 }
 
 # Liens vers des documents internes (Drive, Docs, Canva) : jamais publiés.
@@ -78,6 +78,11 @@ def nom_affiche(nom):
 # « Ressource publique : <thème> ». Les sources de preuve (fiches d'annuaire, profils, CV…) ne sont
 # jamais publiées d'office. Profils LinkedIn exclus.
 RESSOURCE = re.compile(r"Ressource publique\s*:\s*([^;\n\]]+)", re.I)
+# Restitution d'un événement (comme les « échos » d'ateliers du Labo Furtif) : fiche Sources à lien
+# public, marquée dans Notes par « Restitution de : MASE-V-xxxx ». Le lien apparaît sur la carte de
+# l'événement dans la frise ; si la fiche est aussi marquée « Ressource publique : <thème> », la
+# ressource indique l'événement dont elle est issue. Les comptes rendus internes ne sont jamais publiés.
+RESTITUTION = re.compile(r"Restitution de\s*:\s*(MASE-V-\d{3,4})", re.I)
 URL_PROFIL = re.compile(r"linkedin\.com", re.I)
 EN_LIGNE = re.compile(r"en ligne|meet|zoom|teams|visio|whatsapp", re.I)
 
@@ -235,7 +240,7 @@ def construire(base, jour, exclure):
         if prefixe(de) == "MASE-C" and prefixe(vers) == "MASE-O" and vers != CIVIPEDIA:
             org_contact.setdefault(de, vers)
 
-    evenements = []
+    evenements, publies = [], {}
     for e in base["Événements"]:
         eid = txt(e["ID_evenement"])
         etat_base = txt(e.get("Statut_evenement")).lower()
@@ -322,7 +327,9 @@ def construire(base, jour, exclure):
             "participants": participants,
             "projet": projet,
             "src": src,
+            "restitution": None,
         })
+        publies[eid] = evenements[-1]
     evenements.sort(key=lambda x: (x["debut"], x["titre"]))
 
     # Appels qui reviennent : Etat_appel « Clos — à guetter », information FAIT ou VÉRIFIÉ.
@@ -380,18 +387,27 @@ def construire(base, jour, exclure):
 
     ressources = []
     for sid, s in sources.items():
-        m = RESSOURCE.search(txt(s.get("Notes")))
-        if not m:
+        notes = txt(s.get("Notes"))
+        m, r = RESSOURCE.search(notes), RESTITUTION.search(notes)
+        if not (m or r):
             continue
         url = txt(s.get("URL_source"))
         if not url or URL_PRIVEE.search(url) or URL_PROFIL.search(url):
-            alerte(f"{sid} marquée ressource mais non publiée : lien absent, interne ou profil personnel")
+            alerte(f"{sid} marquée ressource ou restitution mais non publiée : lien absent, interne ou profil personnel")
+            continue
+        evt = publies.get(r[1]) if r else None
+        if r and not evt:
+            alerte(f"{sid} : restitution d'un événement non publié dans l'agenda ({r[1]})")
+        if evt:
+            evt["restitution"] = {"nom": txt(s.get("Nom_source")), "url": url}
+        if not m:
             continue
         ressources.append({
             "theme": majuscule(m[1].strip().rstrip(".")),
             "titre": txt(s.get("Nom_source")),
             "genre": txt(s.get("Type_source")),
             "url": url,
+            "evenement": f"{evt['titre']} ({dt.date.fromisoformat(evt['debut']).strftime('%d/%m/%Y')})" if evt else "",
         })
     ressources.sort(key=lambda r: (r["theme"].lower(), r["titre"].lower()))
 
@@ -424,6 +440,8 @@ def controler(data, base):
     for e in data["evenements"]:
         if e["categorie"] not in ("public", "equipe") or e["etat"] not in ("prévu", "réalisé", "à confirmer"):
             erreurs.append(f"catégorie ou état invalide : {e['titre']}")
+        if e["restitution"] and (URL_PRIVEE.search(e["restitution"]["url"]) or URL_PROFIL.search(e["restitution"]["url"])):
+            erreurs.append(f"restitution vers un document interne : {e['titre']}")
         if e["src"] and URL_PRIVEE.search(e["src"]["url"]):
             erreurs.append(f"lien vers un document interne : {e['titre']}")
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["debut"]) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", e["fin"]) or e["fin"] < e["debut"]:
