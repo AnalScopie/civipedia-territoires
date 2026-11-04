@@ -51,6 +51,7 @@ Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `te
   - sources publiées = liens publics seulement (jamais un document Drive, Docs ou Canva) ;
   - appels = `Opportunites` « Clos — à guetter », FAIT ou VÉRIFIÉ, avec une source à URL ;
   - territoires et expertises = organisations et personnes reliées dans `Relations` (hors HYPOTHÈSE et « à valider »), projets et événements par `ID_territoire`.
+  - ressources à partager (idée d'Armelle Marès-de Vismes, 04/11/2026, inspirée du wiki du Labo Furtif) = fiches `Sources` qu'Anne Povie a marquées dans `Notes` par « Ressource publique : <thème> », avec un lien public (ni document interne, ni profil LinkedIn). Rien n'est publié sans ce marquage : les sources de preuve (fiches d'annuaire, profils, CV) restent privées. La rubrique est masquée tant qu'aucune ressource n'est marquée.
 - **Contrôles** : le script vérifie la structure attendue par `index.html` et refuse d'écrire si un identifiant interne, un nom de personne (hors membres de `MEMBRES_NOMMES`) ou une coordonnée apparaît. Il liste ce qu'il écarte.
 - **Fréquence** : après chaque mise à jour intégrée des événements ou des opportunités, et au moins une fois par mois.
 

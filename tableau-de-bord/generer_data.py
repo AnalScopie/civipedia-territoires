@@ -41,12 +41,13 @@ TABLES = {  # onglet → colonne identifiant
 }
 ID_INTERNE = re.compile(r"\b(MASE-[A-Z]-\d{3,4}|OPP-\d{4}|APP-\d{3}|CR-[A-Z]+-\d{3}|VEI-\d{8}-\d{3})\b")
 CLES = {
-    "racine": ["instantane", "genere_le", "regles", "chiffres", "evenements", "appels", "territoires", "expertises"],
+    "racine": ["instantane", "genere_le", "regles", "chiffres", "evenements", "appels", "territoires", "expertises", "ressources"],
     "chiffres": ["objet", "nombre"],
     "evenements": ["titre", "debut", "fin", "lieu", "territoire", "organisateur", "categorie", "etat", "participants", "projet", "src"],
     "appels": ["titre", "organisme", "objet", "derniere_edition", "montant", "src"],
     "territoires": ["nom", "type", "organisations", "personnes", "projets", "evenements"],
     "expertises": ["libelle", "organisations", "personnes"],
+    "ressources": ["theme", "titre", "genre", "url"],
 }
 
 # Liens vers des documents internes (Drive, Docs, Canva) : jamais publiés.
@@ -72,6 +73,12 @@ def nom_affiche(nom):
         w = m.group(0)
         return w.lower() if w.lower() in PARTICULES and m.start() > 0 else w[:1].upper() + w[1:].lower()
     return re.sub(r"[^\s'’-]+['’]?", mot, nom)
+# Ressources partagées (idée d'Armelle Marès-de Vismes, 04/11/2026, inspirée du wiki du Labo Furtif) :
+# une fiche Sources n'est publiée comme ressource que si Anne Povie l'a marquée dans Notes par
+# « Ressource publique : <thème> ». Les sources de preuve (fiches d'annuaire, profils, CV…) ne sont
+# jamais publiées d'office. Profils LinkedIn exclus.
+RESSOURCE = re.compile(r"Ressource publique\s*:\s*([^;\n\]]+)", re.I)
+URL_PROFIL = re.compile(r"linkedin\.com", re.I)
 EN_LIGNE = re.compile(r"en ligne|meet|zoom|teams|visio|whatsapp", re.I)
 
 alertes = []
@@ -371,6 +378,23 @@ def construire(base, jour, exclure):
         "personnes": compte(ce, eid),
     } for eid, e in idx["Expertises"].items()]
 
+    ressources = []
+    for sid, s in sources.items():
+        m = RESSOURCE.search(txt(s.get("Notes")))
+        if not m:
+            continue
+        url = txt(s.get("URL_source"))
+        if not url or URL_PRIVEE.search(url) or URL_PROFIL.search(url):
+            alerte(f"{sid} marquée ressource mais non publiée : lien absent, interne ou profil personnel")
+            continue
+        ressources.append({
+            "theme": majuscule(m[1].strip().rstrip(".")),
+            "titre": txt(s.get("Nom_source")),
+            "genre": txt(s.get("Type_source")),
+            "url": url,
+        })
+    ressources.sort(key=lambda r: (r["theme"].lower(), r["titre"].lower()))
+
     data = {
         "instantane": f"Base Civipédia, export du {jour.strftime('%d/%m/%Y')}",
         "genere_le": jour.isoformat(),
@@ -382,6 +406,7 @@ def construire(base, jour, exclure):
         "appels": appels,
         "territoires": territoires,
         "expertises": expertises,
+        "ressources": ressources,
     }
     stats = {"relations_lignes": len(base["Relations"]), "relations_valides": len(valides), "relations_hypotheses": hypotheses}
     return data, stats
@@ -392,7 +417,7 @@ def controler(data, base):
     erreurs = []
     if list(data) != CLES["racine"]:
         erreurs.append("clés racine différentes du contrat")
-    for liste in ("chiffres", "evenements", "appels", "territoires", "expertises"):
+    for liste in ("chiffres", "evenements", "appels", "territoires", "expertises", "ressources"):
         for i, x in enumerate(data[liste]):
             if list(x) != CLES[liste]:
                 erreurs.append(f"{liste}[{i}] : clés {list(x)}")
@@ -407,6 +432,9 @@ def controler(data, base):
         for x in data[liste]:
             if any(not isinstance(x[c], int) for c in champs):
                 erreurs.append(f"{liste} : compte non entier")
+    for r in data["ressources"]:
+        if URL_PRIVEE.search(r["url"]) or URL_PROFIL.search(r["url"]) or not r["theme"]:
+            erreurs.append(f"ressource non publiable : {r['titre']}")
     texte = json.dumps(data, ensure_ascii=False)
     for m in sorted(set(ID_INTERNE.findall(texte))):
         erreurs.append(f"identifiant interne publié : {m}")
@@ -436,7 +464,8 @@ def main():
     print(f"Relations : {stats['relations_lignes']} lignes, {stats['relations_valides']} valides publiées en compte, "
           f"{stats['relations_hypotheses']} HYPOTHÈSE non comptées", file=sys.stderr)
     print(f"Publié : {len(data['evenements'])} événements, {len(data['appels'])} appels, "
-          f"{len(data['territoires'])} territoires, {len(data['expertises'])} expertises", file=sys.stderr)
+          f"{len(data['territoires'])} territoires, {len(data['expertises'])} expertises, "
+          f"{len(data['ressources'])} ressources", file=sys.stderr)
     for m in alertes:
         print("ALERTE  " + m, file=sys.stderr)
     if erreurs:

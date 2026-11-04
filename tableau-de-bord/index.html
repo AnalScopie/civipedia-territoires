@@ -102,6 +102,15 @@ button:focus-visible, a:focus-visible, .paysage:focus-visible { outline: 2px sol
 .appel .ed { font-weight: 700; }
 .appel .src { font-size: 12px; color: var(--gris); }
 
+/* Ressources */
+.themes { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0 0; }
+.themes button { font: inherit; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; padding: .45rem .7rem; min-height: 2.25rem; background: none; color: inherit; border: 1px solid var(--trait); cursor: pointer; }
+.themes button[aria-pressed="true"] { background: var(--jaune); color: #000; border-color: var(--jaune); }
+.ressources { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); gap: 1rem; }
+.ressource { border-top: 3px solid var(--jaune); padding-top: .6rem; display: flex; flex-direction: column; gap: .3rem; min-width: 0; }
+.ressource .org { font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--gris); font-weight: 700; }
+.ressource a { font-size: 15px; font-weight: 800; line-height: 1.25; overflow-wrap: anywhere; }
+
 /* Barres */
 .legend { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-size: 12px; color: var(--gris); margin: 1rem 0 .25rem; text-transform: uppercase; letter-spacing: .08em; }
 .legend span { display: inline-flex; align-items: center; gap: .45rem; }
@@ -210,6 +219,17 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
       <span><i class="key c-pers"></i>Personnes</span>
     </div>
     <div class="bars" id="exp"></div>
+  </section>
+
+  <section id="ressources" hidden>
+    <div class="sechead">
+      <div>
+        <h2>Ressources <span class="hi">à partager</span></h2>
+        <p class="note">Documents, méthodes, outils et sites repérés par Civipédia, classés par thème. Une idée d'Armelle Marès-de Vismes, inspirée du wiki du Labo Furtif.</p>
+      </div>
+    </div>
+    <div class="themes" id="themes" role="group" aria-label="Filtrer par thème"></div>
+    <ul class="ressources" id="liste-ressources"></ul>
   </section>
 
   <footer id="pied">Projection publique de la base Civipédia : événements publics vérifiés, rendez-vous de l'équipe décrits sans nom de personne, appels décrits par leur source officielle et comptes agrégés. Aucun nom de personne, aucune coordonnée ni aucun document interne n'est publié.</footer>
@@ -427,12 +447,37 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
 
   var resizeTimer;
   window.addEventListener('resize', function () { clearTimeout(resizeTimer); resizeTimer = setTimeout(render, 150); });
+  var themeActif = null;
+  function drawRessources() {
+    var rs = DATA.ressources || [], sec = document.getElementById('ressources');
+    sec.hidden = !rs.length;
+    if (!rs.length) return;
+    var themes = [], box = document.getElementById('themes'), ul = document.getElementById('liste-ressources');
+    rs.forEach(function (r) { if (themes.indexOf(r.theme) < 0) themes.push(r.theme); });
+    box.replaceChildren();
+    [null].concat(themes).forEach(function (t) {
+      var n = t ? rs.filter(function (r) { return r.theme === t; }).length : rs.length;
+      var b = el('button', null, (t || 'Tous') + ' (' + n + ')');
+      b.type = 'button'; b.setAttribute('aria-pressed', String(themeActif === t));
+      b.addEventListener('click', function () { themeActif = t; drawRessources(); signalHeight(); });
+      box.appendChild(b);
+    });
+    ul.replaceChildren();
+    rs.filter(function (r) { return !themeActif || r.theme === themeActif; }).forEach(function (r) {
+      var li = el('li', 'ressource'), a = el('a', null, r.titre);
+      a.href = r.url; a.target = '_blank'; a.rel = 'noopener';
+      li.append(el('span', 'org', r.theme + (r.genre ? ' · ' + r.genre : '')), a);
+      ul.appendChild(li);
+    });
+  }
+
   if ('ResizeObserver' in window) new ResizeObserver(signalHeight).observe(document.body);
 
   fetch('data.json', { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (d) {
     DATA = d;
     drawKpis();
     drawAppels();
+    drawRessources();
     drawBars('exp', DATA.expertises, 'libelle', null, [['organisations', 'c-org', 'organisation'], ['personnes', 'c-pers', 'personne']], false);
     var pied = document.getElementById('pied');
     pied.textContent = pied.textContent + ' Données au ' + new Date(iso(d.genere_le)).toLocaleDateString('fr-FR', { timeZone: 'UTC' }) + '.';
