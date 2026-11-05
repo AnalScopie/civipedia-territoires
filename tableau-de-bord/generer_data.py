@@ -239,6 +239,9 @@ def construire(base, jour, exclure):
         equipe = CIVIPEDIA in objets or bool(objets & membres)
         if not equipe and txt(e.get("Statut")) != "Vérifié":
             continue
+        # Ni événement public ni rendez-vous de l'équipe (réunion interne d'un tiers) : non publié.
+        if not equipe and txt(e.get("Type")) != "Événement public":
+            continue
         debut, fin = date_iso(e.get("Date_debut")), date_iso(e.get("Date_fin")) or date_iso(e.get("Date_debut"))
         if not debut:
             if equipe or txt(e.get("Statut")) == "Vérifié":

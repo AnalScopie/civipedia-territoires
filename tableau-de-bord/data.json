@@ -1,31 +1,31 @@
 {
- "instantane": "Base Civipédia, export du 02/11/2026",
- "genere_le": "2026-11-02",
+ "instantane": "Base Civipédia, export du 05/11/2026",
+ "genere_le": "2026-11-05",
  "regles": "Projection publique : événements publics vérifiés, rendez-vous de l'équipe Civipédia décrits sans nom de personne, appels décrits par leur source officielle et comptes agrégés. Aucun nom de personne, aucune coordonnée, aucun identifiant interne, aucun document interne.",
  "chiffres": [
   {
    "objet": "Personnes",
-   "nombre": 94
+   "nombre": 99
   },
   {
    "objet": "Organisations",
-   "nombre": 111
+   "nombre": 118
   },
   {
    "objet": "Territoires",
-   "nombre": 34
+   "nombre": 39
   },
   {
    "objet": "Projets",
-   "nombre": 44
+   "nombre": 58
   },
   {
    "objet": "Événements",
-   "nombre": 44
+   "nombre": 53
   },
   {
    "objet": "Relations documentées",
-   "nombre": 513
+   "nombre": 613
   }
  ],
  "evenements": [
@@ -108,6 +108,19 @@
    "src": null
   },
   {
+   "titre": "Rencontre avec IP2A",
+   "debut": "2026-08-28",
+   "fin": "2026-08-28",
+   "lieu": "Paris",
+   "territoire": "Paris",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
    "titre": "Rencontre avec Act4Global Impact",
    "debut": "2026-09-09",
    "fin": "2026-09-09",
@@ -160,6 +173,19 @@
    "src": null
   },
   {
+   "titre": "Rencontre avec Communauté d'agglomération Pau Béarn Pyrénées",
+   "debut": "2026-10-06",
+   "fin": "2026-10-06",
+   "lieu": "Pau",
+   "territoire": "Pau",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
    "titre": "Rencontre avec Act4Global Impact",
    "debut": "2026-10-12",
    "fin": "2026-10-12",
@@ -208,6 +234,32 @@
    "categorie": "equipe",
    "etat": "réalisé",
    "participants": "Armelle Marès de Vismes, Béatrice Motte-Decoop et Thomas N'Dem (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Colloque « L'enquête publique : tous concernés »",
+   "debut": "2026-10-15",
+   "fin": "2026-10-15",
+   "lieu": "Lycée François Rabelais, Dardilly (« Lyon / Dardilly (69) »)",
+   "territoire": "Dardilly",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Christophe Dumais (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Ville de Vertou",
+   "debut": "2026-10-21",
+   "fin": "2026-10-21",
+   "lieu": "En ligne",
+   "territoire": "Vertou",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Participation de Civipédia",
    "projet": "",
    "src": null
   },
@@ -271,7 +323,7 @@
    "territoire": "Strasbourg",
    "organisateur": "Conseil de l'Europe",
    "categorie": "public",
-   "etat": "prévu",
+   "etat": "à confirmer",
    "participants": "",
    "projet": "",
    "src": {
@@ -287,8 +339,21 @@
    "territoire": "",
    "organisateur": "",
    "categorie": "equipe",
-   "etat": "prévu",
+   "etat": "à confirmer",
    "participants": "Anne Povie (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre (équipe Civipédia)",
+   "debut": "2026-11-05",
+   "fin": "2026-11-05",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Participation de Civipédia",
    "projet": "",
    "src": null
   },
@@ -365,6 +430,32 @@
     "nom": "Salon des maires et des collectivités locales – site officiel",
     "url": "https://www.salondesmaires.com/"
    }
+  },
+  {
+   "titre": "Rencontre avec AMF",
+   "debut": "2026-11-25",
+   "fin": "2026-11-25",
+   "lieu": "Paris",
+   "territoire": "Paris",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Assemblée générale (équipe Civipédia)",
+   "debut": "2026-11-28",
+   "fin": "2026-11-28",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
   },
   {
    "titre": "Rencontre avec AMF et Labo de la Fraternité",
@@ -463,9 +554,9 @@
   {
    "nom": "Île-de-France",
    "type": "Région",
-   "organisations": 1,
+   "organisations": 2,
    "personnes": 4,
-   "projets": 0,
+   "projets": 1,
    "evenements": 0
   },
   {
@@ -585,7 +676,7 @@
    "type": "Commune",
    "organisations": 0,
    "personnes": 0,
-   "projets": 0,
+   "projets": 1,
    "evenements": 1
   },
   {
@@ -602,7 +693,7 @@
    "organisations": 1,
    "personnes": 0,
    "projets": 0,
-   "evenements": 5
+   "evenements": 7
   },
   {
    "nom": "Nantes",
@@ -642,7 +733,7 @@
    "organisations": 3,
    "personnes": 5,
    "projets": 5,
-   "evenements": 1
+   "evenements": 3
   },
   {
    "nom": "Hérault (34)",
@@ -657,7 +748,7 @@
    "type": "Commune",
    "organisations": 29,
    "personnes": 9,
-   "projets": 3,
+   "projets": 4,
    "evenements": 3
   },
   {
@@ -731,6 +822,46 @@
    "personnes": 0,
    "projets": 0,
    "evenements": 0
+  },
+  {
+   "nom": "Vertou",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 1
+  },
+  {
+   "nom": "Reyrieux",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Longueil-Sainte-Marie",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Thorigny-sur-Marne",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Dardilly",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 1
   }
  ],
  "expertises": [
