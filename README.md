@@ -129,3 +129,13 @@ La carte technique (sources, qualifications, points à vérifier, analyse vers l
 ## Mises à jour
 
 Les fichiers de `territoires/` sont remplacés par l'export quand un changement réel est détecté et que les contrôles passent. Si un contrôle échoue, la version précédente reste en ligne. L'historique Git garde chaque version publiée.
+
+## Références Zenodo
+
+Dépôts publiés sur Zenodo en lien avec ce projet (identifiants DOI pérennes) :
+
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17807186.svg)](https://doi.org/10.5281/zenodo.17807186) — [10.5281/zenodo.17807186](https://doi.org/10.5281/zenodo.17807186)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17806711.svg)](https://doi.org/10.5281/zenodo.17806711) — [10.5281/zenodo.17806711](https://doi.org/10.5281/zenodo.17806711)
+- [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17771194.svg)](https://doi.org/10.5281/zenodo.17771194) — [10.5281/zenodo.17771194](https://doi.org/10.5281/zenodo.17771194)
+
+Pour citer ce travail, utiliser la notice correspondante sur Zenodo (bouton « Cite » / « Citer »).
