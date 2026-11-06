@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Signaler un besoin — Civipédia</title>
+<style>
+:root { --noir:#111; --jaune:#F2D24B; --fond:#F5F6F3; --texte:#17202B; --doux:#4A5563; --trait:#D9DDE3; --ok:#1C5E3C; --okf:#E3F1E8; --err:#922020; --errf:#FBE4E4; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--fond); color:var(--texte); font:17px/1.45 Roboto, system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { background:var(--noir); color:#fff; display:flex; align-items:center; gap:14px; padding-right:16px; }
+.logo { width:64px; height:64px; background:var(--jaune); color:#000; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; }
+.logo b { font-size:28px; line-height:1; } .logo small { font-size:10px; }
+header h1 { font-size:18px; margin:0; line-height:1.2; } header p { margin:2px 0 0; font-size:14px; color:#ddd; }
+main { max-width:640px; margin:0 auto; padding:16px 16px 48px; }
+.intro { margin:4px 0 16px; color:var(--doux); font-size:15.5px; }
+section { background:#fff; border:1px solid var(--trait); border-radius:14px; padding:16px; margin-bottom:14px; }
+label.champ, span.champ { display:block; font-weight:500; font-size:15px; margin:10px 0 4px; }
+label.champ:first-child, span.champ:first-child { margin-top:0; }
+small.aide { display:block; color:var(--doux); font-size:13.5px; margin:-2px 0 6px; }
+input[type=text], input[type=url], input[type=date], select, textarea { width:100%; min-height:48px; border:2px solid #9AA6B5; border-radius:10px; padding:10px 12px; font:inherit; color:var(--texte); background:#fff; }
+textarea { min-height:110px; resize:vertical; }
+input:focus, select:focus, textarea:focus, button:focus-visible { outline:3px solid #2F6FEB; outline-offset:1px; }
+.choix { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.choix label { display:flex; gap:10px; align-items:center; padding:10px 12px; border:1px solid var(--trait); border-radius:10px; cursor:pointer; }
+.choix input { width:22px; height:22px; margin:0; accent-color:var(--noir); }
+.accord { display:flex; gap:12px; align-items:flex-start; font-weight:500; }
+.accord input { width:26px; height:26px; flex-shrink:0; accent-color:var(--noir); }
+.note { color:var(--doux); font-size:14px; margin:8px 0 0; }
+.envoyer { width:100%; min-height:58px; border:0; border-radius:14px; background:var(--noir); color:#FFE14D; font:inherit; font-weight:700; font-size:18px; cursor:pointer; }
+.envoyer:disabled { opacity:.6; cursor:default; }
+.msg { border-radius:10px; padding:12px 14px; margin:12px 0 0; font-weight:500; }
+.msg.ok { background:var(--okf); color:var(--ok); } .msg.err { background:var(--errf); color:var(--err); } .msg.att { background:#FCEBD3; color:#7A4300; }
+.cache { position:absolute; left:-9999px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><b>C</b><small>Civipedia</small></div>
+  <div><h1>Signaler un besoin</h1><p>Votre territoire, vos constats</p></div>
+</header>
+<main>
+  <p class="intro">Un manque, une difficulté, une idée pour votre commune ? Dites-le ici. Chaque contribution est lue par l'équipe de Civipédia avant toute publication. C'est un témoignage parmi d'autres : il est croisé avec d'autres sources avant d'en tirer une conclusion.</p>
+  <form id="f" novalidate>
+    <section>
+      <label class="champ" for="territoire">Votre territoire</label>
+      <select id="territoire"><option value="">Choisir…</option></select>
+      <span class="champ">Vous signalez</span>
+      <div class="choix" id="type">
+        <label><input type="radio" name="type" value="BESOIN_EXPRIME" checked>un besoin</label>
+        <label><input type="radio" name="type" value="PROBLEME_SIGNALE">un problème</label>
+        <label><input type="radio" name="type" value="PROPOSITION">une proposition</label>
+        <label><input type="radio" name="type" value="QUESTION">une question</label>
+      </div>
+    </section>
+    <section>
+      <label class="champ" for="besoin">En une phrase</label>
+      <small class="aide">Par exemple : « Pas de bus le dimanche pour aller à Pontchâteau ».</small>
+      <input type="text" id="besoin" maxlength="200">
+      <label class="champ" for="description">Description (facultatif)</label>
+      <small class="aide">Depuis quand, qui est concerné, ce que vous avez constaté. N'indiquez pas de nom, d'adresse ni de numéro de téléphone.</small>
+      <textarea id="description" maxlength="3000"></textarea>
+      <label class="champ" for="theme">Thème</label>
+      <select id="theme"></select>
+      <label class="champ" for="date">Date du constat (facultatif)</label>
+      <input type="date" id="date">
+      <label class="champ" for="lien">Un lien qui en parle (facultatif)</label>
+      <small class="aide">Article, page de la mairie, document public…</small>
+      <input type="url" id="lien" placeholder="https://…">
+    </section>
+    <section>
+      <label class="accord"><input type="checkbox" id="accord"><span>J'accepte que ma contribution soit conservée et relue par l'équipe de Civipédia.</span></label>
+      <p class="note">Aucune donnée personnelle n'est demandée. Votre contribution n'est jamais publiée telle quelle : elle peut, après vérification, alimenter un baromètre public des besoins du territoire.</p>
+      <label class="cache" aria-hidden="true">Site web <input type="text" id="site_web" tabindex="-1" autocomplete="off"></label>
+    </section>
+    <button type="submit" class="envoyer" id="envoyer">Envoyer</button>
+    <div id="msg" role="status" aria-live="polite"></div>
+  </form>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const THEMES = ["Santé", "Mobilité", "Logement", "Emploi", "Alimentation", "Numérique", "Éducation", "Culture", "Environnement", "Services publics", "Lien social", "Autre"];
+let GUICHET = "", debut = 0;
+$("#theme").innerHTML = THEMES.map(t => `<option>${t}</option>`).join("");
+$("#theme").value = "Autre";
+$("#f").addEventListener("input", () => { debut ||= Date.now(); }, { once: true });
+
+function message(classe, texte) { $("#msg").className = "msg " + classe; $("#msg").textContent = texte; }
+
+fetch("config.json", { cache: "no-store" }).then(r => r.json()).then(c => {
+  GUICHET = c.guichet || "";
+  for (const t of c.territoires || []) $("#territoire").insertAdjacentHTML("beforeend", `<option value="${t.id}">${t.nom}</option>`);
+  const p = new URLSearchParams(location.search).get("territoire");
+  if (p) $("#territoire").value = p;
+}).catch(() => {}).finally(() => { if (!GUICHET) message("att", "Page de démonstration : l'envoi en ligne n'est pas encore ouvert."); });
+
+$("#f").addEventListener("submit", async e => {
+  e.preventDefault();
+  const v = id => $("#" + id).value.trim();
+  if (!v("territoire")) return message("err", "Choisissez votre territoire.");
+  if (v("besoin").length < 5) return message("err", "Décrivez le besoin ou le problème en quelques mots.");
+  if (v("lien") && !/^https?:\/\/\S+$/.test(v("lien"))) return message("err", "Le lien doit commencer par https://");
+  if (!$("#accord").checked) return message("err", "Cochez la case d'accord pour envoyer.");
+  if (!GUICHET) return message("err", "L'envoi en ligne n'est pas encore ouvert.");
+  const donnees = {
+    uid: crypto.randomUUID ? crypto.randomUUID() : Date.now() + "-" + Math.random().toString(36).slice(2),
+    territoire: v("territoire"), type: (document.querySelector("input[name=type]:checked") || {}).value,
+    besoin: v("besoin"), description: v("description"), theme: v("theme"), date: v("date"), lien: v("lien"),
+    accord: true, site_web: v("site_web"), duree_ms: debut ? Date.now() - debut : 0,
+  };
+  $("#envoyer").disabled = true; message("", "Envoi…");
+  try {
+    const r = await fetch(GUICHET, { method: "POST", body: JSON.stringify(donnees) });
+    const res = await r.json();
+    if (!res.ok) throw new Error(res.erreur || "Envoi refusé.");
+    message("ok", "Merci, votre contribution est bien reçue" + (res.reference ? " (" + res.reference + ")" : "") + ". Elle sera relue par l'équipe.");
+    const terr = v("territoire"); $("#f").reset(); $("#territoire").value = terr; $("#theme").value = "Autre"; debut = 0;
+  } catch (err) {
+    message("err", err && err.message && !/fetch|network|Load failed/i.test(err.message) ? err.message : "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez.");
+  } finally { $("#envoyer").disabled = false; }
+});
+</script>
+</body>
+</html>
