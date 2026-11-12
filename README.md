@@ -26,6 +26,9 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | `territoires/<id>.json` | Projection publique d'un territoire. |
 | `territoires/<id>.geo.json` | Fond géographique (contours des communes), séparé des données métier. |
 | `technique/carte.html` | Interface de la carte technique réservée aux comptes Civipedia. Code seul : elle ne contient aucune donnée et ne fonctionne pas ouverte directement. Le script Google de l'accès réservé y injecte, à chaque ouverture, les données lues en direct dans le tableur privé. |
+| `reseau/` | Carte « Le tissage du réseau » : lieux où Civipédia agit et liens entre eux, en France et à l'international. Code et fond de carte seuls (`monde.json`, Natural Earth, domaine public) : aucune donnée. Ouverte directement, elle n'affiche qu'un message. |
+| `technique/reseau-apps-script/` | Script Google de l'accès réservé à la carte du réseau : lit la grande base en direct, calcule les lieux et les liens, et les injecte dans `reseau/index.html`. Code seul, aucune donnée. |
+| `technique/kleroterion-apps-script/` | Script Google de l'accès réservé au klèrôtèrion : lit les onglets de noms de la grande base en direct et enregistre les tirages dans l'onglet `Tirages_au_sort`. Code seul, aucune donnée. |
 | `maquette/` | Maquette de l'application Civipédia Conseil (HTML interactif, PDF, capture). Exemples fictifs uniquement, aucune donnée réelle. Copie de celle du dépôt `civipedia-conseil`. |
 | `fiche-contact/` | Fiche de contact numérique pour les salons et événements (version en ligne de la fiche papier), à remplir sur téléphone par un membre de Civipédia ou par la personne rencontrée. La page ne contient aucune donnée : les fiches partent vers le tableur privé `FICHES_CONTACT_CIVIPEDIA` par le guichet `guichet.gs` (Google Apps Script, à installer avec `installation.html`). Chaque lundi, un résumé signale les nouvelles fiches ; celles marquées OUI sont versées dans l'onglet Contacts de la base commune, au statut « À vérifier ». Adresse de la page : `fiche-contact/` (avec `?equipe` pour le mode membre, `?evenement=…&date=AAAA-MM-JJ` pour pré-remplir, par exemple dans un QR code). |
 
@@ -69,6 +72,39 @@ Intégration sur un site :
 ```
 
 Le script est facultatif : il ajuste la hauteur de l'iframe à son contenu.
+
+## Tirage au sort (klèrôtèrion)
+
+| Fichier | Rôle |
+|---|---|
+| `kleroterion/index.html` | Machine à tirer au sort inspirée du klèrôtèrion athénien (reconstitution IRAA-CNRS) : plaquettes en colonnes, cubes blancs et noirs, procès-verbal. Hasard tiré du générateur cryptographique du navigateur. Elle ne contient aucune donnée réelle (exemple fictif). Lien en pied de la page publique. |
+
+En haut de la page, « D'où viennent les noms ? » propose deux façons de remplir la machine :
+
+- **Saisir les noms** : un nom par ligne, avec un groupe facultatif après un point-virgule ;
+- **Choisir dans la grande base** (`JOURNAL_TRAITEMENT_CIVIPEDIA_LAB`) :
+  1. *type de noms* : personnes (`Contacts`), organisations (`Organisations`) ou personnes de la vue Conseil (accès réservé), ou n'importe quel onglet collé ou ouvert en .csv ;
+  2. *colonne des noms* : « Prénom + Nom » par défaut pour les personnes, sinon `Nom`, `Personne` ou toute autre colonne ;
+  3. *types retenus* : une colonne (par défaut `Statut`, valeurs « Vérifié ») et les valeurs à garder, plusieurs à la fois (par exemple `Type_acteur` : Association, Collectivité) ;
+  4. *noms* : liste à cocher, avec recherche, « Tout cocher » et « Tout décocher » ;
+  5. *colonnes de fentes* : au hasard, ou une par groupe (`Ville`, `Organisation`, `Type_acteur`…) ;
+  6. « Placer ces noms dans la machine », puis tirage. Le procès-verbal indique l'onglet, les types retenus et le nombre de noms décochés.
+
+Après le tirage, « Copier pour la grande base » donne un tableau `ID / Nom / Groupe / Rangée / Tirage` à coller dans le classeur.
+
+Les lignes collées restent dans le navigateur : la page n'envoie et n'enregistre rien, et rien n'est publié dans ce dépôt. Chaque personne garde son `ID_contact` entre parenthèses, ce qui rattache le résultat à sa fiche.
+
+**Accès réservé (usage courant)** : le script Google de `technique/kleroterion-apps-script/` sert la même page aux comptes `@civipedia.org` avec les onglets `Contacts`, `Organisations` et `Conseil_Vue_Personnes` lus en direct (sans coordonnées, LinkedIn ni notes), et le bouton « Enregistrer dans la grande base » inscrit le tirage et son procès-verbal dans l'onglet `Tirages_au_sort`. Il remplace le repère `/*__DONNEES__*/` de la page, comme pour `technique/carte.html`. Installation et évolution : `technique/kleroterion-apps-script/LISEZMOI.md`. Le copier-coller ci-dessus reste possible sans compte.
+
+## Carte du réseau (accès réservé)
+
+La carte « Le tissage du réseau » montre l'étendue du réseau : une carte du Québec à la RDC, la France et la Belgique en encart, des fils fins colorés selon la nature des liens (démarches, événements, partenaires, personnes) et cinq chiffres.
+
+- **Déploiement** : la page `reseau/index.html` est publiée par GitHub Pages à chaque fusion sur `main`.
+- **Lien direct avec la grande base** : le script Google de `technique/reseau-apps-script/` vérifie le compte `@civipedia.org`, lit la base à chaque ouverture (résultat gardé 10 minutes), calcule les lieux et les liens, et les injecte dans la page à la place du repère `/*__DONNEES__*/`, comme pour `technique/carte.html` et le klèrôtèrion.
+- **Ce que reçoit la page** : des noms de lieux (commune, territoire, pays), des comptes par lieu et des liens. Aucun nom de personne, d'organisation ou de démarche, aucun identifiant interne.
+
+Installation, règles de calcul et évolution : `technique/reseau-apps-script/LISEZMOI.md`.
 
 ## Schéma
 
