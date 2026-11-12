@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Tissage du réseau Civipédia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : une seule grande carte du réseau (du Québec à la RDC) avec la France et la Belgique agrandies en encart ; chiffres et légende en une bande sous la carte. Thème sombre unique, celui de la carte technique Civipedia. */
+:root{
+  --bg:#060b16; --surface:#0b1323; --line:#18243c; --line-strong:#27375a;
+  --ink:#e9eef8; --ink-2:#a8b5cb; --ink-3:#6f7f99;
+  --sea:#03060d; --land:#0d1830; --border:rgba(140,165,210,.18);
+  --c-projet:#4f93ff; --c-evenement:#b28cff; --c-organisation:#f5c84a; --c-personne:#2fd394;
+  --node:#e9eef8; --hub:#2fd394;
+  --f-sans:"Public Sans","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --r:8px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-sans);font-size:15px;line-height:1.5;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 32px}
+.wrap{max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#74e2b4;font-weight:700}
+h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.05;margin:2px 0 0;letter-spacing:-.01em}
+h1 span{color:#3d7bff}
+.lede{margin:0;color:var(--ink-2);font-size:1.02rem;max-width:44ch}
+.mapbox{background:var(--sea);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  background-image:radial-gradient(ellipse at 55% 35%,rgba(61,123,255,.08),transparent 60%)}
+#map{display:block;width:100%;height:auto}
+.band{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 28px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);background:#0a1222}
+.figs{display:flex;flex-wrap:wrap;gap:6px 26px}
+.figs div{display:flex;align-items:baseline;gap:7px}
+.figs b{font-size:1.45rem;font-weight:800;font-variant-numeric:tabular-nums}
+.figs span{font-size:.85rem;color:var(--ink-2)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;color:var(--ink-3)}
+.legend i{display:inline-block;width:18px;height:0;border-top:2px solid;vertical-align:middle;margin-right:6px;border-radius:2px}
+.k-projet{border-color:var(--c-projet)!important} .k-evenement{border-color:var(--c-evenement)!important}
+.k-organisation{border-color:var(--c-organisation)!important} .k-personne{border-color:var(--c-personne)!important}
+.countries{font-size:.9rem;color:var(--ink-2)}
+.countries b{color:var(--ink);font-weight:600}
+footer{font-size:.75rem;color:var(--ink-3);font-family:var(--f-mono)}
+/* SVG */
+.country{fill:var(--land);stroke:var(--border);stroke-width:.6}
+.thread{fill:none;stroke-linecap:round;opacity:.85}
+.thread.projet{stroke:var(--c-projet)} .thread.evenement{stroke:var(--c-evenement)}
+.thread.organisation{stroke:var(--c-organisation)} .thread.personne{stroke:var(--c-personne)}
+.zone{fill:var(--c-organisation);fill-opacity:.08;stroke:var(--c-organisation);stroke-opacity:.45;stroke-dasharray:3 4}
+.pt{fill:var(--node);stroke:var(--sea);stroke-width:1}
+.pt.hub{fill:var(--hub)}
+.lbl{font:600 12px var(--f-sans);fill:var(--ink);paint-order:stroke;stroke:var(--sea);stroke-width:3.5px;stroke-linejoin:round}
+.lbl.hub{fill:#74e2b4}
+.lbl.big{font-size:14px;font-weight:700}
+.inset-frame{fill:var(--sea);stroke:var(--line-strong);stroke-width:1}
+.inset-title{font:500 11px var(--f-mono);letter-spacing:.1em;fill:var(--ink-3);text-transform:uppercase}
+.focus{fill:none;stroke:var(--line-strong);stroke-width:1;stroke-dasharray:3 3}
+.connector{stroke:var(--line-strong);stroke-width:1;stroke-dasharray:3 3}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">Civipédia · le réseau</div>
+      <h1>Le tissage du <span>réseau</span></h1>
+    </div>
+    <p class="lede">Les lieux où Civipédia agit et les liens qui les relient, en France et à l'international.</p>
+  </header>
+
+  <div class="mapbox">
+    <svg id="map" viewBox="0 0 1200 680" role="img" aria-label="Carte du réseau Civipédia"></svg>
+    <div class="band">
+      <div class="figs" id="figs"></div>
+      <div class="legend">
+        <span><i class="k-projet"></i>Démarches</span>
+        <span><i class="k-evenement"></i>Événements</span>
+        <span><i class="k-organisation"></i>Partenaires</span>
+        <span><i class="k-personne"></i>Personnes</span>
+      </div>
+    </div>
+  </div>
+  <div class="countries" id="countries"></div>
+  <footer id="foot"></footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
+<script>
+/* Code seul, aucune donnée : le script Google de l'accès réservé (technique/reseau-apps-script) remplace
+ * le repère ci-dessous par « const R = {...}; », calculé en direct depuis la grande base. */
+/*__DONNEES__*/
+(async function(){
+const $ = id => document.getElementById(id);
+if (typeof R === "undefined") {
+  document.querySelector(".mapbox").innerHTML = '<p style="padding:32px;margin:0;color:var(--ink-2)">Cette carte s’ouvre depuis l’accès réservé aux comptes Civipedia : elle y est calculée en direct à partir de la grande base.</p>';
+  return;
+}
+const MONDE = await fetch("monde.json").then(r => r.json());
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const P = Object.fromEntries(R.places.map(p => [p.id, p]));
+const weight = p => p.n ? p.n.organisations + p.n.projets + p.n.evenements + p.n.personnes + p.n.territoires : 0;
+const DECL = Object.fromEntries(R.declare.map(d => [d.id, d]));
+const node = id => P[id] || DECL[id];
+const THREADS = R.edges.concat(R.hub ? R.declare.map(d => ({ a: R.hub, b: d.id, cat: "organisation" })) : []);
+const nb = k => R.places.reduce((s, p) => s + p.n[k], 0);
+const PAYS = { FR: "France", BE: "Belgique", CA: "Canada", CD: "République démocratique du Congo" };
+const pays = [...new Set(R.places.map(p => p.pays))];
+const zones = R.declare.filter(d => d.zone).map(d => d.nom);
+
+/* ---------- Chiffres ---------- */
+$("figs").innerHTML = [
+  [R.places.length, "lieux"],
+  [THREADS.length, "liens"],
+  [pays.length + zones.length, "pays et zones"],
+  [nb("organisations"), "organisations"],
+  [nb("projets"), "démarches"],
+].map(([v, l]) => `<div><b>${v}</b><span>${esc(l)}</span></div>`).join("");
+$("countries").innerHTML = "Présent en " + pays.sort((a, b) => a === "FR" ? -1 : b === "FR" ? 1 : 0)
+  .map(c => `<b>${esc(PAYS[c] || c)}</b>`).concat(zones.map(z => `<b>${esc(z)}</b>`)).join(", ").replace(/, ([^,]*)$/, " et $1") + ".";
+$("foot").textContent = `Calculé en direct depuis la base Civipédia, le ${R.genere_le.split("-").reverse().join("/")}.`;
+
+/* ---------- Géométrie ---------- */
+const W = 1200, H = 680;
+const svg = d3.select("#map");
+const FR_BOX = [[-5.3, 42.2], [8.3, 51.3]];      // encart France et Belgique
+const IN = { x: 24, y: 300, w: 470, h: 356 };
+const inFrance = ll => ll[1] >= FR_BOX[0][0] - .5 && ll[1] <= FR_BOX[1][0] + .5 && ll[0] >= FR_BOX[0][1] - .5 && ll[0] <= FR_BOX[1][1] + .5;
+// Le cadre du monde s'ajuste aux lieux réels du réseau (France incluse).
+const all = R.places.concat(R.declare).map(n => [n.ll[1], n.ll[0]]).concat([[-5.3, 42.2], [8.3, 51.3]]);
+const proj = d3.geoMercator().fitExtent([[60, 40], [W - 60, H - 40]], { type: "MultiPoint", coordinates: all });
+const projIn = d3.geoMercator().fitExtent([[IN.x + 14, IN.y + 30], [IN.x + IN.w - 14, IN.y + IN.h - 12]], { type: "MultiPoint", coordinates: FR_BOX });
+const at = (pr, ll) => pr([ll[1], ll[0]]);
+function arc(a, b, bend = .16){
+  const [x1, y1] = a, [x2, y2] = b, dx = x2 - x1, dy = y2 - y1;
+  return `M${x1},${y1} Q${(x1 + x2) / 2 - dy * bend},${(y1 + y2) / 2 + dx * bend} ${x2},${y2}`;
+}
+const rr = d3.scaleSqrt().domain([1, d3.max(R.places, weight) || 1]).range([2.2, 6.5]);
+const radius = n => n.id === R.hub ? 6.5 : DECL[n.id] ? 4 : rr(Math.max(1, weight(n)));
+const name = n => n.id === R.hub ? n.nom + " · siège" : n.nom.replace(/\s*\(.*\)$/, "");
+// Noms : les lieux les plus importants d'abord, sans chevauchement.
+function labels(g, pr, list, minW, size){
+  const placed = [];
+  list.slice().sort((a, b) => (b.id === R.hub) - (a.id === R.hub) || (DECL[b.id] ? 99 : weight(b)) - (DECL[a.id] ? 99 : weight(a))).forEach(n => {
+    if (n.id !== R.hub && !DECL[n.id] && weight(n) < minW) return;
+    const [x, y] = at(pr, n.ll), txt = name(n), w = txt.length * size * .55, r = radius(n);
+    const left = x + r + 5 + w > (pr === projIn ? IN.x + IN.w - 6 : W - 10);
+    const box = { x0: left ? x - r - 5 - w : x + r + 5, y0: y - size, x1: left ? x - r - 5 : x + r + 5 + w, y1: y + 4 };
+    if (placed.some(b => !(box.x1 < b.x0 || box.x0 > b.x1 || box.y1 < b.y0 || box.y0 > b.y1))) return;
+    placed.push(box);
+    g.append("text").attr("class", "lbl" + (n.id === R.hub ? " hub" : "") + (pr === proj ? " big" : ""))
+      .attr("x", left ? x - r - 5 : x + r + 5).attr("y", y + 4).attr("text-anchor", left ? "end" : "start").text(txt);
+  });
+}
+
+/* ---------- Monde ---------- */
+const world = svg.append("g");
+world.selectAll("path").data(MONDE.features).join("path").attr("class", "country").attr("d", d3.geoPath(proj));
+R.declare.filter(d => d.zone).forEach(d => {
+  const [x, y] = at(proj, d.ll);
+  world.append("ellipse").attr("class", "zone").attr("cx", x).attr("cy", y).attr("rx", 105).attr("ry", 58);
+});
+THREADS.filter(t => !inFrance(node(t.a).ll) || !inFrance(node(t.b).ll)).forEach(t => {
+  world.append("path").attr("class", "thread " + t.cat).attr("stroke-width", 1.4)
+    .attr("d", arc(at(proj, node(t.a).ll), at(proj, node(t.b).ll), .14));
+});
+const f0 = proj(FR_BOX[0]), f1 = proj(FR_BOX[1]);
+const fx = Math.min(f0[0], f1[0]) - 4, fy = Math.min(f0[1], f1[1]) - 4, fw = Math.abs(f1[0] - f0[0]) + 8, fh = Math.abs(f1[1] - f0[1]) + 8;
+world.append("rect").attr("class", "focus").attr("x", fx).attr("y", fy).attr("width", fw).attr("height", fh).attr("rx", 3);
+world.append("line").attr("class", "connector").attr("x1", fx).attr("y1", fy + fh).attr("x2", IN.x + IN.w).attr("y2", IN.y);
+if (R.hub) { const h = at(proj, node(R.hub).ll); world.append("circle").attr("class", "pt hub").attr("cx", h[0]).attr("cy", h[1]).attr("r", 5); }
+const dehors = R.places.concat(R.declare).filter(n => !inFrance(n.ll));
+dehors.forEach(n => {
+  const [x, y] = at(proj, n.ll);
+  world.append("circle").attr("class", "pt").attr("cx", x).attr("cy", y).attr("r", DECL[n.id] ? 4 : 3.5).append("title").text(n.nom);
+});
+labels(world, proj, dehors, 0, 14);
+
+/* ---------- Encart France et Belgique ---------- */
+const inset = svg.append("g");
+inset.append("rect").attr("class", "inset-frame").attr("x", IN.x).attr("y", IN.y).attr("width", IN.w).attr("height", IN.h).attr("rx", 6);
+inset.append("clipPath").attr("id", "clipIn").append("rect").attr("x", IN.x).attr("y", IN.y).attr("width", IN.w).attr("height", IN.h).attr("rx", 6);
+const ig = inset.append("g").attr("clip-path", "url(#clipIn)");
+ig.selectAll("path").data(MONDE.features).join("path").attr("class", "country").attr("d", d3.geoPath(projIn));
+THREADS.filter(t => inFrance(node(t.a).ll) && inFrance(node(t.b).ll)).forEach(t => {
+  ig.append("path").attr("class", "thread " + t.cat).attr("stroke-width", 1.2)
+    .attr("d", arc(at(projIn, node(t.a).ll), at(projIn, node(t.b).ll)));
+});
+const dedans = R.places.concat(R.declare).filter(n => inFrance(n.ll)).sort((a, b) => (a.id === R.hub) - (b.id === R.hub));
+dedans.forEach(n => {
+  const [x, y] = at(projIn, n.ll);
+  ig.append("circle").attr("class", "pt" + (n.id === R.hub ? " hub" : "")).attr("cx", x).attr("cy", y).attr("r", radius(n)).append("title").text(n.nom);
+});
+labels(ig, projIn, dedans, 5, 12);
+inset.append("text").attr("class", "inset-title").attr("x", IN.x + 14).attr("y", IN.y + 20).text("France et Belgique");
+})();
+</script>
+</body>
+</html>
