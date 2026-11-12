@@ -18,6 +18,20 @@
     "nom": "Communauté de communes du Pays de Pont-Château Saint-Gildas-des-Bois",
     "origine": "Fichier transmis par Samuel Tiercelin-Moreau, mail du 13/10/2026"
    }
-  ]
+  ],
+  "une": {
+   "projet": "ACT-002",
+   "onglet": "WoodyBus",
+   "surtitre": "Crossac · écomobilité scolaire",
+   "titre": "Le WoodyBus, le vélobus des écoles de Crossac",
+   "texte": "Deux itinéraires à vélo, au départ du garage des WoodyBus, pour aller à l'école Montfort et à l'école Condorcet. Retrouvez les arrêts sur la carte et inscrivez votre enfant, ou proposez-vous comme conducteur ou accompagnateur.",
+   "credit": "Projet animé par Samuel Tiercelin-Moreau, à la demande de la commune de Crossac.",
+   "inscription": {
+    "url": "https://forms.cloud.microsoft/pages/responsepage.aspx?id=CzW3hzuNrk-u9QDR-cjtfKsmyKX08QRGqL8tKzHP0tFURVk3U1dIVFQyTEI0Wlg4NEc0UUs5TDEzRCQlQCN0PWcu",
+    "bouton": "S'inscrire au WoodyBus",
+    "bouton_court": "S'inscrire",
+    "texte": "Année scolaire 2026-2027 : enfants des écoles Montfort et Condorcet pour les trajets du lundi et du vendredi, et adultes qui conduisent ou accompagnent. Formulaire de la commune de Crossac (Microsoft Forms)."
+   }
+  }
  }
 ]

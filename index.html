@@ -65,6 +65,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .legend{position:absolute;left:10px;bottom:10px;display:flex;flex-direction:column;gap:4px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--ink-2);max-width:calc(100% - 20px)}
 .legend div{display:flex;align-items:center;gap:8px}
 .legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.hint[hidden]{display:none}
+@media (max-width:620px){.legend{font-size:11px;padding:6px 8px;gap:2px}}
 .hint{position:absolute;left:10px;top:10px;font-size:12px;color:var(--ink-3);background:rgba(255,255,255,.9);border-radius:6px;padding:4px 8px}
 .bub{cursor:pointer}
 .bub:focus{outline:none}
@@ -282,16 +284,74 @@ fieldset.field{border:0;padding:0;margin:0}
 .insc p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px;max-width:70ch}
 .insc .go{align-self:flex-start;display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;border-radius:9px;padding:10px 16px}
 .insc iframe{width:100%;height:720px;border:1px solid var(--line);border-radius:var(--r);background:#fff}
-@media (max-width:520px){.insc iframe{display:none}.topbar{flex-wrap:wrap}}
+.insc-btn[hidden]{display:none}
+@media (max-width:520px){.topbar{flex-wrap:wrap}}
+
+/* Deux vues : le projet à la une (carte, inscription, frise), puis le territoire en détail */
+.pages{display:inline-flex;border:1px solid var(--line-strong);border-radius:9px;overflow:hidden}
+.pages[hidden]{display:none}
+.pages button{border:0;background:var(--bg);padding:7px 12px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink-2)}
+.pages button+button{border-left:1px solid var(--line-strong)}
+.pages button[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue-ink)}
+.une-head{padding-block:28px 6px}
+.une-head .kick{margin:0;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-ink)}
+.une-head h1{margin:6px 0 0;font-size:clamp(34px,6vw,54px);font-weight:800;letter-spacing:-.02em;line-height:1.02;text-wrap:balance}
+.une-head p{margin:10px 0 0;color:var(--ink-2);max-width:62ch;font-size:16px}
+.cta{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--blue-soft)}
+.cta .go{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:800;font-size:17px;border-radius:10px;padding:13px 22px}
+.cta .go:hover{background:var(--blue-ink)}
+.cta p{margin:0;flex:1;min-width:16rem;color:var(--ink-2);font-size:14px}
+.credit{margin:10px 2px 0;font-size:13px;color:var(--ink-3)}
+.credit[hidden]{display:none}
+.frise{margin-top:28px}
+.frise h2{margin:0;font-size:20px}
+.frise > p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px}
+.fr-track{position:relative;margin-top:14px;display:flex;gap:14px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x proximity}
+.fr-track::before{content:"";position:absolute;left:0;right:0;top:27px;height:3px;background:var(--line-strong);min-width:100%}
+.fr-it{position:relative;flex:0 0 220px;scroll-snap-align:start;display:flex;flex-direction:column;gap:6px;text-align:left;border:0;background:none;padding:0;cursor:pointer;color:inherit;font:inherit}
+.fr-it .dot{width:16px;height:16px;border-radius:50%;background:var(--k-evenement);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--k-evenement);margin:13px 0 4px 4px;z-index:1}
+.fr-it .card{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-height:112px}
+.fr-it .d{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--k-evenement)}
+.fr-it .t{font-weight:700;line-height:1.3}
+.fr-it .w{font-size:12.5px;color:var(--ink-3)}
+.fr-it.passe .dot{background:var(--line-strong);box-shadow:0 0 0 2px var(--line-strong)}
+.fr-it.passe .card{opacity:.72}
+.fr-it.passe .d{color:var(--ink-3)}
+.fr-it:hover .card,.fr-it:focus-visible .card{border-color:var(--k-evenement)}
+.fr-today{flex:0 0 auto;align-self:flex-start;margin-top:8px;z-index:1;background:var(--blue);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:4px 8px;white-space:nowrap}
+.fr-empty{color:var(--ink-3);font-size:14px}
+.voir-tout{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px;color:var(--ink-2);font-size:14px}
+.voir-tout button{border:1px solid var(--line-strong);background:var(--bg);border-radius:9px;padding:9px 14px;font-weight:700;cursor:pointer;color:var(--blue-ink)}
 </style>
 
 <div class="wrap">
   <div class="topbar">
     <div class="brand"><b>Civipedia</b> · carte territoriale</div>
     <div class="topbar-r">
+      <div class="pages" id="pages" role="group" aria-label="Vue" hidden>
+        <button type="button" data-page="une" id="page-une" aria-pressed="true"></button>
+        <button type="button" data-page="tout" id="page-tout" aria-pressed="false"></button>
+      </div>
       <label class="terr" for="terr">Territoire <select id="terr"></select></label>
-      <a class="insc-btn" href="#inscription" id="insc-top">S'inscrire au vélobus</a>
+      <a class="insc-btn" href="#inscription" id="insc-top" hidden></a>
     </div>
+  </div>
+
+  <div id="une" hidden>
+    <section class="une-head">
+      <p class="kick" id="une-kick"></p>
+      <h1 id="une-titre"></h1>
+      <p id="une-texte"></p>
+    </section>
+    <div id="slot-une"></div>
+    <section class="cta" id="inscription" hidden></section>
+    <p class="credit" id="une-credit" hidden></p>
+    <section class="frise" aria-labelledby="frise-title">
+      <h2 id="frise-title">Ce qui s'est passé, ce qui arrive</h2>
+      <p>Les événements publiés sur la carte et dans la base commune Civipédia. Touchez un événement pour le détail.</p>
+      <div class="fr-track" id="frise" tabindex="0" aria-label="Frise des événements, défilement horizontal"></div>
+    </section>
+    <div class="voir-tout"><span id="voir-tout-txt"></span><button type="button" id="voir-tout">Voir tout le territoire ›</button></div>
   </div>
 
   <section class="hero">
@@ -319,6 +379,7 @@ fieldset.field{border:0;padding:0;margin:0}
     </div>
   </section>
 
+  <div id="slot-tout"></div>
   <section class="main">
     <div class="mapbox" id="mapbox">
       <svg id="map" role="img" aria-label="Carte du territoire"></svg>
@@ -423,14 +484,6 @@ fieldset.field{border:0;padding:0;margin:0}
     </form>
   </section>
 
-  <section class="insc" id="inscription" aria-labelledby="insc-title">
-    <div>
-      <h2 id="insc-title">S'inscrire au vélobus de Crossac</h2>
-      <p>Année scolaire 2026-2027 : inscription des enfants des écoles Montfort et Condorcet pour le vélobus du lundi et du vendredi, et des adultes qui conduisent ou accompagnent. Formulaire de la commune de Crossac, sur Microsoft Forms.</p>
-    </div>
-    <a class="go" href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=CzW3hzuNrk-u9QDR-cjtfKsmyKX08QRGqL8tKzHP0tFURVk3U1dIVFQyTEI0Wlg4NEc0UUs5TDEzRCQlQCN0PWcu" target="_blank" rel="noopener">Ouvrir le formulaire d'inscription au vélobus</a>
-    <iframe src="https://forms.cloud.microsoft/pages/responsepage.aspx?id=CzW3hzuNrk-u9QDR-cjtfKsmyKX08QRGqL8tKzHP0tFURVk3U1dIVFQyTEI0Wlg4NEc0UUs5TDEzRCQlQCN0PWcu&embed=true" title="Formulaire d'inscription au vélobus de Crossac" loading="lazy" allowfullscreen></iframe>
-  </section>
   </div>
 
   <section id="themeview" hidden aria-live="polite"></section>
@@ -457,6 +510,7 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt
 const norm = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 const fmtDate = d => d ? new Date(d + "T12:00:00").toLocaleDateString("fr-FR", {day:"numeric",month:"long",year:"numeric"}) : "";
 
+let terrS = 1;
 let T = null, GEO = null, byId = {}, liensBy = {}, OBSX = {}, INDX = {};
 const st = { cats:new Set(ORDER), dom:"", zone:"", q:"", commune:null };
 
@@ -469,19 +523,18 @@ async function boot(){
   catch(e){ $("#list").innerHTML = `<div class="state">Les données du territoire n'ont pas pu être chargées. Rechargez la page.</div>`; return; }
   const sel = $("#terr");
   sel.innerHTML = reg.map(t => `<option value="${esc(t.id)}">${esc(t.nom)}</option>`).join("");
-  const want = (location.hash || "").slice(1);
+  const [want, vue] = (location.hash || "").slice(1).split("/");
   const first = reg.find(t => t.id === want) || reg[0];
   sel.value = first.id;
   sel.onchange = () => { const t = reg.find(x => x.id === sel.value); location.hash = t.id; openTerritory(t); };
-  await openTerritory(first);
+  await openTerritory(first, vue === "tout" ? "tout" : "une");
 }
 
-async function openTerritory(entry){
+async function openTerritory(entry, page = "une"){
   [T, GEO] = await Promise.all([loadJSON(entry.data), loadJSON(entry.geo)]);
   byId = Object.fromEntries(T.items.map(i => [i.id, i]));
   OBSX = Object.fromEntries((T.observations || []).map(o => [o.id, o]));
   INDX = Object.fromEntries((T.indicateurs || []).map(i => [i.id, i]));
-  showHome(false);
   liensBy = {};
   for (const l of T.liens) { (liensBy[l.a] ||= []).push({other:l.b, t:l.t, dir:1}); (liensBy[l.b] ||= []).push({other:l.a, t:l.t, dir:-1}); }
   Object.assign(st, { cats:new Set(ORDER), dom:"", zone:"", q:"", commune:null });
@@ -491,8 +544,81 @@ async function openTerritory(entry){
   const lg = $("#tlogos"), logos = entry.logos || [];
   lg.hidden = !logos.length;
   lg.innerHTML = logos.length ? `<span>Avec</span>` + logos.map(l => `<div class="plate" title="${esc(l.nom)}"><img src="${esc(l.src)}" alt="${esc(l.alt)}" loading="lazy"></div>`).join("") : "";
-  setupMap(); renderStatic(); render();
+  UNE = entry.une && byId[entry.une.projet] ? entry.une : null;
+  renderUne(); setupMap(); renderStatic();
+  showPage(UNE ? page : "tout");
 }
+
+/* ---------- Vue « à la une » : un projet du territoire, sa carte, son inscription, la frise ---------- */
+let UNE = null, PAGE = "tout", FOCUS = null;
+function focusIds(){
+  // le projet et les lieux et événements qui lui sont reliés
+  const ids = new Set([UNE.projet]);
+  for (const l of liensBy[UNE.projet] || []) { const o = byId[l.other]; if (o && (o.k === "ressource" || o.k === "evenement")) ids.add(o.id); }
+  return ids;
+}
+function renderUne(){
+  $("#pages").hidden = !UNE;
+  if (!UNE) $("#une-credit").hidden = true;
+  const ib = $("#insc-top"), insc = UNE && UNE.inscription;
+  ib.hidden = !insc; $("#inscription").hidden = !insc;
+  if (!UNE) return;
+  const pr = byId[UNE.projet];
+  $("#page-une").textContent = UNE.onglet || pr.nom;
+  $("#page-tout").textContent = "Tout " + T.territoire.nom;
+  $("#une-kick").textContent = UNE.surtitre || T.territoire.nom;
+  $("#une-titre").textContent = UNE.titre || pr.nom;
+  $("#une-texte").textContent = UNE.texte || pr.desc || "";
+  if (insc) {
+    ib.textContent = insc.bouton_court || insc.bouton;
+    $("#inscription").innerHTML = `<a class="go" href="${esc(insc.url)}" target="_blank" rel="noopener">${esc(insc.bouton)}</a><p>${esc(insc.texte || "")}</p>`;
+  }
+  $("#une-credit").hidden = !UNE.credit; $("#une-credit").textContent = UNE.credit || "";
+  $("#voir-tout-txt").textContent = `Acteurs, lieux, projets, chiffres et questions suivies : tout ce que la carte connaît de ${T.territoire.nom}.`;
+  renderFrise();
+}
+function showPage(page){
+  PAGE = page;
+  const une = page === "une" && UNE;
+  $("#une").hidden = !une; $("#home").hidden = !!une; $(".hero").hidden = !!une; $("#themeview").hidden = true;
+  $("#page-une").setAttribute("aria-pressed", String(!!une)); $("#page-tout").setAttribute("aria-pressed", String(!une));
+  $(une ? "#slot-une" : "#slot-tout").after($(".main"));
+  FOCUS = une ? focusIds() : null;
+  st.commune = null;
+  const h = T.territoire.id + (une || !UNE ? "" : "/tout");
+  if ((location.hash || "").slice(1) !== h) history.replaceState(null, "", "#" + h);
+  requestAnimationFrame(() => { fitHome(); render(); });
+}
+document.querySelectorAll("[data-page]").forEach(b => b.onclick = () => { showPage(b.dataset.page); window.scrollTo({top:0}); });
+$("#voir-tout").onclick = () => { showPage("tout"); window.scrollTo({top:0}); };
+
+async function renderFrise(){
+  if (BASE === undefined) { try { BASE = await loadJSON(TABLEAU + "data.json"); } catch(_) { BASE = null; } }
+  const today = new Date().toISOString().slice(0, 10);
+  const noms = new Set([T.territoire.nom, ...T.communes.map(c => c.nom)].map(norm));
+  const evs = T.items.filter(i => i.k === "evenement" && i.debut).map(i => ({ id: i.id, titre: i.nom, debut: i.debut, fin: i.fin || i.debut, ou: (byId[i.lieu] || {}).nom || i.commune || "" }));
+  const vus = new Set(evs.map(e => norm(e.titre) + e.debut));
+  for (const e of (BASE && BASE.evenements) || []) {
+    if (e.categorie === "equipe" || !noms.has(norm(e.territoire)) || vus.has(norm(e.titre) + e.debut)) continue;
+    evs.push({ titre: e.titre, debut: e.debut, fin: e.fin || e.debut, ou: e.lieu || e.territoire, url: e.src && e.src.url });
+  }
+  evs.sort((a, b) => a.debut.localeCompare(b.debut));
+  const box = $("#frise");
+  if (!evs.length) { box.innerHTML = `<p class="fr-empty">Aucun événement publié pour l'instant.</p>`; return; }
+  const jour = e => { const f = d => new Date(d + "T12:00:00").toLocaleDateString("fr-FR", {day:"numeric", month:"short", year:"numeric"}); return e.fin && e.fin !== e.debut ? `${f(e.debut)} → ${f(e.fin)}` : f(e.debut); };
+  let h = "", mis = false;
+  for (const e of evs) {
+    const passe = e.fin < today;
+    if (!passe && !mis) { h += `<span class="fr-today" id="fr-today">Aujourd'hui</span>`; mis = true; }
+    const inner = `<span class="dot" aria-hidden="true"></span><span class="card"><span class="d">${esc(jour(e))}</span><span class="t">${esc(e.titre)}</span>${e.ou ? `<span class="w">${esc(e.ou)}</span>` : ""}</span>`;
+    h += e.id ? `<button type="button" class="fr-it${passe ? " passe" : ""}" data-id="${esc(e.id)}">${inner}</button>`
+              : `<a class="fr-it${passe ? " passe" : ""}" href="${esc(e.url || TABLEAU)}" target="_blank" rel="noopener">${inner}</a>`;
+  }
+  if (!mis) h += `<span class="fr-today" id="fr-today">Aujourd'hui</span>`;
+  box.innerHTML = h;
+  const t = $("#fr-today"); if (t) box.scrollLeft = Math.max(0, t.offsetLeft - 260);
+}
+$("#frise").addEventListener("click", e => { const b = e.target.closest("button[data-id]"); if (b) openSheet(b.dataset.id); });
 
 /* ---------- 2. Filtres et recherche ---------- */
 function haystack(i){
@@ -503,6 +629,7 @@ function haystack(i){
   return norm(parts.join(" "));
 }
 function pass(i, skip){
+  if (FOCUS && !FOCUS.has(i.id)) return false;
   if (skip !== "cat" && !st.cats.has(i.k)) return false;
   if (skip !== "dom" && st.dom && !(i.cats||[]).includes(st.dom)) return false;
   if (skip !== "zone" && st.zone && i.zone !== st.zone) return false;
@@ -527,9 +654,7 @@ function renderStatic(){
   zones.sort((a,b) => zorder(a) - zorder(b));
   $("#fzone").innerHTML = `<option value="">Tout le territoire</option>` + zones.map(z => `<option>${esc(z)}</option>`).join("");
 
-  $("#legend").innerHTML = ORDER.filter(k => k !== "projet").map(k => `<div><i style="background:${CATS[k].color}"></i>${CATS[k].label}</div>`).join("") +
-    (T.traces || []).map(t => `<div><i style="background:${esc(t.couleur)};height:4px;border-radius:2px"></i>${esc(t.nom)}</div>`).join("") +
-    `<div style="color:var(--ink-3)">Cercle = tout ce qui est rattaché à une commune</div>`;
+
 
   renderGlance(); renderCoverage(); renderContrib(); renderBase();
   $("#foot").innerHTML = `<span>Données publiques, instantané du ${esc(String(T.instantane).split(" ")[0])}. Seules les informations établies par une source sont affichées.</span><span><a href="kleroterion/">Tirage au sort (klèrôtèrion)</a> · Civipedia</span>`;
@@ -545,9 +670,18 @@ function render(){
   $("#fdom").value = st.dom; $("#fzone").value = st.zone;
 
   const vis = T.items.filter(i => pass(i));
+  renderLegend();
   drawMarkers(vis);
   renderList(vis);
   renderTopics();
+}
+
+function renderLegend(){
+  const tr = (T.traces || []).filter(t => !FOCUS || t.projet === UNE.projet).map(t => `<div><i style="background:${esc(t.couleur)};height:4px;border-radius:2px"></i>${esc(t.nom)}</div>`).join("");
+  $("#legend").innerHTML = FOCUS ? tr + `<div><i style="background:#fff;border:2px solid #111827;box-sizing:border-box"></i>Arrêt, école, garage</div>`
+    : ORDER.filter(k => k !== "projet").map(k => `<div><i style="background:${CATS[k].color}"></i>${CATS[k].label}</div>`).join("") + tr +
+      `<div style="color:var(--ink-3)">Cercle = tout ce qui est rattaché à une commune</div>`;
+  $("#hint").hidden = !!FOCUS;
 }
 
 function renderList(vis){
@@ -557,7 +691,8 @@ function renderList(vis){
     head = `<button class="back" type="button" id="back">← Tout</button><div><h2>${esc(st.commune)}</h2><p>${rows.length} élément${rows.length>1?"s":""} rattaché${rows.length>1?"s":""} à cette commune</p></div>`;
   } else {
     const off = vis.filter(i => !i.com && !i.pt).length;
-    head = `<div><h2>${vis.length} élément${vis.length>1?"s":""}</h2><p>${off ? `dont ${off} sans point sur la carte (services, projets, organismes couvrant le territoire)` : "Tous situés sur la carte"}</p></div>`;
+    head = FOCUS ? `<div><h2>${esc(byId[UNE.projet].nom)}</h2><p>${vis.length - off} lieu${vis.length - off > 1 ? "x" : ""} sur la carte. Touchez-en un pour le détail.</p></div>`
+      : `<div><h2>${vis.length} élément${vis.length>1?"s":""}</h2><p>${off ? `dont ${off} sans point sur la carte (services, projets, organismes couvrant le territoire)` : "Tous situés sur la carte"}</p></div>`;
   }
   $("#sidehead").innerHTML = head;
   const b = $("#back"); if (b) b.onclick = () => { st.commune = null; render(); };
@@ -565,8 +700,8 @@ function renderList(vis){
   $("#list").innerHTML = ORDER.map(k => {
     const g = rows.filter(i => i.k === k).sort((a,b) => a.nom.localeCompare(b.nom,"fr"));
     if (!g.length) return "";
-    return `<div class="grp"><i style="background:${CATS[k].color}"></i>${CATS[k].label} · ${g.length}</div>` + g.map(i => `
-      <button type="button" class="it" data-id="${esc(i.id)}"><div class="t">${esc(i.nom)}</div><div class="s">${esc(subline(i))}</div></button>`).join("");
+    return `<div class="grp"><i style="background:${CATS[k].color}"></i>${FOCUS && k === "ressource" ? "Arrêts, écoles et garage" : CATS[k].label} · ${g.length}</div>` + g.map(i => `
+      <button type="button" class="it" data-id="${esc(i.id)}"><div class="t">${esc(FOCUS ? i.nom.replace(/^Arrêt [^–]+– /, "") : i.nom)}</div><div class="s">${esc(FOCUS ? i.desc || subline(i) : subline(i))}</div></button>`).join("");
   }).join("");
 }
 function subline(i){
@@ -610,8 +745,17 @@ function setupMap(){
 }
 function fitHome(){
   const r = svg.getBoundingClientRect(), R = T.territoire.rayon_km * 1.12;
-  const s = Math.min(r.width, r.height) / (2*R);
-  home = {s, tx:r.width/2, ty:r.height/2}; view = {...home}; applyView();
+  terrS = Math.min(r.width, r.height) / (2*R);
+  home = {s:terrS, tx:r.width/2, ty:r.height/2};
+  if (FOCUS) { // vue à la une : cadrer les tracés et les lieux du projet
+    const pts = [...(T.traces || []).filter(t => t.projet === UNE.projet).flatMap(t => t.pts), ...[...FOCUS].map(id => byId[id].pt).filter(Boolean)].map(([la, lo]) => P(la, lo));
+    if (pts.length) {
+      const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]), x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+      const s = Math.min(r.width / ((x1 - x0) * 1.4 || 1), r.height / ((y1 - y0) * 1.3 || 1), terrS * 40);
+      home = {s, tx: r.width/2 - (x0 + x1)/2 * s, ty: r.height/2 - (y0 + y1)/2 * s};
+    }
+  }
+  view = {...home}; applyView();
 }
 function applyView(){ gBase.setAttribute("transform", `translate(${view.tx},${view.ty}) scale(${view.s})`); if (T) drawMarkers(T.items.filter(i => pass(i))); }
 const scr = ([x,y]) => [view.tx + x*view.s, view.ty + y*view.s];
@@ -657,8 +801,8 @@ function drawMarkers(vis){
   }
   for (const i of dots) {
     const [x,y] = scr(P(i.pt[0], i.pt[1]));
-    h += `<g class="bub" tabindex="0" role="button" data-id="${esc(i.id)}" aria-label="${esc(i.nom)}"><circle class="hit" cx="${x}" cy="${y}" r="8" fill="${CATS[i.k].hex}" stroke="#ffffff" stroke-width="2"/>
-      ${view.s >= 140 ? `<text x="${x+12}" y="${y+4}" font-size="11.5" fill="#111827" stroke="#ffffff" stroke-width="3" paint-order="stroke">${esc(i.nom)}</text>` : ""}</g>`;
+    h += `<g class="bub" tabindex="0" role="button" data-id="${esc(i.id)}" aria-label="${esc(i.nom)}"><circle class="hit" cx="${x}" cy="${y}" r="${FOCUS ? 7 : 8}" fill="${FOCUS ? "#ffffff" : CATS[i.k].hex}" stroke="${FOCUS ? "#111827" : "#ffffff"}" stroke-width="${FOCUS ? 2.5 : 2}"/>
+      ${view.s >= 140 ? `<text x="${x+12}" y="${y+4}" font-size="11.5" fill="#111827" stroke="#ffffff" stroke-width="3" paint-order="stroke">${esc(FOCUS ? i.nom.replace(/^Arrêt [^–]+– /, "") : i.nom)}</text>` : ""}</g>`;
   }
   gMark.innerHTML = h;
 }
@@ -685,7 +829,7 @@ const endPtr = e => { ptrs.delete(e.pointerId); svg.classList.remove("drag");
   if (drag && !moved && e.type === "pointerup") clickAt(drag.target); if (!ptrs.size) drag = null; };
 svg.addEventListener("pointerup", endPtr); svg.addEventListener("pointercancel", endPtr);
 svg.addEventListener("wheel", e => { e.preventDefault(); const r = svg.getBoundingClientRect(); zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY*0.0015)); }, {passive:false});
-function zoomAt(px, py, f){ const s = Math.max(home.s*0.6, Math.min(home.s*40, view.s*f)); f = s/view.s;
+function zoomAt(px, py, f){ const s = Math.max(terrS*0.6, Math.min(terrS*40, view.s*f)); f = s/view.s;
   view.tx = px - (px - view.tx)*f; view.ty = py - (py - view.ty)*f; view.s = s; applyView(); $("#hint").hidden = true; }
 $("#zin").onclick = () => { const r = svg.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, 1.6); };
 $("#zout").onclick = () => { const r = svg.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, 1/1.6); };
@@ -908,7 +1052,7 @@ function renderCoverage(){
 }
 
 /* Page thème */
-function showHome(scroll){ $("#home").hidden = false; $("#themeview").hidden = true; $(".hero").hidden = false; if (scroll) window.scrollTo({top:0}); }
+function showHome(scroll){ if (PAGE !== "tout") showPage("tout"); $("#home").hidden = false; $("#themeview").hidden = true; $(".hero").hidden = false; if (scroll) window.scrollTo({top:0}); }
 function openTheme(th){
   const items = T.items.filter(i => inTheme(i, th));
   const obs = (T.observations || []).filter(o => inTheme(o, th));
@@ -1077,7 +1221,7 @@ boot();
 if ('serviceWorker' in navigator && window.top === window.self) {
   window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
 }
-document.getElementById('insc-top').addEventListener('click',function(e){e.preventDefault();var h=document.getElementById('home');if(h&&h.hidden&&typeof showHome==='function')showHome(false);document.getElementById('inscription').scrollIntoView({behavior:'smooth'});});
+document.getElementById('insc-top').addEventListener('click',function(e){e.preventDefault();if(PAGE!=='une')showPage('une');document.getElementById('inscription').scrollIntoView({behavior:'smooth',block:'center'});});
 </script>
 <style>
 .pwa-bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9999;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--line-strong);border-radius:14px;box-shadow:0 8px 28px rgba(17,24,39,.18);font-size:14px;line-height:1.4}

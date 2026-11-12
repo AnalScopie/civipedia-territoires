@@ -43,6 +43,7 @@ Aucune carte n'est publiée sans passer `python3 verifier_territoires.py` (ou `p
 - la structure est incomplète : clé absente, identifiant en double, nature inconnue, événement sans date, élément sans source web ;
 - une relation ou un renvoi (`lieu`, `organisateur`) désigne un élément absent de la carte ;
 - un élément est dit « Sans adresse sur la carte » alors qu'un point est publié ;
+- le projet à la une est absent de la carte, ou son inscription n'a pas d'adresse https ;
 - un tracé renvoie à un projet absent, n'a pas de couleur valide ou sort du périmètre ;
 - une observation n'est ni FAIT ni VÉRIFIÉ, ou un chiffre en attente publie sa valeur ;
 - une adresse électronique, un numéro de téléphone ou un identifiant interne de la base commune (`MASE-…`, `OPP-…`, `APP-…`, `VEI-…`) apparaît ;
@@ -144,6 +145,7 @@ Liste d'objets :
 | `data` | Chemin du fichier de données. |
 | `geo` | Chemin du fond géographique. |
 | `instantane` | Date et nature de l'instantané publié. |
+| `une` | Facultatif : projet mis en avant à l'ouverture de la carte. `projet` (identifiant d'un projet publié), `onglet`, `surtitre`, `titre`, `texte`, `credit` (petite mention sous le bouton d'inscription, par exemple la personne qui anime le projet, avec son accord), et `inscription` (`url`, `bouton`, `bouton_court`, `texte`). La page s'ouvre alors sur ce projet : carte cadrée sur ses lieux et ses tracés, bouton d'inscription juste en dessous, puis frise des événements passés et à venir. Le reste (recherche, chiffres, couverture, contributions) passe dans l'onglet « Tout <territoire> », adresse `#<id>/tout`. |
 
 ### `territoires/<id>.json`
 
