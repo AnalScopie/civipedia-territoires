@@ -31,7 +31,33 @@
     "bouton": "S'inscrire au WoodyBus",
     "bouton_court": "S'inscrire",
     "texte": "Année scolaire 2026-2027 : enfants des écoles Montfort et Condorcet pour les trajets du lundi et du vendredi, et adultes qui conduisent ou accompagnent. Formulaire de la commune de Crossac (Microsoft Forms)."
-   }
+   },
+   "donnees": [
+    {
+     "theme": "Accès à l'eau",
+     "libelle": "L'eau"
+    },
+    {
+     "theme": "Démographie et dynamiques territoriales",
+     "libelle": "Les habitants"
+    },
+    {
+     "theme": "Mobilités",
+     "libelle": "Les déplacements"
+    },
+    {
+     "theme": "Santé",
+     "libelle": "La santé"
+    },
+    {
+     "theme": "Emploi",
+     "libelle": "L'emploi"
+    },
+    {
+     "theme": "Pouvoir d'achat",
+     "libelle": "Le pouvoir d'achat"
+    }
+   ]
   }
  }
 ]
