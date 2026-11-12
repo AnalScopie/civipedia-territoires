@@ -1010,4 +1010,56 @@ if ('serviceWorker' in navigator && window.top === window.self) {
   window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
 }
 </script>
+<style>
+.pwa-bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9999;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--line-strong);border-radius:14px;box-shadow:0 8px 28px rgba(17,24,39,.18);font-size:14px;line-height:1.4}
+.pwa-bar img{width:40px;height:40px;border-radius:9px;flex:none}
+.pwa-bar .t{flex:1;min-width:0}
+.pwa-bar .t b{display:block;font-size:15px}
+.pwa-bar .t span{color:var(--ink-2)}
+.pwa-bar .go{background:var(--blue);color:#fff;border:0;border-radius:9px;padding:9px 14px;font-weight:700;cursor:pointer;flex:none}
+.pwa-bar .x{background:none;border:0;color:var(--ink-3);font-size:22px;line-height:1;padding:4px 6px;cursor:pointer;flex:none}
+</style>
+<script>
+/* Proposition d'installation à l'ouverture. Jamais dans une iframe, jamais si l'appli est déjà ouverte en mode installé.
+   « Plus tard » : la proposition ne revient pas avant 7 jours sur cet appareil. */
+(function(){
+  if (window.top !== window.self) return;
+  var installed = (window.matchMedia && matchMedia('(display-mode: standalone)').matches) || navigator.standalone === true;
+  if (installed) return;
+  var KEY = 'civipedia-pwa-plus-tard';
+  try { var t = +localStorage.getItem(KEY); if (t && Date.now() - t < 7*864e5) return; } catch(e) {}
+  var ua = navigator.userAgent || '';
+  var ios = /iphone|ipad|ipod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var deferred = null, bar = null;
+  function hide(later){ if (bar) { bar.remove(); bar = null; } if (later) { try { localStorage.setItem(KEY, String(Date.now())); } catch(e) {} } }
+  function show(html, withBtn){
+    if (bar) return;
+    bar = document.createElement('div'); bar.className = 'pwa-bar'; bar.setAttribute('role','dialog'); bar.setAttribute('aria-label','Installer l\u2019application');
+    bar.innerHTML = '<img src="icones/icone-192.png" alt=""><div class="t"><b>Installer l\u2019appli Civipedia</b><span>' + html + '</span></div>'
+      + (withBtn ? '<button class="go" type="button">Installer</button>' : '')
+      + '<button class="x" type="button" aria-label="Plus tard">\u00d7</button>';
+    document.body.appendChild(bar);
+    bar.querySelector('.x').onclick = function(){ hide(true); };
+    var go = bar.querySelector('.go');
+    if (go) go.onclick = function(){
+      if (!deferred) return;
+      deferred.prompt();
+      deferred.userChoice.then(function(c){ hide(c && c.outcome !== 'accepted'); deferred = null; });
+    };
+  }
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault(); deferred = e;
+    show('La carte sur votre écran d\u2019accueil, en un geste.', true);
+  });
+  window.addEventListener('appinstalled', function(){ hide(false); });
+  if (ios) {
+    var safari = /safari/i.test(ua) && !/crios|fxios|edgios/i.test(ua);
+    setTimeout(function(){
+      show(safari
+        ? 'Touchez <b style="display:inline">Partager</b> \u2191 puis \u00ab\u00a0Sur l\u2019écran d\u2019accueil\u00a0\u00bb.'
+        : 'Ouvrez cette page dans Safari, puis Partager \u2191 \u2192 \u00ab\u00a0Sur l\u2019écran d\u2019accueil\u00a0\u00bb.', false);
+    }, 1500);
+  }
+})();
+</script>
 </body></html>

@@ -169,3 +169,5 @@ Les fichiers de `territoires/` sont remplacés par l'export quand un changement 
 ## Application installable (PWA)
 
 La carte peut s'installer sur un téléphone comme une application (« Ajouter à l'écran d'accueil »). Fichiers : `manifest.webmanifest`, `sw.js`, `icones/`. Le service worker va toujours chercher la version en ligne d'abord ; sa copie locale ne sert que hors connexion. Il ne s'active pas quand la carte est intégrée dans un autre site (iframe).
+
+À l'ouverture, un bandeau propose l'installation : bouton « Installer » sur Android/Chrome, consigne « Partager → Sur l'écran d'accueil » sur iPhone. Il ne s'affiche ni dans une iframe, ni dans l'appli déjà installée ; fermé, il ne revient pas avant 7 jours sur l'appareil.
