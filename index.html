@@ -268,12 +268,23 @@ fieldset.field{border:0;padding:0;margin:0}
 .tlogos .plate{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;display:flex;align-items:center;height:84px}
 .tlogos img{display:block;height:100%;width:auto;max-width:240px;object-fit:contain}
 @media (max-width:520px){.tlogos .plate{height:70px}.tlogos img{max-width:170px}}
+.insc-btn{background:var(--blue);color:#fff!important;text-decoration:none;font-weight:700;font-size:13px;border-radius:8px;padding:7px 12px;white-space:nowrap}
+.topbar-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.insc{margin-top:28px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:18px;display:flex;flex-direction:column;gap:14px}
+.insc h2{margin:0;font-size:20px}
+.insc p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px;max-width:70ch}
+.insc .go{align-self:flex-start;display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;border-radius:9px;padding:10px 16px}
+.insc iframe{width:100%;height:720px;border:1px solid var(--line);border-radius:var(--r);background:#fff}
+@media (max-width:520px){.insc iframe{display:none}.topbar{flex-wrap:wrap}}
 </style>
 
 <div class="wrap">
   <div class="topbar">
     <div class="brand"><b>Civipedia</b> · carte territoriale</div>
-    <label class="terr" for="terr">Territoire <select id="terr"></select></label>
+    <div class="topbar-r">
+      <label class="terr" for="terr">Territoire <select id="terr"></select></label>
+      <a class="insc-btn" href="#inscription" id="insc-top">S'inscrire</a>
+    </div>
   </div>
 
   <section class="hero">
@@ -397,6 +408,15 @@ fieldset.field{border:0;padding:0;margin:0}
         <p>Votre message est enregistré avec une référence. L'équipe le compare aux sources existantes, puis décide de l'ajouter à la carte, de le vérifier auprès d'une source publique ou de le garder comme information de contexte.</p>
       </div>
     </form>
+  </section>
+
+  <section class="insc" id="inscription" aria-labelledby="insc-title">
+    <div>
+      <h2 id="insc-title">S'inscrire</h2>
+      <p>Pour vous inscrire, remplissez le formulaire Civipedia. Il s'ouvre sur le site Microsoft Forms.</p>
+    </div>
+    <a class="go" href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=CzW3hzuNrk-u9QDR-cjtfKsmyKX08QRGqL8tKzHP0tFURVk3U1dIVFQyTEI0Wlg4NEc0UUs5TDEzRCQlQCN0PWcu" target="_blank" rel="noopener">Ouvrir le formulaire d'inscription</a>
+    <iframe src="https://forms.cloud.microsoft/pages/responsepage.aspx?id=CzW3hzuNrk-u9QDR-cjtfKsmyKX08QRGqL8tKzHP0tFURVk3U1dIVFQyTEI0Wlg4NEc0UUs5TDEzRCQlQCN0PWcu&embed=true" title="Formulaire d'inscription" loading="lazy" allowfullscreen></iframe>
   </section>
   </div>
 
@@ -1009,6 +1029,7 @@ boot();
 if ('serviceWorker' in navigator && window.top === window.self) {
   window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); });
 }
+document.getElementById('insc-top').addEventListener('click',function(e){e.preventDefault();var h=document.getElementById('home');if(h&&h.hidden&&typeof showHome==='function')showHome(false);document.getElementById('inscription').scrollIntoView({behavior:'smooth'});});
 </script>
 <style>
 .pwa-bar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:9999;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border:1px solid var(--line-strong);border-radius:14px;box-shadow:0 8px 28px rgba(17,24,39,.18);font-size:14px;line-height:1.4}
