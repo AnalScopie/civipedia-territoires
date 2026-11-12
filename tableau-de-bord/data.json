@@ -1,34 +1,320 @@
 {
- "instantane": "Base Civipédia, export du 15/10/2026",
- "genere_le": "2026-10-15",
- "regles": "Projection publique : seuls les événements dont la fiche est vérifiée, des appels décrits par leur source officielle, et des comptes agrégés. Aucun nom de personne, aucune coordonnée, aucun identifiant interne.",
+ "instantane": "Base Civipédia, export du 05/11/2026",
+ "genere_le": "2026-11-05",
+ "regles": "Projection publique : événements publics vérifiés, rendez-vous de l'équipe Civipédia décrits sans nom de personne, appels décrits par leur source officielle et comptes agrégés. Aucun nom de personne, aucune coordonnée, aucun identifiant interne, aucun document interne.",
  "chiffres": [
   {
    "objet": "Personnes",
-   "nombre": 67
+   "nombre": 99
   },
   {
    "objet": "Organisations",
-   "nombre": 88
+   "nombre": 118
   },
   {
    "objet": "Territoires",
-   "nombre": 32
+   "nombre": 39
   },
   {
    "objet": "Projets",
-   "nombre": 28
+   "nombre": 58
   },
   {
    "objet": "Événements",
-   "nombre": 23
+   "nombre": 53
   },
   {
    "objet": "Relations documentées",
-   "nombre": 250
+   "nombre": 613
   }
  ],
  "evenements": [
+  {
+   "titre": "Rencontre avec Convergences citoyennes, Empreintes citoyennes et Opération Milliard",
+   "debut": "2025-02-20",
+   "fin": "2025-02-20",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Thomas N'Dem (Civipédia), 2 personnes extérieures",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Webinaire avec Empreintes citoyennes, Labo de la Fraternité et Pacte civique",
+   "debut": "2025-02-20",
+   "fin": "2025-02-20",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Thomas N'Dem (Civipédia), 1 personne extérieure",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Printemps des fragilités (3e édition)",
+   "debut": "2025-05-24",
+   "fin": "2025-05-25",
+   "lieu": "Nantes",
+   "territoire": "Nantes",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "à confirmer",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec CNCD",
+   "debut": "2026-06-18",
+   "fin": "2026-06-18",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Armelle Marès de Vismes, Christophe Dumais, Matthieu Sanchez et Thomas N'Dem (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Présentation (équipe Civipédia)",
+   "debut": "2026-06-22",
+   "fin": "2026-06-22",
+   "lieu": "Saint-Nazaire",
+   "territoire": "Saint-Nazaire",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Participation de Civipédia",
+   "projet": "MACECOTE (Matrice de coopération territoriale)",
+   "src": null
+  },
+  {
+   "titre": "Session de travail avec Cafés citoyens",
+   "debut": "2026-08-12",
+   "fin": "2026-08-12",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Thomas N'Dem (Civipédia)",
+   "projet": "Candidature Fondation Michelin « Nouveaux modèles collaboratifs »",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec IP2A",
+   "debut": "2026-08-28",
+   "fin": "2026-08-28",
+   "lieu": "Paris",
+   "territoire": "Paris",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Act4Global Impact",
+   "debut": "2026-09-09",
+   "fin": "2026-09-09",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Anne Povie, Corine Navarro et Thomas N'Dem (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre (équipe Civipédia)",
+   "debut": "2026-09-21",
+   "fin": "2026-09-21",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Anne Povie, Armelle Marès de Vismes, Corine Navarro, David Lardier et Samuel Tiercelin (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Coop-Ère",
+   "debut": "2026-09-29",
+   "fin": "2026-09-29",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Anne Povie (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Les Ateliers du Cami Salié",
+   "debut": "2026-10-01",
+   "fin": "2026-10-01",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Armelle Marès de Vismes (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Communauté d'agglomération Pau Béarn Pyrénées",
+   "debut": "2026-10-06",
+   "fin": "2026-10-06",
+   "lieu": "Pau",
+   "territoire": "Pau",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Act4Global Impact",
+   "debut": "2026-10-12",
+   "fin": "2026-10-12",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Anne Povie et Corine Navarro (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Coop-Ère",
+   "debut": "2026-10-12",
+   "fin": "2026-10-12",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Anne Povie, Christophe Dumais et Samuel Tiercelin (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre (équipe Civipédia)",
+   "debut": "2026-10-14",
+   "fin": "2026-10-14",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Armelle Marès de Vismes (Civipédia), 1 personne extérieure",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Les Ateliers du Cami Salié",
+   "debut": "2026-10-14",
+   "fin": "2026-10-14",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Armelle Marès de Vismes, Béatrice Motte-Decoop et Thomas N'Dem (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Colloque « L'enquête publique : tous concernés »",
+   "debut": "2026-10-15",
+   "fin": "2026-10-15",
+   "lieu": "Lycée François Rabelais, Dardilly (« Lyon / Dardilly (69) »)",
+   "territoire": "Dardilly",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Christophe Dumais (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Ville de Vertou",
+   "debut": "2026-10-21",
+   "fin": "2026-10-21",
+   "lieu": "En ligne",
+   "territoire": "Vertou",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Act4Global Impact",
+   "debut": "2026-10-22",
+   "fin": "2026-10-22",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Anne Povie et Thomas N'Dem (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre (équipe Civipédia)",
+   "debut": "2026-10-27",
+   "fin": "2026-10-27",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Anne Povie, Corine Navarro et Thomas N'Dem (Civipédia), 1 personne extérieure",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Coop-Ère",
+   "debut": "2026-10-29",
+   "fin": "2026-10-29",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "réalisé",
+   "participants": "Anne Povie (Civipédia), 1 personne extérieure",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec Labo de la Fraternité",
+   "debut": "2026-10-30",
+   "fin": "2026-10-30",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "à confirmer",
+   "participants": "Thomas N'Dem (Civipédia)",
+   "projet": "Récits fraternels et démocratiques – Nos jours heureux – ateliers citoyens pour un avenir désirable",
+   "src": null
+  },
   {
    "titre": "14e Forum mondial de la démocratie",
    "debut": "2026-11-02",
@@ -36,10 +322,66 @@
    "lieu": "Strasbourg",
    "territoire": "Strasbourg",
    "organisateur": "Conseil de l'Europe",
+   "categorie": "public",
+   "etat": "à confirmer",
+   "participants": "",
+   "projet": "",
    "src": {
     "nom": "Conseil de l'Europe – Appel à initiatives du 14e Forum mondial de la démocratie",
     "url": "https://rm.coe.int/appel-a-presentation-d-initiative-pour-le-forum-mondial-de-la-democrat/48802b61b5"
    }
+  },
+  {
+   "titre": "Session de travail avec Act4Global Impact",
+   "debut": "2026-11-03",
+   "fin": "2026-11-03",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "à confirmer",
+   "participants": "Anne Povie (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre (équipe Civipédia)",
+   "debut": "2026-11-05",
+   "fin": "2026-11-05",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Formation avec IHEMI",
+   "debut": "2026-11-17",
+   "fin": "2026-11-19",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Armelle Marès de Vismes (Civipédia)",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Session de travail avec Couleur Talents",
+   "debut": "2026-11-19",
+   "fin": "2026-11-19",
+   "lieu": "En ligne",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Anne Povie et Corine Navarro (Civipédia)",
+   "projet": "",
+   "src": null
   },
   {
    "titre": "Rencontres européennes de la participation 2026 (10e édition)",
@@ -48,9 +390,29 @@
    "lieu": "Parc des Expositions et des Congrès de Dijon (23-25/11) ; en ligne (26-27/11)",
    "territoire": "Dijon",
    "organisateur": "Décider ensemble ; Ville de Dijon",
+   "categorie": "public",
+   "etat": "prévu",
+   "participants": "",
+   "projet": "",
    "src": {
     "nom": "Décider ensemble – Rencontres européennes de la participation 2026",
     "url": "https://www.deciderensemble.com/rencontres-2/rencontres-2026"
+   }
+  },
+  {
+   "titre": "108e Congrès des maires et des présidents d'intercommunalité de France",
+   "debut": "2026-11-24",
+   "fin": "2026-11-26",
+   "lieu": "Parc des expositions de la Porte de Versailles, Paris",
+   "territoire": "Paris",
+   "organisateur": "Association des maires de France et des présidents d'intercommunalité (AMF)",
+   "categorie": "public",
+   "etat": "prévu",
+   "participants": "",
+   "projet": "",
+   "src": {
+    "nom": "AMF – 108e Congrès des maires et des présidents d'intercommunalité de France (2026)",
+    "url": "https://www.amf.asso.fr/m/congres26/programme.php"
    }
   },
   {
@@ -60,10 +422,53 @@
    "lieu": "Paris Expo Porte de Versailles, Pavillon 7, Paris",
    "territoire": "Paris",
    "organisateur": "",
+   "categorie": "public",
+   "etat": "prévu",
+   "participants": "",
+   "projet": "",
    "src": {
     "nom": "Salon des maires et des collectivités locales – site officiel",
     "url": "https://www.salondesmaires.com/"
    }
+  },
+  {
+   "titre": "Rencontre avec AMF",
+   "debut": "2026-11-25",
+   "fin": "2026-11-25",
+   "lieu": "Paris",
+   "territoire": "Paris",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Assemblée générale (équipe Civipédia)",
+   "debut": "2026-11-28",
+   "fin": "2026-11-28",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Participation de Civipédia",
+   "projet": "",
+   "src": null
+  },
+  {
+   "titre": "Rencontre avec AMF et Labo de la Fraternité",
+   "debut": "2026-12-10",
+   "fin": "2026-12-10",
+   "lieu": "",
+   "territoire": "",
+   "organisateur": "",
+   "categorie": "equipe",
+   "etat": "prévu",
+   "participants": "Participation de Civipédia",
+   "projet": "Récits fraternels et démocratiques – Nos jours heureux – ateliers citoyens pour un avenir désirable",
+   "src": null
   }
  ],
  "appels": [
@@ -132,23 +537,34 @@
     "nom": "Conseil de l'Europe – Appel à initiatives du 14e Forum mondial de la démocratie",
     "url": "https://rm.coe.int/appel-a-presentation-d-initiative-pour-le-forum-mondial-de-la-democrat/48802b61b5"
    }
+  },
+  {
+   "titre": "Prix de la démocratie",
+   "organisme": "Association pour le Soutien des Principes de la Démocratie Humaniste (ASPDH)",
+   "objet": "Quatre prix en 2026 : Grand Prix (avec le CESE), Démocratie locale (avec l'AMF, communes et intercommunalités), Jeunesse, Désinfox ; ouvert aux associations, clubs sportifs, collectivités, citoyens.",
+   "derniere_edition": "Édition 2026 (3e sous l'ASPDH) : clôture 28/02/2026 ; remise des prix le 18/06/2026 à Rennes",
+   "montant": "",
+   "src": {
+    "nom": "AMF – « Le Prix de la Démocratie revient pour une nouvelle édition ! »",
+    "url": "https://www.amf.asso.fr/documents-le-prix-la-democratie-revient-pour-une-nouvelle-edition-/42920"
+   }
   }
  ],
  "territoires": [
   {
    "nom": "Île-de-France",
    "type": "Région",
-   "organisations": 1,
-   "personnes": 2,
-   "projets": 0,
+   "organisations": 2,
+   "personnes": 4,
+   "projets": 1,
    "evenements": 0
   },
   {
    "nom": "Pyrénées-Atlantiques (64)",
    "type": "Département",
-   "organisations": 0,
-   "personnes": 4,
-   "projets": 0,
+   "organisations": 2,
+   "personnes": 5,
+   "projets": 1,
    "evenements": 0
   },
   {
@@ -187,7 +603,7 @@
    "nom": "Loire-Atlantique",
    "type": "Département",
    "organisations": 2,
-   "personnes": 1,
+   "personnes": 3,
    "projets": 0,
    "evenements": 0
   },
@@ -250,8 +666,8 @@
   {
    "nom": "Saint-Nazaire",
    "type": "Commune",
-   "organisations": 0,
-   "personnes": 0,
+   "organisations": 3,
+   "personnes": 2,
    "projets": 0,
    "evenements": 1
   },
@@ -260,7 +676,7 @@
    "type": "Commune",
    "organisations": 0,
    "personnes": 0,
-   "projets": 0,
+   "projets": 1,
    "evenements": 1
   },
   {
@@ -277,13 +693,13 @@
    "organisations": 1,
    "personnes": 0,
    "projets": 0,
-   "evenements": 4
+   "evenements": 7
   },
   {
    "nom": "Nantes",
    "type": "Commune",
    "organisations": 0,
-   "personnes": 1,
+   "personnes": 2,
    "projets": 0,
    "evenements": 1
   },
@@ -314,10 +730,10 @@
   {
    "nom": "Pau",
    "type": "Commune",
-   "organisations": 2,
-   "personnes": 0,
+   "organisations": 3,
+   "personnes": 5,
    "projets": 5,
-   "evenements": 0
+   "evenements": 3
   },
   {
    "nom": "Hérault (34)",
@@ -332,7 +748,7 @@
    "type": "Commune",
    "organisations": 29,
    "personnes": 9,
-   "projets": 1,
+   "projets": 4,
    "evenements": 3
   },
   {
@@ -357,7 +773,7 @@
    "organisations": 2,
    "personnes": 0,
    "projets": 0,
-   "evenements": 0
+   "evenements": 1
   },
   {
    "nom": "Saint-Joachim",
@@ -390,23 +806,79 @@
    "personnes": 0,
    "projets": 0,
    "evenements": 1
+  },
+  {
+   "nom": "Bordeaux",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 1
+  },
+  {
+   "nom": "Saint-Nazaire Agglomération (CARENE)",
+   "type": "Intercommunalité",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 0,
+   "evenements": 0
+  },
+  {
+   "nom": "Vertou",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 1
+  },
+  {
+   "nom": "Reyrieux",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Longueil-Sainte-Marie",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Thorigny-sur-Marne",
+   "type": "Commune",
+   "organisations": 1,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 0
+  },
+  {
+   "nom": "Dardilly",
+   "type": "Commune",
+   "organisations": 0,
+   "personnes": 0,
+   "projets": 1,
+   "evenements": 1
   }
  ],
  "expertises": [
   {
    "libelle": "Ingénierie de la participation citoyenne",
    "organisations": 4,
-   "personnes": 3
+   "personnes": 6
   },
   {
    "libelle": "Formation des élus locaux",
    "organisations": 2,
-   "personnes": 2
+   "personnes": 7
   },
   {
    "libelle": "Animation de la coopération territoriale",
    "organisations": 3,
-   "personnes": 1
+   "personnes": 3
   },
   {
    "libelle": "Coopération entre élus et agents territoriaux",
@@ -416,12 +888,12 @@
   {
    "libelle": "Mobilisation citoyenne",
    "organisations": 2,
-   "personnes": 0
+   "personnes": 3
   },
   {
    "libelle": "Culture de coopération",
    "organisations": 1,
-   "personnes": 1
+   "personnes": 3
   },
   {
    "libelle": "Médiation et dialogue entre institutions et habitants",
@@ -436,22 +908,22 @@
   {
    "libelle": "Cartographie des acteurs et des coopérations",
    "organisations": 0,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Évaluation et gouvernance de l'intelligence artificielle",
    "organisations": 0,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Souveraineté numérique et données publiques fiables",
    "organisations": 0,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Création et animation de tiers-lieux",
    "organisations": 2,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Réponse aux marchés publics et appels à projets",
@@ -461,7 +933,7 @@
   {
    "libelle": "Média citoyen et communication démocratique",
    "organisations": 1,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Ressource en eau et résilience territoriale",
@@ -471,12 +943,57 @@
   {
    "libelle": "Mobilités en territoire rural",
    "organisations": 1,
-   "personnes": 0
+   "personnes": 1
   },
   {
    "libelle": "Bien vieillir et lien social",
    "organisations": 1,
    "personnes": 0
+  },
+  {
+   "libelle": "Hydraulique urbaine et assainissement des eaux usées",
+   "organisations": 0,
+   "personnes": 0
+  },
+  {
+   "libelle": "SIG et données géographiques des réseaux",
+   "organisations": 0,
+   "personnes": 0
+  },
+  {
+   "libelle": "Mise en récit et médiation artistique",
+   "organisations": 0,
+   "personnes": 1
+  },
+  {
+   "libelle": "Facilitation et intelligence collective",
+   "organisations": 0,
+   "personnes": 3
+  },
+  {
+   "libelle": "Coaching et accompagnement managérial",
+   "organisations": 0,
+   "personnes": 3
+  },
+  {
+   "libelle": "Ingénierie de formation et pédagogie",
+   "organisations": 0,
+   "personnes": 3
+  },
+  {
+   "libelle": "GPEC et gestion des compétences",
+   "organisations": 0,
+   "personnes": 2
+  },
+  {
+   "libelle": "Partenariat en santé et savoirs expérientiels",
+   "organisations": 0,
+   "personnes": 3
+  },
+  {
+   "libelle": "Architecture numérique et bases de connaissances",
+   "organisations": 0,
+   "personnes": 2
   }
  ]
 }

@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Fiche de contact — Civipédia</title>
+<style>
+:root { --noir:#111; --jaune:#F2D24B; --fond:#F5F6F3; --texte:#17202B; --doux:#4A5563; --trait:#D9DDE3; --ok:#1C5E3C; --okf:#E3F1E8; --err:#922020; --errf:#FBE4E4; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--fond); color:var(--texte); font:17px/1.45 Roboto, system-ui, -apple-system, "Segoe UI", sans-serif; }
+header { background:var(--noir); color:#fff; display:flex; align-items:center; gap:14px; padding-right:16px; }
+.logo { width:64px; height:64px; background:var(--jaune); color:#000; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:700; flex-shrink:0; }
+.logo b { font-size:28px; line-height:1; } .logo small { font-size:10px; }
+header h1 { font-size:18px; margin:0; line-height:1.2; } header p { margin:2px 0 0; font-size:14px; color:#ddd; }
+main { max-width:640px; margin:0 auto; padding:16px 16px 48px; }
+.qui { display:flex; gap:8px; margin:4px 0 16px; }
+.qui button { flex:1; min-height:52px; border:2px solid var(--trait); background:#fff; border-radius:12px; font:inherit; font-size:15px; font-weight:700; color:var(--texte); cursor:pointer; padding:6px; }
+.qui button[aria-pressed="true"] { border-color:var(--noir); background:#FFE14D; }
+section { background:#fff; border:1px solid var(--trait); border-radius:14px; padding:16px; margin-bottom:14px; }
+h2 { font-size:15px; letter-spacing:.6px; text-transform:uppercase; margin:0 0 12px; }
+label.champ { display:block; font-weight:500; font-size:15px; margin:10px 0 4px; }
+input[type=text], input[type=email], input[type=tel], input[type=date], textarea { width:100%; min-height:48px; border:2px solid #9AA6B5; border-radius:10px; padding:10px 12px; font:inherit; color:var(--texte); background:#fff; }
+textarea { min-height:96px; resize:vertical; }
+input:focus, textarea:focus, button:focus-visible { outline:3px solid #2F6FEB; outline-offset:1px; }
+.choix { display:grid; gap:8px; }
+.choix label { display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border:1px solid var(--trait); border-radius:10px; cursor:pointer; }
+.choix input { width:22px; height:22px; margin:1px 0 0; flex-shrink:0; accent-color:var(--noir); }
+.choix small { display:block; color:var(--doux); font-size:13.5px; }
+.ligne { display:flex; gap:8px; flex-wrap:wrap; } .ligne label { flex:1 1 120px; }
+.accord { display:flex; gap:12px; align-items:flex-start; font-weight:500; }
+.accord input { width:26px; height:26px; flex-shrink:0; accent-color:var(--noir); }
+.note { color:var(--doux); font-size:14px; margin:8px 0 0; }
+.envoyer { width:100%; min-height:58px; border:0; border-radius:14px; background:var(--noir); color:#FFE14D; font:inherit; font-weight:700; font-size:18px; cursor:pointer; }
+.envoyer:disabled { opacity:.6; cursor:default; }
+.msg { border-radius:10px; padding:12px 14px; margin:12px 0 0; font-weight:500; }
+.msg.ok { background:var(--okf); color:var(--ok); } .msg.err { background:var(--errf); color:var(--err); } .msg.att { background:#FCEBD3; color:#7A4300; }
+.msg button { margin-left:8px; font:inherit; font-weight:700; border:0; background:none; text-decoration:underline; color:inherit; cursor:pointer; }
+.cache { position:absolute; left:-9999px; }
+[hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><b>C</b><small>Civipedia</small></div>
+  <div><h1>Fiche de contact</h1><p>Salons et événements</p></div>
+</header>
+<main>
+  <div class="qui" role="group" aria-label="Qui remplit la fiche ?">
+    <button type="button" id="mode-visiteur" aria-pressed="true">Je remplis pour moi</button>
+    <button type="button" id="mode-equipe" aria-pressed="false">Je suis membre de Civipédia</button>
+  </div>
+
+  <form id="fiche" novalidate>
+    <section>
+      <label class="champ" for="evenement">Événement</label><input type="text" id="evenement" autocomplete="off">
+      <label class="champ" for="date_evenement">Date</label><input type="date" id="date_evenement">
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <div class="ligne">
+        <label><span class="champ">Nom</span><input type="text" id="nom" autocomplete="family-name"></label>
+        <label><span class="champ">Prénom</span><input type="text" id="prenom" autocomplete="given-name"></label>
+      </div>
+      <label class="champ" for="fonction">Fonction / mandat</label><input type="text" id="fonction" autocomplete="organization-title">
+      <label class="champ" for="organisation">Collectivité / organisation</label><input type="text" id="organisation" autocomplete="organization">
+      <div class="ligne">
+        <label><span class="champ">Commune / territoire</span><input type="text" id="ville"></label>
+        <label><span class="champ">Population</span><input type="text" id="population" inputmode="numeric"></label>
+      </div>
+      <label class="champ" for="email">E-mail</label><input type="email" id="email" autocomplete="email">
+      <label class="champ" for="telephone">Téléphone</label><input type="tel" id="telephone" autocomplete="tel">
+    </section>
+
+    <section>
+      <h2>Me recontacter d'ici</h2>
+      <div class="choix ligne" id="recontacter">
+        <label><input type="radio" name="recontacter" value="1 semaine">1 semaine</label>
+        <label><input type="radio" name="recontacter" value="1 mois">1 mois</label>
+        <label><input type="radio" name="recontacter" value="3 mois">3 mois</label>
+        <label><input type="radio" name="recontacter" value="autre">Autre</label>
+      </div>
+      <input type="text" id="recontacter_autre" placeholder="Précisez" aria-label="Autre délai" hidden>
+    </section>
+
+    <section>
+      <h2>Ce qui m'intéresse</h2>
+      <div class="choix" id="interets">
+        <label><input type="checkbox" value="Le Récit : nos jours heureux"><span>Le Récit : nos jours heureux<small>Co-construire la vision commune qui fédère les acteurs</small></span></label>
+        <label><input type="checkbox" value="Diagnostic de maturité coopérative / Diagnostic 360"><span>Le Diagnostic de maturité coopérative / Le Diagnostic 360<small>Recueillir des données sur les enjeux et les acteurs</small></span></label>
+        <label><input type="checkbox" value="Structurer : Plan Local de Concertation"><span>Structurer : Plan Local de Concertation<small>Organiser et développer la culture de la participation</small></span></label>
+        <label><input type="checkbox" value="Formations (certifiées Qualiopi)"><span>Formations (certifiées Qualiopi)<small>Recevoir le catalogue et échanger</small></span></label>
+        <label><input type="checkbox" value="autre" id="interet-autre-case"><span>Autre / à préciser</span></label>
+      </div>
+      <input type="text" id="interet_autre" placeholder="Précisez" aria-label="Autre intérêt" hidden>
+    </section>
+
+    <section>
+      <h2>Le projet qui m'est venu en tête</h2>
+      <textarea id="projet" aria-label="Le projet qui m'est venu en tête, suite à notre échange"></textarea>
+    </section>
+
+    <section id="qualification" hidden>
+      <h2>Notes de qualification</h2>
+      <span class="champ">Rôle dans la décision</span>
+      <div class="choix" id="role">
+        <label><input type="radio" name="role" value="Décideur sur ce projet">Décideur sur ce projet</label>
+        <label><input type="radio" name="role" value="Peut mettre en lien avec le décideur">Peut mettre en lien avec le décideur</label>
+        <label><input type="radio" name="role" value="autre">Autre</label>
+      </div>
+      <input type="text" id="role_autre" placeholder="Précisez" aria-label="Autre rôle" hidden>
+      <span class="champ">Budget</span>
+      <div class="choix" id="budget">
+        <label><input type="radio" name="budget" value="Budget déjà décidé">Le budget est déjà décidé</label>
+        <label><input type="radio" name="budget" value="Budget pas encore défini">Le budget n'est pas encore défini</label>
+        <label><input type="radio" name="budget" value="autre">Autre</label>
+      </div>
+      <input type="text" id="budget_autre" placeholder="Précisez" aria-label="Autre budget" hidden>
+      <label class="champ" for="notes">Autres notes (échéance, contexte…)</label><textarea id="notes"></textarea>
+      <label class="champ" for="recueillie_par">Fiche recueillie par</label><input type="text" id="recueillie_par" autocomplete="name">
+    </section>
+
+    <section>
+      <label class="accord"><input type="checkbox" id="accord"><span>J'accepte d'être contacté par Civipédia.</span></label>
+      <p class="note">Ces informations restent privées : elles sont rangées dans un tableur réservé à l'équipe de Civipédia et ne sont jamais publiées.</p>
+      <label class="cache" aria-hidden="true">Site web <input type="text" id="site_web" tabindex="-1" autocomplete="off"></label>
+    </section>
+
+    <button type="submit" class="envoyer" id="envoyer">Enregistrer la fiche</button>
+    <div id="msg" role="status" aria-live="polite"></div>
+  </form>
+</main>
+<script>
+const $ = s => document.querySelector(s);
+const MEMO = "civipedia-fiche-contact";
+const lire = (k, d) => { try { return JSON.parse(localStorage.getItem(MEMO + k)) ?? d; } catch (_) { return d; } };
+const ecrire = (k, v) => { try { localStorage.setItem(MEMO + k, JSON.stringify(v)); } catch (_) {} };
+let GUICHET = "";
+let mode = "visiteur";
+
+// Mode : « equipe » si ?equipe dans l'adresse ou dernier choix ; événement et date pré-remplis par l'adresse (QR code).
+const params = new URLSearchParams(location.search);
+function choisirMode(m) {
+  mode = m; ecrire(":mode", m);
+  $("#mode-equipe").setAttribute("aria-pressed", m === "equipe");
+  $("#mode-visiteur").setAttribute("aria-pressed", m !== "equipe");
+  $("#qualification").hidden = m !== "equipe";
+}
+$("#mode-equipe").onclick = () => choisirMode("equipe");
+$("#mode-visiteur").onclick = () => choisirMode("visiteur");
+choisirMode(params.has("equipe") ? "equipe" : params.has("visiteur") ? "visiteur" : lire(":mode", "visiteur"));
+
+// Champs gardés d'une fiche à l'autre (utile sur un stand).
+const GARDES = ["evenement", "date_evenement", "recueillie_par"];
+const gardes = lire(":gardes", {});
+GARDES.forEach(id => { if (gardes[id]) $("#" + id).value = gardes[id]; });
+if (params.get("evenement")) $("#evenement").value = params.get("evenement");
+if (params.get("date")) $("#date_evenement").value = params.get("date");
+
+// « Autre » : affiche la case à préciser.
+[["recontacter", "recontacter_autre"], ["role", "role_autre"], ["budget", "budget_autre"]].forEach(([g, autre]) => {
+  $("#" + g).addEventListener("change", () => { $("#" + autre).hidden = !$(`#${g} input[value=autre]:checked`); });
+});
+$("#interet-autre-case").addEventListener("change", e => { $("#interet_autre").hidden = !e.target.checked; });
+
+function radio(nom, autre) {
+  const c = document.querySelector(`input[name=${nom}]:checked`);
+  if (!c) return "";
+  return c.value === "autre" ? ($("#" + autre).value.trim() || "Autre") : c.value;
+}
+
+function fiche() {
+  const v = id => $("#" + id).value.trim();
+  const equipe = mode === "equipe";
+  return {
+    uid: (crypto.randomUUID ? crypto.randomUUID() : Date.now() + "-" + Math.random().toString(36).slice(2)),
+    mode, evenement: v("evenement"), date_evenement: v("date_evenement") ? v("date_evenement").split("-").reverse().join("/") : "",
+    nom: v("nom"), prenom: v("prenom"), fonction: v("fonction"), organisation: v("organisation"),
+    ville: v("ville"), population: v("population"), email: v("email"), telephone: v("telephone"),
+    recontacter: radio("recontacter", "recontacter_autre"),
+    interets: [...document.querySelectorAll("#interets input:checked")].map(c => c.value).filter(x => x !== "autre"),
+    interet_autre: $("#interet-autre-case").checked ? v("interet_autre") || "Autre" : "",
+    projet: v("projet"),
+    role: equipe ? radio("role", "role_autre") : "", budget: equipe ? radio("budget", "budget_autre") : "",
+    notes: equipe ? v("notes") : "", recueillie_par: equipe ? v("recueillie_par") : "",
+    accord: $("#accord").checked, site_web: v("site_web"),
+  };
+}
+
+function message(classe, html) { $("#msg").className = "msg " + classe; $("#msg").innerHTML = html; }
+
+// File d'attente : une fiche est gardée sur l'appareil tant que le guichet ne l'a pas reçue.
+const attente = () => lire(":attente", []);
+async function envoyerUne(f) {
+  const r = await fetch(GUICHET, { method: "POST", body: JSON.stringify(f) });
+  const res = await r.json();
+  if (!res.ok) { const e = new Error(res.erreur || "Envoi refusé."); e.refus = true; throw e; }
+  return res.reference;
+}
+async function viderAttente() {
+  if (!GUICHET) return;
+  let liste = attente(), envoyees = 0;
+  for (const f of [...liste]) {
+    try { await envoyerUne(f); envoyees++; liste = liste.filter(x => x.uid !== f.uid); ecrire(":attente", liste); }
+    catch (e) { if (e.refus) { liste = liste.filter(x => x.uid !== f.uid); ecrire(":attente", liste); } else break; }
+  }
+  afficherAttente(envoyees);
+}
+function afficherAttente(envoyees) {
+  const n = attente().length;
+  if (n) message("att", `${n} fiche${n > 1 ? "s" : ""} en attente d'envoi sur cet appareil. Elles partiront dès que la connexion revient.<button type="button" id="renvoyer">Réessayer</button>`);
+  else if (envoyees) message("ok", `${envoyees} fiche${envoyees > 1 ? "s" : ""} en attente ${envoyees > 1 ? "ont été envoyées" : "a été envoyée"}.`);
+  const b = $("#renvoyer"); if (b) b.onclick = viderAttente;
+}
+window.addEventListener("online", viderAttente);
+
+$("#fiche").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = fiche();
+  if (!f.nom && !f.email && !f.telephone) { message("err", "Indiquez au moins un nom, un e-mail ou un téléphone."); return; }
+  if (!f.accord) { message("err", "Cochez « J'accepte d'être contacté par Civipédia » pour enregistrer la fiche."); return; }
+  if (!GUICHET) { message("err", "L'enregistrement en ligne n'est pas encore ouvert."); return; }
+  ecrire(":gardes", Object.fromEntries(GARDES.map(id => [id, $("#" + id).value])));
+  $("#envoyer").disabled = true; message("", "Enregistrement…");
+  try {
+    const ref = await envoyerUne(f);
+    message("ok", "Merci, la fiche est enregistrée" + (ref ? " (" + ref + ")" : "") + ".");
+    nouvelleFiche();
+  } catch (err) {
+    if (err.refus) { message("err", err.message); }
+    else { ecrire(":attente", [...attente(), f]); nouvelleFiche(); afficherAttente(0); }
+  } finally { $("#envoyer").disabled = false; }
+});
+
+function nouvelleFiche() {
+  const gardes = Object.fromEntries(GARDES.map(id => [id, $("#" + id).value]));
+  $("#fiche").reset();
+  GARDES.forEach(id => { $("#" + id).value = gardes[id]; });
+  ["recontacter_autre", "role_autre", "budget_autre", "interet_autre"].forEach(id => { $("#" + id).hidden = true; });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+fetch("config.json", { cache: "no-store" }).then(r => r.json()).then(c => { GUICHET = c.guichet || ""; })
+  .catch(() => {}).finally(() => {
+    if (!GUICHET) message("att", "Page de démonstration : l'enregistrement en ligne n'est pas encore ouvert.");
+    else viderAttente();
+  });
+</script>
+</body>
+</html>

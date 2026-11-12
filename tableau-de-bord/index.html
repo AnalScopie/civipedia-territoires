@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tableau de bord Civipédia</title>
-<meta name="description" content="Rendez-vous à venir, appels qui reviennent, territoires et expertises de la base Civipédia.">
+<meta name="description" content="Agenda passé et à venir, appels qui reviennent, territoires et expertises de la base Civipédia.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700;800&display=swap">
@@ -79,6 +79,18 @@ button:focus-visible, a:focus-visible, .paysage:focus-visible { outline: 2px sol
 .carte-titre a { text-decoration: none; }
 .carte-titre a:hover { text-decoration: underline; text-decoration-color: var(--jaune); text-decoration-thickness: 3px; }
 .carte-lieu { font-size: 12px; color: var(--gris); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.carte-titre { -webkit-line-clamp: 2; }
+.carte > * { flex: none; }
+.carte-tag { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; color: var(--gris); }
+.carte-qui { font-size: 12px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.carte.equipe { border-left-color: var(--trait); }
+.carte.passe { opacity: .78; }
+.pt.equipe { background: var(--trait); }
+.pt.passe { background: var(--bg); }
+.legende-frise { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-size: 12px; color: var(--gris); margin-top: .9rem; text-transform: uppercase; letter-spacing: .08em; }
+.legende-frise span { display: inline-flex; align-items: center; gap: .45rem; }
+.legende-frise i { width: .8rem; height: .8rem; border: 2px solid var(--trait); border-radius: 50%; display: inline-block; }
+.legende-frise .lp { background: var(--jaune); } .legende-frise .le { background: var(--trait); } .legende-frise .lpa { background: var(--bg); }
 .defile, .vide { margin: .5rem 0 0; font-size: 13px; color: var(--gris); }
 
 /* Appels */
@@ -141,14 +153,20 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
   <section id="frise">
     <div class="sechead">
       <div>
-        <h2>Les rendez-vous <span class="hi">à venir</span></h2>
-        <p class="note">Événements suivis par Civipédia, de gauche à droite dans le temps. Seuls les événements dont la fiche est vérifiée sont publiés ici, avec ceux des cartes territoriales publiées.</p>
+        <h2>Les rendez-vous <span class="hi">passés et à venir</span></h2>
+        <p class="note">Les événements publics suivis par Civipédia et les rendez-vous de son équipe, de part et d'autre d'aujourd'hui. Les rendez-vous de l'équipe sont décrits sans nom de personne : nombre de membres, organisations rencontrées et projet quand il est public. Les événements des cartes territoriales publiées y figurent aussi.</p>
       </div>
       <div class="seg" role="group" aria-label="Période affichée">
         <button type="button" data-h="3">3 mois</button>
         <button type="button" data-h="6">6 mois</button>
         <button type="button" data-h="12">12 mois</button>
+        <button type="button" data-h="0">Tout</button>
       </div>
+    </div>
+    <div class="legende-frise" aria-hidden="true">
+      <span><i class="lp"></i>Événement public</span>
+      <span><i class="le"></i>Rendez-vous de l'équipe</span>
+      <span><i class="lpa"></i>Passé</span>
     </div>
     <div class="filtre" id="filtre" hidden></div>
     <div class="paysage" id="paysage" tabindex="0" aria-label="Frise chronologique, défilement horizontal"></div>
@@ -196,7 +214,7 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
     <div class="bars" id="exp"></div>
   </section>
 
-  <footer id="pied">Projection publique de la base Civipédia : événements vérifiés, appels décrits par leur source officielle et comptes agrégés. Aucun nom de personne ni aucune coordonnée n'est publié.</footer>
+  <footer id="pied">Projection publique de la base Civipédia : événements publics vérifiés, rendez-vous de l'équipe décrits sans nom de personne, appels décrits par leur source officielle et comptes agrégés. Aucun nom de personne, aucune coordonnée ni aucun document interne n'est publié.</footer>
 </main>
 
 <script>
@@ -207,7 +225,7 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
   var now = new Date();
   var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
   var params = new URLSearchParams(location.search);
-  var state = { theme: params.get('theme') === 'sombre' ? 'sombre' : 'clair', horizon: [3, 6, 12].indexOf(Number(params.get('mois'))) >= 0 ? Number(params.get('mois')) : 6, territoire: params.get('territoire') || null };
+  var state = { theme: params.get('theme') === 'sombre' ? 'sombre' : 'clair', horizon: [0, 3, 6, 12].indexOf(Number(params.get('mois'))) >= 0 && params.get('mois') !== null ? Number(params.get('mois')) : 3, territoire: params.get('territoire') || null };
   var DATA = null;
   var CARTES = {}; // nom du territoire → adresse de sa carte publique
 
@@ -222,6 +240,7 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
     return d.getUTCDate() + ' ' + MOIS[d.getUTCMonth()] + ' – ' + f.getUTCDate() + ' ' + MOIS[f.getUTCMonth()];
   }
   function fr(n) { return n.toLocaleString('fr-FR'); }
+  function etat(ev) { return ev.etat === 'prévu' && iso(ev.fin || ev.debut) < today ? 'à confirmer' : ev.etat; }
 
   // Hauteur pour l'iframe
   var lastH = 0;
@@ -253,9 +272,11 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
   function drawLead(items) {
     var lead = document.getElementById('lead');
     lead.replaceChildren();
-    var next = items[0];
-    if (!next) { lead.textContent = state.territoire ? 'Aucun rendez-vous publié à venir pour ' + state.territoire + ' dans la période choisie.' : 'Aucun rendez-vous publié dans la période choisie.'; return; }
-    lead.append('Prochain rendez-vous' + (state.territoire ? ' à ' + state.territoire : '') + ' : ', el('b', null, next.titre), ', ', el('span', 'hi', jour(next)), '.');
+    var next = items.filter(function (ev) { return iso(ev.fin || ev.debut) >= today; })[0];
+    var passes = DATA.evenements.filter(function (ev) { return ev.categorie === 'equipe' && etat(ev) === 'réalisé' && iso(ev.debut) <= today && iso(ev.debut) >= addMonths(today, -3); }).length;
+    if (next) lead.append('Prochain rendez-vous' + (state.territoire ? ' à ' + state.territoire : '') + ' : ', el('b', null, next.titre), ', ', el('span', 'hi', jour(next)), /\.$/.test(jour(next)) ? ' ' : '. ');
+    else lead.append(state.territoire ? 'Aucun rendez-vous publié à venir pour ' + state.territoire + ' dans la période choisie. ' : 'Aucun rendez-vous publié à venir dans la période choisie. ');
+    if (passes && !state.territoire) lead.append('Ces trois derniers mois, l\u2019équipe a tenu ', el('b', null, passes + ' rendez-vous'), '.');
   }
 
   function drawFiltre() {
@@ -273,9 +294,9 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
   function drawPaysage(items, start, end) {
     var box = document.getElementById('paysage');
     box.replaceChildren();
-    var CW = 200, CH = 104, LH = CH + 12, m = 16;
+    var CW = 210, CH = 128, LH = CH + 12, m = 16;
     var nMois = Math.max(1, (end - start) / (30.4 * DAY));
-    var W = Math.max(box.clientWidth, Math.round(nMois * 180), 640);
+    var W = Math.max(box.clientWidth, Math.round(nMois * (state.horizon && state.horizon <= 3 ? 420 : 300)), 640);
     var x0 = m + 8, x1 = W - CW - m;
     function x(t) { return x0 + (t - start) / (end - start) * (x1 - x0); }
 
@@ -311,23 +332,28 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
       var it = p.it, dd = iso(it.debut), ff = iso(it.fin || it.debut);
       var xe = x(Math.min(ff + DAY, end));
       if (ff > dd && xe - p.x > 14) pz.appendChild(pos(el('div', 'plage'), p.x, axisY - 4, xe - p.x));
-      else pz.appendChild(pos(el('div', 'pt'), p.x, axisY + 2));
+      else pz.appendChild(pos(el('div', 'pt' + (it.categorie === 'equipe' ? ' equipe' : '') + (ff < today ? ' passe' : '')), p.x, axisY + 2));
       var top = p.side === 0 ? axisY - 22 - p.lvl * LH - CH : axisY + 30 + p.lvl * LH;
       var tTop = p.side === 0 ? top + CH : axisY + 6;
       var tH = p.side === 0 ? axisY - 2 - (top + CH) : top - (axisY + 6);
       pz.appendChild(pos(el('div', 'tige'), p.x, tTop, undefined, Math.max(0, tH)));
-      var c = pos(el('article', 'carte'), p.x - 2, top, CW, CH);
-      c.appendChild(el('div', 'carte-jour', jour(it)));
+      var c = pos(el('article', 'carte' + (it.categorie === 'equipe' ? ' equipe' : '') + (ff < today ? ' passe' : '')), p.x - 2, top, CW, CH);
+      var et = etat(it);
+      c.appendChild(el('div', 'carte-jour', jour(it) + (et === 'à confirmer' ? ' · à confirmer' : '')));
+      c.appendChild(el('div', 'carte-tag', it.categorie === 'equipe' ? 'Équipe Civipédia' : 'Événement public'));
       var t = el('div', 'carte-titre');
       if (it.src && it.src.url) { var a = el('a', null, it.titre); a.href = it.src.url; a.target = '_blank'; a.rel = 'noopener'; t.appendChild(a); }
       else t.textContent = it.titre;
       c.appendChild(t);
+      if (it.participants) c.appendChild(el('div', 'carte-qui', it.participants));
+      if (it.projet) c.appendChild(el('div', 'carte-lieu', 'Projet : ' + it.projet));
       if (it.lieu) c.appendChild(el('div', 'carte-lieu', it.lieu));
       if (it.organisateur) c.appendChild(el('div', 'carte-lieu', it.organisateur));
       if (it.carte) c.appendChild(el('div', 'carte-orig', 'Carte ' + it.carte));
       pz.appendChild(c);
     });
     box.appendChild(pz);
+    box.scrollLeft = Math.max(0, tx - box.clientWidth / 2);
     document.getElementById('defile').hidden = !(W > box.clientWidth + 4) || !items.length;
     document.getElementById('vide').hidden = items.length > 0;
   }
@@ -393,9 +419,14 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
   function render() {
     if (!DATA) return;
     document.querySelectorAll('[data-h]').forEach(function (b) { b.setAttribute('aria-pressed', String(Number(b.dataset.h) === state.horizon)); });
-    var start = today - 10 * DAY, end = addMonths(today, state.horizon);
+    var start, end;
+    if (state.horizon) { start = addMonths(today, -state.horizon); end = addMonths(today, state.horizon); }
+    else {
+      start = Math.min.apply(null, DATA.evenements.map(function (ev) { return iso(ev.debut); }).concat([today])) - 15 * DAY;
+      end = Math.max.apply(null, DATA.evenements.map(function (ev) { return iso(ev.fin || ev.debut); }).concat([today])) + 15 * DAY;
+    }
     var items = DATA.evenements.filter(function (ev) {
-      return iso(ev.fin || ev.debut) >= today && iso(ev.debut) <= end && (!state.territoire || ev.territoire === state.territoire);
+      return iso(ev.fin || ev.debut) >= start && iso(ev.debut) <= end && (!state.territoire || ev.territoire === state.territoire);
     }).sort(function (a, b) { return iso(a.debut) - iso(b.debut); });
     drawLead(items);
     drawFiltre();
@@ -423,7 +454,8 @@ footer { font-size: 12px; color: var(--gris); border-top: 1px solid var(--ligne)
           d.items.forEach(function (i) { noms[i.id] = i.nom; });
           return d.items.filter(function (i) { return i.k === 'evenement' && i.debut && i.src && i.src.url; }).map(function (i) {
             return { titre: i.nom, debut: i.debut, fin: i.fin || i.debut, lieu: noms[i.lieu] || i.commune || '', territoire: i.commune || nom,
-                     organisateur: noms[i.organisateur] || '', src: i.src, carte: nom };
+                     organisateur: noms[i.organisateur] || '', src: i.src, carte: nom,
+                     categorie: 'public', etat: iso(i.fin || i.debut) < today ? 'réalisé' : 'prévu' };
           });
         }).catch(function () { return []; });
       }));
