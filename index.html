@@ -528,6 +528,7 @@ function renderStatic(){
   $("#fzone").innerHTML = `<option value="">Tout le territoire</option>` + zones.map(z => `<option>${esc(z)}</option>`).join("");
 
   $("#legend").innerHTML = ORDER.filter(k => k !== "projet").map(k => `<div><i style="background:${CATS[k].color}"></i>${CATS[k].label}</div>`).join("") +
+    (T.traces || []).map(t => `<div><i style="background:${esc(t.couleur)};height:4px;border-radius:2px"></i>${esc(t.nom)}</div>`).join("") +
     `<div style="color:var(--ink-3)">Cercle = tout ce qui est rattaché à une commune</div>`;
 
   renderGlance(); renderCoverage(); renderContrib(); renderBase();
@@ -625,6 +626,13 @@ function drawMarkers(vis){
     else if (i.pt) dots.push(i);
   }
   let h = "";
+  // Tracés (itinéraires) : affichés quand leur projet ou l'un de leurs arrêts passe les filtres
+  const visIds = new Set(vis.map(i => i.id));
+  for (const t of (T.traces || [])) {
+    if (!visIds.has(t.projet) && !(liensBy[t.projet] || []).some(l => visIds.has(l.other))) continue;
+    const d = "M" + t.pts.map(([la, lo]) => scr(P(la, lo)).map(v => v.toFixed(1)).join(",")).join("L");
+    h += `<g class="trace"><path d="${d}" fill="none" stroke="#ffffff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${esc(t.couleur)}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><title>${esc(t.nom)}</title></path></g>`;
+  }
   const boxes = []; // emprise des cercles et étiquettes déjà posés, pour éviter les chevauchements de noms
   const hits = (b) => boxes.some(o => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1]);
   for (const [com, arr] of Object.entries(groups)) { const [x,y] = scr(comXY[com]), r = 9 + 4.2*Math.sqrt(arr.length); boxes.push([x-r, y-r, x+r, y+r]); }

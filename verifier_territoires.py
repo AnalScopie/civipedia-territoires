@@ -157,6 +157,19 @@ def verifier_donnees(tid, d):
         if not l.get("t"):
             erreur(f"{ou} liens[{n}]", "nature de la relation vide")
 
+    # Tracés : un itinéraire appartient à un projet publié et reste dans le périmètre
+    for n, tr in enumerate(d.get("traces", [])):
+        o = f"{ou} traces[{n}]"
+        if tr.get("projet") not in ids:
+            erreur(o, f"projet {tr.get('projet')} absent de la carte")
+        if not tr.get("nom") or not re.match(r"^#[0-9A-Fa-f]{6}$", str(tr.get("couleur", ""))):
+            erreur(o, "nom ou couleur (#RRGGBB) manquant")
+        pts = tr.get("pts") or []
+        if len(pts) < 2 or not all(coord(p) for p in pts):
+            erreur(o, "pts doit être une liste d'au moins deux [lat, lon]")
+        elif centre and rayon and any(km(centre, p) > rayon * 2 for p in pts):
+            erreur(o, "tracé hors du périmètre")
+
     # Chiffres : seules les valeurs établies sont publiées
     obs = {o.get("id") for o in d.get("observations", [])}
     for o in d.get("observations", []):
