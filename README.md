@@ -36,6 +36,10 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 
 Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`, puis à lancer le contrôle. La page n'a pas besoin d'être modifiée.
 
+## Fond de carte
+
+La carte s'affiche sur le **Plan IGN** de la Géoplateforme (`data.geopf.fr`, service WMTS, gratuit, sans clé, licence ouverte Etalab). Ses couleurs sont adoucies en CSS pour garder un rendu sobre. Chaque tuile est posée par ses deux coins dans la projection locale de la carte. Si les tuiles ne chargent pas, le fond vectoriel du fichier `<id>.geo.json` (contours des communes, routes, cours d'eau) reste visible dessous. Le crédit « Plan IGN · © IGN » est affiché en bas à droite de la carte.
+
 ## Contrôle avant publication
 
 Aucune carte n'est publiée sans passer `python3 verifier_territoires.py` (ou `python3 verifier_territoires.py crossac` pour un seul territoire). Le script lit le registre, chaque fichier de données et chaque fond géographique. Il refuse (code de sortie 1, la version précédente reste en ligne) si :
