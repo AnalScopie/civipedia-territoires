@@ -301,6 +301,8 @@ fieldset.field{border:0;padding:0;margin:0}
 .cta .go{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:800;font-size:17px;border-radius:10px;padding:13px 22px}
 .cta .go:hover{background:var(--blue-ink)}
 .cta p{margin:0;flex:1;min-width:16rem;color:var(--ink-2);font-size:14px}
+.credit{margin:10px 2px 0;font-size:13px;color:var(--ink-3)}
+.credit[hidden]{display:none}
 .frise{margin-top:28px}
 .frise h2{margin:0;font-size:20px}
 .frise > p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px}
@@ -343,6 +345,7 @@ fieldset.field{border:0;padding:0;margin:0}
     </section>
     <div id="slot-une"></div>
     <section class="cta" id="inscription" hidden></section>
+    <p class="credit" id="une-credit" hidden></p>
     <section class="frise" aria-labelledby="frise-title">
       <h2 id="frise-title">Ce qui s'est passé, ce qui arrive</h2>
       <p>Les événements publiés sur la carte et dans la base commune Civipédia. Touchez un événement pour le détail.</p>
@@ -556,6 +559,7 @@ function focusIds(){
 }
 function renderUne(){
   $("#pages").hidden = !UNE;
+  if (!UNE) $("#une-credit").hidden = true;
   const ib = $("#insc-top"), insc = UNE && UNE.inscription;
   ib.hidden = !insc; $("#inscription").hidden = !insc;
   if (!UNE) return;
@@ -569,6 +573,7 @@ function renderUne(){
     ib.textContent = insc.bouton_court || insc.bouton;
     $("#inscription").innerHTML = `<a class="go" href="${esc(insc.url)}" target="_blank" rel="noopener">${esc(insc.bouton)}</a><p>${esc(insc.texte || "")}</p>`;
   }
+  $("#une-credit").hidden = !UNE.credit; $("#une-credit").textContent = UNE.credit || "";
   $("#voir-tout-txt").textContent = `Acteurs, lieux, projets, chiffres et questions suivies : tout ce que la carte connaît de ${T.territoire.nom}.`;
   renderFrise();
 }
