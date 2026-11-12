@@ -298,6 +298,18 @@ function lireBase_() {
   };
 }
 
+/**
+ * Instantané public pour GitHub Pages : à lancer depuis l'éditeur, puis copier le texte affiché dans le journal
+ * dans reseau/donnees.json (ou le transmettre à Claude). Même contenu que la version en direct (lieux, comptes,
+ * liens, sans nom ni identifiant), marqué comme instantané.
+ */
+function instantane() {
+  const r = construireReseau();
+  r.instantane = true;
+  delete r.totaux; delete r.non_places;
+  Logger.log(JSON.stringify(r));
+}
+
 /** À lancer une fois depuis l'éditeur après l'installation : autorise l'accès et remplit le cache des positions. */
 function preparer() {
   const r = construireReseau();
