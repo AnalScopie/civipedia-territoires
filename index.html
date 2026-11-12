@@ -103,6 +103,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 .rv span{color:var(--ink-2);font-size:13.5px}
 .rv small{color:var(--ink-3);font-size:12px}
 .rv small a{color:var(--ink-3)}
+.base{margin-top:16px}
+.base-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:14px}
+.base-grid h3{margin:0 0 6px;font-size:14px}
+.base-grid ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13.5px}
+.base-grid li small{display:block;color:var(--ink-3)}
+.base-foot{margin:14px 0 0;font-size:13px}
+.base-muted{margin:0;color:var(--ink-3);font-size:13px}
 footer.foot{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12.5px;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
 footer.foot a{color:var(--ink-2)}
 
@@ -338,6 +345,12 @@ fieldset.field{border:0;padding:0;margin:0}
     </div>
   </section>
 
+  <section class="panel base" id="base" hidden aria-labelledby="base-title">
+    <h2 id="base-title">Dans la base commune Civipédia</h2>
+    <p>Ce que la base commune relie à ce territoire et aux communes du périmètre, tel que le publie le tableau de bord Civipédia.</p>
+    <div id="base-body"></div>
+  </section>
+
   <section class="contrib" id="contribuer" aria-labelledby="contrib-title">
     <div class="contrib-head">
       <h2 id="contrib-title">Contribuer</h2>
@@ -517,7 +530,7 @@ function renderStatic(){
   $("#legend").innerHTML = ORDER.filter(k => k !== "projet").map(k => `<div><i style="background:${CATS[k].color}"></i>${CATS[k].label}</div>`).join("") +
     `<div style="color:var(--ink-3)">Cercle = tout ce qui est rattaché à une commune</div>`;
 
-  renderGlance(); renderCoverage(); renderContrib();
+  renderGlance(); renderCoverage(); renderContrib(); renderBase();
   $("#foot").innerHTML = `<span>Données publiques, instantané du ${esc(String(T.instantane).split(" ")[0])}. Seules les informations établies par une source sont affichées.</span><span><a href="kleroterion/">Tirage au sort (klèrôtèrion)</a> · Civipedia</span>`;
 }
 const shortSrc = s => s.split(/ – | - /)[0];
@@ -838,6 +851,33 @@ function renderGlance(){
       <div class="gl-foot"><span>${s.n} élément${s.n > 1 ? "s" : ""} sur la carte · ${s.q} questions suivies, dont ${s.sans} encore sans chiffre</span>
         <button type="button" class="go" data-theme="${esc(r.domaine)}">Ouvrir le thème ›</button></div>
     </div>`; }).join("")}</div>`;
+}
+
+/* Accueil : lien avec la base commune (projection publique du tableau de bord) */
+const TABLEAU = "tableau-de-bord/";
+let BASE;
+async function renderBase(){
+  if (BASE === undefined) { try { BASE = await loadJSON(TABLEAU + "data.json"); } catch(_) { BASE = null; } }
+  const box = $("#base");
+  if (!BASE || !T) { box.hidden = true; return; }
+  const nom = T.territoire.nom, noms = new Set([nom, ...T.communes.map(c => c.nom)].map(norm));
+  const terr = BASE.territoires.filter(t => noms.has(norm(t.nom)) && (t.organisations + t.personnes + t.projets + t.evenements));
+  terr.sort((a, b) => (norm(b.nom) === norm(nom)) - (norm(a.nom) === norm(nom)) || a.nom.localeCompare(b.nom, "fr"));
+  const today = new Date().toISOString().slice(0, 10);
+  const evts = BASE.evenements.filter(e => noms.has(norm(e.territoire)) && (e.fin || e.debut) >= today).sort((a, b) => a.debut.localeCompare(b.debut));
+  const nb = (n, mot) => `${n} ${mot}${n > 1 ? "s" : ""}`;
+  const lien = `${TABLEAU}?territoire=${encodeURIComponent(nom)}`;
+  $("#base-body").innerHTML = `<div class="base-grid">
+      <div><h3>Territoires reliés</h3>${terr.length ? `<ul>${terr.map(t => `<li><b>${esc(t.nom)}</b><small>${[
+        t.organisations && nb(t.organisations, "organisation"), t.personnes && nb(t.personnes, "personne"),
+        t.projets && nb(t.projets, "projet"), t.evenements && nb(t.evenements, "événement")].filter(Boolean).join(" · ")}</small></li>`).join("")}</ul>`
+        : `<p class="base-muted">Aucune fiche de la base commune n'est encore reliée à ce périmètre.</p>`}</div>
+      <div><h3>Rendez-vous à venir</h3>${evts.length ? `<ul>${evts.map(e => `<li><a href="${esc(e.src.url)}" target="_blank" rel="noopener">${esc(e.titre)}</a><small>${esc(fmtDate(e.debut))} · ${esc(e.lieu || e.territoire)}</small></li>`).join("")}</ul>`
+        : `<p class="base-muted">Aucun rendez-vous vérifié à venir dans la base commune pour ce périmètre.</p>`}</div>
+      <div><h3>Appels qui reviennent</h3><p class="base-muted">${nb(BASE.appels.length, "appel")} à projets suivi${BASE.appels.length > 1 ? "s" : ""} par Civipédia, ouverts à tous les territoires.</p></div>
+    </div>
+    <p class="base-foot"><a href="${esc(lien)}">Ouvrir le tableau de bord Civipédia ›</a> <span class="base-muted">· données au ${esc(fmtDate(BASE.genere_le))}</span></p>`;
+  box.hidden = false;
 }
 
 /* Accueil : couverture par sujet */

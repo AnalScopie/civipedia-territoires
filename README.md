@@ -32,13 +32,37 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | `maquette/` | Maquette de l'application Civipédia Conseil (HTML interactif, PDF, capture). Exemples fictifs uniquement, aucune donnée réelle. Copie de celle du dépôt `civipedia-conseil`. |
 | `fiche-contact/` | Fiche de contact numérique pour les salons et événements (version en ligne de la fiche papier), à remplir sur téléphone par un membre de Civipédia ou par la personne rencontrée. La page ne contient aucune donnée : les fiches partent vers le tableur privé `FICHES_CONTACT_CIVIPEDIA` par le guichet `guichet.gs` (Google Apps Script, à installer avec `installation.html`). Chaque lundi, un résumé signale les nouvelles fiches ; celles marquées OUI sont versées dans l'onglet Contacts de la base commune, au statut « À vérifier ». Adresse de la page : `fiche-contact/` (avec `?equipe` pour le mode membre, `?evenement=…&date=AAAA-MM-JJ` pour pré-remplir, par exemple dans un QR code). |
 
-Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`. La page n'a pas besoin d'être modifiée.
+| `verifier_territoires.py` | Contrôle des cartes avant publication (voir ci-dessous). |
+
+Ajouter un territoire revient à ajouter ses deux fichiers et une ligne dans `territoires/index.json`, puis à lancer le contrôle. La page n'a pas besoin d'être modifiée.
+
+## Contrôle avant publication
+
+Aucune carte n'est publiée sans passer `python3 verifier_territoires.py` (ou `python3 verifier_territoires.py crossac` pour un seul territoire). Le script lit le registre, chaque fichier de données et chaque fond géographique. Il refuse (code de sortie 1, la version précédente reste en ligne) si :
+
+- la structure est incomplète : clé absente, identifiant en double, nature inconnue, événement sans date, élément sans source web ;
+- une relation ou un renvoi (`lieu`, `organisateur`) désigne un élément absent de la carte ;
+- un élément est dit « Sans adresse sur la carte » alors qu'un point est publié ;
+- une observation n'est ni FAIT ni VÉRIFIÉ, ou un chiffre en attente publie sa valeur ;
+- une adresse électronique, un numéro de téléphone ou un identifiant interne de la base commune (`MASE-…`, `OPP-…`, `APP-…`, `VEI-…`) apparaît ;
+- le registre ne correspond pas au fichier (nom, instantané, logo absent).
+
+Il signale sans bloquer les éléments sans position et les points très éloignés du périmètre.
+
+## Circulation entre les cartes et le tableau de bord
+
+Les deux pages se nourrissent l'une l'autre, uniquement à partir de projections déjà publiques : aucune donnée privée ne circule par ce chemin.
+
+- **Carte → tableau de bord** : le tableau lit `territoires/index.json` et chaque carte publiée. Les événements d'une carte entrent dans la frise (sans doublon avec la base commune), rattachés à leur commune et marqués « Carte <territoire> ». Dans « Par territoire », un territoire qui a une carte porte un lien « Carte ».
+- **Tableau de bord → carte** : la carte lit `tableau-de-bord/data.json` et affiche, dans « Dans la base commune Civipédia », les territoires de la base qui correspondent au territoire ou à une commune de son périmètre, leurs rendez-vous vérifiés à venir, et un lien vers le tableau filtré (`tableau-de-bord/?territoire=<nom>`).
+
+Si l'une des deux sources manque, l'autre page s'affiche normalement, sans cette partie.
 
 ## Tableau de bord public
 
 | Fichier | Rôle |
 |---|---|
-| `tableau-de-bord/index.html` | Page publique intégrable (iframe) : agenda passé et à venir en frise (événements publics et rendez-vous de l'équipe), appels qui reviennent, comptes par territoire et par expertise. Mode clair par défaut, sombre avec `?theme=sombre`, période de part et d'autre d'aujourd'hui avec `?mois=3`, `6`, `12` ou `0` (tout). Elle ne contient aucune donnée. |
+| `tableau-de-bord/index.html` | Page publique intégrable (iframe) : agenda passé et à venir en frise (événements publics et rendez-vous de l'équipe), appels qui reviennent, comptes par territoire et par expertise. Mode clair par défaut, sombre avec `?theme=sombre`, période de part et d'autre d'aujourd'hui avec `?mois=3`, `6`, `12` ou `0` (tout), territoire avec `?territoire=<nom>`. Elle ne contient aucune donnée. |
 | `tableau-de-bord/data.json` | Projection publique de la base commune, produite à la demande. Elle ne contient que des événements publics vérifiés, des rendez-vous de l'équipe où seuls les membres de Civipédia ayant donné leur accord sont nommés, des appels décrits par leur source officielle et des comptes agrégés : aucun autre nom de personne, aucune coordonnée, aucun identifiant interne, aucun projet interne. |
 | `tableau-de-bord/generer_data.py` | Générateur de `data.json` à partir d'un export .xlsx de la base Civipédia. Il ne lit pas la base Crossac. |
 
