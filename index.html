@@ -28,6 +28,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:16px;border-bottom:1px solid var(--line)}
 .brand{font-weight:800;letter-spacing:.01em;font-size:16px}
 .brand b{color:var(--blue)}
+.terr[hidden]{display:none}
 .terr{display:flex;align-items:center;gap:8px;color:var(--ink-2);font-size:13px}
 .terr select{background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;padding:6px 10px;font-weight:600;color:var(--ink)}
 .hero{display:flex;flex-wrap:wrap;gap:12px 40px;align-items:flex-end;justify-content:space-between;padding-block:28px 20px}
@@ -293,10 +294,11 @@ fieldset.field{border:0;padding:0;margin:0}
 .pages button{border:0;background:var(--bg);padding:7px 12px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink-2)}
 .pages button+button{border-left:1px solid var(--line-strong)}
 .pages button[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue-ink)}
-.une-head{padding-block:28px 6px}
-.une-head .kick{margin:0;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-ink)}
-.une-head h1{margin:6px 0 0;font-size:clamp(34px,6vw,54px);font-weight:800;letter-spacing:-.02em;line-height:1.02;text-wrap:balance}
-.une-head p{margin:10px 0 0;color:var(--ink-2);max-width:62ch;font-size:16px}
+.une-head{padding-block:14px 10px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.une-head .kick{margin:0;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-ink);flex-basis:100%}
+.une-head h1{margin:0;font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.015em;line-height:1.1;text-wrap:balance}
+.une-head p{margin:0;color:var(--ink-2);max-width:70ch;font-size:15px}
+@media (max-width:620px){.une-head p{display:none}}
 .cta{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--blue-soft)}
 .cta .go{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:800;font-size:17px;border-radius:10px;padding:13px 22px}
 .cta .go:hover{background:var(--blue-ink)}
@@ -306,22 +308,35 @@ fieldset.field{border:0;padding:0;margin:0}
 .frise{margin-top:28px}
 .frise h2{margin:0;font-size:20px}
 .frise > p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px}
-.fr-track{position:relative;margin-top:14px;display:flex;gap:14px;overflow-x:auto;padding:6px 2px 16px;scroll-snap-type:x proximity}
-.fr-track::before{content:"";position:absolute;left:0;right:0;top:27px;height:3px;background:var(--line-strong);min-width:100%}
-.fr-it{position:relative;flex:0 0 220px;scroll-snap-align:start;display:flex;flex-direction:column;gap:6px;text-align:left;border:0;background:none;padding:0;cursor:pointer;color:inherit;font:inherit}
-.fr-it .dot{width:16px;height:16px;border-radius:50%;background:var(--k-evenement);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--k-evenement);margin:13px 0 4px 4px;z-index:1}
-.fr-it .card{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-height:112px}
-.fr-it .d{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--k-evenement)}
-.fr-it .t{font-weight:700;line-height:1.3}
-.fr-it .w{font-size:12.5px;color:var(--ink-3)}
-.fr-it.passe .dot{background:var(--line-strong);box-shadow:0 0 0 2px var(--line-strong)}
-.fr-it.passe .card{opacity:.72}
-.fr-it.passe .d{color:var(--ink-3)}
-.fr-it:hover .card,.fr-it:focus-visible .card{border-color:var(--k-evenement)}
-.fr-today{flex:0 0 auto;align-self:flex-start;margin-top:8px;z-index:1;background:var(--blue);color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:4px 8px;white-space:nowrap}
+.fr-scroll{margin-top:12px;overflow-x:auto;overflow-y:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);scrollbar-color:var(--line-strong) transparent}
+.fr-pz{position:relative}
+.fr-axe{position:absolute;height:4px;border-radius:2px;background:var(--ink)}
+.fr-tick{position:absolute;width:1px;background:var(--line)}
+.fr-mois{position:absolute;transform:translateX(-50%);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.fr-auj{position:absolute;width:0;border-left:2px dashed var(--blue)}
+.fr-auj-l{position:absolute;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:5px;padding:2px 7px;white-space:nowrap}
+.fr-pt{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--k-evenement);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--k-evenement)}
+.fr-pt.passe{background:var(--ink-3);box-shadow:0 0 0 2px var(--ink-3)}
+.fr-tige{position:absolute;width:2px;margin-left:-1px;background:var(--line-strong)}
+.fr-c{position:absolute;width:210px;display:flex;flex-direction:column;gap:2px;text-align:left;border:1px solid var(--line);border-left:4px solid var(--k-evenement);border-radius:8px;background:var(--surface);padding:8px 10px;cursor:pointer;color:inherit;font:inherit;text-decoration:none;overflow:hidden}
+.fr-c .d{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--k-evenement)}
+.fr-c .t{font-weight:700;font-size:14px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fr-c .w{font-size:12px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr-c.passe{border-left-color:var(--ink-3);opacity:.8}
+.fr-c.passe .d{color:var(--ink-3)}
+.fr-c:hover,.fr-c:focus-visible{border-color:var(--k-evenement)}
+.fr-defile{margin:6px 0 0;font-size:12.5px;color:var(--ink-3)}
+.fr-defile[hidden]{display:none}
+.donnees{margin-top:28px}
+.donnees h2{margin:0;font-size:20px}
+.donnees > p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px}
+.dbtns{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13.5rem),1fr));gap:10px}
+.dbtn{display:flex;flex-direction:column;gap:4px;text-align:left;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--bg);padding:14px 16px;cursor:pointer;color:inherit;font:inherit}
+.dbtn b{font-size:17px;color:var(--blue-ink)}
+.dbtn span{font-size:13px;color:var(--ink-3)}
+.dbtn:hover,.dbtn:focus-visible{border-color:var(--blue);background:var(--blue-soft)}
+.dbtn.tout b{color:var(--ink)}
 .fr-empty{color:var(--ink-3);font-size:14px}
-.voir-tout{margin-top:28px;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:16px;color:var(--ink-2);font-size:14px}
-.voir-tout button{border:1px solid var(--line-strong);background:var(--bg);border-radius:9px;padding:9px 14px;font-weight:700;cursor:pointer;color:var(--blue-ink)}
 </style>
 
 <div class="wrap">
@@ -349,9 +364,14 @@ fieldset.field{border:0;padding:0;margin:0}
     <section class="frise" aria-labelledby="frise-title">
       <h2 id="frise-title">Ce qui s'est passé, ce qui arrive</h2>
       <p>Les événements publiés sur la carte et dans la base commune Civipédia. Touchez un événement pour le détail.</p>
-      <div class="fr-track" id="frise" tabindex="0" aria-label="Frise des événements, défilement horizontal"></div>
+      <div class="fr-scroll" id="frise" tabindex="0" aria-label="Frise des événements, défilement horizontal"></div>
+      <p class="fr-defile" id="fr-defile" hidden>Faites glisser la frise pour voir la suite.</p>
     </section>
-    <div class="voir-tout"><span id="voir-tout-txt"></span><button type="button" id="voir-tout">Voir tout le territoire ›</button></div>
+    <section class="donnees" aria-labelledby="donnees-title">
+      <h2 id="donnees-title">Les données du territoire</h2>
+      <p>Chaque bouton ouvre une page à part : les chiffres établis, ce qu'on cherche encore à savoir, et qui agit.</p>
+      <div class="dbtns" id="dbtns"></div>
+    </section>
   </div>
 
   <section class="hero">
@@ -523,6 +543,7 @@ async function boot(){
   catch(e){ $("#list").innerHTML = `<div class="state">Les données du territoire n'ont pas pu être chargées. Rechargez la page.</div>`; return; }
   const sel = $("#terr");
   sel.innerHTML = reg.map(t => `<option value="${esc(t.id)}">${esc(t.nom)}</option>`).join("");
+  $(".terr").hidden = reg.length < 2;
   const [want, vue] = (location.hash || "").slice(1).split("/");
   const first = reg.find(t => t.id === want) || reg[0];
   sel.value = first.id;
@@ -574,7 +595,11 @@ function renderUne(){
     $("#inscription").innerHTML = `<a class="go" href="${esc(insc.url)}" target="_blank" rel="noopener">${esc(insc.bouton)}</a><p>${esc(insc.texte || "")}</p>`;
   }
   $("#une-credit").hidden = !UNE.credit; $("#une-credit").textContent = UNE.credit || "";
-  $("#voir-tout-txt").textContent = `Acteurs, lieux, projets, chiffres et questions suivies : tout ce que la carte connaît de ${T.territoire.nom}.`;
+  const nb = th => (T.observations || []).filter(o => inTheme(o, th)).length;
+  const dons = (UNE.donnees || []).filter(d => nb(d.theme) || (T.indicateurs || []).some(i => i.domaine === d.theme));
+  $("#dbtns").innerHTML = dons.map(d => `<button type="button" class="dbtn" data-theme="${esc(d.theme)}"><b>${esc(d.libelle)} ›</b><span>${nb(d.theme)} chiffre${nb(d.theme) > 1 ? "s" : ""} établi${nb(d.theme) > 1 ? "s" : ""}</span></button>`).join("")
+    + `<button type="button" class="dbtn tout" id="voir-tout"><b>Tout ${esc(T.territoire.nom)} ›</b><span>Acteurs, lieux, projets, recherche et tous les chiffres</span></button>`;
+  $("#voir-tout").onclick = () => { showPage("tout"); window.scrollTo({top:0}); };
   renderFrise();
 }
 function showPage(page){
@@ -590,7 +615,6 @@ function showPage(page){
   requestAnimationFrame(() => { fitHome(); render(); });
 }
 document.querySelectorAll("[data-page]").forEach(b => b.onclick = () => { showPage(b.dataset.page); window.scrollTo({top:0}); });
-$("#voir-tout").onclick = () => { showPage("tout"); window.scrollTo({top:0}); };
 
 async function renderFrise(){
   if (BASE === undefined) { try { BASE = await loadJSON(TABLEAU + "data.json"); } catch(_) { BASE = null; } }
@@ -604,19 +628,42 @@ async function renderFrise(){
   }
   evs.sort((a, b) => a.debut.localeCompare(b.debut));
   const box = $("#frise");
-  if (!evs.length) { box.innerHTML = `<p class="fr-empty">Aucun événement publié pour l'instant.</p>`; return; }
-  const jour = e => { const f = d => new Date(d + "T12:00:00").toLocaleDateString("fr-FR", {day:"numeric", month:"short", year:"numeric"}); return e.fin && e.fin !== e.debut ? `${f(e.debut)} → ${f(e.fin)}` : f(e.debut); };
-  let h = "", mis = false;
-  for (const e of evs) {
-    const passe = e.fin < today;
-    if (!passe && !mis) { h += `<span class="fr-today" id="fr-today">Aujourd'hui</span>`; mis = true; }
-    const inner = `<span class="dot" aria-hidden="true"></span><span class="card"><span class="d">${esc(jour(e))}</span><span class="t">${esc(e.titre)}</span>${e.ou ? `<span class="w">${esc(e.ou)}</span>` : ""}</span>`;
-    h += e.id ? `<button type="button" class="fr-it${passe ? " passe" : ""}" data-id="${esc(e.id)}">${inner}</button>`
-              : `<a class="fr-it${passe ? " passe" : ""}" href="${esc(e.url || TABLEAU)}" target="_blank" rel="noopener">${inner}</a>`;
+  if (!evs.length) { box.innerHTML = `<p class="fr-empty">Aucun événement publié pour l'instant.</p>`; $("#fr-defile").hidden = true; return; }
+  const DAY = 864e5, t = d => Date.parse(d + "T12:00:00Z"), now = t(today);
+  const MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+  const d0 = new Date(Math.min(t(evs[0].debut), now) - 20 * DAY), start = Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth(), 1);
+  const end = Math.max(t(evs[evs.length - 1].fin), now) + 40 * DAY;
+  const CW = 210, CH = 92, m = 14, W = Math.max(box.clientWidth, Math.round((end - start) / (30.4 * DAY) * 120), 600);
+  const x = v => m + (v - start) / (end - start) * (W - CW - 2 * m);
+  // placement : alterner au-dessus et en dessous de l'axe, sur plusieurs rangs si les cartes se touchent
+  const fins = [[], []];
+  const pl = evs.map((e, n) => {
+    const xx = x(t(e.debut)); let best = null;
+    for (const side of [n % 2, 1 - n % 2]) { let lv = fins[side].findIndex(f => f < xx - 8); if (lv < 0) lv = fins[side].length; if (!best || lv < best.lv) best = {side, lv}; }
+    fins[best.side][best.lv] = xx + CW; return {e, xx, ...best};
+  });
+  const A = Math.max(1, fins[0].length), B = Math.max(1, fins[1].length), LH = CH + 10;
+  const axeY = 26 + A * LH + 18, H = axeY + 22 + B * LH + 26;
+  const pos = (cls, l, tp, w, hh, txt) => `<div class="${cls}" style="left:${l}px;top:${tp}px${w != null ? `;width:${w}px` : ""}${hh != null ? `;height:${hh}px` : ""}">${txt || ""}</div>`;
+  let h = "";
+  for (let mo = start; mo <= end; ) { const dm = new Date(mo), xm = x(mo);
+    h += pos("fr-tick", xm, 20, null, H - 44) + pos("fr-mois", xm + 30, H - 20, null, null, MOIS[dm.getUTCMonth()] + (dm.getUTCMonth() === 0 || mo === start ? " " + dm.getUTCFullYear() : ""));
+    mo = Date.UTC(dm.getUTCFullYear(), dm.getUTCMonth() + 1, 1); }
+  h += pos("fr-axe", m, axeY - 2, W - 2 * m);
+  h += pos("fr-auj", x(now), 18, null, H - 40) + pos("fr-auj-l", x(now), 0, null, null, "Aujourd'hui");
+  const jour = e => { const f = d => { const v = new Date(t(d)); return v.getUTCDate() + " " + MOIS[v.getUTCMonth()] + " " + v.getUTCFullYear(); }; return e.fin && e.fin !== e.debut ? f(e.debut) + " → " + f(e.fin) : f(e.debut); };
+  for (const p of pl) {
+    const e = p.e, passe = e.fin < today, top = p.side === 0 ? axeY - 18 - p.lv * LH - CH : axeY + 22 + p.lv * LH;
+    const tTop = p.side === 0 ? top + CH : axeY, tH = p.side === 0 ? axeY - top - CH : top - axeY;
+    h += pos("fr-tige", p.xx, tTop, null, tH) + pos("fr-pt" + (passe ? " passe" : ""), p.xx, axeY);
+    const inner = `<span class="d">${esc(jour(e))}</span><span class="t">${esc(e.titre)}</span>${e.ou ? `<span class="w">${esc(e.ou)}</span>` : ""}`;
+    const sty = `left:${p.xx - 6}px;top:${top}px;height:${CH}px`;
+    h += e.id ? `<button type="button" class="fr-c${passe ? " passe" : ""}" data-id="${esc(e.id)}" style="${sty}">${inner}</button>`
+              : `<a class="fr-c${passe ? " passe" : ""}" href="${esc(e.url || TABLEAU)}" target="_blank" rel="noopener" style="${sty}">${inner}</a>`;
   }
-  if (!mis) h += `<span class="fr-today" id="fr-today">Aujourd'hui</span>`;
-  box.innerHTML = h;
-  const t = $("#fr-today"); if (t) box.scrollLeft = Math.max(0, t.offsetLeft - 260);
+  box.innerHTML = `<div class="fr-pz" style="width:${W}px;height:${H}px">${h}</div>`;
+  box.scrollLeft = Math.max(0, x(now) - box.clientWidth / 2);
+  $("#fr-defile").hidden = W <= box.clientWidth + 4;
 }
 $("#frise").addEventListener("click", e => { const b = e.target.closest("button[data-id]"); if (b) openSheet(b.dataset.id); });
 
@@ -1120,9 +1167,10 @@ function openTheme(th){
         <section class="blk"><h2>Sources</h2><div class="srcs">${[...srcMap.values()].map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.nom)}</a>`).join("") || `<p class="idnote">Aucune source en ligne.</p>`}</div></section>
       </div>
     </div>`;
-  $("#home").hidden = true; $(".hero").hidden = true; $("#themeview").hidden = false;
+  const retour = PAGE;
+  $("#une").hidden = true; $("#home").hidden = true; $(".hero").hidden = true; $("#themeview").hidden = false;
   window.scrollTo({top:0});
-  $("#th-home").onclick = () => showHome(true);
+  $("#th-home").onclick = () => { if (retour === "une" && UNE) { showPage("une"); window.scrollTo({top:0}); } else showHome(true); };
   $("#th-map").onclick = () => { Object.assign(st, {dom: th, commune: null}); showHome(false); render(); $("#q").scrollIntoView({block:"start"}); };
 }
 $("#themeview").addEventListener("click", e => {

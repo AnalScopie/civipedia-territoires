@@ -145,7 +145,7 @@ Liste d'objets :
 | `data` | Chemin du fichier de données. |
 | `geo` | Chemin du fond géographique. |
 | `instantane` | Date et nature de l'instantané publié. |
-| `une` | Facultatif : projet mis en avant à l'ouverture de la carte. `projet` (identifiant d'un projet publié), `onglet`, `surtitre`, `titre`, `texte`, `credit` (petite mention sous le bouton d'inscription, par exemple la personne qui anime le projet, avec son accord), et `inscription` (`url`, `bouton`, `bouton_court`, `texte`). La page s'ouvre alors sur ce projet : carte cadrée sur ses lieux et ses tracés, bouton d'inscription juste en dessous, puis frise des événements passés et à venir. Le reste (recherche, chiffres, couverture, contributions) passe dans l'onglet « Tout <territoire> », adresse `#<id>/tout`. |
+| `une` | Facultatif : projet mis en avant à l'ouverture de la carte. `projet` (identifiant d'un projet publié), `onglet`, `surtitre`, `titre`, `texte`, `donnees` (liste de boutons `{theme, libelle}` qui ouvrent chacun la page d'un thème : l'eau, les habitants…), `credit` (petite mention sous le bouton d'inscription, par exemple la personne qui anime le projet, avec son accord), et `inscription` (`url`, `bouton`, `bouton_court`, `texte`). La page s'ouvre alors sur ce projet : carte cadrée sur ses lieux et ses tracés, bouton d'inscription juste en dessous, puis frise paysage des événements passés et à venir (axe du temps par mois, repère « Aujourd'hui »), puis les boutons de données. Le reste (recherche, chiffres, couverture, contributions) passe dans l'onglet « Tout <territoire> », adresse `#<id>/tout`. |
 
 ### `territoires/<id>.json`
 
