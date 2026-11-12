@@ -43,6 +43,7 @@ Aucune carte n'est publiée sans passer `python3 verifier_territoires.py` (ou `p
 - la structure est incomplète : clé absente, identifiant en double, nature inconnue, événement sans date, élément sans source web ;
 - une relation ou un renvoi (`lieu`, `organisateur`) désigne un élément absent de la carte ;
 - un élément est dit « Sans adresse sur la carte » alors qu'un point est publié ;
+- un tracé renvoie à un projet absent, n'a pas de couleur valide ou sort du périmètre ;
 - une observation n'est ni FAIT ni VÉRIFIÉ, ou un chiffre en attente publie sa valeur ;
 - une adresse électronique, un numéro de téléphone ou un identifiant interne de la base commune (`MASE-…`, `OPP-…`, `APP-…`, `VEI-…`) apparaît ;
 - le registre ne correspond pas au fichier (nom, instantané, logo absent).
@@ -160,6 +161,7 @@ Liste d'objets :
 | `en_attente` | Chiffres connus mais pas encore établis : seuls leur existence et le motif d'attente sont publiés, jamais la valeur. |
 | `ouverts` | Questions ouvertes publiables (desserte, information à confirmer…), sans détail interne. |
 | `attendues` | Actions annoncées dont les données ne sont pas encore fournies. |
+| `traces` | Itinéraires dessinés sur la carte (facultatif) : `id`, `nom`, `projet` (projet publié auquel ils appartiennent), `couleur` (#RRGGBB), `pts` (liste de [lat, lon]). Un tracé s'affiche quand son projet ou l'un de ses arrêts passe les filtres.
 | `couverture` | État de la collecte par domaine. Mesure ce que contient la base, pas la réalité du territoire. |
 
 Un élément de `items` :
