@@ -165,3 +165,7 @@ La carte technique (sources, qualifications, points à vérifier, analyse vers l
 ## Mises à jour
 
 Les fichiers de `territoires/` sont remplacés par l'export quand un changement réel est détecté et que les contrôles passent. Si un contrôle échoue, la version précédente reste en ligne. L'historique Git garde chaque version publiée.
+
+## Application installable (PWA)
+
+La carte peut s'installer sur un téléphone comme une application (« Ajouter à l'écran d'accueil »). Fichiers : `manifest.webmanifest`, `sw.js`, `icones/`. Le service worker va toujours chercher la version en ligne d'abord ; sa copie locale ne sert que hors connexion. Il ne s'active pas quand la carte est intégrée dans un autre site (iframe).
