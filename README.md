@@ -26,7 +26,7 @@ Chaque fichier JSON publié ici peut être lu par n'importe qui. C'est pour cela
 | `territoires/<id>.json` | Projection publique d'un territoire. |
 | `territoires/<id>.geo.json` | Fond géographique (contours des communes), séparé des données métier. |
 | `technique/carte.html` | Interface de la carte technique réservée aux comptes Civipedia. Code seul : elle ne contient aucune donnée et ne fonctionne pas ouverte directement. Le script Google de l'accès réservé y injecte, à chaque ouverture, les données lues en direct dans le tableur privé. |
-| `reseau/` | Carte « Le tissage du réseau » : lieux où Civipédia agit et liens entre eux, en France et à l'international. Code et fond de carte seuls (`monde.json`, Natural Earth, domaine public) : aucune donnée. Ouverte directement, elle n'affiche qu'un message. |
+| `reseau/` | Carte « Le tissage du réseau » (prototype) : lieux où Civipédia agit et liens entre eux, en France et à l'international. Fond de carte `monde.json` (Natural Earth, domaine public) et instantané public `donnees.json` : noms de lieux, comptes et liens, sans aucun nom de personne ou d'organisation ni identifiant. Ouverte par l'accès réservé, la même page est calculée en direct. |
 | `technique/reseau-apps-script/` | Script Google de l'accès réservé à la carte du réseau : lit la grande base en direct, calcule les lieux et les liens, et les injecte dans `reseau/index.html`. Code seul, aucune donnée. |
 | `technique/kleroterion-apps-script/` | Script Google de l'accès réservé au klèrôtèrion : lit les onglets de noms de la grande base en direct et enregistre les tirages dans l'onglet `Tirages_au_sort`. Code seul, aucune donnée. |
 | `maquette/` | Maquette de l'application Civipédia Conseil (HTML interactif, PDF, capture). Exemples fictifs uniquement, aucune donnée réelle. Copie de celle du dépôt `civipedia-conseil`. |
@@ -103,6 +103,7 @@ La carte « Le tissage du réseau » montre l'étendue du réseau : une carte du
 - **Déploiement** : la page `reseau/index.html` est publiée par GitHub Pages à chaque fusion sur `main`.
 - **Lien direct avec la grande base** : le script Google de `technique/reseau-apps-script/` vérifie le compte `@civipedia.org`, lit la base à chaque ouverture (résultat gardé 10 minutes), calcule les lieux et les liens, et les injecte dans la page à la place du repère `/*__DONNEES__*/`, comme pour `technique/carte.html` et le klèrôtèrion.
 - **Ce que reçoit la page** : des noms de lieux (commune, territoire, pays), des comptes par lieu et des liens. Aucun nom de personne, d'organisation ou de démarche, aucun identifiant interne.
+- **Version publique** : `https://analscopie.github.io/civipedia-territoires/reseau/` affiche l'instantané `reseau/donnees.json`, même contenu figé à une date (publication décidée par Anne Povie le 12/11/2026 pour l'AG). Mise à jour : fonction `instantane` du script, voir le LISEZMOI.
 
 Installation, règles de calcul et évolution : `technique/reseau-apps-script/LISEZMOI.md`.
 
