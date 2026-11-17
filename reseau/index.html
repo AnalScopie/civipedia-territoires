@@ -66,7 +66,7 @@ footer{font-size:.75rem;color:var(--ink-3);font-family:var(--f-mono)}
 <div class="wrap">
   <header>
     <div>
-      <div class="eyebrow">Civipédia · le réseau</div>
+      <div class="eyebrow">Civipédia · prototype</div>
       <h1>Le tissage du <span>réseau</span></h1>
     </div>
     <p class="lede">Les lieux où Civipédia agit et les liens qui les relient, en France et à l'international.</p>
@@ -90,14 +90,20 @@ footer{font-size:.75rem;color:var(--ink-3);font-family:var(--f-mono)}
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
 <script>
-/* Code seul, aucune donnée : le script Google de l'accès réservé (technique/reseau-apps-script) remplace
- * le repère ci-dessous par « const R = {...}; », calculé en direct depuis la grande base. */
+/* Ouverte par le script Google de l'accès réservé (technique/reseau-apps-script), la page reçoit à la place du
+ * repère ci-dessous « const R = {...}; », calculé en direct depuis la grande base. Ouverte directement, elle
+ * affiche l'instantané public donnees.json : noms de lieux, comptes et liens, sans aucun nom ni identifiant. */
 /*__DONNEES__*/
+const R_DIRECT = typeof R !== "undefined" ? R : null;
 (async function(){
 const $ = id => document.getElementById(id);
-if (typeof R === "undefined") {
-  document.querySelector(".mapbox").innerHTML = '<p style="padding:32px;margin:0;color:var(--ink-2)">Cette carte s’ouvre depuis l’accès réservé aux comptes Civipedia : elle y est calculée en direct à partir de la grande base.</p>';
-  return;
+let R = R_DIRECT;
+if (!R) {
+  try { R = await fetch("donnees.json").then(r => r.json()); }
+  catch (e) {
+    document.querySelector(".mapbox").innerHTML = '<p style="padding:32px;margin:0;color:var(--ink-2)">Les données de la carte n’ont pas pu être chargées.</p>';
+    return;
+  }
 }
 const MONDE = await fetch("monde.json").then(r => r.json());
 const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -121,7 +127,10 @@ $("figs").innerHTML = [
 ].map(([v, l]) => `<div><b>${v}</b><span>${esc(l)}</span></div>`).join("");
 $("countries").innerHTML = "Présent en " + pays.sort((a, b) => a === "FR" ? -1 : b === "FR" ? 1 : 0)
   .map(c => `<b>${esc(PAYS[c] || c)}</b>`).concat(zones.map(z => `<b>${esc(z)}</b>`)).join(", ").replace(/, ([^,]*)$/, " et $1") + ".";
-$("foot").textContent = `Calculé en direct depuis la base Civipédia, le ${R.genere_le.split("-").reverse().join("/")}.`;
+const jour = R.genere_le.split("-").reverse().join("/");
+$("foot").textContent = R.instantane
+  ? `Prototype. Instantané de la base Civipédia au ${jour}.`
+  : `Prototype. Calculé en direct depuis la base Civipédia, le ${jour}.`;
 
 /* ---------- Géométrie ---------- */
 const W = 1200, H = 680;

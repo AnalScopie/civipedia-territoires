@@ -8,7 +8,7 @@ grande base  →  script Google (compte vérifié, calcul)  →  page reseau/ (G
 
 - **La page est déployée par GitHub** : toute modification de `reseau/index.html` fusionnée sur `main` est en ligne une ou deux minutes plus tard, sans toucher au script.
 - **Les données restent dans le script** : la page ne reçoit que des lieux (commune, territoire ou pays), des comptes par lieu et les liens entre lieux. Aucun nom de personne, d'organisation ou de démarche, aucun identifiant de la base, aucune note.
-- Ouverte directement sur GitHub Pages, la page affiche seulement un message : elle ne contient aucune donnée.
+- Ouverte directement sur GitHub Pages, la page affiche l'**instantané public** `reseau/donnees.json` : noms de lieux, comptes par lieu et liens, sans aucun nom de personne, d'organisation ou de démarche ni identifiant. Le bas de la page indique « Instantané de la base au … » au lieu de « Calculé en direct ».
 
 ## Règles de calcul
 
@@ -36,6 +36,14 @@ Réglages facultatifs (Paramètres du projet → Propriétés du script) :
 |---|---|
 | `BASE_ID` | identifiant de `JOURNAL_TRAITEMENT_CIVIPEDIA_LAB` |
 | `PAGE_URL` | `https://analscopie.github.io/civipedia-territoires/reseau/` |
+
+## Mettre à jour l'instantané public
+
+L'instantané ne bouge pas tout seul : c'est une photo de la base, publiée volontairement.
+
+1. Dans l'éditeur du script, choisir la fonction `instantane` et cliquer sur **Exécuter**.
+2. Copier le texte affiché dans le journal d'exécution et remplacer le contenu de `reseau/donnees.json` dans ce dépôt (ou demander à Claude de le faire).
+3. Fusionner : GitHub Pages publie la nouvelle version en une ou deux minutes.
 
 ## Faire évoluer
 
