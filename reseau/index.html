@@ -6,68 +6,92 @@
 <meta name="robots" content="noindex,nofollow">
 <title>Tissage du réseau Civipédia</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap">
 <style>
-/* Layout : une seule grande carte du réseau (du Québec à la RDC) avec la France et la Belgique agrandies en encart ; chiffres et légende en une bande sous la carte. Thème sombre unique, celui de la carte technique Civipedia. */
+/* Charte Civipédia : noir nuit, jaune Civipédia, bleu. Bandeau d'en-tête avec le logo, une grande carte lumineuse
+   (France et Belgique en encart), chiffres et légende en bande sous la carte. Thème sombre unique, choisi. */
 :root{
-  --bg:#060b16; --surface:#0b1323; --line:#18243c; --line-strong:#27375a;
-  --ink:#e9eef8; --ink-2:#a8b5cb; --ink-3:#6f7f99;
-  --sea:#03060d; --land:#0d1830; --border:rgba(140,165,210,.18);
-  --c-projet:#4f93ff; --c-evenement:#b28cff; --c-organisation:#f5c84a; --c-personne:#2fd394;
-  --node:#e9eef8; --hub:#2fd394;
-  --f-sans:"Public Sans","Segoe UI",system-ui,sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
-  --r:8px;
+  --night:#05080f; --night-2:#0a1120; --panel:#0d1628; --line:#1a2740; --line-2:#26385c;
+  --ink:#f2f5fa; --ink-2:#b4c0d4; --ink-3:#7686a1;
+  --yellow:#ffd21f; --yellow-2:#ffe46b; --blue:#2f6bff; --blue-2:#79a4ff; --white:#eef3ff;
+  --sea:#04070d; --land:#0d1a33; --border:rgba(90,140,255,.28);
+  --c-projet:var(--yellow); --c-evenement:var(--blue); --c-organisation:var(--blue-2); --c-personne:var(--white);
+  --f-title:"Montserrat","Segoe UI",system-ui,sans-serif;
+  --f-sans:"Inter","Segoe UI",system-ui,sans-serif;
+  --r:14px;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html,body{background:var(--bg);color:var(--ink)}
-body{font-family:var(--f-sans);font-size:15px;line-height:1.5;margin:0;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:22px 32px}
-.wrap{max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 24px}
-.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#74e2b4;font-weight:700}
-h1{font-weight:800;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.05;margin:2px 0 0;letter-spacing:-.01em}
-h1 span{color:#3d7bff}
-.lede{margin:0;color:var(--ink-2);font-size:1.02rem;max-width:44ch}
-.mapbox{background:var(--sea);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
-  background-image:radial-gradient(ellipse at 55% 35%,rgba(61,123,255,.08),transparent 60%)}
+html,body{background:var(--night);color:var(--ink)}
+body{font-family:var(--f-sans);font-size:15px;line-height:1.5;margin:0}
+.topbar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:14px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px));border-bottom:1px solid var(--line);background:linear-gradient(180deg,#070c17,var(--night))}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
+.logo{width:42px;height:42px;flex:none}
+.word{font:900 26px/1 var(--f-title);letter-spacing:.02em;color:var(--yellow)}
+.tag{border-left:1px solid var(--line-2);padding-left:14px;font-size:12.5px;line-height:1.35;color:var(--ink-2)}
+.proto{margin-left:auto;font:700 11px var(--f-title);letter-spacing:.14em;text-transform:uppercase;color:var(--night);background:var(--yellow);border-radius:999px;padding:6px 12px}
+.wrap{max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:18px;padding:22px max(16px,env(safe-area-inset-right,0px)) 32px max(16px,env(safe-area-inset-left,0px))}
+header.title{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 28px}
+h1{font:800 clamp(1.9rem,4.2vw,2.9rem)/1.05 var(--f-title);margin:0;letter-spacing:-.01em;text-transform:uppercase}
+h1 span{color:var(--yellow)}
+.rule{width:56px;height:4px;background:var(--yellow);border-radius:2px;margin-top:12px}
+.lede{margin:0;color:var(--ink-2);font-size:1.03rem;max-width:46ch}
+.mapbox{position:relative;background:var(--sea);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  background-image:radial-gradient(ellipse at 62% 30%,rgba(47,107,255,.14),transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(255,210,31,.06),transparent 50%)}
 #map{display:block;width:100%;height:auto}
-.band{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 28px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);background:#0a1222}
-.figs{display:flex;flex-wrap:wrap;gap:6px 26px}
-.figs div{display:flex;align-items:baseline;gap:7px}
-.figs b{font-size:1.45rem;font-weight:800;font-variant-numeric:tabular-nums}
-.figs span{font-size:.85rem;color:var(--ink-2)}
-.legend{display:flex;flex-wrap:wrap;gap:4px 16px;font-size:12.5px;color:var(--ink-3)}
-.legend i{display:inline-block;width:18px;height:0;border-top:2px solid;vertical-align:middle;margin-right:6px;border-radius:2px}
-.k-projet{border-color:var(--c-projet)!important} .k-evenement{border-color:var(--c-evenement)!important}
-.k-organisation{border-color:var(--c-organisation)!important} .k-personne{border-color:var(--c-personne)!important}
-.countries{font-size:.9rem;color:var(--ink-2)}
+.band{display:flex;flex-wrap:wrap;justify-content:space-between;gap:14px 28px;align-items:center;padding:14px 18px;border-top:1px solid var(--line);background:rgba(10,17,32,.92)}
+.figs{display:flex;flex-wrap:wrap;gap:8px 28px}
+.figs div{display:flex;align-items:baseline;gap:8px}
+.figs b{font:800 1.7rem/1 var(--f-title);color:var(--yellow);font-variant-numeric:tabular-nums}
+.figs span{font-size:.86rem;color:var(--ink-2)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:12.5px;color:var(--ink-2)}
+.legend i{display:inline-block;width:20px;height:0;border-top:2px solid;vertical-align:middle;margin-right:7px;border-radius:2px;box-shadow:0 0 6px currentColor}
+.k-projet{border-color:var(--c-projet)!important;color:var(--c-projet)} .k-evenement{border-color:var(--c-evenement)!important;color:var(--c-evenement)}
+.k-organisation{border-color:var(--c-organisation)!important;color:var(--c-organisation)} .k-personne{border-color:var(--c-personne)!important;color:var(--c-personne)}
+.countries{font-size:.92rem;color:var(--ink-2)}
 .countries b{color:var(--ink);font-weight:600}
-footer{font-size:.75rem;color:var(--ink-3);font-family:var(--f-mono)}
-/* SVG */
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-size:.78rem;color:var(--ink-3);border-top:1px solid var(--line);padding-top:14px}
+footer b{font:800 .8rem var(--f-title);letter-spacing:.08em;color:var(--ink)}
+footer b span{color:var(--yellow)}
+/* Carte */
 .country{fill:var(--land);stroke:var(--border);stroke-width:.6}
-.thread{fill:none;stroke-linecap:round;opacity:.85}
+.thread{fill:none;stroke-linecap:round;opacity:.9}
+.thread.glow{opacity:.35;filter:url(#flou)}
 .thread.projet{stroke:var(--c-projet)} .thread.evenement{stroke:var(--c-evenement)}
 .thread.organisation{stroke:var(--c-organisation)} .thread.personne{stroke:var(--c-personne)}
-.zone{fill:var(--c-organisation);fill-opacity:.08;stroke:var(--c-organisation);stroke-opacity:.45;stroke-dasharray:3 4}
-.pt{fill:var(--node);stroke:var(--sea);stroke-width:1}
-.pt.hub{fill:var(--hub)}
-.lbl{font:600 12px var(--f-sans);fill:var(--ink);paint-order:stroke;stroke:var(--sea);stroke-width:3.5px;stroke-linejoin:round}
-.lbl.hub{fill:#74e2b4}
-.lbl.big{font-size:14px;font-weight:700}
-.inset-frame{fill:var(--sea);stroke:var(--line-strong);stroke-width:1}
-.inset-title{font:500 11px var(--f-mono);letter-spacing:.1em;fill:var(--ink-3);text-transform:uppercase}
-.focus{fill:none;stroke:var(--line-strong);stroke-width:1;stroke-dasharray:3 3}
-.connector{stroke:var(--line-strong);stroke-width:1;stroke-dasharray:3 3}
+.zone{fill:var(--yellow);fill-opacity:.06;stroke:var(--yellow);stroke-opacity:.45;stroke-dasharray:3 5}
+.pt{fill:var(--yellow-2);stroke:var(--night);stroke-width:.8}
+.pt.hub{fill:var(--yellow);stroke:var(--night);stroke-width:1.2}
+.halo{fill:url(#halo);pointer-events:none}
+.ring{fill:none;stroke:var(--yellow);stroke-width:1.2;opacity:.75}
+.lbl{font:600 12px var(--f-sans);fill:var(--white);paint-order:stroke;stroke:var(--sea);stroke-width:3.5px;stroke-linejoin:round}
+.lbl.hub{fill:var(--yellow);font-weight:700}
+.lbl.big{font:700 15px var(--f-title)}
+.inset-frame{fill:rgba(4,7,13,.92);stroke:var(--line-2);stroke-width:1}
+.inset-title{font:700 11px var(--f-title);letter-spacing:.14em;fill:var(--yellow);text-transform:uppercase}
+.focus{fill:none;stroke:var(--yellow);stroke-opacity:.5;stroke-width:1;stroke-dasharray:3 3}
+.connector{stroke:var(--yellow);stroke-opacity:.35;stroke-width:1;stroke-dasharray:3 3}
 </style>
 </head>
 <body>
+<div class="topbar">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 100 100" aria-hidden="true">
+      <rect width="100" height="100" rx="8" fill="#ffd21f"/>
+      <path d="M78 26 A34 34 0 1 0 78 74" fill="none" stroke="#0a0a0a" stroke-width="11"/>
+      <path d="M66 38 A17 17 0 1 0 66 62" fill="none" stroke="#0a0a0a" stroke-width="10"/>
+      <path d="M27 72 L20 90 L42 80 Z" fill="#0a0a0a"/>
+    </svg>
+    <div class="word">CIVIPEDIA</div>
+    <div class="tag">Des territoires<br>plus ouverts,<br>plus coopératifs</div>
+  </div>
+  <div class="proto">Prototype</div>
+</div>
 <div class="wrap">
-  <header>
+  <header class="title">
     <div>
-      <div class="eyebrow">Civipédia · prototype</div>
       <h1>Le tissage du <span>réseau</span></h1>
+      <div class="rule"></div>
     </div>
     <p class="lede">Les lieux où Civipédia agit et les liens qui les relient, en France et à l'international.</p>
   </header>
@@ -85,7 +109,7 @@ footer{font-size:.75rem;color:var(--ink-3);font-family:var(--f-mono)}
     </div>
   </div>
   <div class="countries" id="countries"></div>
-  <footer id="foot"></footer>
+  <footer><b>COMPRENDRE. STRUCTURER. COOPÉRER. <span>TRANSFORMER.</span></b><span id="foot"></span></footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
@@ -135,6 +159,24 @@ $("foot").textContent = R.instantane
 /* ---------- Géométrie ---------- */
 const W = 1200, H = 680;
 const svg = d3.select("#map");
+const defs = svg.append("defs");
+const hg = defs.append("radialGradient").attr("id", "halo");
+hg.append("stop").attr("offset", "0%").attr("stop-color", "#ffd21f").attr("stop-opacity", .55);
+hg.append("stop").attr("offset", "45%").attr("stop-color", "#ffd21f").attr("stop-opacity", .16);
+hg.append("stop").attr("offset", "100%").attr("stop-color", "#ffd21f").attr("stop-opacity", 0);
+defs.append("filter").attr("id", "flou").attr("x", "-20%").attr("y", "-20%").attr("width", "140%").attr("height", "140%")
+  .append("feGaussianBlur").attr("stdDeviation", 2.2);
+// Fil lumineux : un trait flou dessous, un trait fin dessus.
+function fil(g, t, d, w){
+  g.append("path").attr("class", "thread glow " + t.cat).attr("stroke-width", w * 3.2).attr("d", d);
+  g.append("path").attr("class", "thread " + t.cat).attr("stroke-width", w).attr("d", d);
+}
+// Point lumineux : un halo, puis le point.
+function point(g, x, y, r, n, hub){
+  g.append("circle").attr("class", "halo").attr("cx", x).attr("cy", y).attr("r", r * (hub ? 5.5 : 3.6));
+  if (hub) g.append("circle").attr("class", "ring").attr("cx", x).attr("cy", y).attr("r", r * 2.1);
+  g.append("circle").attr("class", "pt" + (hub ? " hub" : "")).attr("cx", x).attr("cy", y).attr("r", r).append("title").text(n.nom);
+}
 const FR_BOX = [[-5.3, 42.2], [8.3, 51.3]];      // encart France et Belgique
 const IN = { x: 24, y: 300, w: 470, h: 356 };
 const inFrance = ll => ll[1] >= FR_BOX[0][0] - .5 && ll[1] <= FR_BOX[1][0] + .5 && ll[0] >= FR_BOX[0][1] - .5 && ll[0] <= FR_BOX[1][1] + .5;
@@ -173,18 +215,17 @@ R.declare.filter(d => d.zone).forEach(d => {
   world.append("ellipse").attr("class", "zone").attr("cx", x).attr("cy", y).attr("rx", 105).attr("ry", 58);
 });
 THREADS.filter(t => !inFrance(node(t.a).ll) || !inFrance(node(t.b).ll)).forEach(t => {
-  world.append("path").attr("class", "thread " + t.cat).attr("stroke-width", 1.4)
-    .attr("d", arc(at(proj, node(t.a).ll), at(proj, node(t.b).ll), .14));
+  fil(world, t, arc(at(proj, node(t.a).ll), at(proj, node(t.b).ll), .14), 1.4);
 });
 const f0 = proj(FR_BOX[0]), f1 = proj(FR_BOX[1]);
 const fx = Math.min(f0[0], f1[0]) - 4, fy = Math.min(f0[1], f1[1]) - 4, fw = Math.abs(f1[0] - f0[0]) + 8, fh = Math.abs(f1[1] - f0[1]) + 8;
 world.append("rect").attr("class", "focus").attr("x", fx).attr("y", fy).attr("width", fw).attr("height", fh).attr("rx", 3);
 world.append("line").attr("class", "connector").attr("x1", fx).attr("y1", fy + fh).attr("x2", IN.x + IN.w).attr("y2", IN.y);
-if (R.hub) { const h = at(proj, node(R.hub).ll); world.append("circle").attr("class", "pt hub").attr("cx", h[0]).attr("cy", h[1]).attr("r", 5); }
+if (R.hub) { const h = at(proj, node(R.hub).ll); point(world, h[0], h[1], 4.5, node(R.hub), true); }
 const dehors = R.places.concat(R.declare).filter(n => !inFrance(n.ll));
 dehors.forEach(n => {
   const [x, y] = at(proj, n.ll);
-  world.append("circle").attr("class", "pt").attr("cx", x).attr("cy", y).attr("r", DECL[n.id] ? 4 : 3.5).append("title").text(n.nom);
+  point(world, x, y, DECL[n.id] ? 4 : 3.5, n, false);
 });
 labels(world, proj, dehors, 0, 14);
 
@@ -195,16 +236,15 @@ inset.append("clipPath").attr("id", "clipIn").append("rect").attr("x", IN.x).att
 const ig = inset.append("g").attr("clip-path", "url(#clipIn)");
 ig.selectAll("path").data(MONDE.features).join("path").attr("class", "country").attr("d", d3.geoPath(projIn));
 THREADS.filter(t => inFrance(node(t.a).ll) && inFrance(node(t.b).ll)).forEach(t => {
-  ig.append("path").attr("class", "thread " + t.cat).attr("stroke-width", 1.2)
-    .attr("d", arc(at(projIn, node(t.a).ll), at(projIn, node(t.b).ll)));
+  fil(ig, t, arc(at(projIn, node(t.a).ll), at(projIn, node(t.b).ll)), 1.1);
 });
 const dedans = R.places.concat(R.declare).filter(n => inFrance(n.ll)).sort((a, b) => (a.id === R.hub) - (b.id === R.hub));
 dedans.forEach(n => {
   const [x, y] = at(projIn, n.ll);
-  ig.append("circle").attr("class", "pt" + (n.id === R.hub ? " hub" : "")).attr("cx", x).attr("cy", y).attr("r", radius(n)).append("title").text(n.nom);
+  point(ig, x, y, radius(n), n, n.id === R.hub);
 });
 labels(ig, projIn, dedans, 5, 12);
-inset.append("text").attr("class", "inset-title").attr("x", IN.x + 14).attr("y", IN.y + 20).text("France et Belgique");
+inset.append("text").attr("class", "inset-title").attr("x", IN.x + 16).attr("y", IN.y + 22).text("France et Belgique");
 })();
 </script>
 </body>

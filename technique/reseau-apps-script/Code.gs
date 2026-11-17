@@ -163,7 +163,8 @@ function construireReseau(source) {
   });
 
   // Relations utilisables (hors hypothèses)
-  const REL = d.Relations.filter(function (r) { return !/^HYPOTH/i.test(r.Nature_info); });
+  // Hypothèses et possibilités ne sont pas des liens établis : elles ne font pas de fils.
+  const REL = d.Relations.filter(function (r) { return !/^(HYPOTH|POSSIBILIT)/i.test(r.Nature_info); });
   const autour = function (id, prefixe, types) {
     const out = [];
     REL.forEach(function (r) {
@@ -259,7 +260,7 @@ function construireReseau(source) {
     const cat = ks.indexOf('evenement') >= 0 ? 'evenement' : ks.indexOf('projet') >= 0 ? 'projet' : ks.indexOf('personne') >= 0 ? 'personne' : 'organisation';
     l.cats[cat] = (l.cats[cat] || 0) + 1;
   });
-  const places = Object.keys(PLACES).map(function (k) { return PLACES[k]; }).filter(function (p) {
+  let places = Object.keys(PLACES).map(function (k) { return PLACES[k]; }).filter(function (p) {
     const n = p.n; return p.ll && (n.organisations + n.projets + n.evenements + n.personnes + n.territoires) > 0;
   });
   const ids = {}; places.forEach(function (p) { ids[p.id] = true; });
@@ -268,6 +269,9 @@ function construireReseau(source) {
     ORDRE.forEach(function (c) { if ((l.cats[c] || 0) > (l.cats[cat] || 0)) cat = c; });
     return { a: l.a, b: l.b, n: l.n, cat: cat };
   });
+  // Un lieu qui ne contient qu'un territoire et n'est relié à rien n'est pas affiché.
+  const relies = {}; edges.forEach(function (e) { relies[e.a] = relies[e.b] = true; });
+  places = places.filter(function (p) { const n = p.n; return n.organisations + n.projets + n.evenements + n.personnes > 0 || relies[p.id]; });
   places.forEach(function (p) { delete p.precis; delete p.pays_entier; });
 
   const civi = ENT[CIVIPEDIA] && ENT[CIVIPEDIA].place;

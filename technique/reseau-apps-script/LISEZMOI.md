@@ -12,7 +12,7 @@ grande base  →  script Google (compte vérifié, calcul)  →  page reseau/ (G
 
 ## Règles de calcul
 
-- Un élément n'est placé que si la base lui donne un lieu : ville de la fiche, territoire, territoire relié, ou, pour une démarche, la ville de l'organisation cliente (commanditaire, client, destinataire de la proposition). Les relations « HYPOTHÈSE » sont écartées.
+- Un élément n'est placé que si la base lui donne un lieu : ville de la fiche, territoire, territoire relié, ou, pour une démarche, la ville de l'organisation cliente (commanditaire, client, destinataire de la proposition). Les relations « HYPOTHÈSE » et « POSSIBILITÉ » sont écartées : ce ne sont pas des liens établis. Un lieu qui ne contient qu'un territoire et n'est relié à rien n'est pas affiché.
 - **Position d'un lieu** : le point écrit dans la fiche territoire s'il y en a un, sinon le géocodeur de Google (centre de la commune, du département ou du pays). Chaque position n'est demandée qu'une fois, puis gardée dans les propriétés du script.
 - Un territoire rejoint la ville la plus proche déjà sur la carte : à moins de 6 km quand son point est l'adresse d'un siège, à moins de 80 km quand c'est le centre d'un département, d'une région ou d'une intercommunalité. Un pays garde son propre point.
 - **Couleur d'un lien** : la nature la plus fréquente des relations qu'il regroupe (démarches, événements, partenaires, personnes).
