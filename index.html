@@ -570,6 +570,7 @@ async function openTerritory(entry, page = "une"){
   lg.hidden = !logos.length;
   lg.innerHTML = logos.length ? `<span>Avec</span>` + logos.map(l => `<div class="plate" title="${esc(l.nom)}"><img src="${esc(l.src)}" alt="${esc(l.alt)}" loading="lazy"></div>`).join("") : "";
   UNE = entry.une && byId[entry.une.projet] ? entry.une : null;
+  FOCUS = null; // la sélection « à la une » du territoire précédent ne vaut plus ici
   renderUne(); setupMap(); renderStatic();
   showPage(UNE ? page : "tout");
 }

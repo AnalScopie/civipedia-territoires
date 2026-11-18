@@ -1,10 +1,11 @@
 // Civipedia — service worker de l'application installable.
 // Règle : le réseau d'abord, toujours. La copie locale ne sert que hors connexion,
 // pour que la carte installée affiche toujours les données publiées les plus récentes.
-const CACHE = 'civipedia-territoires-v1';
+const CACHE = 'civipedia-territoires-v2';
 const BASE = [
   './', './index.html', './config.json', './manifest.webmanifest',
   './territoires/index.json', './territoires/crossac.json', './territoires/crossac.geo.json',
+  './territoires/pontchateau.json', './territoires/pontchateau.geo.json',
   './icones/icone-192.png', './icones/icone-512.png'
 ];
 
