@@ -37,6 +37,12 @@ const CLIENT = /^(Commanditaire|Client|Destinataire de la proposition|Commune co
 /* ---------------------------------------------------------------- Web app */
 
 function doGet(e) {
+  const p = (e && e.parameter) || {};
+  // Version publique en direct : seulement des données publiables, au format JSON, lues par la page GitHub Pages.
+  if (p.format === 'public') {
+    return ContentService.createTextOutput(JSON.stringify(projectionPublique_(reseauEnCache_(p.rafraichir))))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
   const email = (Session.getActiveUser().getEmail() || '').toLowerCase();
   if (!email.endsWith(DOMAINE)) {
     return HtmlService.createHtmlOutput('<p style="font:16px system-ui;padding:24px">La carte du réseau est réservée aux comptes Civipedia.</p>');
@@ -55,6 +61,28 @@ function doGet(e) {
   return HtmlService.createHtmlOutput(html)
     .setTitle('Tissage du réseau Civipédia')
     .addMetaTag('viewport', 'width=device-width, initial-scale=1');
+}
+
+/**
+ * Ce que le public peut voir : noms de lieux, comptes d'organisations, de démarches et d'événements, liens entre lieux.
+ * Aucune personne n'est comptée, et un lieu qui n'existe sur la carte que par une personne n'est pas publié
+ * (on ne doit pas pouvoir localiser quelqu'un). Les clés de lieux sont renumérotées.
+ */
+function projectionPublique_(r) {
+  const places = r.places.filter(function (p) { const n = p.n; return n.organisations + n.projets + n.evenements + n.territoires > 0; });
+  const cle = {};
+  places.forEach(function (p, i) { cle[p.id] = 'l' + (i + 1); });
+  return {
+    genere_le: r.genere_le,
+    hub: cle[r.hub] || null,
+    places: places.map(function (p) {
+      return { id: cle[p.id], nom: p.nom, pays: p.pays, ll: p.ll,
+        n: { organisations: p.n.organisations, projets: p.n.projets, evenements: p.n.evenements, personnes: 0, territoires: p.n.territoires } };
+    }),
+    edges: r.edges.filter(function (e) { return cle[e.a] && cle[e.b]; })
+      .map(function (e) { return { a: cle[e.a], b: cle[e.b], n: e.n, cat: e.cat }; }),
+    declare: r.declare,
+  };
 }
 
 function reseauEnCache_(rafraichir) {
@@ -308,9 +336,8 @@ function lireBase_() {
  * liens, sans nom ni identifiant), marqué comme instantané.
  */
 function instantane() {
-  const r = construireReseau();
+  const r = projectionPublique_(construireReseau());
   r.instantane = true;
-  delete r.totaux; delete r.non_places;
   Logger.log(JSON.stringify(r));
 }
 

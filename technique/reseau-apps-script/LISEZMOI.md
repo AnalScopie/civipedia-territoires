@@ -37,6 +37,19 @@ Réglages facultatifs (Paramètres du projet → Propriétés du script) :
 | `BASE_ID` | identifiant de `JOURNAL_TRAITEMENT_CIVIPEDIA_LAB` |
 | `PAGE_URL` | `https://analscopie.github.io/civipedia-territoires/reseau/` |
 
+## Version publique en direct (facultatif)
+
+La page publique peut, elle aussi, lire la base en direct au lieu de l'instantané. Le même script donne alors une seconde adresse, ouverte à tous, qui ne renvoie que des données publiables au format JSON : noms de lieux, comptes d'organisations, de démarches et d'événements, liens entre lieux. Aucune personne n'est comptée, et un lieu qui n'existe sur la carte que par une personne n'est pas publié. Cette adresse ne sert jamais la carte de l'équipe : sans compte @civipedia.org, celle-ci reste refusée.
+
+À savoir avant de l'activer : il n'y a plus de relecture humaine avant publication. Toute fiche ajoutée à la base, avec une ville ou un territoire, apparaît sur la carte publique dans les dix minutes. Les règles ci-dessus restent appliquées automatiquement.
+
+1. Recoller le `Code.gs` de ce dossier dans le projet Google (il contient la route `?format=public`).
+2. **Déployer** → **Nouveau déploiement** → **Application Web** : Exécuter en tant que **Moi** ; Qui a accès : **Tout le monde**.
+3. Copier l'adresse `…/exec` de ce déploiement dans `reseau/config.json`, champ `api` (ou la transmettre à Claude), puis fusionner.
+4. Vérifier : la page publique indique en bas « Calculé en direct ». Si le script ne répond pas, elle affiche l'instantané.
+
+Pour revenir à l'instantané seul : vider le champ `api` de `reseau/config.json`, ou archiver ce déploiement.
+
 ## Mettre à jour l'instantané public
 
 L'instantané ne bouge pas tout seul : c'est une photo de la base, publiée volontairement.

@@ -133,7 +133,7 @@ La carte « Le tissage du réseau » montre l'étendue du réseau : une carte du
 - **Déploiement** : la page `reseau/index.html` est publiée par GitHub Pages à chaque fusion sur `main`.
 - **Lien direct avec la grande base** : le script Google de `technique/reseau-apps-script/` vérifie le compte `@civipedia.org`, lit la base à chaque ouverture (résultat gardé 10 minutes), calcule les lieux et les liens, et les injecte dans la page à la place du repère `/*__DONNEES__*/`, comme pour `technique/carte.html` et le klèrôtèrion.
 - **Ce que reçoit la page** : des noms de lieux (commune, territoire, pays), des comptes par lieu et des liens. Aucun nom de personne, d'organisation ou de démarche, aucun identifiant interne.
-- **Version publique** : `https://analscopie.github.io/civipedia-territoires/reseau/` affiche l'instantané `reseau/donnees.json`, même contenu figé à une date (publication décidée par Anne Povie le 12/11/2026 pour l'AG). Mise à jour : fonction `instantane` du script, voir le LISEZMOI.
+- **Version publique** : `https://analscopie.github.io/civipedia-territoires/reseau/`. Si `reseau/config.json` donne l'adresse publique du script (`api`), la page lit la base en direct (noms de lieux, comptes et liens ; aucune personne comptée ; un lieu qui n'existe que par une personne n'est pas publié). Sinon, ou si le script ne répond pas, elle affiche l'instantané `reseau/donnees.json` (publication décidée par Anne Povie le 12/11/2026, version en direct demandée le 18/11/2026). Mise en place : LISEZMOI du script.
 
 Installation, règles de calcul et évolution : `technique/reseau-apps-script/LISEZMOI.md`.
 
