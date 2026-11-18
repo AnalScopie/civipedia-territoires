@@ -110,14 +110,30 @@ footer b span{color:var(--yellow)}
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
 <script>
-/* Ouverte par le script Google de l'accès réservé (technique/reseau-apps-script), la page reçoit à la place du
- * repère ci-dessous « const R = {...}; », calculé en direct depuis la grande base. Ouverte directement, elle
- * affiche l'instantané public donnees.json : noms de lieux, comptes et liens, sans aucun nom ni identifiant. */
+/* Trois sources, dans l'ordre :
+ * 1. ouverte par le script Google de l'accès réservé (technique/reseau-apps-script), la page reçoit à la place du
+ *    repère ci-dessous « const R = {...}; », calculé en direct depuis la grande base ;
+ * 2. ouverte directement, elle lit la version publique en direct (adresse « api » de config.json) : noms de lieux,
+ *    comptes et liens, sans aucun nom ni identifiant ;
+ * 3. si le script ne répond pas, elle affiche l'instantané donnees.json. */
 /*__DONNEES__*/
 const R_DIRECT = typeof R !== "undefined" ? R : null;
 (async function(){
 const $ = id => document.getElementById(id);
 let R = R_DIRECT;
+// Version publique en direct : l'adresse publique du script Google, réglée dans config.json.
+if (!R) {
+  try {
+    const conf = await fetch("config.json", { cache: "no-store" }).then(r => r.json());
+    if (conf.api) {
+      const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 12000);
+      const d = await fetch(conf.api + (conf.api.includes("?") ? "&" : "?") + "format=public", { signal: ctl.signal }).then(r => r.json());
+      clearTimeout(t);
+      if (d && Array.isArray(d.places) && d.places.length) R = d;
+    }
+  } catch (e) { /* script injoignable : on garde l'instantané */ }
+}
+// Secours : l'instantané publié dans le dépôt.
 if (!R) {
   try { R = await fetch("donnees.json").then(r => r.json()); }
   catch (e) {
