@@ -65,6 +65,18 @@
   "nom": "Chevaigné",
   "data": "territoires/chevaigne.json",
   "geo": "territoires/chevaigne.geo.json",
-  "instantane": "2026-11-20 (annuaire Chevaigné v20/11/2026)"
+  "instantane": "2026-11-20 (annuaire Chevaigné v20/11/2026)",
+  "une": {
+   "onglet": "La carte",
+   "surtitre": "Chevaigné · Rennes Métropole",
+   "titre": "Qui agit à Chevaigné",
+   "texte": "Les associations, services et lieux de la commune sur la carte. Touchez un point pour voir sa fiche, et retrouvez juste en dessous les événements à venir.",
+   "donnees": [
+    {
+     "theme": "Démographie et dynamiques territoriales",
+     "libelle": "Les habitants"
+    }
+   ]
+  }
  }
 ]
