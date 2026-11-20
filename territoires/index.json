@@ -112,5 +112,27 @@
    "liste_titre": "Associations et services",
    "legende": "Association, service ou lieu"
   }
+ },
+ {
+  "id": "vertou",
+  "nom": "Vertou",
+  "data": "territoires/vertou.json",
+  "geo": "territoires/vertou.geo.json",
+  "instantane": "2026-11-20 (équipements IGN)",
+  "une": {
+   "onglet": "Beautour",
+   "surtitre": "Vertou · quartier Beautour",
+   "titre": "Le quartier Beautour",
+   "texte": "Les écoles, équipements et lieux publics du quartier Beautour sur la carte. Touchez un point pour voir sa fiche, et retrouvez juste en dessous les événements à venir.",
+   "zone": "Quartier Beautour",
+   "liste_titre": "Lieux du quartier Beautour",
+   "legende": "École, équipement ou lieu public",
+   "donnees": [
+    {
+     "theme": "Démographie et dynamiques territoriales",
+     "libelle": "Les habitants"
+    }
+   ]
+  }
  }
 ]
