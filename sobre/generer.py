@@ -18,7 +18,8 @@ Différences avec la carte principale :
     sobre/guichet-mail.gs, adresse dans sobre/config.json) ; tant que le guichet
     n'est pas installé, il ouvre la messagerie du visiteur avec le message prêt ;
   - signature Povie-Skopein et lien « Contact » ;
-  - pas d'application installable (PWA).
+  - application installable (PWA) propre : nom « Carte », icône carte au trésor,
+    manifeste et service worker de sobre/ (fonctionne aussi hors connexion).
 
 Chaque remplacement est vérifié : si index.html a changé au point qu'un passage
 n'est plus trouvé, le script s'arrête et n'écrit rien.
@@ -49,7 +50,7 @@ def remplacer_re(motif, nouveau, flags=re.S):
         sys.exit(f"ERREUR : motif introuvable : {motif[:120]!r}")
 
 
-# ---------- En-tête : ni manifeste, ni icônes, ni nom d'application ----------
+# ---------- En-tête : emblème, icône d'onglet, application installable ----------
 EMBLEME = ('<svg class="embleme" viewBox="0 0 48 40" width="40" height="33" aria-hidden="true">'
            '<path d="M3 7 L16 3 L32 8 L45 4 L45 33 L32 37 L16 32 L3 36 Z" fill="#efe6cf" stroke="#232323" stroke-width="1.6" stroke-linejoin="round"/>'
            '<path d="M16 3 V32 M32 8 V37" stroke="#232323" stroke-width="1" opacity=".5"/>'
@@ -60,8 +61,13 @@ EMBLEME = ('<svg class="embleme" viewBox="0 0 48 40" width="40" height="33" aria
            '<path d="M24 26.5 q2 -1.5 4 0 M37 26 q1.6 -1.2 3.2 0" fill="none" stroke="#232323" stroke-width=".9" opacity=".6"/>'
            '</svg>')
 FAVICON = "data:image/svg+xml," + EMBLEME.replace(' class="embleme"', ' xmlns="http://www.w3.org/2000/svg"').replace(' aria-hidden="true"', '').replace('"', "'").replace("#", "%23").replace("<", "%3C").replace(">", "%3E")
+# Application installable propre à la carte épurée : manifeste, icônes et
+# service worker de sobre/ (les chemins relatifs pointent dans ce dossier).
 remplacer_re(r'<link rel="manifest".*?</head>',
-             f'<meta name="theme-color" content="#f5f2ea"><link rel="icon" href="{FAVICON}"></head>')
+             '<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#f5f2ea">'
+             f'<link rel="icon" href="{FAVICON}"><link rel="apple-touch-icon" href="icones/apple-touch-icon.png">'
+             '<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">'
+             '<meta name="apple-mobile-web-app-title" content="Carte"><meta name="apple-mobile-web-app-status-bar-style" content="default"></head>')
 remplacer('family=Public+Sans:wght@400;500;600;700;800',
           'family=Courier+Prime:ital,wght@0,400;0,700;1,400')
 remplacer_re(r'/\* Layout : vue de découverte\..*?\*/',
@@ -233,11 +239,14 @@ document.addEventListener("click", e => {
 });
 async function envoyer(form, payload, msg, btn){''')
 
-# ---------- Pas d'application installable ----------
-remplacer_re(r"/\* Application installable \(PWA\).*?\n}\n", "")
-remplacer_re(r"<style>\n\.pwa-bar.*?</script>\n", "")
+# ---------- Application installable : celle de la carte épurée ----------
+# Le service worker (sobre/sw.js) et l'icône (sobre/icones/) sont ceux du dossier.
+remplacer("navigator.serviceWorker.register('sw.js')", "navigator.serviceWorker.register('sw.js', { scope: './' })")
+remplacer("var KEY = 'civipedia-pwa-plus-tard';", "var KEY = 'carte-sobre-plus-tard';")
+remplacer("Installer l\\u2019appli Civipedia", "Installer la carte")
+remplacer("La carte sur votre écran d\\u2019accueil, en un geste.", "La carte sur votre écran d\\u2019accueil, même hors connexion.")
 
-for mot in ("Civip", "Samuel", "Tiercelin", "kleroterion", "sw.js", "manifest"):
+for mot in ("Civip", "Samuel", "Tiercelin", "kleroterion", r"\.\./sw\.js", r"\.\./manifest", r"\.\./icones"):
     if re.search(mot, html, re.I):
         lignes = [l.strip()[:100] for l in html.splitlines() if re.search(mot, l, re.I)]
         sys.exit(f"ERREUR : « {mot} » reste dans la page : {lignes[:3]}")
