@@ -1,0 +1,1665 @@
+{
+ "territoire": {
+  "id": "chevaigne",
+  "nom": "Chevaigné",
+  "centre": [
+   48.2121,
+   -1.6305
+  ],
+  "rayon_km": 10,
+  "population": {
+   "v": "2 397 habitants",
+   "date": "2023 (recensement INSEE)",
+   "id": "OBS-001"
+  }
+ },
+ "instantane": "2026-11-20 (annuaire Chevaigné v20/11/2026)",
+ "genere_le": "2026-11-20",
+ "communes": [
+  {
+   "nom": "Acigné",
+   "lat": 48.141,
+   "lon": -1.5212,
+   "km": 11.3,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Andouillé-Neuville",
+   "lat": 48.2986,
+   "lon": -1.5905,
+   "km": 10.1,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Aubigné",
+   "lat": 48.2995,
+   "lon": -1.6312,
+   "km": 9.7,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Betton",
+   "lat": 48.1825,
+   "lon": -1.6444,
+   "km": 3.5,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Brécé",
+   "lat": 48.1112,
+   "lon": -1.4857,
+   "km": 15.5,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Cesson-Sévigné",
+   "lat": 48.1217,
+   "lon": -1.5901,
+   "km": 10.5,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Chantepie",
+   "lat": 48.0819,
+   "lon": -1.6092,
+   "km": 14.6,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Chasné-sur-Illet",
+   "lat": 48.2389,
+   "lon": -1.575,
+   "km": 5.1,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Chavagne",
+   "lat": 48.0555,
+   "lon": -1.787,
+   "km": 20.9,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Chevaigné",
+   "lat": 48.2238,
+   "lon": -1.6381,
+   "km": 1.4,
+   "zone": "À Chevaigné"
+  },
+  {
+   "nom": "Châteaubourg",
+   "lat": 48.1183,
+   "lon": -1.4063,
+   "km": 19.6,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Dingé",
+   "lat": 48.3454,
+   "lon": -1.6979,
+   "km": 15.6,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Domloup",
+   "lat": 48.0692,
+   "lon": -1.545,
+   "km": 17.1,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Ercé-près-Liffré",
+   "lat": 48.2533,
+   "lon": -1.518,
+   "km": 9.5,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Feins",
+   "lat": 48.3308,
+   "lon": -1.6311,
+   "km": 13.2,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Gahard",
+   "lat": 48.2797,
+   "lon": -1.5274,
+   "km": 10.7,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Gosné",
+   "lat": 48.2464,
+   "lon": -1.4636,
+   "km": 12.9,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Guipel",
+   "lat": 48.2915,
+   "lon": -1.72,
+   "km": 11.0,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Gévezé",
+   "lat": 48.2097,
+   "lon": -1.7955,
+   "km": 12.2,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Hédé-Bazouges",
+   "lat": 48.3016,
+   "lon": -1.7793,
+   "km": 14.8,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "L'Hermitage",
+   "lat": 48.1239,
+   "lon": -1.8162,
+   "km": 16.9,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "La Bouëxière",
+   "lat": 48.1846,
+   "lon": -1.4345,
+   "km": 14.8,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "La Chapelle-des-Fougeretz",
+   "lat": 48.1739,
+   "lon": -1.7433,
+   "km": 9.4,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "La Mézière",
+   "lat": 48.2107,
+   "lon": -1.7548,
+   "km": 9.2,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Langan",
+   "lat": 48.2376,
+   "lon": -1.8483,
+   "km": 16.4,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Langouet",
+   "lat": 48.2531,
+   "lon": -1.8138,
+   "km": 14.3,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Le Rheu",
+   "lat": 48.1017,
+   "lon": -1.7837,
+   "km": 16.7,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Le Tiercent",
+   "lat": 48.3486,
+   "lon": -1.421,
+   "km": 21.7,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Liffré",
+   "lat": 48.2098,
+   "lon": -1.4849,
+   "km": 10.8,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Melesse",
+   "lat": 48.217,
+   "lon": -1.6962,
+   "km": 4.9,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Montgermont",
+   "lat": 48.1548,
+   "lon": -1.721,
+   "km": 9.3,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Montreuil-le-Gast",
+   "lat": 48.2433,
+   "lon": -1.7187,
+   "km": 7.4,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Montreuil-sur-Ille",
+   "lat": 48.3068,
+   "lon": -1.6696,
+   "km": 10.9,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Mordelles",
+   "lat": 48.0857,
+   "lon": -1.8417,
+   "km": 21.1,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Mouazé",
+   "lat": 48.2211,
+   "lon": -1.6045,
+   "km": 2.2,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Mézières-sur-Couesnon",
+   "lat": 48.2983,
+   "lon": -1.4302,
+   "km": 17.7,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Noyal-Châtillon-sur-Seiche",
+   "lat": 48.0524,
+   "lon": -1.659,
+   "km": 17.9,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Noyal-sur-Vilaine",
+   "lat": 48.0961,
+   "lon": -1.5075,
+   "km": 15.8,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Pacé",
+   "lat": 48.1516,
+   "lon": -1.7818,
+   "km": 13.1,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Parthenay-de-Bretagne",
+   "lat": 48.1866,
+   "lon": -1.8299,
+   "km": 15.0,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Québriac",
+   "lat": 48.3596,
+   "lon": -1.8132,
+   "km": 21.3,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Rennes",
+   "lat": 48.1108,
+   "lon": -1.6803,
+   "km": 11.9,
+   "zone": "Alentours (≈ 10 km)"
+  },
+  {
+   "nom": "Saint-Aubin-d'Aubigné",
+   "lat": 48.2537,
+   "lon": -1.5905,
+   "km": 5.5,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Aubin-du-Cormier",
+   "lat": 48.2611,
+   "lon": -1.4273,
+   "km": 16.0,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Christophe-de-Valains",
+   "lat": 48.342,
+   "lon": -1.4515,
+   "km": 19.6,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Germain-sur-Ille",
+   "lat": 48.2518,
+   "lon": -1.6499,
+   "km": 4.6,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Gilles",
+   "lat": 48.1524,
+   "lon": -1.8506,
+   "km": 17.6,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Gondran",
+   "lat": 48.2683,
+   "lon": -1.8254,
+   "km": 15.7,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Grégoire",
+   "lat": 48.1571,
+   "lon": -1.678,
+   "km": 7.1,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Jacques-de-la-Lande",
+   "lat": 48.0751,
+   "lon": -1.725,
+   "km": 16.8,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Médard-sur-Ille",
+   "lat": 48.2722,
+   "lon": -1.6803,
+   "km": 7.6,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Ouen-des-Alleux",
+   "lat": 48.3277,
+   "lon": -1.4259,
+   "km": 19.9,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Sulpice-la-Forêt",
+   "lat": 48.2139,
+   "lon": -1.5722,
+   "km": 4.3,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Symphorien",
+   "lat": 48.2811,
+   "lon": -1.8038,
+   "km": 15.0,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Sens-de-Bretagne",
+   "lat": 48.3475,
+   "lon": -1.5484,
+   "km": 16.2,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Servon-sur-Vilaine",
+   "lat": 48.1204,
+   "lon": -1.4591,
+   "km": 16.3,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Thorigné-Fouillard",
+   "lat": 48.1501,
+   "lon": -1.5835,
+   "km": 7.7,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Tinténiac",
+   "lat": 48.322,
+   "lon": -1.829,
+   "km": 19.1,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Vezin-le-Coquet",
+   "lat": 48.1159,
+   "lon": -1.7552,
+   "km": 14.1,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Vieux-Vy-sur-Couesnon",
+   "lat": 48.3397,
+   "lon": -1.4928,
+   "km": 17.5,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Vignoc",
+   "lat": 48.2556,
+   "lon": -1.7648,
+   "km": 11.1,
+   "zone": "Alentours (≈ 10 km)"
+  }
+ ],
+ "items": [
+  {
+   "id": "CH-ORG-001",
+   "k": "organisation",
+   "nom": "Mairie de Chevaigné",
+   "type": "Collectivité",
+   "desc": "Mairie de la commune (Rennes Métropole) : accueil du public, démarches, urbanisme, réservation de salles.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "site": "https://www.ville-chevaigne.fr",
+   "adresse": "7 rue de la Mairie, 35250 Chevaigné",
+   "pt": [
+    48.212093,
+    -1.630503
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Mairie de Chevaigné – site web",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-002",
+   "k": "organisation",
+   "nom": "CCAS de Chevaigné",
+   "type": "Service public · Action sociale",
+   "desc": "Centre communal d'action sociale de la commune.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Justice sociale"
+   ],
+   "site": "https://www.ville-chevaigne.fr/centre-communal-daction-sociale-ccas/",
+   "adresse": "7 rue de la Mairie, 35250 Chevaigné",
+   "pt": [
+    48.212093,
+    -1.630503
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "CCAS de Chevaigné – site web",
+    "url": "https://www.ville-chevaigne.fr/centre-communal-daction-sociale-ccas/"
+   }
+  },
+  {
+   "id": "CH-ORG-003",
+   "k": "organisation",
+   "nom": "CDAS de Saint-Aubin-d'Aubigné",
+   "type": "Service public · Action sociale",
+   "desc": "Centre départemental d'action sociale : accompagnement des personnes en difficulté (enfance, famille, logement, insertion).",
+   "commune": "Saint-Aubin-d'Aubigné",
+   "zone": "À proximité",
+   "cats": [
+    "Justice sociale"
+   ],
+   "site": "https://www.ille-et-vilaine.fr/",
+   "adresse": "1 rue de l'Étang, 35250 Saint-Aubin-d'Aubigné",
+   "pt": [
+    48.261407,
+    -1.603194
+   ],
+   "com": "Saint-Aubin-d'Aubigné",
+   "src": {
+    "nom": "CDAS de Saint-Aubin-d'Aubigné – site web",
+    "url": "https://www.ille-et-vilaine.fr/"
+   }
+  },
+  {
+   "id": "CH-ORG-004",
+   "k": "organisation",
+   "nom": "CLIC Ille et Illet",
+   "type": "Service public · Information et coordination",
+   "desc": "Centre local d'information et de coordination pour les personnes âgées et leur entourage, sur rendez-vous.",
+   "commune": "Saint-Aubin-d'Aubigné",
+   "zone": "À proximité",
+   "cats": [
+    "Santé"
+   ],
+   "site": "https://www.clic-ille-illet.fr/",
+   "adresse": "1 place du Marché, 35250 Saint-Aubin-d'Aubigné",
+   "pt": [
+    48.26216,
+    -1.607785
+   ],
+   "com": "Saint-Aubin-d'Aubigné",
+   "src": {
+    "nom": "CLIC Ille et Illet – site web",
+    "url": "https://www.clic-ille-illet.fr/"
+   }
+  },
+  {
+   "id": "CH-ORG-005",
+   "k": "organisation",
+   "nom": "ADMR – Aide à la personne et repas à domicile",
+   "type": "Association · Seniors (aide à domicile)",
+   "desc": "Association d'aide à la personne et de portage de repas à domicile.",
+   "commune": "Saint-Aubin-d'Aubigné",
+   "zone": "À proximité",
+   "cats": [
+    "Santé"
+   ],
+   "site": "https://www.admr35.org",
+   "adresse": "3 place du Marché, 35250 Saint-Aubin-d'Aubigné",
+   "pt": [
+    48.262156,
+    -1.607903
+   ],
+   "com": "Saint-Aubin-d'Aubigné",
+   "src": {
+    "nom": "ADMR – Aide à la personne et repas à domicile – site web",
+    "url": "https://www.admr35.org"
+   }
+  },
+  {
+   "id": "CH-ORG-006",
+   "k": "organisation",
+   "nom": "ACSE 175",
+   "type": "Association · Solidarité (insertion)",
+   "desc": "Structure d'insertion par l'activité économique créée en 1993, agréée services à la personne, intervenant sur une vingtaine de communes.",
+   "commune": "Betton",
+   "zone": "À proximité",
+   "cats": [
+    "Justice sociale"
+   ],
+   "site": "http://www.acse175.com",
+   "adresse": "32 avenue d'Armorique, 35830 Betton",
+   "pt": [
+    48.182227,
+    -1.64324
+   ],
+   "com": "Betton",
+   "src": {
+    "nom": "ACSE 175 – site web",
+    "url": "http://www.acse175.com"
+   }
+  },
+  {
+   "id": "CH-ORG-007",
+   "k": "organisation",
+   "nom": "La Bicoque",
+   "type": "Association · Solidarité (entraide)",
+   "desc": "Association : lieu solidaire de partage et d'échange.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble",
+    "Justice sociale"
+   ],
+   "adresse": "Place de l'Église, 35250 Chevaigné",
+   "pt": [
+    48.211078,
+    -1.6308
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-008",
+   "k": "organisation",
+   "nom": "Association Fraternité Africaine",
+   "type": "Association · Solidarité (solidarité internationale)",
+   "desc": "Actions humanitaires dans la région de Salembaoré (Ouargaye), au sud-est du Burkina Faso.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Adelphité"
+   ],
+   "site": "http://afa-chevaigne-35.monsite-orange.fr",
+   "adresse": "21 route de la Motte, 35250 Chevaigné",
+   "pt": [
+    48.214113,
+    -1.633509
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Association Fraternité Africaine – site web",
+    "url": "http://afa-chevaigne-35.monsite-orange.fr"
+   }
+  },
+  {
+   "id": "CH-LIEU-001",
+   "k": "ressource",
+   "nom": "Maison de l'enfance – Accueil périscolaire et ALSH",
+   "type": "Accueil de loisirs",
+   "desc": "Accueil périscolaire et accueil de loisirs (mercredis et vacances), de 7h30 à 18h45 ; inscriptions par le Portail Familles.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Éducation"
+   ],
+   "site": "https://www.ville-chevaigne.fr/accueil-periscolaire/",
+   "adresse": "5 place de l'Église, 35250 Chevaigné",
+   "pt": [
+    48.211521,
+    -1.631683
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Maison de l'enfance – Accueil périscolaire et ALSH – site web",
+    "url": "https://www.ville-chevaigne.fr/accueil-periscolaire/"
+   }
+  },
+  {
+   "id": "CH-LIEU-002",
+   "k": "ressource",
+   "nom": "École publique Jules Verne",
+   "type": "École",
+   "desc": "École publique de la maternelle au CM2 (8 classes).",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Éducation"
+   ],
+   "site": "https://ecole-julesverne-chevaigne.ac-rennes.fr/",
+   "adresse": "5 place de l'Église, 35250 Chevaigné",
+   "pt": [
+    48.211521,
+    -1.631683
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "École publique Jules Verne – site web",
+    "url": "https://ecole-julesverne-chevaigne.ac-rennes.fr/"
+   }
+  },
+  {
+   "id": "CH-LIEU-003",
+   "k": "ressource",
+   "nom": "École privée Sainte-Thérèse",
+   "type": "École",
+   "desc": "École privée de la petite section au CM2 (4 classes), avec restauration sur place.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Éducation"
+   ],
+   "site": "http://www.ecolesaintetheresechevaigne.com",
+   "adresse": "4 rue de la Vieille Cour, 35250 Chevaigné",
+   "pt": [
+    48.213062,
+    -1.630381
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "École privée Sainte-Thérèse – site web",
+    "url": "http://www.ecolesaintetheresechevaigne.com"
+   }
+  },
+  {
+   "id": "CH-ORG-009",
+   "k": "organisation",
+   "nom": "Association de parents d'élèves – École Jules Verne",
+   "type": "Association · Éducation (parents d'élèves)",
+   "desc": "Association des parents d'élèves de l'école publique.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "3 place de l'Église, 35250 Chevaigné",
+   "pt": [
+    48.211299,
+    -1.631125
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-010",
+   "k": "organisation",
+   "nom": "APEL – École Sainte-Thérèse",
+   "type": "Association · Éducation (parents d'élèves)",
+   "desc": "Association des parents d'élèves de l'école privée.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "4 rue de la Vieille Cour, 35250 Chevaigné",
+   "pt": [
+    48.213062,
+    -1.630381
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-LIEU-004",
+   "k": "ressource",
+   "nom": "Relais Petite Enfance intercommunal (RPE)",
+   "type": "Relais petite enfance",
+   "desc": "Service gratuit pour les familles, les enfants et les professionnels de la garde d'enfants de Betton, Chevaigné et Saint-Sulpice-la-Forêt.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Éducation"
+   ],
+   "site": "https://www.ville-chevaigne.fr/relais-petite-enfance-intercommunal-rpe/",
+   "adresse": "Espace De Obaldia (sous la mairie), 35250 Chevaigné",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Relais Petite Enfance intercommunal (RPE) – site web",
+    "url": "https://www.ville-chevaigne.fr/relais-petite-enfance-intercommunal-rpe/"
+   }
+  },
+  {
+   "id": "CH-LIEU-005",
+   "k": "ressource",
+   "nom": "Graine d'éveil – Maison d'assistants maternels",
+   "type": "Accueil du jeune enfant",
+   "desc": "Regroupement de quatre assistantes maternelles accueillant de jeunes enfants.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Éducation"
+   ],
+   "site": "https://www.grainedeveil35.com/",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Graine d'éveil – Maison d'assistants maternels – site web",
+    "url": "https://www.grainedeveil35.com/"
+   }
+  },
+  {
+   "id": "CH-LIEU-006",
+   "k": "ressource",
+   "nom": "L'Expérience – espace de coworking et de création",
+   "type": "Coworking",
+   "desc": "Espace municipal de travail partagé et de création, meublé et connecté, en accès libre.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "site": "https://www.ville-chevaigne.fr/espace-de-travail-partage-2/",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "L'Expérience – espace de coworking et de création – site web",
+    "url": "https://www.ville-chevaigne.fr/espace-de-travail-partage-2/"
+   }
+  },
+  {
+   "id": "CH-LIEU-007",
+   "k": "ressource",
+   "nom": "Pôle associatif et culturel L'Accolade (médiathèque)",
+   "type": "Médiathèque",
+   "desc": "Ancien presbytère réhabilité (2020-2022) en pôle associatif et culturel municipal, avec la médiathèque.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://chevaigne.bibenligne.fr/",
+   "adresse": "4 place des Tilleuls, 35250 Chevaigné",
+   "pt": [
+    48.211884,
+    -1.630302
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Pôle associatif et culturel L'Accolade (médiathèque) – site web",
+    "url": "https://chevaigne.bibenligne.fr/"
+   }
+  },
+  {
+   "id": "CH-ORG-011",
+   "k": "organisation",
+   "nom": "ASCC – Association sportive et culturelle de Chevaigné",
+   "type": "Association · Sport (multisport)",
+   "desc": "Association regroupant des sections sportives, culturelles et de loisirs (yoga, judo, zumba…).",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.ascchevaigne.fr",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "ASCC – Association sportive et culturelle de Chevaigné – site web",
+    "url": "https://www.ascchevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-012",
+   "k": "organisation",
+   "nom": "Badminton (ASCC)",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Section badminton de l'ASCC.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.ascchevaigne.fr",
+   "adresse": "Salle des sports, 20 La Motte, 35250 Chevaigné",
+   "pt": [
+    48.215089,
+    -1.640306
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Badminton (ASCC) – site web",
+    "url": "https://www.ascchevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-013",
+   "k": "organisation",
+   "nom": "Judo (ASCC)",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Section judo de l'ASCC, ouverte à tous les âges et niveaux.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.ascchevaigne.fr",
+   "adresse": "20 La Motte, 35250 Chevaigné",
+   "pt": [
+    48.215089,
+    -1.640306
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Judo (ASCC) – site web",
+    "url": "https://www.ascchevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-014",
+   "k": "organisation",
+   "nom": "Ping-pong (ASCC)",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Section ping-pong de l'ASCC, tous niveaux.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.ascchevaigne.fr",
+   "adresse": "20 La Motte, 35250 Chevaigné",
+   "pt": [
+    48.215089,
+    -1.640306
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ping-pong (ASCC) – site web",
+    "url": "https://www.ascchevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-015",
+   "k": "organisation",
+   "nom": "Natation Junior (ASCC)",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Section natation pour les 6-10 ans, encadrée par des maîtres-nageurs.",
+   "commune": "Cesson-Sévigné",
+   "zone": "Alentours (≈ 10 km)",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.ascchevaigne.fr",
+   "adresse": "Piscine de Cesson-Sévigné",
+   "com": "Cesson-Sévigné",
+   "src": {
+    "nom": "Natation Junior (ASCC) – site web",
+    "url": "https://www.ascchevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-016",
+   "k": "organisation",
+   "nom": "Gym Sénior (ASCC)",
+   "type": "Association · Seniors (activité physique)",
+   "desc": "Gym douce adaptée, pour l'équilibre et la prévention des chutes.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble",
+    "Santé"
+   ],
+   "site": "https://www.ascchevaigne.fr",
+   "adresse": "1 rue de la Priouté, 35250 Chevaigné",
+   "pt": [
+    48.211685,
+    -1.629456
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Gym Sénior (ASCC) – site web",
+    "url": "https://www.ascchevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-017",
+   "k": "organisation",
+   "nom": "Breiz Cowboy 35",
+   "type": "Association · Culture (danse)",
+   "desc": "Danse country, cours sur trois niveaux.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "http://clben.e-monsite.com",
+   "adresse": "Salle polyvalente, 35250 Chevaigné",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Breiz Cowboy 35 – site web",
+    "url": "http://clben.e-monsite.com"
+   }
+  },
+  {
+   "id": "CH-ORG-018",
+   "k": "organisation",
+   "nom": "Canal Danse (avec DAGYBE)",
+   "type": "Association · Culture (danse)",
+   "desc": "Atelier mensuel de danse contemporaine pour adultes et cours hebdomadaire de danse douce.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.dagybe.fr/",
+   "adresse": "Salle de sports au sol, complexe sportif, 35250 Chevaigné",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Canal Danse (avec DAGYBE) – site web",
+    "url": "https://www.dagybe.fr/"
+   }
+  },
+  {
+   "id": "CH-ORG-019",
+   "k": "organisation",
+   "nom": "Élan Chevaignéen",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Course à pied et marche nordique, entraînements ouverts à tous.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "http://www.elanchevaigneen.sitew.fr",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Élan Chevaignéen – site web",
+    "url": "http://www.elanchevaigneen.sitew.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-020",
+   "k": "organisation",
+   "nom": "Cercle d'escrime de Chevaigné",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Club d'escrime pour enfants, adultes et jeunes compétiteurs.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://parade-riposte.net/",
+   "adresse": "20 La Motte, 35250 Chevaigné",
+   "pt": [
+    48.215089,
+    -1.640306
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Cercle d'escrime de Chevaigné – site web",
+    "url": "https://parade-riposte.net/"
+   }
+  },
+  {
+   "id": "CH-ORG-021",
+   "k": "organisation",
+   "nom": "Institut Bretillien de Tai Ji Chen",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Cours de Tai Ji Quan, gymnastique douce et art martial.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "Salle de sports au sol, complexe sportif, 35250 Chevaigné",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-022",
+   "k": "organisation",
+   "nom": "Les Millepattes",
+   "type": "Association · Sport (randonnée)",
+   "desc": "Groupe familial de randonnée : une sortie mensuelle de 6 à 10 km organisée à tour de rôle.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://lesmillepattes.wordpress.com/",
+   "adresse": "Place de l'Église, 35250 Chevaigné",
+   "pt": [
+    48.211078,
+    -1.6308
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Les Millepattes – site web",
+    "url": "https://lesmillepattes.wordpress.com/"
+   }
+  },
+  {
+   "id": "CH-ORG-023",
+   "k": "organisation",
+   "nom": "Tennis club de l'Illet",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Tennis en loisir et en compétition.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "http://www.club.fft.fr/tc.chevaigne",
+   "adresse": "20 La Motte, 35250 Chevaigné",
+   "pt": [
+    48.215089,
+    -1.640306
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Tennis club de l'Illet – site web",
+    "url": "http://www.club.fft.fr/tc.chevaigne"
+   }
+  },
+  {
+   "id": "CH-ORG-024",
+   "k": "organisation",
+   "nom": "VTT Canal Riders",
+   "type": "Association · Sport (sports individuels)",
+   "desc": "Club de VTT de loisir, sorties le dimanche matin.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "http://www.vttcanalriders.fr",
+   "adresse": "7 rue de la Mairie, 35250 Chevaigné",
+   "pt": [
+    48.212093,
+    -1.630503
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "VTT Canal Riders – site web",
+    "url": "http://www.vttcanalriders.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-025",
+   "k": "organisation",
+   "nom": "Amicale palets pétanque – APPC",
+   "type": "Association · Sport (sports collectifs)",
+   "desc": "Palet et pétanque : manifestations d'avril à octobre et stage d'initiation.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "http://www.petanquejp35.fr/",
+   "adresse": "D528, 35250 Chevaigné",
+   "pt": [
+    48.210061,
+    -1.644102
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Amicale palets pétanque – APPC – site web",
+    "url": "http://www.petanquejp35.fr/"
+   }
+  },
+  {
+   "id": "CH-ORG-026",
+   "k": "organisation",
+   "nom": "Union Sportive Illet Forêt (football)",
+   "type": "Association · Sport (sports collectifs)",
+   "desc": "Club de football tous niveaux réunissant Chevaigné, Saint-Sulpice-la-Forêt et Mouazé.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "http://www.usif.fr",
+   "adresse": "Terrain de football, près de la salle polyvalente, 35250 Chevaigné",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Union Sportive Illet Forêt (football) – site web",
+    "url": "http://www.usif.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-027",
+   "k": "organisation",
+   "nom": "Illet Basket Club",
+   "type": "Association · Sport (sports collectifs)",
+   "desc": "Basket dès 5 ans, en loisir ou en compétition, avec école de basket.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://illetbc.fr/",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Illet Basket Club – site web",
+    "url": "https://illetbc.fr/"
+   }
+  },
+  {
+   "id": "CH-ORG-028",
+   "k": "organisation",
+   "nom": "Association Couture de Chevaigné",
+   "type": "Association · Loisirs (loisirs créatifs)",
+   "desc": "Après-midis couture et tricot le mardi, débutants et confirmés.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "1 rue de la Priouté, 35250 Chevaigné",
+   "pt": [
+    48.211685,
+    -1.629456
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-029",
+   "k": "organisation",
+   "nom": "Les Ateliers de l'Ille",
+   "type": "Association · Loisirs (loisirs créatifs)",
+   "desc": "Une soirée d'ateliers créatifs par mois (art floral, couture, tricot…) animée par des bénévoles.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "1 rue de la Priouté, 35250 Chevaigné",
+   "pt": [
+    48.211685,
+    -1.629456
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-030",
+   "k": "organisation",
+   "nom": "L'atelier de Gaëlle",
+   "type": "Association · Loisirs (loisirs créatifs)",
+   "desc": "Ateliers de couture centrés sur l'utilisation de la surjeteuse.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.gaellekergoat.com/",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "L'atelier de Gaëlle – site web",
+    "url": "https://www.gaellekergoat.com/"
+   }
+  },
+  {
+   "id": "CH-ORG-031",
+   "k": "organisation",
+   "nom": "Club de l'amitié",
+   "type": "Association · Seniors (loisirs)",
+   "desc": "Club de loisirs pour les seniors.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-032",
+   "k": "organisation",
+   "nom": "Comité de Jumelages",
+   "type": "Association · Culture (échanges internationaux)",
+   "desc": "Comité de jumelage de la commune, créé en 2011.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "http://www.chevaignetwinning.eu",
+   "adresse": "1 rue de la Priouté, 35250 Chevaigné",
+   "pt": [
+    48.211685,
+    -1.629456
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Comité de Jumelages – site web",
+    "url": "http://www.chevaignetwinning.eu"
+   }
+  },
+  {
+   "id": "CH-ORG-033",
+   "k": "organisation",
+   "nom": "Compagnie « Des ronds dans l'eau »",
+   "type": "Association · Culture (théâtre)",
+   "desc": "Compagnie de théâtre professionnel.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "adresse": "1 rue de la Priouté, 35250 Chevaigné",
+   "pt": [
+    48.211685,
+    -1.629456
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-034",
+   "k": "organisation",
+   "nom": "Les Tréteaux de l'Ille",
+   "type": "Association · Culture (théâtre)",
+   "desc": "Troupe de théâtre amateur adhérente à la FNCTA depuis 1978, centrée sur les auteurs contemporains.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://treteauxdelille.fr",
+   "adresse": "1 rue de la Priouté, 35250 Chevaigné",
+   "pt": [
+    48.211685,
+    -1.629456
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Les Tréteaux de l'Ille – site web",
+    "url": "https://treteauxdelille.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-035",
+   "k": "organisation",
+   "nom": "O'Danc'eire",
+   "type": "Association · Culture (danse)",
+   "desc": "Danse et culture irlandaises.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-036",
+   "k": "organisation",
+   "nom": "Tous photographes",
+   "type": "Association · Culture (photographie)",
+   "desc": "Photographie tous niveaux, réunion le 4e jeudi du mois.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-037",
+   "k": "organisation",
+   "nom": "École de musique de l'Illet (EMI)",
+   "type": "Association · Culture (musique)",
+   "desc": "Formation musicale théorique et instrumentale, et pratique d'ensemble.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "http://www.emi.asso.fr",
+   "adresse": "1 rue de la Priouté, 35250 Chevaigné",
+   "pt": [
+    48.211685,
+    -1.629456
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "École de musique de l'Illet (EMI) – site web",
+    "url": "http://www.emi.asso.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-038",
+   "k": "organisation",
+   "nom": "La Bouèze",
+   "type": "Association · Culture (musique)",
+   "desc": "Thés dansants à l'accordéon diatonique ; recettes reversées à des œuvres sociales ou humanitaires.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-039",
+   "k": "organisation",
+   "nom": "Association de défense contre les organismes nuisibles",
+   "type": "Association · Environnement (agriculture)",
+   "desc": "Groupement communal de protection des cultures (ragondin notamment).",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Environnement"
+   ],
+   "site": "http://www.association-contre-les-organismes-nuisibles.com/",
+   "adresse": "D528, 35250 Chevaigné",
+   "pt": [
+    48.210061,
+    -1.644102
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Association de défense contre les organismes nuisibles – site web",
+    "url": "http://www.association-contre-les-organismes-nuisibles.com/"
+   }
+  },
+  {
+   "id": "CH-ORG-040",
+   "k": "organisation",
+   "nom": "Les Jardins de Chevaigné",
+   "type": "Association · Environnement (jardins)",
+   "desc": "Jardins familiaux cultivés en bio, sans pesticide de synthèse.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Environnement"
+   ],
+   "adresse": "20 La Galonnais (adresse à vérifier)",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-041",
+   "k": "organisation",
+   "nom": "Société de chasse",
+   "type": "Association · Environnement (nature)",
+   "desc": "Société de chasse de la commune.",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Environnement"
+   ],
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Ville de Chevaigné – site officiel (annuaire communal)",
+    "url": "https://www.ville-chevaigne.fr"
+   }
+  },
+  {
+   "id": "CH-ORG-042",
+   "k": "organisation",
+   "nom": "Terra Koméla",
+   "type": "Association · Environnement (jardins)",
+   "desc": "Potagers participatifs dans des espaces publics inutilisés et mini ferme pédagogique (depuis 2018).",
+   "commune": "Chevaigné",
+   "zone": "À Chevaigné",
+   "cats": [
+    "Environnement"
+   ],
+   "site": "https://www.facebook.com/AssociationTerraKomela/",
+   "com": "Chevaigné",
+   "src": {
+    "nom": "Terra Koméla – site web",
+    "url": "https://www.facebook.com/AssociationTerraKomela/"
+   }
+  }
+ ],
+ "liens": [
+  {
+   "a": "CH-ORG-002",
+   "b": "CH-ORG-001",
+   "t": "Service de"
+  },
+  {
+   "a": "CH-ORG-009",
+   "b": "CH-LIEU-002",
+   "t": "Parents d'élèves de"
+  },
+  {
+   "a": "CH-ORG-010",
+   "b": "CH-LIEU-003",
+   "t": "Parents d'élèves de"
+  },
+  {
+   "a": "CH-ORG-012",
+   "b": "CH-ORG-011",
+   "t": "Section de"
+  },
+  {
+   "a": "CH-ORG-013",
+   "b": "CH-ORG-011",
+   "t": "Section de"
+  },
+  {
+   "a": "CH-ORG-014",
+   "b": "CH-ORG-011",
+   "t": "Section de"
+  },
+  {
+   "a": "CH-ORG-015",
+   "b": "CH-ORG-011",
+   "t": "Section de"
+  },
+  {
+   "a": "CH-ORG-016",
+   "b": "CH-ORG-011",
+   "t": "Section de"
+  }
+ ],
+ "reperes": [],
+ "themes": [],
+ "indicateurs": [],
+ "observations": [
+  {
+   "id": "OBS-001",
+   "indicateur": "Population",
+   "valeur": "2 397 habitants",
+   "date": "2023 (recensement INSEE)",
+   "echelle": "Commune de Chevaigné",
+   "cats": [
+    "Démographie et dynamiques territoriales"
+   ],
+   "statut": "FAIT",
+   "limites": "Population municipale reprise de la base Admin Express de l'IGN (millésime le plus récent).",
+   "sources": [
+    {
+     "nom": "IGN – Admin Express, communes (Géoplateforme)",
+     "url": "https://data.geopf.fr/wfs?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities",
+     "consult": "20/11/2026",
+     "fiab": "Source officielle"
+    },
+    {
+     "nom": "INSEE – Dossier complet, commune de Chevaigné (35079)",
+     "url": "https://www.insee.fr/fr/statistiques/2011101?geo=COM-35079",
+     "fiab": "Source officielle"
+    }
+   ]
+  }
+ ],
+ "en_attente": [],
+ "ouverts": [],
+ "attendues": [],
+ "couverture": [
+  {
+   "cat": "Vivre ensemble",
+   "elements": 20,
+   "en_verification": 0,
+   "precis": 12,
+   "commune": 8,
+   "sans_position": 0,
+   "avec_source": 20,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Culture, patrimoine et création",
+   "elements": 10,
+   "en_verification": 0,
+   "precis": 5,
+   "commune": 5,
+   "sans_position": 0,
+   "avec_source": 10,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Éducation",
+   "elements": 7,
+   "en_verification": 0,
+   "precis": 5,
+   "commune": 2,
+   "sans_position": 0,
+   "avec_source": 7,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Justice sociale",
+   "elements": 4,
+   "en_verification": 0,
+   "precis": 4,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 4,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Environnement",
+   "elements": 4,
+   "en_verification": 0,
+   "precis": 1,
+   "commune": 3,
+   "sans_position": 0,
+   "avec_source": 4,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Santé",
+   "elements": 3,
+   "en_verification": 0,
+   "precis": 3,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 3,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Gouvernance, finances publiques et action collective",
+   "elements": 1,
+   "en_verification": 0,
+   "precis": 1,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 1,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Adelphité",
+   "elements": 1,
+   "en_verification": 0,
+   "precis": 1,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 1,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Économie locale et tissu productif",
+   "elements": 1,
+   "en_verification": 0,
+   "precis": 0,
+   "commune": 1,
+   "sans_position": 0,
+   "avec_source": 1,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Démographie et dynamiques territoriales",
+   "elements": 0,
+   "en_verification": 0,
+   "precis": 0,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 0,
+   "chiffres": 1,
+   "chiffres_attente": 0
+  }
+ ],
+ "traces": []
+}

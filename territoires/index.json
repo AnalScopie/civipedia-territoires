@@ -59,5 +59,12 @@
     }
    ]
   }
+ },
+ {
+  "id": "chevaigne",
+  "nom": "Chevaigné",
+  "data": "territoires/chevaigne.json",
+  "geo": "territoires/chevaigne.geo.json",
+  "instantane": "2026-11-20 (annuaire Chevaigné v20/11/2026)"
  }
 ]
