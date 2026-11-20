@@ -50,9 +50,16 @@ def remplacer_re(motif, nouveau, flags=re.S):
 
 
 # ---------- En-tête : ni manifeste, ni icônes, ni nom d'application ----------
-FAVICON = ("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E"
-           "%3Ccircle cx='16' cy='16' r='13' fill='%23f5f2ea' stroke='%23232323' stroke-width='1.6'/%3E"
-           "%3Ccircle cx='16' cy='16' r='3' fill='%23232323'/%3E%3C/svg%3E")
+EMBLEME = ('<svg class="embleme" viewBox="0 0 48 40" width="40" height="33" aria-hidden="true">'
+           '<path d="M3 7 L16 3 L32 8 L45 4 L45 33 L32 37 L16 32 L3 36 Z" fill="#efe6cf" stroke="#232323" stroke-width="1.6" stroke-linejoin="round"/>'
+           '<path d="M16 3 V32 M32 8 V37" stroke="#232323" stroke-width="1" opacity=".5"/>'
+           '<path d="M8 28 C12 22 14 26 19 21 S27 14 30 18 S35 22 37.5 14.5" fill="none" stroke="#b5523b" stroke-width="1.5" stroke-dasharray="2.2 2.2" stroke-linecap="round"/>'
+           '<path d="M35.5 10.5 l4 4 m0 -4 l-4 4" stroke="#b5523b" stroke-width="1.9" stroke-linecap="round"/>'
+           '<circle cx="8" cy="28" r="1.7" fill="#232323"/>'
+           '<path d="M9.5 8.5 l1 2.4 2.4 1 -2.4 1 -1 2.4 -1 -2.4 -2.4 -1 2.4 -1z" fill="#232323"/>'
+           '<path d="M24 26.5 q2 -1.5 4 0 M37 26 q1.6 -1.2 3.2 0" fill="none" stroke="#232323" stroke-width=".9" opacity=".6"/>'
+           '</svg>')
+FAVICON = "data:image/svg+xml," + EMBLEME.replace(' class="embleme"', ' xmlns="http://www.w3.org/2000/svg"').replace(' aria-hidden="true"', '').replace('"', "'").replace("#", "%23").replace("<", "%3C").replace(">", "%3E")
 remplacer_re(r'<link rel="manifest".*?</head>',
              f'<meta name="theme-color" content="#f5f2ea"><link rel="icon" href="{FAVICON}"></head>')
 remplacer('family=Public+Sans:wght@400;500;600;700;800',
@@ -80,7 +87,8 @@ body::before{content:"";position:fixed;top:0;bottom:0;left:clamp(6px,2.4vw,34px)
 .wrap{position:relative;z-index:1}
 .wrap :is(div,section,button,input,select,textarea,a,label,aside,ul,li,p),.sheet,.sheet *{border-radius:var(--r)}
 .cat .sw{border-radius:50%}
-.brand{font-weight:400;letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+.brand{font-weight:400;letter-spacing:.14em;text-transform:uppercase;font-size:13px;display:flex;align-items:center;gap:12px}
+.embleme{flex:none;transform:rotate(-4deg)}
 .brand b{color:var(--ink);font-weight:700}
 .topbar{border-bottom:1px solid var(--ink)}
 .hero h1,.une-head h1,#une-titre{font-weight:400;letter-spacing:.01em}
@@ -115,7 +123,7 @@ html = html.replace('stroke="${sel?"#111827":"#cfd7e4"}"', 'stroke="${sel?"#2323
 
 # ---------- Textes : aucune mention de Civipédia ni de l'animateur ----------
 remplacer('<div class="brand"><b>Civipedia</b> · carte territoriale</div>',
-          '<div class="brand"><b>Carte territoriale</b> · instantané public</div>')
+          '<div class="brand">' + EMBLEME + '<span><b>Carte territoriale</b> · instantané public</span></div>')
 remplacer("Les événements publiés sur la carte et dans la base commune Civipédia.",
           "Les événements publiés sur la carte et dans la base commune.")
 remplacer('<h2 id="base-title">Dans la base commune Civipédia</h2>',
@@ -141,7 +149,7 @@ remplacer('<aside class="sheet" id="sheet"',
 # ---------- Chemins : les données sont lues à la racine du dépôt ----------
 remplacer('async function loadJSON(u){ const r = await fetch(u);',
           'const R = u => /^(https?:|\\.\\/|\\.\\.\\/|data:)/.test(u) ? u : "../" + u;\n'
-          'async function loadJSON(u){ const r = await fetch(R(u));')
+          'async function loadJSON(u){ const r = await fetch(R(u), { cache:"no-cache" });')
 remplacer('<img src="${esc(l.src)}"', '<img src="${esc(R(l.src))}"')
 remplacer('const TABLEAU = "tableau-de-bord/";', 'const TABLEAU = "../tableau-de-bord/";')
 remplacer('GUICHET = (await loadJSON("config.json")).guichet || "";',
