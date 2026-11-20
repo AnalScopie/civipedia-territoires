@@ -67,10 +67,10 @@
   "geo": "territoires/chevaigne.geo.json",
   "instantane": "2026-11-20 (tableur CIVIPEDIA_POC_CHEVAIGNE)",
   "une": {
-   "onglet": "La carte",
+   "onglet": "Le bourg",
    "surtitre": "Chevaigné · Rennes Métropole",
-   "titre": "Qui agit à Chevaigné",
-   "texte": "Les associations, services et lieux de la commune sur la carte. Touchez un point pour voir sa fiche, et retrouvez juste en dessous les événements à venir.",
+   "titre": "Les associations et services de Chevaigné",
+   "texte": "Les associations, écoles, services et lieux du bourg sur la carte. Touchez un point pour voir sa fiche, et retrouvez juste en dessous les événements à venir.",
    "donnees": [
     {
      "theme": "Démographie et dynamiques territoriales",
@@ -108,7 +108,9 @@
      "theme": "Gouvernance, finances publiques et action collective",
      "libelle": "La participation"
     }
-   ]
+   ],
+   "liste_titre": "Associations et services",
+   "legende": "Association, service ou lieu"
   }
  }
 ]
