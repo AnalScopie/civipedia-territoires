@@ -579,7 +579,7 @@ async function openTerritory(entry, page = "une"){
 let UNE = null, PAGE = "tout", FOCUS = null;
 function focusIds(){
   // le projet et les lieux et événements qui lui sont reliés
-  if (!UNE.projet) return new Set(T.items.filter(i => i.com === T.territoire.nom).map(i => i.id)); // sans projet : la commune elle-même
+  if (!UNE.projet) return new Set(T.items.filter(i => UNE.zone ? i.zone === UNE.zone : i.com === T.territoire.nom).map(i => i.id)); // sans projet : un quartier (une.zone) ou la commune
   const ids = new Set([UNE.projet]);
   for (const l of liensBy[UNE.projet] || []) { const o = byId[l.other]; if (o && (o.k === "ressource" || o.k === "evenement")) ids.add(o.id); }
   return ids;

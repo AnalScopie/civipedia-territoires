@@ -1,0 +1,1981 @@
+{
+ "territoire": {
+  "id": "vertou",
+  "nom": "Vertou",
+  "centre": [
+   47.179,
+   -1.49
+  ],
+  "rayon_km": 6,
+  "population": {
+   "v": "26 227 habitants",
+   "date": "2023 (recensement INSEE)",
+   "id": "OBS-001"
+  }
+ },
+ "instantane": "2026-11-20 (équipements IGN)",
+ "genere_le": "2026-11-20",
+ "communes": [
+  {
+   "nom": "Aigrefeuille-sur-Maine",
+   "lat": 47.0736,
+   "lon": -1.4107,
+   "km": 13.2,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Basse-Goulaine",
+   "lat": 47.2088,
+   "lon": -1.4611,
+   "km": 4.0,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Bouguenais",
+   "lat": 47.1733,
+   "lon": -1.6052,
+   "km": 8.7,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Carquefou",
+   "lat": 47.3105,
+   "lon": -1.4691,
+   "km": 14.7,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Château-Thébaud",
+   "lat": 47.1231,
+   "lon": -1.44,
+   "km": 7.3,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Divatte-sur-Loire",
+   "lat": 47.2879,
+   "lon": -1.3139,
+   "km": 18.0,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Haute-Goulaine",
+   "lat": 47.1944,
+   "lon": -1.4163,
+   "km": 5.8,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "La Chapelle-Heulin",
+   "lat": 47.1734,
+   "lon": -1.3456,
+   "km": 10.9,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "La Chapelle-sur-Erdre",
+   "lat": 47.3036,
+   "lon": -1.5622,
+   "km": 14.9,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "La Chevrolière",
+   "lat": 47.0881,
+   "lon": -1.5994,
+   "km": 13.1,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "La Haie-Fouassière",
+   "lat": 47.1593,
+   "lon": -1.4049,
+   "km": 6.8,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Le Bignon",
+   "lat": 47.101,
+   "lon": -1.5072,
+   "km": 8.8,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Le Landreau",
+   "lat": 47.2012,
+   "lon": -1.3053,
+   "km": 14.2,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Le Loroux-Bottereau",
+   "lat": 47.237,
+   "lon": -1.3225,
+   "km": 14.2,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Le Pallet",
+   "lat": 47.1432,
+   "lon": -1.3437,
+   "km": 11.8,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Les Sorinières",
+   "lat": 47.142,
+   "lon": -1.5212,
+   "km": 4.7,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Maisdon-sur-Sèvre",
+   "lat": 47.1184,
+   "lon": -1.3877,
+   "km": 10.3,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Monnières",
+   "lat": 47.1226,
+   "lon": -1.3516,
+   "km": 12.2,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Montbert",
+   "lat": 47.0694,
+   "lon": -1.479,
+   "km": 12.2,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Nantes",
+   "lat": 47.2369,
+   "lon": -1.5514,
+   "km": 7.9,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Orvault",
+   "lat": 47.2726,
+   "lon": -1.6239,
+   "km": 14.5,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Pont-Saint-Martin",
+   "lat": 47.1271,
+   "lon": -1.5666,
+   "km": 8.2,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Rezé",
+   "lat": 47.1751,
+   "lon": -1.5485,
+   "km": 4.4,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Aignan-Grandlieu",
+   "lat": 47.1325,
+   "lon": -1.6235,
+   "km": 11.3,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Fiacre-sur-Maine",
+   "lat": 47.1446,
+   "lon": -1.418,
+   "km": 6.7,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Herblain",
+   "lat": 47.2177,
+   "lon": -1.6434,
+   "km": 12.4,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Julien-de-Concelles",
+   "lat": 47.2466,
+   "lon": -1.3953,
+   "km": 10.4,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Lumine-de-Clisson",
+   "lat": 47.0762,
+   "lon": -1.3634,
+   "km": 14.9,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Philbert-de-Grand-Lieu",
+   "lat": 47.0672,
+   "lon": -1.6484,
+   "km": 17.3,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Saint-Sébastien-sur-Loire",
+   "lat": 47.2046,
+   "lon": -1.4932,
+   "km": 2.9,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Sainte-Luce-sur-Loire",
+   "lat": 47.2546,
+   "lon": -1.4724,
+   "km": 8.5,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Thouaré-sur-Loire",
+   "lat": 47.2736,
+   "lon": -1.4334,
+   "km": 11.4,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Treillières",
+   "lat": 47.3087,
+   "lon": -1.613,
+   "km": 17.1,
+   "zone": "Plus loin"
+  },
+  {
+   "nom": "Vertou",
+   "lat": 47.1551,
+   "lon": -1.4729,
+   "km": 3.0,
+   "zone": "Ailleurs à Vertou"
+  }
+ ],
+ "items": [
+  {
+   "id": "VE-ORG-001",
+   "k": "organisation",
+   "nom": "Ville de Vertou",
+   "type": "Collectivité",
+   "desc": "Commune de Nantes Métropole (Loire-Atlantique), avec une mairie annexe dans le quartier Beautour.",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "site": "https://www.vertou.fr",
+   "adresse": "2 place Saint-Martin, 44120 Vertou",
+   "pt": [
+    47.167628,
+    -1.473429
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "Ville de Vertou – site officiel",
+    "url": "https://www.vertou.fr"
+   }
+  },
+  {
+   "id": "VE-LIEU-001",
+   "k": "ressource",
+   "nom": "Place Couffin",
+   "type": "Place",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.181854,
+    -1.471797
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-002",
+   "k": "ressource",
+   "nom": "Complexe Raymond Durand",
+   "type": "Équipement sportif",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "impasse raymond durand, 44120 Vertou",
+   "pt": [
+    47.183293,
+    -1.498425
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-003",
+   "k": "ressource",
+   "nom": "Piscine Municipale de Vertou",
+   "type": "Piscine",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble",
+    "Santé"
+   ],
+   "adresse": "Rue sevres et maine, 44120 Vertou",
+   "pt": [
+    47.164854,
+    -1.469781
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-004",
+   "k": "ressource",
+   "nom": "Site Hospitalier les Clouzeaux",
+   "type": "Hôpital",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Santé"
+   ],
+   "adresse": "Pl beau verger, 44120 Vertou",
+   "pt": [
+    47.178499,
+    -1.493497
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-005",
+   "k": "ressource",
+   "nom": "les Hauts Thébaudières",
+   "type": "Institut pour déficients sensoriels",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Santé",
+    "Justice sociale"
+   ],
+   "adresse": "Route DE SAINT FIACRE, 44120 Vertou",
+   "pt": [
+    47.156527,
+    -1.447323
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-006",
+   "k": "ressource",
+   "nom": "Église Sainte-Famille",
+   "type": "Eglise",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "pt": [
+    47.185257,
+    -1.503571
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-007",
+   "k": "ressource",
+   "nom": "Église Notre-Dame des Victoires",
+   "type": "Eglise",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "pt": [
+    47.180438,
+    -1.509525
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-008",
+   "k": "ressource",
+   "nom": "Église Saint-Martin",
+   "type": "Eglise",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "pt": [
+    47.168399,
+    -1.472846
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-009",
+   "k": "ressource",
+   "nom": "Chapelle Notre-Dame des Ajoncs",
+   "type": "Chapelle",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "pt": [
+    47.174322,
+    -1.519511
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-010",
+   "k": "ressource",
+   "nom": "Parc Industriel de la Vertonne",
+   "type": "Zone d'activités",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "pt": [
+    47.181134,
+    -1.489796
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-011",
+   "k": "ressource",
+   "nom": "École Élémentaire Henri Lesage",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "27 rue des ecoles, 44120 Vertou",
+   "pt": [
+    47.187314,
+    -1.500672
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-012",
+   "k": "ressource",
+   "nom": "École Primaire Sainte-Famille",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "12 rue de l asile, 44120 Vertou",
+   "pt": [
+    47.182239,
+    -1.51123
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-013",
+   "k": "ressource",
+   "nom": "IME le Val de Sèvre",
+   "type": "Institut médico-éducatif",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Santé",
+    "Justice sociale"
+   ],
+   "adresse": "Route DE SAINT-FIACRE, 44120 Vertou",
+   "pt": [
+    47.154926,
+    -1.45022
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-014",
+   "k": "ressource",
+   "nom": "École Élémentaire les Treilles",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "17 avenue de morges, 44120 Vertou",
+   "pt": [
+    47.166785,
+    -1.472383
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-015",
+   "k": "ressource",
+   "nom": "École Primaire l'Enclos",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "9 rue du 8 mai 1945, 44120 Vertou",
+   "pt": [
+    47.170702,
+    -1.473796
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-016",
+   "k": "ressource",
+   "nom": "Collège Saint-Blaise",
+   "type": "Collège",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "14 rue 12 bd des sports, 44120 Vertou",
+   "pt": [
+    47.166294,
+    -1.469693
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-017",
+   "k": "ressource",
+   "nom": "École Primaire les Reigniers",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "27 rue des reigniers, 44120 Vertou",
+   "pt": [
+    47.137156,
+    -1.463662
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-018",
+   "k": "ressource",
+   "nom": "Place Saint-Martin",
+   "type": "Place",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.168246,
+    -1.473399
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-019",
+   "k": "ressource",
+   "nom": "Place de la Saint-Jean",
+   "type": "Place",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.165088,
+    -1.435165
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-020",
+   "k": "ressource",
+   "nom": "Parc du Loiry",
+   "type": "Parc",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.162931,
+    -1.47917
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-021",
+   "k": "ressource",
+   "nom": "Grande Place de la Barbinière",
+   "type": "Place",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.159713,
+    -1.481498
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-022",
+   "k": "ressource",
+   "nom": "Place des Pégers",
+   "type": "Place",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.13799,
+    -1.469754
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-023",
+   "k": "ressource",
+   "nom": "Place Pierre Desfossés",
+   "type": "Place",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.174964,
+    -1.519609
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-024",
+   "k": "ressource",
+   "nom": "Poste de Vertou",
+   "type": "Bureau de poste",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "adresse": "3 avenue de Morges, 44120 Vertou",
+   "pt": [
+    47.16802,
+    -1.471525
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-025",
+   "k": "ressource",
+   "nom": "Mairie de Vertou",
+   "type": "Mairie",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "adresse": "2 place Saint Martin, 44120 Vertou",
+   "pt": [
+    47.167628,
+    -1.473429
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-026",
+   "k": "ressource",
+   "nom": "Bibliothèque Libre Cour",
+   "type": "Bibliothèque",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "adresse": "R henri charpentier, 44120 Vertou",
+   "pt": [
+    47.168937,
+    -1.471703
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-027",
+   "k": "ressource",
+   "nom": "Déchèterie de Vertou",
+   "type": "Déchèterie",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement"
+   ],
+   "pt": [
+    47.178562,
+    -1.460484
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-028",
+   "k": "ressource",
+   "nom": "Hippodrome du Portillon",
+   "type": "Hippodrome",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "allée de l'hippodrome, 44120 Vertou",
+   "pt": [
+    47.154445,
+    -1.470925
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-029",
+   "k": "ressource",
+   "nom": "Résidence Bel-Air",
+   "type": "Maison de retraite",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Santé",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.169268,
+    -1.464799
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-030",
+   "k": "ressource",
+   "nom": "Collège Jean Monnet",
+   "type": "Collège",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "6 allée de la vigne de paques, 44120 Vertou",
+   "pt": [
+    47.164356,
+    -1.465678
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-031",
+   "k": "ressource",
+   "nom": "École Maternelle les Treilles",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "17 avenue de morges, 44120 Vertou",
+   "pt": [
+    47.166715,
+    -1.471805
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-032",
+   "k": "ressource",
+   "nom": "École Maternelle l'Enclos",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "9 rue du 8 mai 1945, 44120 Vertou",
+   "pt": [
+    47.170245,
+    -1.473847
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-033",
+   "k": "ressource",
+   "nom": "Placette de la Noë de l'Épinette",
+   "type": "Place",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.182588,
+    -1.511627
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-034",
+   "k": "ressource",
+   "nom": "Esplanade René Cassin",
+   "type": "Esplanade",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.168607,
+    -1.471477
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-035",
+   "k": "ressource",
+   "nom": "Collège Lucie Aubrac",
+   "type": "Collège",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "20 bd luc dejoie, 44120 Vertou",
+   "pt": [
+    47.177258,
+    -1.471416
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-036",
+   "k": "ressource",
+   "nom": "École Primaire Saint-Joseph",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "2 place des 10 otages, 44120 Vertou",
+   "pt": [
+    47.168095,
+    -1.472085
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-037",
+   "k": "ressource",
+   "nom": "École Maternelle Saint-Martin",
+   "type": "Ecole primaire",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "2 place des 10 otages, 44120 Vertou",
+   "pt": [
+    47.167455,
+    -1.472161
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-038",
+   "k": "ressource",
+   "nom": "Parc Sportif des Echalonnieres",
+   "type": "Complexe sportif",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "Les echalonnières, 44120 Vertou",
+   "pt": [
+    47.175936,
+    -1.465954
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-039",
+   "k": "ressource",
+   "nom": "I.M.E. Cenro de Vertou",
+   "type": "Institut médico-éducatif",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Santé",
+    "Justice sociale"
+   ],
+   "adresse": "40 rue des fraiches, 44120 Vertou",
+   "pt": [
+    47.178508,
+    -1.487853
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-040",
+   "k": "ressource",
+   "nom": "Parc de la Sèvre",
+   "type": "Parc",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.166329,
+    -1.480149
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-041",
+   "k": "ressource",
+   "nom": "Maison du Tourisme de Vertou",
+   "type": "Office de tourisme",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "adresse": "17 quai de la chaussée des moines, 44120 Vertou",
+   "pt": [
+    47.167879,
+    -1.479968
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-042",
+   "k": "ressource",
+   "nom": "Cinéma Vaillant",
+   "type": "Cinéma",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création",
+    "Vivre ensemble"
+   ],
+   "adresse": "12 rue du general de gaulle, 44120 Vertou",
+   "pt": [
+    47.167187,
+    -1.469738
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-043",
+   "k": "ressource",
+   "nom": "Espace Beautour",
+   "type": "Salle polyvalente",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Culture, patrimoine et création",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.18482,
+    -1.505548
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-044",
+   "k": "ressource",
+   "nom": "Salle des Loreaux",
+   "type": "Salle polyvalente",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.159582,
+    -1.486058
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-045",
+   "k": "ressource",
+   "nom": "Salle des Fêtes Sevre et Maine",
+   "type": "Salle polyvalente",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.164184,
+    -1.468098
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-046",
+   "k": "ressource",
+   "nom": "Salle des Reigniers",
+   "type": "Salle polyvalente",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.137217,
+    -1.465406
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-047",
+   "k": "ressource",
+   "nom": "EHPAD Hôpital Local de Vertou",
+   "type": "Maison de retraite",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Santé",
+    "Vivre ensemble"
+   ],
+   "adresse": "1 all alphonse fillion, 44120 Vertou",
+   "pt": [
+    47.178638,
+    -1.49278
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-048",
+   "k": "ressource",
+   "nom": "Parc du Loiry",
+   "type": "Site nautique",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble",
+    "Environnement"
+   ],
+   "pt": [
+    47.16232,
+    -1.477928
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-049",
+   "k": "ressource",
+   "nom": "Caisse d'Allocations Familiales (Caf) de Vertou (Antenne)",
+   "type": "CAF",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Justice sociale"
+   ],
+   "adresse": "Espace social / Rez-de-chaussée / 1 rue de la Garenne, 44120 Vertou",
+   "pt": [
+    47.164558,
+    -1.474259
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-050",
+   "k": "ressource",
+   "nom": "Point Information Jeunesse de Vertou",
+   "type": "Point d'information jeunesse",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Justice sociale"
+   ],
+   "adresse": "Place du Beau-Verger, 44120 Vertou",
+   "pt": [
+    47.169691,
+    -1.472875
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-051",
+   "k": "ressource",
+   "nom": "Beauséjour Équitation",
+   "type": "Centre équestre",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "route du bignon le beauséjour, 44120 Vertou",
+   "pt": [
+    47.131469,
+    -1.470754
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-052",
+   "k": "ressource",
+   "nom": "École Maternelle Henri Lesage",
+   "type": "Ecole maternelle",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "132 rue de la fontenelle, 44120 Vertou",
+   "pt": [
+    47.187762,
+    -1.501004
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-053",
+   "k": "ressource",
+   "nom": "Centre de Formation Polychrome",
+   "type": "Établissement d'enseignement ou de loisirs",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "20 avenue de la vertonne, 44120 Vertou",
+   "pt": [
+    47.17943,
+    -1.485972
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-054",
+   "k": "ressource",
+   "nom": "Centre Régional de Tennis",
+   "type": "Établissement d'enseignement ou de loisirs",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "Route de la ville au blanc, 44120 Vertou",
+   "pt": [
+    47.178445,
+    -1.463148
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-055",
+   "k": "ressource",
+   "nom": "Complexe Vertou Centre",
+   "type": "Équipement sportif",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "boulevard des sports, 44120 Vertou",
+   "pt": [
+    47.165534,
+    -1.472274
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-056",
+   "k": "ressource",
+   "nom": "École Primaire les Petites Étoiles",
+   "type": "Ecole maternelle",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "7 impasse des Planètes, 44120 Vertou",
+   "pt": [
+    47.185515,
+    -1.51061
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-057",
+   "k": "ressource",
+   "nom": "Site du Chêne Moulin Gautron",
+   "type": "Site nautique",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble",
+    "Environnement"
+   ],
+   "adresse": "le Moulin Gautron, 44120 Vertou",
+   "pt": [
+    47.165985,
+    -1.48191
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-058",
+   "k": "ressource",
+   "nom": "Site de la Ramee",
+   "type": "Site nautique",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble",
+    "Environnement"
+   ],
+   "adresse": "la ramée, 44120 Vertou",
+   "pt": [
+    47.155443,
+    -1.438049
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-059",
+   "k": "ressource",
+   "nom": "Centre de Loisirs de la Presse au Vin",
+   "type": "Établissement d'enseignement ou de loisirs",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "pt": [
+    47.178338,
+    -1.483035
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-060",
+   "k": "ressource",
+   "nom": "Cour et Jardin",
+   "type": "Salle de spectacle",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.169628,
+    -1.475516
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-061",
+   "k": "ressource",
+   "nom": "Parc du Chêne",
+   "type": "Parc",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.16629,
+    -1.483675
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-062",
+   "k": "ressource",
+   "nom": "Cale de Beautour",
+   "type": "Parc",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.180045,
+    -1.512639
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-063",
+   "k": "ressource",
+   "nom": "Parc du Portillon",
+   "type": "Parc",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.150377,
+    -1.467621
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-064",
+   "k": "ressource",
+   "nom": "Parc de la Douve",
+   "type": "Parc",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Environnement",
+    "Vivre ensemble"
+   ],
+   "pt": [
+    47.171768,
+    -1.478565
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-065",
+   "k": "ressource",
+   "nom": "Practice de l'Ebeaupin",
+   "type": "Golf",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "L'Ebeaupin, 44120 Vertou",
+   "pt": [
+    47.171645,
+    -1.507924
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-066",
+   "k": "ressource",
+   "nom": "Gymnase des Echalonnieres",
+   "type": "Salle polyvalente",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Culture, patrimoine et création",
+    "Vivre ensemble"
+   ],
+   "adresse": "Rue du Bignonnet Les Echalonnières, 44120 Vertou",
+   "pt": [
+    47.176802,
+    -1.470662
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-067",
+   "k": "ressource",
+   "nom": "Groupe Scolaire Simone Veil",
+   "type": "Ecole maternelle",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Éducation"
+   ],
+   "adresse": "16 boulevard Luc Dejoie, 44120 Vertou",
+   "pt": [
+    47.177975,
+    -1.472759
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-068",
+   "k": "ressource",
+   "nom": "Parc d'Activités Pôle Sud II",
+   "type": "Zone d'activités",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "pt": [
+    47.18425,
+    -1.460512
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-069",
+   "k": "ressource",
+   "nom": "Parc d'Activités Pôle Sud III",
+   "type": "Zone d'activités",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "pt": [
+    47.184853,
+    -1.453455
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-070",
+   "k": "ressource",
+   "nom": "Parc Commercial de la Vertonne",
+   "type": "Zone commerciale",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "pt": [
+    47.179077,
+    -1.501645
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-071",
+   "k": "ressource",
+   "nom": "Bibliothèque de Beautour",
+   "type": "Bibliothèque",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "adresse": "pl de la Poste, 44120 Vertou",
+   "pt": [
+    47.184244,
+    -1.505169
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-072",
+   "k": "ressource",
+   "nom": "Mairie Annexe de Vertou - Beautour",
+   "type": "Mairie",
+   "commune": "Vertou",
+   "zone": "Quartier Beautour",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "pt": [
+    47.183894,
+    -1.505738
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  },
+  {
+   "id": "VE-LIEU-073",
+   "k": "ressource",
+   "nom": "Complexe Sportif Sèvre et Maine",
+   "type": "Complexe sportif",
+   "commune": "Vertou",
+   "zone": "Ailleurs à Vertou",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "adresse": "Rue Sèvre et Maine, 44120 Vertou",
+   "pt": [
+    47.164617,
+    -1.467976
+   ],
+   "com": "Vertou",
+   "src": {
+    "nom": "IGN – BD TOPO, équipements et lieux d'intérêt (Géoplateforme)",
+    "url": "https://geoservices.ign.fr/bdtopo"
+   }
+  }
+ ],
+ "liens": [
+  {
+   "a": "VE-LIEU-003",
+   "b": "VE-ORG-001",
+   "t": "Équipement de"
+  },
+  {
+   "a": "VE-LIEU-025",
+   "b": "VE-ORG-001",
+   "t": "Équipement de"
+  },
+  {
+   "a": "VE-LIEU-026",
+   "b": "VE-ORG-001",
+   "t": "Équipement de"
+  },
+  {
+   "a": "VE-LIEU-050",
+   "b": "VE-ORG-001",
+   "t": "Équipement de"
+  },
+  {
+   "a": "VE-LIEU-071",
+   "b": "VE-ORG-001",
+   "t": "Équipement de"
+  },
+  {
+   "a": "VE-LIEU-072",
+   "b": "VE-ORG-001",
+   "t": "Équipement de"
+  }
+ ],
+ "reperes": [],
+ "themes": [],
+ "indicateurs": [],
+ "observations": [
+  {
+   "id": "OBS-001",
+   "indicateur": "Population",
+   "valeur": "26 227 habitants",
+   "date": "2023 (recensement INSEE)",
+   "echelle": "Commune de Vertou",
+   "cats": [
+    "Démographie et dynamiques territoriales"
+   ],
+   "statut": "FAIT",
+   "limites": "Population municipale reprise de la base Admin Express de l'IGN (millésime le plus récent).",
+   "sources": [
+    {
+     "nom": "IGN – Admin Express, communes (Géoplateforme)",
+     "url": "https://geoservices.ign.fr/adminexpress",
+     "consult": "20/11/2026",
+     "fiab": "Source officielle"
+    },
+    {
+     "nom": "INSEE – Dossier complet, commune de Vertou (44215)",
+     "url": "https://www.insee.fr/fr/statistiques/2011101?geo=COM-44215",
+     "fiab": "Source officielle"
+    }
+   ]
+  }
+ ],
+ "en_attente": [],
+ "ouverts": [],
+ "attendues": [],
+ "couverture": [
+  {
+   "cat": "Vivre ensemble",
+   "elements": 34,
+   "en_verification": 0,
+   "precis": 34,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 34,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Environnement",
+   "elements": 18,
+   "en_verification": 0,
+   "precis": 18,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 18,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Éducation",
+   "elements": 18,
+   "en_verification": 0,
+   "precis": 18,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 18,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Culture, patrimoine et création",
+   "elements": 14,
+   "en_verification": 0,
+   "precis": 14,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 14,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Santé",
+   "elements": 7,
+   "en_verification": 0,
+   "precis": 7,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 7,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Justice sociale",
+   "elements": 5,
+   "en_verification": 0,
+   "precis": 5,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 5,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Gouvernance, finances publiques et action collective",
+   "elements": 4,
+   "en_verification": 0,
+   "precis": 4,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 4,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Économie locale et tissu productif",
+   "elements": 4,
+   "en_verification": 0,
+   "precis": 4,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 4,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Démographie et dynamiques territoriales",
+   "elements": 0,
+   "en_verification": 0,
+   "precis": 0,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 0,
+   "chiffres": 1,
+   "chiffres_attente": 0
+  }
+ ],
+ "traces": []
+}
