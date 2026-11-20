@@ -1,0 +1,1819 @@
+{
+ "territoire": {
+  "id": "pontchateau",
+  "nom": "Pontchâteau",
+  "centre": [
+   47.4365,
+   -2.092
+  ],
+  "rayon_km": 20,
+  "population": {
+   "v": "11 474 habitants",
+   "date": "2023 (population municipale en vigueur)",
+   "id": "OBS-001"
+  }
+ },
+ "instantane": "2026-11-17 (tableur MASECOTE_POC_PONTCHATEAU, première version)",
+ "genere_le": "2026-11-17",
+ "communes": [
+  {
+   "nom": "Pontchâteau",
+   "lat": 47.4365,
+   "lon": -2.092,
+   "km": 0.0,
+   "zone": "À Pontchâteau"
+  },
+  {
+   "nom": "Drefféac",
+   "lat": 47.4676,
+   "lon": -2.0611,
+   "km": 4.2,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Sainte-Anne-sur-Brivet",
+   "lat": 47.4541,
+   "lon": -2.0288,
+   "km": 5.1,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Crossac",
+   "lat": 47.4055,
+   "lon": -2.1528,
+   "km": 5.7,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Besné",
+   "lat": 47.3828,
+   "lon": -2.0703,
+   "km": 6.2,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Sainte-Reine-de-Bretagne",
+   "lat": 47.4421,
+   "lon": -2.1838,
+   "km": 6.9,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Campbon",
+   "lat": 47.4155,
+   "lon": -1.988,
+   "km": 8.2,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Prinquiau",
+   "lat": 47.3784,
+   "lon": -2.0239,
+   "km": 8.2,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Gildas-des-Bois",
+   "lat": 47.5099,
+   "lon": -2.0639,
+   "km": 8.4,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Missillac",
+   "lat": 47.489,
+   "lon": -2.1765,
+   "km": 8.6,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Malo-de-Guersac",
+   "lat": 47.3608,
+   "lon": -2.173,
+   "km": 10.4,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Donges",
+   "lat": 47.3398,
+   "lon": -2.0731,
+   "km": 10.8,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Quilly",
+   "lat": 47.4624,
+   "lon": -1.9438,
+   "km": 11.5,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "La Chapelle-des-Marais",
+   "lat": 47.4362,
+   "lon": -2.2477,
+   "km": 11.7,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "La Chapelle-Launay",
+   "lat": 47.3474,
+   "lon": -1.9786,
+   "km": 13.1,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Sévérac",
+   "lat": 47.5534,
+   "lon": -2.0656,
+   "km": 13.1,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Montoir-de-Bretagne",
+   "lat": 47.3238,
+   "lon": -2.1539,
+   "km": 13.4,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Saint-Joachim",
+   "lat": 47.3731,
+   "lon": -2.2429,
+   "km": 13.4,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Guenrouët",
+   "lat": 47.5133,
+   "lon": -1.947,
+   "km": 13.8,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Savenay",
+   "lat": 47.3542,
+   "lon": -1.9203,
+   "km": 15.8,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Fégréac",
+   "lat": 47.5762,
+   "lon": -2.029,
+   "km": 16.2,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Trignac",
+   "lat": 47.3116,
+   "lon": -2.2052,
+   "km": 16.3,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Lavau-sur-Loire",
+   "lat": 47.3202,
+   "lon": -1.9571,
+   "km": 16.4,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Herbignac",
+   "lat": 47.451,
+   "lon": -2.3149,
+   "km": 16.8,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Bouvron",
+   "lat": 47.42,
+   "lon": -1.8691,
+   "km": 16.9,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Paimbœuf",
+   "lat": 47.2912,
+   "lon": -2.028,
+   "km": 16.9,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Corsept",
+   "lat": 47.2672,
+   "lon": -2.0894,
+   "km": 18.8,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Bouée",
+   "lat": 47.3072,
+   "lon": -1.9182,
+   "km": 19.4,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Saint-Lyphard",
+   "lat": 47.3788,
+   "lon": -2.3437,
+   "km": 20.0,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Saint-André-des-Eaux",
+   "lat": 47.3272,
+   "lon": -2.3116,
+   "km": 20.5,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Plessé",
+   "lat": 47.5578,
+   "lon": -1.8831,
+   "km": 20.7,
+   "zone": "Alentours (≈ 20 km)"
+  },
+  {
+   "nom": "Saint-Nazaire",
+   "lat": 47.2768,
+   "lon": -2.2392,
+   "km": 20.9,
+   "zone": "Alentours (≈ 20 km)"
+  }
+ ],
+ "items": [
+  {
+   "id": "PC-ORG-001",
+   "k": "organisation",
+   "nom": "Commune de Pontchâteau (Mairie)",
+   "type": "Collectivité",
+   "desc": "Commune de Loire-Atlantique, chef-lieu de canton ; membre de la communauté de communes du Pays de Pontchâteau – Saint-Gildas-des-Bois ; conseil municipal de 33 élus.",
+   "adresse": "Place Dominique-David, CS 60072, 44160 Pontchâteau",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "site": "https://www.pontchateau.fr",
+   "src": {
+    "nom": "BANATIC – fiche commune de Pontchâteau (44129)",
+    "url": "https://www.banatic.interieur.gouv.fr/commune/44129-Pontch%C3%A2teau"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-002",
+   "k": "organisation",
+   "nom": "Communauté de communes du Pays de Pontchâteau – Saint-Gildas-des-Bois",
+   "type": "Collectivité",
+   "desc": "Intercommunalité de 9 communes ; porte un Plan Climat Air Énergie Territorial (PCAET) ; collecte des déchets.",
+   "adresse": "2 rue des Châtaigniers, 44160 Pontchâteau",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Page d'accueil",
+    "url": "https://www.cc-paysdepontchateau.fr"
+   },
+   "pt": [
+    47.440589,
+    -2.102467
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-003",
+   "k": "organisation",
+   "nom": "SAUR (agence de Pontchâteau)",
+   "type": "Entreprise",
+   "desc": "Distributeur d'eau potable pour Atlantic'eau. Agence au 9 rue Archimède, Pontchâteau. Documenté comme distributeur du réseau « Crossac-Missillac-Ste Reine de Bretagne » ; le distributeur de l'eau à Pontchâteau même n'est pas établi.",
+   "adresse": "9 rue Archimède, Zone de l'Abbaye II, 44160 Pontchâteau",
+   "cats": [
+    "Accès à l'eau"
+   ],
+   "src": {
+    "nom": "Hub'Eau – Résultats du contrôle sanitaire de l'eau distribuée à Crossac",
+    "url": "https://hubeau.eaufrance.fr/api/v1/qualite_eau_potable/resultats_dis?code_commune=44050"
+   },
+   "pt": [
+    47.414219,
+    -2.039108
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-004",
+   "k": "organisation",
+   "nom": "Service Transports & Mobilités (CC)",
+   "type": "Service intercommunal",
+   "desc": "Organise le transport scolaire, le transport à la demande, la location de vélos électriques, le covoiturage et le conseil en mobilité.",
+   "adresse": "2 bis rue des Châtaigniers, 44160 Pontchâteau",
+   "cats": [
+    "Mobilités"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr/listes/transports/",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Transports et mobilité",
+    "url": "https://www.cc-paysdepontchateau.fr/listes/transports/"
+   },
+   "pt": [
+    47.441483,
+    -2.102271
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-005",
+   "k": "organisation",
+   "nom": "Espace France Services (CC)",
+   "type": "Service public",
+   "desc": "Aide aux démarches administratives en ligne, ateliers numériques, permanence budget de l'UDAF. Deux accueils : Pontchâteau (2 rue des Châtaigniers) et Saint-Gildas-des-Bois (17 rue des Forges).",
+   "adresse": "2 rue des Châtaigniers, 44160 Pontchâteau",
+   "cats": [
+    "Gouvernance, finances publiques et action collective",
+    "Justice sociale"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr/listes/espace-france-services/",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Espace France Services",
+    "url": "https://www.cc-paysdepontchateau.fr/listes/espace-france-services/"
+   },
+   "pt": [
+    47.440589,
+    -2.102467
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-006",
+   "k": "organisation",
+   "nom": "Transport à la demande (TAD) intercommunal",
+   "type": "Service de transport",
+   "desc": "Bus partagé sur réservation, ouvert à tous après inscription gratuite, au départ des 9 communes de la CC. Destinations : les 9 communes, 17 communes voisines, l'hôpital ou la clinique de Saint-Nazaire, la gare de Savenay (PMR). Ticket 2,90 €.",
+   "adresse": "Service Transports & Mobilités, 2 bis rue des Châtaigniers, 44160 Pontchâteau",
+   "cats": [
+    "Mobilités",
+    "Justice sociale"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr/transport-a-la-demande/",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Transport à la demande",
+    "url": "https://www.cc-paysdepontchateau.fr/transport-a-la-demande/"
+   },
+   "pt": [
+    47.441483,
+    -2.102271
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-007",
+   "k": "organisation",
+   "nom": "Ligne Aléop 305 Saint-Nazaire – Redon",
+   "type": "Ligne régulière (Région)",
+   "desc": "Ligne régulière régionale Saint-Nazaire – Pontchâteau – Redon (ex-ligne T5, renommée 305 en janvier 2026) ; 7 allers-retours en semaine depuis 2026 ; dessert la gare de Pontchâteau.",
+   "adresse": "Gare de Pontchâteau, place de la Gare, 44160 Pontchâteau",
+   "cats": [
+    "Mobilités"
+   ],
+   "site": "https://aleop.paysdelaloire.fr",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Lignes régulières",
+    "url": "https://www.cc-paysdepontchateau.fr/les-lignes-regulieres/"
+   },
+   "pt": [
+    47.435584,
+    -2.08873
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-008",
+   "k": "organisation",
+   "nom": "Transport scolaire (CC, pour la Région)",
+   "type": "Service de transport",
+   "desc": "Organisé par le service transport de la communauté de communes, sous l'autorité de la Région Pays de la Loire.",
+   "adresse": "Service Transports & Mobilités, 2 bis rue des Châtaigniers, 44160 Pontchâteau",
+   "cats": [
+    "Mobilités",
+    "Éducation"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr/listes/transports/",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Transports et mobilité",
+    "url": "https://www.cc-paysdepontchateau.fr/listes/transports/"
+   },
+   "pt": [
+    47.441483,
+    -2.102271
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-009",
+   "k": "organisation",
+   "nom": "Office de tourisme Pont-Château Saint-Gildas-des-Bois",
+   "type": "Office de tourisme",
+   "desc": "Accueils à Pont-Château (3 rue du Châtelier) et Saint-Gildas-des-Bois (17 rue des Forges) ; locations estivales de canoës, kayaks, paddles et vélos.",
+   "adresse": "3 rue du Châtelier, 44160 Pontchâteau",
+   "cats": [
+    "Économie locale et tissu productif",
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.pontchateau-saintgildasdesbois.com/",
+   "src": {
+    "nom": "Crossac – Organismes et institutions partenaires",
+    "url": "https://www.crossac.fr/organismes-et-institutions-partenaires/"
+   },
+   "pt": [
+    47.437519,
+    -2.089866
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-010",
+   "k": "organisation",
+   "nom": "Service Emploi (CC)",
+   "type": "Service intercommunal",
+   "desc": "Service emploi pour les plus de 26 ans (demandeurs d'emploi, salariés, étudiants) ; offres d'emploi en partenariat avec France Travail ; appui au recrutement des employeurs.",
+   "adresse": "Communauté de communes, 2 rue des Châtaigniers, 44160 Pontchâteau",
+   "cats": [
+    "Emploi"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr/vous-avez-plus-de-26-ans/",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Emploi Orientation",
+    "url": "https://www.cc-paysdepontchateau.fr/listes/emploi-orientation/"
+   },
+   "pt": [
+    47.440589,
+    -2.102467
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-011",
+   "k": "organisation",
+   "nom": "Syndicat du Bassin Versant du Brivet (SBVB)",
+   "type": "Syndicat de bassin versant",
+   "desc": "Porte le contrat territorial milieux aquatiques (CTMA) du bassin du Brivet : 37 communes, environ 800 km² entre les estuaires de la Vilaine et de la Loire, dont environ 20 000 ha de zones humides.",
+   "adresse": "5 rue des Frères Lumière, 44160 Pontchâteau",
+   "cats": [
+    "Accès à l'eau",
+    "Environnement"
+   ],
+   "site": "https://www.sbvb.fr",
+   "src": {
+    "nom": "Préfecture de Loire-Atlantique – CTMA du bassin versant du Brivet : note de présentation non technique",
+    "url": "https://www.loire-atlantique.gouv.fr/index.php/contenu/telechargement/40334/269873/file/Document_D_Note_presentation_non_technique.pdf"
+   },
+   "pt": [
+    47.41694,
+    -2.04918
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-012",
+   "k": "organisation",
+   "nom": "SNCF Gares & Connexions",
+   "type": "Entreprise publique",
+   "desc": "Maître d'ouvrage de la mise en accessibilité de la gare de Pontchâteau.",
+   "adresse": "Gare de Pontchâteau, place de la Gare, 44160 Pontchâteau",
+   "cats": [
+    "Mobilités"
+   ],
+   "src": {
+    "nom": "Région Pays de la Loire – Comité de lignes « Portes de Bretagne »",
+    "url": "https://aleop.paysdelaloire.fr/sites/default/files/2025%2009%2018%20DOSSIER%20REGION%20CDL%20Portes%20de%20Bretagne_0.pdf"
+   },
+   "pt": [
+    47.435584,
+    -2.08873
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-013",
+   "k": "organisation",
+   "nom": "Pôle AVAS – Animations, Vie associative, Sports (Ville de Pont-Château)",
+   "type": "Service municipal",
+   "desc": "Service municipal chargé des animations, de la vie associative et des sports ; reçoit les demandes de subvention des associations non sportives.",
+   "adresse": "Place Dominique David, CS 60072, 44160 Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.pontchateau.fr/subventions/",
+   "src": {
+    "nom": "Pont-Château – Subventions de la ville",
+    "url": "https://www.pontchateau.fr/subventions/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-014",
+   "k": "organisation",
+   "nom": "CCAS de Pont-Château",
+   "type": "Établissement public communal",
+   "desc": "Centre communal d'action sociale ; organise le repas des aînés (20/11/2026).",
+   "adresse": "Place Dominique David, 44160 Pontchâteau",
+   "cats": [
+    "Gouvernance, finances publiques et action collective",
+    "Justice sociale"
+   ],
+   "src": {
+    "nom": "Pont-Château – Guide pratique « Vivre à Pont-Château 2019-2020 »",
+    "url": "https://www.pontchateau.fr/wp-content/plugins/creasit-base-documentaire/telechargement.php?doc=7882"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-015",
+   "k": "organisation",
+   "nom": "Office Municipal des Sports (OMS)",
+   "type": "Office municipal des sports",
+   "desc": "Organise le Forum des associations avec la ville ; reçoit les demandes de subvention des associations sportives ; accueil au complexe sportif du Landas.",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Subventions de la ville",
+    "url": "https://www.pontchateau.fr/subventions/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-016",
+   "k": "organisation",
+   "nom": "Cinéma associatif La Bobine",
+   "type": "Association",
+   "desc": "Cinéma associatif ; porte le festival AlimenTERRE (16/10 au 23/11/2026) et les séances Connaissance du monde.",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-018",
+   "k": "organisation",
+   "nom": "Club des Amis Sportifs Guillaumois Football",
+   "type": "Association",
+   "desc": "Club de football ; organise une soirée années 80-2000 à la salle Jean-Yves Plaisance (14/11/2026).",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "zone": "Sans adresse sur la carte"
+  },
+  {
+   "id": "PC-ORG-019",
+   "k": "organisation",
+   "nom": "Cercle celtique Avel Coët Roz",
+   "type": "Association",
+   "desc": "Cercle celtique de Pont-Château ; organise un fest-deiz à la salle Jean-Yves Plaisance (15/11/2026).",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-020",
+   "k": "organisation",
+   "nom": "AOSP Football",
+   "type": "Association",
+   "desc": "Club de football ; organise un vide-chambre à la salle de la Boule d'Or (15/11/2026).",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "zone": "Sans adresse sur la carte"
+  },
+  {
+   "id": "PC-ORG-021",
+   "k": "organisation",
+   "nom": "Gymnastique les Blés d'or",
+   "type": "Association",
+   "desc": "Club de gymnastique ; organise une bourse aux jouets et vêtements enfants à la salle de la Boule d'Or (29/11/2026).",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda : Divers",
+    "url": "https://www.pontchateau.fr/categorie-agenda/divers/"
+   },
+   "zone": "Sans adresse sur la carte"
+  },
+  {
+   "id": "PC-ORG-022",
+   "k": "organisation",
+   "nom": "Association des Commerçants et Artisans du Pays de Pont-Château (ACAP)",
+   "type": "Association",
+   "desc": "Association de commerçants et artisans ; a organisé la grande chasse d'Halloween dans le centre-ville (31/10/2026).",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda : Divers",
+    "url": "https://www.pontchateau.fr/categorie-agenda/divers/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-023",
+   "k": "organisation",
+   "nom": "CLCV",
+   "type": "Association",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "zone": "Sans adresse sur la carte"
+  },
+  {
+   "id": "PC-ORG-024",
+   "k": "organisation",
+   "nom": "Club des Entrepreneurs de la Région de Pontchâteau-Saint-Gildas (CERPS)",
+   "type": "Association",
+   "desc": "Association économique (catégorie de l'annuaire municipal).",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "site": "https://cerps.fr/",
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "zone": "Sans adresse sur la carte"
+  },
+  {
+   "id": "PC-ORG-025",
+   "k": "organisation",
+   "nom": "Club des nageurs du Brivet",
+   "type": "Association",
+   "desc": "Association sportive (natation).",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "zone": "Sans adresse sur la carte"
+  },
+  {
+   "id": "PC-ORG-026",
+   "k": "organisation",
+   "nom": "Club photo de Pont-Château",
+   "type": "Association",
+   "desc": "Association de loisirs (photographie).",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://clubphotopontchateau.fr",
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-027",
+   "k": "organisation",
+   "nom": "Club Shorinji-Kempo",
+   "type": "Association",
+   "desc": "Association sportive (art martial).",
+   "adresse": "Route de Saint-Roch, 44160 Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-028",
+   "k": "organisation",
+   "nom": "Coink Compétition",
+   "type": "Association",
+   "desc": "Association sportive.",
+   "adresse": "44160 Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-029",
+   "k": "organisation",
+   "nom": "Aide à Domicile en Milieu Rural (ADMR)",
+   "type": "Association",
+   "desc": "Association santé, sociale et solidaire (catégorie de l'annuaire municipal).",
+   "cats": [
+    "Justice sociale"
+   ],
+   "site": "https://www.admr44.org/",
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "zone": "Sans adresse sur la carte"
+  },
+  {
+   "id": "PC-ORG-030",
+   "k": "organisation",
+   "nom": "Amicale laïque – section Mille Sabords",
+   "type": "Association",
+   "desc": "Association culturelle ; spectacles au Carré d'argent mentionnés en 2016.",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-031",
+   "k": "organisation",
+   "nom": "Amicale collège Saint-Martin",
+   "type": "Association",
+   "desc": "Association enfance et enseignement (catégorie de l'annuaire municipal).",
+   "cats": [
+    "Éducation"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-032",
+   "k": "organisation",
+   "nom": "Amicale des sapeurs-pompiers",
+   "type": "Association",
+   "desc": "Association santé, sociale et solidaire (catégorie de l'annuaire municipal).",
+   "cats": [
+    "Justice sociale"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-033",
+   "k": "organisation",
+   "nom": "Amicale Laïque – Badminton",
+   "type": "Association",
+   "desc": "Association sportive (badminton).",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-034",
+   "k": "organisation",
+   "nom": "Roller Club Pontchâteau",
+   "type": "Association",
+   "desc": "Association sportive (roller).",
+   "adresse": "7 place de l'Église, 44160 Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://rollerclubpontchateau.fr/",
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-036",
+   "k": "organisation",
+   "nom": "Secours Catholique",
+   "type": "Association",
+   "desc": "Association (catégorie de l'annuaire municipal).",
+   "cats": [
+    "Justice sociale"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "zone": "Sans adresse sur la carte"
+  },
+  {
+   "id": "PC-ORG-037",
+   "k": "organisation",
+   "nom": "Secours Populaire Français (Pontchâteau)",
+   "type": "Association",
+   "desc": "Association sociale (catégorie de l'annuaire municipal).",
+   "cats": [
+    "Justice sociale"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-039",
+   "k": "organisation",
+   "nom": "Société de chasse – la Saint Hubert – Saint-Roch",
+   "type": "Association",
+   "desc": "Association de loisirs (chasse).",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ORG-040",
+   "k": "organisation",
+   "nom": "Amicale du personnel communal",
+   "type": "Association",
+   "desc": "Association classée « culturelle » dans l'annuaire municipal ; contact par le pôle AVAS.",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "src": {
+    "nom": "Pont-Château – Annuaire des associations",
+    "url": "https://www.pontchateau.fr/categories/associations/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-001",
+   "k": "ressource",
+   "nom": "Mairie de Pontchâteau",
+   "type": "Bâtiment administratif",
+   "desc": "Mairie (accueil du public)",
+   "adresse": "Place Dominique-David, CS 60072, 44160 Pontchâteau",
+   "gest": "PC-ORG-001",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.pontchateau.fr",
+   "src": {
+    "nom": "BANATIC – fiche commune de Pontchâteau (44129)",
+    "url": "https://www.banatic.interieur.gouv.fr/commune/44129-Pontch%C3%A2teau"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-002",
+   "k": "ressource",
+   "nom": "Gare de Pontchâteau",
+   "type": "Gare TER",
+   "desc": "Ligne de Savenay à Landerneau. TER Nantes – Redon – Rennes et Nantes – Redon – Quimper ; ligne Aléop 305 (ex-T5). Parking de 170 places (2013). Service Assist'en gare depuis janvier 2024. Mise en accessibilité programmée.",
+   "adresse": "Place de la Gare, 44160 Pontchâteau",
+   "gest": "PC-ORG-012",
+   "cats": [
+    "Mobilités"
+   ],
+   "site": "https://www.ter.sncf.com/pays-de-la-loire/se-deplacer/gares/pontchateau-87481846",
+   "src": {
+    "nom": "Wikipédia – Gare de Pontchâteau",
+    "url": "https://fr.wikipedia.org/wiki/Gare_de_Pontch%C3%A2teau"
+   },
+   "pt": [
+    47.435584,
+    -2.08873
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-003",
+   "k": "ressource",
+   "nom": "VéliBrivet – location de vélos électriques",
+   "type": "Location de vélos",
+   "desc": "Location de vélos à assistance électrique pour 1, 3 ou 12 mois, dès 15 ans ; tarif social et plein tarif ; réservation sur velibrivet.fr.",
+   "adresse": "Allée du Brivet, 44160 Pontchâteau",
+   "gest": "PC-ORG-002",
+   "cats": [
+    "Mobilités"
+   ],
+   "site": "https://www.velibrivet.fr",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – VéliBrivet",
+    "url": "https://www.cc-paysdepontchateau.fr/velila-location-de-velos-electriques/"
+   },
+   "pt": [
+    47.437978,
+    -2.092607
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-004",
+   "k": "ressource",
+   "nom": "Siège de la communauté de communes",
+   "type": "Bâtiment administratif",
+   "desc": "Siège de l'intercommunalité ; accueil France Services et Service Emploi au même point.",
+   "adresse": "2 rue des Châtaigniers, 44160 Pontchâteau",
+   "gest": "PC-ORG-002",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr/",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Page d'accueil",
+    "url": "https://www.cc-paysdepontchateau.fr"
+   },
+   "pt": [
+    47.440589,
+    -2.102467
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-005",
+   "k": "ressource",
+   "nom": "Collège Queral",
+   "type": "Collège public",
+   "adresse": "3 rue des Cormiers, 44160 Pontchâteau",
+   "cats": [
+    "Éducation"
+   ],
+   "site": "https://queral.paysdelaloire.e-lyco.fr",
+   "src": {
+    "nom": "orientation.com – Collège Queral",
+    "url": "https://www.orientation.com/etablissements/college-queral-7432"
+   },
+   "pt": [
+    47.442168,
+    -2.095449
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-006",
+   "k": "ressource",
+   "nom": "Déchetterie de Pontchâteau",
+   "type": "Déchetterie",
+   "adresse": "Zone d'Activités du Landas, 4 rue Lavoisier, 44160 Pontchâteau",
+   "gest": "PC-ORG-002",
+   "cats": [
+    "Environnement"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr/dechetterie-de-pontchateau/",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Réseau des déchetteries",
+    "url": "https://www.cc-paysdepontchateau.fr/listes/les-decheteries/"
+   },
+   "pt": [
+    47.428047,
+    -2.072063
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-007",
+   "k": "ressource",
+   "nom": "Aire de covoiturage La Grivolais",
+   "type": "Aire de covoiturage",
+   "desc": "60 places (Département).",
+   "adresse": "La Grivolais, RD 773 / RN 165, 44160 Pontchâteau",
+   "gest": "PC-ORG-002",
+   "cats": [
+    "Mobilités"
+   ],
+   "site": "https://www.cc-paysdepontchateau.fr/covoiturage/",
+   "src": {
+    "nom": "CC Pays de Pontchâteau – Covoiturage",
+    "url": "https://www.cc-paysdepontchateau.fr/covoiturage/"
+   },
+   "pt": [
+    47.446027,
+    -2.091136
+   ],
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-008",
+   "k": "ressource",
+   "nom": "Point d'accueil de la Caf de Loire-Atlantique – Pontchâteau",
+   "type": "Service public",
+   "desc": "Accueil sur et sans rendez-vous (lundi et mercredi matin sans rendez-vous, lundi après-midi sur rendez-vous) ; espace numérique en autonomie.",
+   "adresse": "7 ter place de l'Église, 44160 Pontchâteau",
+   "cats": [
+    "Justice sociale"
+   ],
+   "site": "https://caf.fr/allocataires/caf-de-loire-atlantique/nous-contacter/points-d-accueil-de-votre-caf/pontchateau",
+   "src": {
+    "nom": "Caf de Loire-Atlantique – Point d'accueil de Pontchâteau",
+    "url": "https://caf.fr/allocataires/caf-de-loire-atlantique/nous-contacter/points-d-accueil-de-votre-caf/pontchateau"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-009",
+   "k": "ressource",
+   "nom": "Carré d'argent",
+   "type": "Salle de spectacles",
+   "desc": "Salle de spectacles et de conférences",
+   "adresse": "44160 Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-010",
+   "k": "ressource",
+   "nom": "Cinéma La Bobine",
+   "type": "Cinéma",
+   "desc": "Salle de cinéma",
+   "adresse": "Place de la Gare, 44160 Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-011",
+   "k": "ressource",
+   "nom": "Salle Jean-Yves Plaisance",
+   "type": "Salle municipale",
+   "desc": "Salle des fêtes (soirées, fest-deiz, repas des aînés)",
+   "adresse": "Coët Roz, 44160 Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-012",
+   "k": "ressource",
+   "nom": "Salle de la Boule d'Or",
+   "type": "Salle",
+   "desc": "Salle utilisée pour des vide-greniers et bourses",
+   "adresse": "44160 Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-013",
+   "k": "ressource",
+   "nom": "Complexe sportif du Landas",
+   "type": "Équipement sportif",
+   "desc": "Complexe sportif (gymnase, salle Parquet) ; accueil de l'Office Municipal des Sports ; lieu du Forum des associations 2025.",
+   "adresse": "44160 Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda : Culture",
+    "url": "https://www.pontchateau.fr/categorie-agenda/culture/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-014",
+   "k": "ressource",
+   "nom": "Médiathèque de Pont-Château",
+   "type": "Équipement culturel",
+   "desc": "Médiathèque avec salle d'exposition",
+   "adresse": "3 rue du Châtelier, 44160 Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda : Culture",
+    "url": "https://www.pontchateau.fr/categorie-agenda/culture/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-LIEU-015",
+   "k": "ressource",
+   "nom": "École de Musique Intercommunale (EMI)",
+   "type": "Équipement culturel",
+   "desc": "École de musique ; lieu d'une masterclass le 12/12/2026",
+   "adresse": "10 rue Toulifaut, 44160 Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "src": {
+    "nom": "Pont-Château – Agenda : Culture",
+    "url": "https://www.pontchateau.fr/categorie-agenda/culture/"
+   },
+   "com": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "commune": "Pontchâteau"
+  },
+  {
+   "id": "PC-ACT-001",
+   "k": "acteur",
+   "nom": "Stéphane POILVÉ",
+   "type": "Élu municipal",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "mon-maire.fr – Maire de Pontchâteau",
+    "url": "https://www.mon-maire.fr/?p=52001"
+   },
+   "fonction": "Maire",
+   "org": "PC-ORG-001"
+  },
+  {
+   "id": "PC-EVT-001",
+   "k": "evenement",
+   "nom": "Festival cinéma AlimenTERRE",
+   "type": "Festival de cinéma",
+   "desc": "Festival de cinéma.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.pontchateau.fr/systeme/agenda/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "debut": "2026-10-16",
+   "fin": "2026-11-23",
+   "passe": false,
+   "lieu": "PC-LIEU-010",
+   "organisateur": "PC-ORG-016"
+  },
+  {
+   "id": "PC-EVT-002",
+   "k": "evenement",
+   "nom": "Conférence – Le mur de Berlin",
+   "type": "Conférence",
+   "desc": "Conférence sur le mur de Berlin (titre tronqué dans l'extrait).",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Éducation"
+   ],
+   "site": "https://www.pontchateau.fr/systeme/agenda/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "debut": "2026-11-12",
+   "fin": "2026-11-12",
+   "passe": true,
+   "lieu": "PC-LIEU-009"
+  },
+  {
+   "id": "PC-EVT-003",
+   "k": "evenement",
+   "nom": "Soirée années 80 à 2000",
+   "type": "Soirée festive",
+   "desc": "Soirée festive aux rythmes des années 80, 90 et 2000.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.pontchateau.fr/categorie-agenda/divers/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "debut": "2026-11-14",
+   "fin": "2026-11-14",
+   "heure": "18h30",
+   "passe": true,
+   "lieu": "PC-LIEU-011",
+   "organisateur": "PC-ORG-018"
+  },
+  {
+   "id": "PC-EVT-004",
+   "k": "evenement",
+   "nom": "Fest-Deiz",
+   "type": "Bal traditionnel",
+   "desc": "Bal breton de l'après-midi.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.pontchateau.fr/systeme/agenda/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "debut": "2026-11-15",
+   "fin": "2026-11-15",
+   "passe": true,
+   "lieu": "PC-LIEU-011",
+   "organisateur": "PC-ORG-019"
+  },
+  {
+   "id": "PC-EVT-005",
+   "k": "evenement",
+   "nom": "Vide ta chambre de l'AOSP",
+   "type": "Vide-grenier",
+   "desc": "Vide-chambre.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.pontchateau.fr/systeme/agenda/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "debut": "2026-11-15",
+   "fin": "2026-11-15",
+   "passe": true,
+   "lieu": "PC-LIEU-012",
+   "organisateur": "PC-ORG-020"
+  },
+  {
+   "id": "PC-EVT-006",
+   "k": "evenement",
+   "nom": "Stage de danse – à la découverte du floorwork",
+   "type": "Stage",
+   "desc": "Stage de danse au sol (floorwork).",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.pontchateau.fr/categorie-agenda/culture/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda : Culture",
+    "url": "https://www.pontchateau.fr/categorie-agenda/culture/"
+   },
+   "debut": "2026-11-15",
+   "fin": "2026-11-15",
+   "passe": true,
+   "lieu": "PC-LIEU-013"
+  },
+  {
+   "id": "PC-EVT-007",
+   "k": "evenement",
+   "nom": "Repas des aînés",
+   "type": "Repas",
+   "desc": "Repas des aînés organisé par le CCAS.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Justice sociale"
+   ],
+   "site": "https://www.pontchateau.fr/systeme/agenda/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "debut": "2026-11-20",
+   "fin": "2026-11-20",
+   "passe": false,
+   "lieu": "PC-LIEU-011",
+   "organisateur": "PC-ORG-014"
+  },
+  {
+   "id": "PC-EVT-008",
+   "k": "evenement",
+   "nom": "Connaissance du monde – Australie",
+   "type": "Séance de cinéma",
+   "desc": "Séance de cinéma-conférence.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.pontchateau.fr/categorie-agenda/culture/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda",
+    "url": "https://www.pontchateau.fr/systeme/agenda/"
+   },
+   "debut": "2026-11-25",
+   "fin": "2026-11-25",
+   "passe": false,
+   "lieu": "PC-LIEU-010"
+  },
+  {
+   "id": "PC-EVT-009",
+   "k": "evenement",
+   "nom": "Bourse aux jouets et vêtements enfants",
+   "type": "Bourse",
+   "desc": "Bourse aux jouets et vêtements pour enfants.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.pontchateau.fr/categorie-agenda/divers/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda : Divers",
+    "url": "https://www.pontchateau.fr/categorie-agenda/divers/"
+   },
+   "debut": "2026-11-29",
+   "fin": "2026-11-29",
+   "passe": false,
+   "lieu": "PC-LIEU-012",
+   "organisateur": "PC-ORG-021"
+  },
+  {
+   "id": "PC-EVT-010",
+   "k": "evenement",
+   "nom": "Connaissance du monde – Argentine",
+   "type": "Séance de cinéma",
+   "desc": "Séance de cinéma-conférence.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.pontchateau.fr/categorie-agenda/culture/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda : Culture",
+    "url": "https://www.pontchateau.fr/categorie-agenda/culture/"
+   },
+   "debut": "2026-12-09",
+   "fin": "2026-12-09",
+   "passe": false,
+   "lieu": "PC-LIEU-010"
+  },
+  {
+   "id": "PC-EVT-011",
+   "k": "evenement",
+   "nom": "Masterclass accordéon avec Lionel Suarez",
+   "type": "Masterclass",
+   "desc": "Masterclass d'accordéon, de la chanson au jazz.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.pontchateau.fr/categorie-agenda/culture/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda : Culture",
+    "url": "https://www.pontchateau.fr/categorie-agenda/culture/"
+   },
+   "debut": "2026-12-12",
+   "fin": "2026-12-12",
+   "passe": false,
+   "lieu": "PC-LIEU-015"
+  },
+  {
+   "id": "PC-EVT-012",
+   "k": "evenement",
+   "nom": "La grande chasse d'Halloween",
+   "type": "Animation commerciale",
+   "desc": "Animation d'Halloween dans le centre-ville.",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Vivre ensemble"
+   ],
+   "site": "https://www.pontchateau.fr/categorie-agenda/divers/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda : Divers",
+    "url": "https://www.pontchateau.fr/categorie-agenda/divers/"
+   },
+   "debut": "2026-10-31",
+   "fin": "2026-10-31",
+   "passe": true,
+   "lieu": "Centre-ville de Pont-Château",
+   "organisateur": "PC-ORG-022"
+  },
+  {
+   "id": "PC-EVT-013",
+   "k": "evenement",
+   "nom": "Exposition – Résister, la mémoire des Pont-Châtelains pendant la…",
+   "type": "Exposition",
+   "desc": "Exposition en écho au spectacle « Juste Irena » (Carré d'argent, 05/11/2026).",
+   "commune": "Pontchâteau",
+   "zone": "À Pontchâteau",
+   "cats": [
+    "Culture, patrimoine et création"
+   ],
+   "site": "https://www.pontchateau.fr/categorie-agenda/culture/",
+   "com": "Pontchâteau",
+   "src": {
+    "nom": "Pont-Château – Agenda : Culture",
+    "url": "https://www.pontchateau.fr/categorie-agenda/culture/"
+   },
+   "debut": "2026-11-02",
+   "fin": "2026-11-07",
+   "passe": true,
+   "lieu": "PC-LIEU-014"
+  }
+ ],
+ "liens": [
+  {
+   "a": "PC-ACT-001",
+   "b": "PC-ORG-001",
+   "t": "Maire de"
+  },
+  {
+   "a": "PC-ORG-001",
+   "b": "PC-ORG-002",
+   "t": "Membre de"
+  },
+  {
+   "a": "PC-ORG-004",
+   "b": "PC-ORG-002",
+   "t": "Service de"
+  },
+  {
+   "a": "PC-ORG-005",
+   "b": "PC-ORG-002",
+   "t": "Service de"
+  },
+  {
+   "a": "PC-ORG-010",
+   "b": "PC-ORG-002",
+   "t": "Service de"
+  },
+  {
+   "a": "PC-ORG-004",
+   "b": "PC-ORG-006",
+   "t": "Organise"
+  },
+  {
+   "a": "PC-ORG-004",
+   "b": "PC-ORG-008",
+   "t": "Organise"
+  },
+  {
+   "a": "PC-ORG-012",
+   "b": "PC-LIEU-002",
+   "t": "Gestionnaire de"
+  },
+  {
+   "a": "PC-ORG-007",
+   "b": "PC-LIEU-002",
+   "t": "Dessert"
+  },
+  {
+   "a": "PC-ORG-013",
+   "b": "PC-ORG-001",
+   "t": "Service de"
+  },
+  {
+   "a": "PC-ORG-014",
+   "b": "PC-ORG-001",
+   "t": "Établissement de"
+  },
+  {
+   "a": "PC-ORG-015",
+   "b": "PC-ORG-001",
+   "t": "Partenaire de"
+  }
+ ],
+ "reperes": [],
+ "themes": [],
+ "indicateurs": [
+  {
+   "id": "IND-D01",
+   "domaine": "Démographie et dynamiques territoriales",
+   "nom": "Population et ménages",
+   "question": "Le territoire gagne-t-il ou perd-il des habitants ?",
+   "source": "INSEE, recensement",
+   "echelle": "Commune",
+   "frequence": "Annuelle (millésimes)",
+   "etat": "partiel",
+   "etat_txt": "PARTIEL – valeur 2023 seulement",
+   "obs": [
+    "OBS-001"
+   ],
+   "obs_attente": 0
+  }
+ ],
+ "observations": [
+  {
+   "id": "OBS-001",
+   "ind": "IND-D01",
+   "indicateur": "Population",
+   "valeur": "11 474 habitants",
+   "date": "2023 (population municipale en vigueur)",
+   "echelle": "Commune de Pontchâteau",
+   "cats": [
+    "Démographie et dynamiques territoriales"
+   ],
+   "statut": "VÉRIFIÉ",
+   "limites": "Valeur donnée par BANATIC ; millésime 2023 d'après Wikipédia citant l'INSEE, à confirmer sur insee.fr.",
+   "sources": [
+    {
+     "nom": "BANATIC – fiche commune de Pontchâteau (44129)",
+     "url": "https://www.banatic.interieur.gouv.fr/commune/44129-Pontch%C3%A2teau",
+     "consult": "17/11/2026",
+     "fiab": "Source officielle"
+    },
+    {
+     "nom": "Wikipédia (en) – Pontchâteau",
+     "url": "https://en.wikipedia.org/wiki/Pontch%C3%A2teau",
+     "consult": "17/11/2026",
+     "fiab": "Encyclopédie collaborative"
+    }
+   ]
+  }
+ ],
+ "en_attente": [],
+ "ouverts": [
+  {
+   "sujet": "Annuaire des associations",
+   "motif": "143 associations dans l'annuaire municipal ; 18 seulement relevées à ce stade",
+   "suite": "Compléter à partir de la liste complète de la mairie",
+   "cats": [
+    "Vivre ensemble"
+   ]
+  },
+  {
+   "sujet": "Spectacles de la saison culturelle (novembre-décembre 2026)",
+   "motif": "Annoncés par la ville, lieu non confirmé",
+   "suite": "Confirmer lieu et horaire auprès du Carré d'argent",
+   "cats": [
+    "Culture, patrimoine et création"
+   ]
+  },
+  {
+   "sujet": "Adresses de la mairie, des salles et des équipements",
+   "motif": "Lieux connus mais pas encore placés précisément sur la carte",
+   "suite": "Relever et géocoder les adresses",
+   "cats": [
+    "Vivre ensemble"
+   ]
+  },
+  {
+   "sujet": "Siège de la communauté de communes",
+   "motif": "Deux adresses différentes selon les sources (Pontchâteau, Saint-Gildas-des-Bois)",
+   "suite": "Confirmer auprès de la communauté de communes",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ]
+  },
+  {
+   "sujet": "Distribution de l'eau potable à Pontchâteau",
+   "motif": "Le distributeur est documenté pour Crossac, pas encore pour Pontchâteau",
+   "suite": "Consulter les données publiques de l'eau pour la commune",
+   "cats": [
+    "Accès à l'eau"
+   ]
+  }
+ ],
+ "attendues": [],
+ "couverture": [
+  {
+   "cat": "Vivre ensemble",
+   "elements": 21,
+   "en_verification": 0,
+   "precis": 0,
+   "commune": 16,
+   "sans_position": 5,
+   "avec_source": 21,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Culture, patrimoine et création",
+   "elements": 16,
+   "en_verification": 0,
+   "precis": 1,
+   "commune": 15,
+   "sans_position": 0,
+   "avec_source": 16,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Justice sociale",
+   "elements": 9,
+   "en_verification": 0,
+   "precis": 2,
+   "commune": 5,
+   "sans_position": 2,
+   "avec_source": 9,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Mobilités",
+   "elements": 8,
+   "en_verification": 0,
+   "precis": 8,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 8,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Gouvernance, finances publiques et action collective",
+   "elements": 6,
+   "en_verification": 0,
+   "precis": 3,
+   "commune": 3,
+   "sans_position": 0,
+   "avec_source": 6,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Éducation",
+   "elements": 4,
+   "en_verification": 0,
+   "precis": 2,
+   "commune": 2,
+   "sans_position": 0,
+   "avec_source": 4,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Économie locale et tissu productif",
+   "elements": 3,
+   "en_verification": 0,
+   "precis": 1,
+   "commune": 1,
+   "sans_position": 1,
+   "avec_source": 3,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Accès à l'eau",
+   "elements": 2,
+   "en_verification": 0,
+   "precis": 2,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 2,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Environnement",
+   "elements": 2,
+   "en_verification": 0,
+   "precis": 2,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 2,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Emploi",
+   "elements": 1,
+   "en_verification": 0,
+   "precis": 1,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 1,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Démographie et dynamiques territoriales",
+   "elements": 0,
+   "en_verification": 0,
+   "precis": 0,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 0,
+   "chiffres": 1,
+   "chiffres_attente": 0
+  }
+ ],
+ "traces": []
+}

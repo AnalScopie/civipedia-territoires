@@ -1,0 +1,1404 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><meta name="theme-color" content="#f5f2ea"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23f5f2ea' stroke='%23232323' stroke-width='1.6'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%23232323'/%3E%3C/svg%3E"></head><body>
+<title>Découvrir Crossac</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* Version épurée (style carnet) de la carte territoriale. Générée par sobre/generer.py. */
+:root{
+  --bg:#ffffff; --surface:#f7f9fc; --surface-2:#eef2f8; --line:#e4e9f1; --line-strong:#cfd7e4;
+  --ink:#111827; --ink-2:#465166; --ink-3:#667085;
+  --blue:#1F5BFF; --blue-soft:#eaf0ff; --blue-ink:#1a4fe0; --green-ink:#137a52;
+  --k-acteur:#1F5BFF; --k-organisation:#d99400; --k-ressource:#199C68; --k-projet:#e8613a; --k-evenement:#8b5cf6;
+  --land:#eef2f7; --land-home:#dce7ff; --land-line:rgba(70,90,130,.28); --home-line:#1F5BFF;
+  --river:#7fb0e6; --road:rgba(60,70,90,.22); --rail:rgba(60,70,90,.18); --ring:rgba(31,91,255,.45); --sea:#fafbfd;
+  --f-sans:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --r:10px;
+  --warn:#a86a00; --warn-soft:#fdf3e1; --ok:#199C68; --ok-soft:#e7f6ef; --none-ink:#667085;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--f-sans);font-size:15px;line-height:1.5}
+a{color:var(--blue-ink)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.wrap{max-width:1320px;margin:0 auto;padding-inline:20px;padding-block:0 48px}
+
+/* En-tête */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:16px;border-bottom:1px solid var(--line)}
+.brand{font-weight:800;letter-spacing:.01em;font-size:16px}
+.brand b{color:var(--blue)}
+.terr[hidden]{display:none}
+.terr{display:flex;align-items:center;gap:8px;color:var(--ink-2);font-size:13px}
+.terr select{background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;padding:6px 10px;font-weight:600;color:var(--ink)}
+.hero{display:flex;flex-wrap:wrap;gap:12px 40px;align-items:flex-end;justify-content:space-between;padding-block:28px 20px}
+.hero h1{margin:0;font-size:clamp(36px,6vw,56px);font-weight:800;letter-spacing:-.02em;line-height:1;text-wrap:balance}
+.hero p{margin:10px 0 0;color:var(--ink-2);max-width:56ch;font-size:16px}
+.facts{display:flex;gap:28px;flex-wrap:wrap}
+.fact b{display:block;font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.fact span{font-size:12.5px;color:var(--ink-3)}
+
+/* Exploration */
+.explore{display:flex;flex-direction:column;gap:12px;padding:16px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.search{position:relative}
+.search input{width:100%;padding:13px 16px 13px 42px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg);font-size:16px}
+.search input::placeholder{color:var(--ink-3)}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-3)}
+.cats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.cat{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg);cursor:pointer;text-align:left;min-width:0}
+.cat .sw{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+.cat .lb{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+.cat .n{font-variant-numeric:tabular-nums;color:var(--ink-2);font-weight:700}
+.cat[aria-pressed="false"]{opacity:.45}
+.cat[aria-pressed="false"] .sw{background:transparent!important;border:2px solid var(--ink-3)}
+.row2{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.row2 label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2)}
+.row2 select{background:var(--bg);border:1px solid var(--line-strong);border-radius:8px;padding:7px 10px;max-width:260px;color:var(--ink)}
+.reset{margin-left:auto;border:0;background:none;color:var(--blue-ink);font-weight:600;cursor:pointer;padding:6px 2px}
+
+/* Carte + liste */
+.main{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:16px;margin-top:16px;align-items:start}
+.mapbox{position:relative;border:1px solid var(--line);border-radius:var(--r);background:var(--sea);overflow:hidden;height:min(70vh,660px);min-height:420px;touch-action:none}
+.mapbox svg{display:block;width:100%;height:100%;cursor:grab;user-select:none}
+.mapbox svg.drag{cursor:grabbing}
+.ctl{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:4px}
+.ctl button{width:36px;height:36px;border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;cursor:pointer;font-size:18px;line-height:1}
+.legend{position:absolute;left:10px;bottom:10px;display:flex;flex-direction:column;gap:4px;background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:12px;color:var(--ink-2);max-width:calc(100% - 20px)}
+.legend div{display:flex;align-items:center;gap:8px}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.hint[hidden]{display:none}
+.attrib{position:absolute;right:0;bottom:0;background:rgba(255,255,255,.85);font-size:10.5px;color:var(--ink-3);padding:2px 6px;border-top-left-radius:6px}
+.attrib a{color:var(--ink-2);text-decoration:none}
+#gtiles{filter:saturate(.35) brightness(1.05) contrast(.92)}
+@media (max-width:620px){.legend{font-size:11px;padding:6px 8px;gap:2px}}
+.hint{position:absolute;left:10px;top:10px;font-size:12px;color:var(--ink-3);background:rgba(255,255,255,.9);border-radius:6px;padding:4px 8px}
+.bub{cursor:pointer}
+.bub:focus{outline:none}
+.bub:focus-visible circle.hit{stroke:var(--ink);stroke-width:2}
+.side{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);display:flex;flex-direction:column;height:min(70vh,660px);min-height:420px}
+.side header{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}
+.side h2{margin:0;font-size:16px;line-height:1.3}
+.side header p{margin:2px 0 0;color:var(--ink-2);font-size:13px}
+.side .back{border:1px solid var(--line-strong);background:var(--bg);border-radius:6px;padding:4px 9px;cursor:pointer;font-size:13px;flex:0 0 auto}
+.list{overflow:auto;flex:1}
+.grp{position:sticky;top:0;z-index:1;background:var(--surface-2);padding:6px 16px;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);font-weight:700;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line)}
+.grp i{width:9px;height:9px;border-radius:50%}
+.it{display:block;width:100%;text-align:left;padding:10px 16px;border:0;border-bottom:1px solid var(--line);background:none;cursor:pointer}
+.it:hover,.it:focus-visible{background:var(--surface-2)}
+.it .t{font-weight:600;line-height:1.3}
+.it .s{color:var(--ink-2);font-size:13px;line-height:1.35;margin-top:2px}
+.empty{padding:20px 16px;color:var(--ink-2)}
+
+/* Sujets et repères */
+.below{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:16px;margin-top:28px}
+.panel{border:1px solid var(--line);border-radius:var(--r);padding:18px;background:var(--surface);min-width:0}
+.panel h2{margin:0 0 4px;font-size:18px}
+.panel > p{margin:0 0 14px;color:var(--ink-2);font-size:13.5px}
+.topics{display:flex;flex-direction:column;gap:2px}
+.topic{display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:10px;align-items:center;border:0;background:none;padding:6px 4px;cursor:pointer;text-align:left;border-radius:6px}
+.topic:hover{background:var(--surface-2)}
+.topic[aria-pressed="true"]{background:var(--blue-soft)}
+.topic .nm{font-size:14px;font-weight:500;overflow-wrap:anywhere}
+.topic .bar{height:6px;border-radius:3px;background:var(--line-strong);margin-top:4px;overflow:hidden}
+.topic .bar span{display:block;height:100%;background:var(--blue)}
+.topic .c{font-variant-numeric:tabular-nums;text-align:right;color:var(--ink-2);font-weight:700}
+.rep{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.rep h3{margin:0 0 8px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--green-ink)}
+.rv{padding:10px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.rv b{font-size:20px;font-variant-numeric:tabular-nums;line-height:1.15}
+.rv span{color:var(--ink-2);font-size:13.5px}
+.rv small{color:var(--ink-3);font-size:12px}
+.rv small a{color:var(--ink-3)}
+.base{margin-top:16px}
+.base-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr));gap:14px}
+.base-grid h3{margin:0 0 6px;font-size:14px}
+.base-grid ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13.5px}
+.base-grid li small{display:block;color:var(--ink-3)}
+.base-foot{margin:14px 0 0;font-size:13px}
+.base-muted{margin:0;color:var(--ink-3);font-size:13px}
+footer.foot{margin-top:28px;padding-top:16px;border-top:1px solid var(--line);color:var(--ink-3);font-size:12.5px;display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+footer.foot a{color:var(--ink-2)}
+
+/* Fiche */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(15,23,42,.3)}
+.sheet{position:fixed;z-index:50;top:0;right:0;bottom:0;width:min(480px,100%);background:var(--bg);border-left:1px solid var(--line-strong);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.sheet .head{padding:18px 18px 14px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);border:1px solid var(--line-strong)}
+.pill i{width:8px;height:8px;border-radius:50%}
+.sheet h2{margin:8px 0 4px;font-size:22px;line-height:1.2;text-wrap:balance}
+.sheet .where{color:var(--ink-2);font-size:13.5px}
+.sheet .close{margin-left:auto;border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:18px;flex:0 0 auto}
+.sheet .body{overflow:auto;padding:16px 18px 28px;display:flex;flex-direction:column;gap:18px}
+.sheet .lead{font-size:15.5px;margin:0;max-width:62ch}
+.kv{display:grid;grid-template-columns:120px minmax(0,1fr);gap:8px 12px;margin:0}
+.kv dt{color:var(--ink-3);font-size:13px}
+.kv dd{margin:0;overflow-wrap:anywhere}
+.sec h3{margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:13px;padding:3px 10px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);cursor:pointer}
+.link{border:0;background:none;padding:0;color:var(--blue-ink);cursor:pointer;text-align:left;font-weight:600}
+.rel{padding:8px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column}
+.rel small{color:var(--ink-3)}
+.when{display:inline-block;font-size:12px;font-weight:700;padding:2px 8px;border-radius:4px;margin-left:6px}
+.when.past{background:var(--surface-2);color:var(--ink-3)}
+.when.next{background:var(--blue-soft);color:var(--blue-ink)}
+.srcline{font-size:13px;color:var(--ink-2)}
+.state{padding:40px 20px;color:var(--ink-2)}
+
+/* ===== Couche « comprendre » : coup d'œil, thèmes, cartes d'identité, couverture ===== */
+.fact.clk{border:0;background:none;padding:0;text-align:left;cursor:pointer}
+.fact.clk:hover b{color:var(--blue-ink)}
+.glance{margin-bottom:16px;display:flex;flex-direction:column;gap:12px}
+.glance-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px 16px;flex-wrap:wrap}
+.glance-head h2{margin:0;font-size:20px}
+.glance-head p{margin:0;color:var(--ink-3);font-size:13px}
+.gl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:16px}
+.gl-theme{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.gl-theme h3{margin:0;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--green-ink)}
+.gl-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.gl-card{display:flex;flex-direction:column;gap:4px;text-align:left;padding:10px 12px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg);cursor:pointer;min-width:0}
+.gl-card:hover,.gl-card:focus-visible{border-color:var(--blue)}
+.gl-card b{font-size:21px;line-height:1.15;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.gl-card .gl{font-size:13.5px;color:var(--ink);line-height:1.35}
+.gl-card small{font-size:11.5px;color:var(--ink-3);line-height:1.35}
+.gl-card .more{font-size:12px;color:var(--blue-ink);font-weight:600;margin-top:auto;padding-top:4px}
+.gl-foot{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:10px;font-size:13px;color:var(--ink-2)}
+.go{border:1px solid var(--blue);background:var(--blue-soft);color:var(--blue-ink);border-radius:8px;padding:7px 12px;font-weight:700;cursor:pointer}
+.go:hover{background:var(--blue);color:#fff}
+
+.crumb{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13.5px;color:var(--ink-3);padding-block:20px 4px}
+.crumb button{border:0;background:none;padding:0;color:var(--blue-ink);font-weight:600;cursor:pointer}
+.th-head{display:flex;flex-wrap:wrap;gap:12px 32px;align-items:flex-end;justify-content:space-between;padding-block:4px 20px;border-bottom:1px solid var(--line)}
+.th-head h1{margin:0;font-size:clamp(30px,5vw,44px);line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
+.th-head p{margin:8px 0 0;color:var(--ink-2);max-width:62ch}
+.th-body{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;margin-top:20px;align-items:start}
+.th-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.blk{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:16px;min-width:0}
+.blk > h2{margin:0 0 4px;font-size:17px}
+.blk > p.sub{margin:0 0 12px;color:var(--ink-2);font-size:13px}
+.obsl{display:flex;flex-direction:column}
+.obsr{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-top:1px solid var(--line);text-align:left;border-left:0;border-right:0;border-bottom:0;background:none;cursor:pointer;width:100%}
+.obsr:hover .on,.obsr:focus-visible .on{color:var(--blue-ink)}
+.obsr .on{font-weight:600;line-height:1.3}
+.obsr .ov{font-weight:700;font-size:15.5px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere;color:var(--ink)}
+.obsr .on{color:var(--ink-2);font-size:13.5px}
+.obsr small{color:var(--ink-3);font-size:12px}
+.qrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:start;padding:10px 0;border-top:1px solid var(--line);width:100%;text-align:left;background:none;border-left:0;border-right:0;border-bottom:0;cursor:pointer}
+.qrow .qq{font-weight:600;line-height:1.3}
+.qrow:hover .qq{color:var(--blue-ink)}
+.qrow small{grid-column:1/-1;color:var(--ink-3);font-size:12px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap;border:1px solid}
+.chip i{width:7px;height:7px;border-radius:50%;background:currentColor}
+.chip.disponible{color:var(--green-ink);background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 45%,transparent)}
+.chip.partiel{color:var(--warn);background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
+.chip.a_verifier{color:var(--warn);background:transparent;border-style:dashed;border-color:var(--warn)}
+.chip.manquant{color:var(--none-ink);background:transparent;border-style:dashed;border-color:var(--line-strong)}
+.who{display:flex;flex-direction:column}
+.who .grp{position:static}
+.unk{display:flex;flex-direction:column;gap:14px}
+.unk h3{margin:0 0 6px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.unk ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.unk li{color:var(--ink-2);font-size:13.5px}
+.unk li b{color:var(--ink);font-weight:600}
+.cov-mini{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cov-mini div{display:flex;flex-direction:column}
+.cov-mini b{font-size:20px;font-variant-numeric:tabular-nums}
+.cov-mini span{font-size:12.5px;color:var(--ink-2)}
+.caveat{margin:12px 0 0;font-size:12.5px;color:var(--ink-3)}
+.srcs{display:flex;flex-direction:column;gap:8px;font-size:13.5px}
+.srcs a{overflow-wrap:anywhere}
+.srcs small{display:block;color:var(--ink-3);font-size:12px}
+
+.covwrap{overflow-x:auto;margin-inline:-4px}
+table.cov{border-collapse:collapse;width:100%;font-size:13px;min-width:560px}
+table.cov th,table.cov td{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}
+table.cov th{font-size:11.5px;color:var(--ink-3);font-weight:600;letter-spacing:.02em}
+table.cov th:first-child,table.cov td:first-child{text-align:left}
+table.cov td{font-variant-numeric:tabular-nums;color:var(--ink-2)}
+table.cov td:first-child{color:var(--ink)}
+table.cov .zero{color:var(--line-strong)}
+table.cov button{border:0;background:none;padding:0;color:var(--blue-ink);font-weight:600;cursor:pointer;text-align:left}
+.placebar{display:inline-flex;width:56px;height:6px;border-radius:3px;background:var(--line-strong);overflow:hidden;vertical-align:middle;margin-left:6px}
+.placebar span{display:block;height:100%}
+
+.big{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1;margin:0;overflow-wrap:anywhere}
+.sheet .back2{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px;flex:0 0 auto}
+.idnote{font-size:12.5px;color:var(--ink-3);margin:0}
+
+/* ===== Contribuer : deux portes d'entrée vers la base (projet / information) ===== */
+.contrib{margin-top:28px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:18px;display:flex;flex-direction:column;gap:14px}
+.contrib-head h2{margin:0;font-size:20px}
+.contrib-head p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px;max-width:70ch}
+.tabs{display:flex;flex-wrap:wrap;gap:8px}
+.tabs button{border:1px solid var(--line-strong);background:var(--bg);border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+.tabs button[aria-selected="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue-ink)}
+.cform{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;align-items:start}
+.fields{display:flex;flex-direction:column;gap:12px;min-width:0}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field > span,.field legend{font-size:13px;font-weight:600;color:var(--ink-2)}
+.field small{font-size:12px;color:var(--ink-3)}
+.field input,.field select,.field textarea{background:var(--bg);border:1px solid var(--line-strong);border-radius:8px;padding:9px 11px;width:100%;min-width:0}
+.field textarea{min-height:110px;resize:vertical}
+fieldset.field{border:0;padding:0;margin:0}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts label{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;padding:5px 10px;border:1px solid var(--line-strong);border-radius:999px;cursor:pointer;background:var(--bg)}
+.opts input{accent-color:var(--blue)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--ink-2)}
+.consent input{margin-top:3px;accent-color:var(--blue)}
+.send{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.send .go[disabled]{opacity:.5;cursor:not-allowed}
+.msg{font-size:13.5px;color:var(--ink-2)}
+.msg.ok{color:var(--green-ink);font-weight:600}
+.msg.err{color:var(--warn)}
+.trap{position:absolute;left:-5000px;width:1px;height:1px;overflow:hidden}
+.match{border:1px dashed var(--line-strong);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.match h3{margin:0;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.match p{margin:0;font-size:12.5px;color:var(--ink-3)}
+.match .rel{padding:6px 0}
+.flag{border:1px solid var(--line-strong);background:var(--surface);border-radius:8px;padding:6px 10px;cursor:pointer;font-size:13px;align-self:flex-start}
+@media (max-width:820px){ .cform{grid-template-columns:1fr} }
+
+@media (max-width:1000px){ .th-body{grid-template-columns:1fr} }
+
+@media (max-width:1000px){
+  .main{grid-template-columns:1fr}
+  .side{height:auto;max-height:520px}
+  .below{grid-template-columns:1fr}
+  .cats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+}
+@media (max-width:520px){
+  .wrap{padding-inline:16px}
+  .mapbox{height:60vh;min-height:360px}
+  .kv{grid-template-columns:1fr}
+  .kv dt{margin-top:4px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Logos des collectivités du territoire (fichiers officiels, affichés sans retouche) */
+.tlogos{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:16px}
+.tlogos > span{font-size:12px;color:var(--ink-3);letter-spacing:.04em}
+.tlogos .plate{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;display:flex;align-items:center;height:84px}
+.tlogos img{display:block;height:100%;width:auto;max-width:240px;object-fit:contain}
+@media (max-width:520px){.tlogos .plate{height:70px}.tlogos img{max-width:170px}}
+.insc-btn{background:var(--blue);color:#fff!important;text-decoration:none;font-weight:700;font-size:13px;border-radius:8px;padding:7px 12px;white-space:nowrap}
+.topbar-r{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+.insc{margin-top:28px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);padding:18px;display:flex;flex-direction:column;gap:14px}
+.insc h2{margin:0;font-size:20px}
+.insc p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px;max-width:70ch}
+.insc .go{align-self:flex-start;display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:700;border-radius:9px;padding:10px 16px}
+.insc iframe{width:100%;height:720px;border:1px solid var(--line);border-radius:var(--r);background:#fff}
+.insc-btn[hidden]{display:none}
+@media (max-width:520px){.topbar{flex-wrap:wrap}}
+
+/* Deux vues : le projet à la une (carte, inscription, frise), puis le territoire en détail */
+.pages{display:inline-flex;border:1px solid var(--line-strong);border-radius:9px;overflow:hidden}
+.pages[hidden]{display:none}
+.pages button{border:0;background:var(--bg);padding:7px 12px;font-weight:700;font-size:13px;cursor:pointer;color:var(--ink-2)}
+.pages button+button{border-left:1px solid var(--line-strong)}
+.pages button[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue-ink)}
+.une-head{padding-block:14px 10px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
+.une-head .kick{margin:0;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-ink);flex-basis:100%}
+.une-head h1{flex-basis:100%;margin:0;font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.015em;line-height:1.1;text-wrap:balance}
+.une-head p{margin:0;color:var(--ink-2);max-width:70ch;font-size:15px}
+@media (max-width:620px){.une-head p{display:none}}
+.cta{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--blue-soft)}
+.cta .go{display:inline-block;background:var(--blue);color:#fff;text-decoration:none;font-weight:800;font-size:17px;border-radius:10px;padding:13px 22px}
+.cta .go:hover{background:var(--blue-ink)}
+.cta p{margin:0;flex:1;min-width:16rem;color:var(--ink-2);font-size:14px}
+.credit{margin:10px 2px 0;font-size:13px;color:var(--ink-3)}
+.credit[hidden]{display:none}
+.frise{margin-top:28px}
+.frise h2{margin:0;font-size:20px}
+.frise > p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px}
+.fr-scroll{margin-top:12px;overflow-x:auto;overflow-y:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);scrollbar-color:var(--line-strong) transparent}
+.fr-pz{position:relative}
+.fr-axe{position:absolute;height:4px;border-radius:2px;background:var(--ink)}
+.fr-tick{position:absolute;width:1px;background:var(--line)}
+.fr-mois{position:absolute;transform:translateX(-50%);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);white-space:nowrap}
+.fr-auj{position:absolute;width:0;border-left:2px dashed var(--blue)}
+.fr-auj-l{position:absolute;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;border-radius:5px;padding:2px 7px;white-space:nowrap}
+.fr-pt{position:absolute;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--k-evenement);border:3px solid var(--bg);box-shadow:0 0 0 2px var(--k-evenement)}
+.fr-pt.passe{background:var(--ink-3);box-shadow:0 0 0 2px var(--ink-3)}
+.fr-tige{position:absolute;width:2px;margin-left:-1px;background:var(--line-strong)}
+.fr-c{position:absolute;width:210px;display:flex;flex-direction:column;gap:2px;text-align:left;border:1px solid var(--line);border-left:4px solid var(--k-evenement);border-radius:8px;background:var(--surface);padding:8px 10px;cursor:pointer;color:inherit;font:inherit;text-decoration:none;overflow:hidden}
+.fr-c .d{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--k-evenement)}
+.fr-c .t{font-weight:700;font-size:14px;line-height:1.25;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.fr-c .w{font-size:12px;color:var(--ink-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr-c.passe{border-left-color:var(--ink-3);opacity:.8}
+.fr-c.passe .d{color:var(--ink-3)}
+.fr-c:hover,.fr-c:focus-visible{border-color:var(--k-evenement)}
+.fr-defile{margin:6px 0 0;font-size:12.5px;color:var(--ink-3)}
+.fr-defile[hidden]{display:none}
+.donnees{margin-top:28px}
+.donnees h2{margin:0;font-size:20px}
+.donnees > p{margin:4px 0 0;color:var(--ink-2);font-size:13.5px}
+.dbtns{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,13.5rem),1fr));gap:10px}
+.dbtn{display:flex;flex-direction:column;gap:4px;text-align:left;border:1px solid var(--line-strong);border-radius:var(--r);background:var(--bg);padding:14px 16px;cursor:pointer;color:inherit;font:inherit}
+.dbtn b{font-size:17px;color:var(--blue-ink)}
+.dbtn span{font-size:13px;color:var(--ink-3)}
+.dbtn:hover,.dbtn:focus-visible{border-color:var(--blue);background:var(--blue-soft)}
+.dbtn.tout b{color:var(--ink)}
+.fr-empty{color:var(--ink-3);font-size:14px}
+
+/* ===== Style carnet épuré ===== */
+:root{
+  --bg:#f5f2ea; --surface:#f8f6f0; --surface-2:#efebe1; --line:#d9d4c7; --line-strong:#9c978b;
+  --ink:#232323; --ink-2:#4a4844; --ink-3:#77736a;
+  --blue:#2c3e63; --blue-soft:#e8e5dc; --blue-ink:#2c3e63; --green-ink:#4d6b45;
+  --k-acteur:#2c3e63; --k-organisation:#a8822f; --k-ressource:#5c7a52; --k-projet:#b5523b; --k-evenement:#6c5b86;
+  --land:#efebe2; --land-home:#e3ddcf; --land-line:rgba(60,55,45,.32); --home-line:#232323;
+  --river:#8fa5b8; --road:rgba(50,45,40,.22); --rail:rgba(50,45,40,.2); --ring:rgba(35,35,35,.4); --sea:#f5f2ea;
+  --f-sans:"Courier Prime","Courier New",ui-monospace,monospace;
+  --r:3px; --warn:#8a5a14; --warn-soft:#f3ead6; --ok:#4d6b45; --ok-soft:#e7ebdf; --none-ink:#77736a;
+}
+html,body{background:var(--bg)}
+body{font-size:14.5px;line-height:1.55;
+  background:repeating-linear-gradient(to bottom,transparent 0 27px,rgba(110,140,185,.16) 27px 28px),var(--bg)}
+body::before{content:"";position:fixed;top:0;bottom:0;left:clamp(6px,2.4vw,34px);width:1px;background:rgba(196,84,72,.38);pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1}
+.wrap :is(div,section,button,input,select,textarea,a,label,aside,ul,li,p),.sheet,.sheet *{border-radius:var(--r)}
+.cat .sw{border-radius:50%}
+.brand{font-weight:400;letter-spacing:.14em;text-transform:uppercase;font-size:13px}
+.brand b{color:var(--ink);font-weight:700}
+.topbar{border-bottom:1px solid var(--ink)}
+.hero h1,.une-head h1,#une-titre{font-weight:400;letter-spacing:.01em}
+h2{font-weight:400;letter-spacing:.08em;text-transform:uppercase;font-size:15px;padding-bottom:6px;border-bottom:1px dashed var(--line-strong)}
+h3{font-weight:700;letter-spacing:.03em}
+.kick{text-transform:uppercase;letter-spacing:.14em}
+.fact b{font-weight:400}
+.explore,.panel,.base,.contrib,.frise,.cta,.sheet{background:rgba(250,248,243,.92)}
+.explore,.panel,.cat,.search input{border-color:var(--line-strong)}
+.cat .lb{font-weight:400}
+.cat .n{font-weight:400}
+#gtiles{filter:grayscale(1) sepia(.22) brightness(1.06) contrast(.86);opacity:.8}
+.tlogos .plate{background:#fbfaf6;border-color:var(--line-strong)}
+button.go,.go,.insc-btn{letter-spacing:.06em}
+.opts label{white-space:nowrap;font-size:12.5px;padding:4px 9px}
+.opts input{width:auto;flex:none;margin:0}
+#map .trace,.legend i{filter:saturate(.55) brightness(.92)}
+@media (min-width:700px){body::before{left:30px}.wrap{padding-left:52px}}
+@media (max-width:699px){body::before{left:7px}}
+.signe{display:flex;align-items:center;gap:14px;margin-top:28px;color:var(--ink-2);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase}
+.signe::before,.signe::after{content:"";flex:1;border-top:1px dashed var(--line-strong)}
+@media (max-width:620px){.signe{font-size:11px;letter-spacing:.06em}}
+</style>
+
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand"><b>Carte territoriale</b> · instantané public</div>
+    <div class="topbar-r">
+      <div class="pages" id="pages" role="group" aria-label="Vue" hidden>
+        <button type="button" data-page="une" id="page-une" aria-pressed="true"></button>
+        <button type="button" data-page="tout" id="page-tout" aria-pressed="false"></button>
+      </div>
+      <label class="terr" for="terr">Territoire <select id="terr"></select></label>
+      <a class="insc-btn" href="#inscription" id="insc-top" hidden></a>
+    </div>
+  </div>
+
+  <div id="une" hidden>
+    <section class="une-head">
+      <p class="kick" id="une-kick"></p>
+      <h1 id="une-titre"></h1>
+      <p id="une-texte"></p>
+    </section>
+    <div id="slot-une"></div>
+    <section class="cta" id="inscription" hidden></section>
+    <p class="credit" id="une-credit" hidden></p>
+    <section class="frise" aria-labelledby="frise-title">
+      <h2 id="frise-title">Ce qui s'est passé, ce qui arrive</h2>
+      <p>Les événements publiés sur la carte et dans la base commune. Touchez un événement pour le détail.</p>
+      <div class="fr-scroll" id="frise" tabindex="0" aria-label="Frise des événements, défilement horizontal"></div>
+      <p class="fr-defile" id="fr-defile" hidden>Faites glisser la frise pour voir la suite.</p>
+    </section>
+    <section class="donnees" aria-labelledby="donnees-title">
+      <h2 id="donnees-title">Les données du territoire</h2>
+      <p>Chaque bouton ouvre une page à part : les chiffres établis, ce qu'on cherche encore à savoir, et qui agit.</p>
+      <div class="dbtns" id="dbtns"></div>
+    </section>
+  </div>
+
+  <section class="hero">
+    <div>
+      <h1 id="title">Crossac</h1>
+      <p id="lead">Qui agit sur le territoire, où, et sur quels sujets : acteurs, organisations, ressources, projets et événements.</p>
+      <div class="tlogos" id="tlogos" hidden></div>
+    </div>
+    <div class="facts" id="facts"></div>
+  </section>
+
+  <div id="home">
+  <section class="glance" id="glance" aria-labelledby="glance-title"></section>
+
+  <section class="explore" aria-label="Explorer">
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Chercher une personne, une association, un lieu, un sujet, une commune…" aria-label="Rechercher" autocomplete="off">
+    </div>
+    <div class="cats" id="cats"></div>
+    <div class="row2">
+      <label for="fdom">Sujet <select id="fdom"></select></label>
+      <label for="fzone">Où <select id="fzone"></select></label>
+      <button class="reset" id="reset" type="button">Tout afficher</button>
+    </div>
+  </section>
+
+  <div id="slot-tout"></div>
+  <section class="main">
+    <div class="mapbox" id="mapbox">
+      <svg id="map" role="img" aria-label="Carte du territoire"></svg>
+      <div class="hint" id="hint">Cliquez sur un cercle pour voir ce qui s'y trouve</div>
+      <div class="ctl"><button type="button" id="zin" aria-label="Zoomer">+</button><button type="button" id="zout" aria-label="Dézoomer">−</button><button type="button" id="zhome" aria-label="Recentrer" title="Recentrer">⌂</button></div>
+      <div class="legend" id="legend"></div>
+      <div class="attrib">Fond : <a href="https://geoservices.ign.fr/planign" target="_blank" rel="noopener">Plan IGN</a> · © IGN</div>
+    </div>
+    <aside class="side" aria-live="polite">
+      <header id="sidehead"></header>
+      <div class="list" id="list"></div>
+    </aside>
+  </section>
+
+  <section class="below">
+    <div class="panel">
+      <h2>Grands sujets</h2>
+      <p>Nombre d'éléments par sujet. Cliquez pour filtrer la carte.</p>
+      <div class="topics" id="topics"></div>
+    </div>
+    <div class="panel">
+      <h2>Ce que contient la base</h2>
+      <p>Quantité d'informations publiées par sujet, et leur niveau de documentation. Ces nombres décrivent notre collecte, pas la situation du territoire.</p>
+      <div id="couverture"></div>
+    </div>
+  </section>
+
+  <section class="panel base" id="base" hidden aria-labelledby="base-title">
+    <h2 id="base-title">Dans la base commune</h2>
+    <p>Ce que la base commune relie à ce territoire et aux communes du périmètre.</p>
+    <div id="base-body"></div>
+  </section>
+
+  <section class="contrib" id="contribuer" aria-labelledby="contrib-title">
+    <div class="contrib-head">
+      <h2 id="contrib-title">Contribuer</h2>
+      <p>Décrivez votre projet pour trouver des ressources sur le territoire, ou signalez une information qui manque. Tout envoi est relu avant d'apparaître sur la carte ; votre nom et votre contact ne sont jamais publiés.</p>
+    </div>
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tab-demande" aria-selected="true" aria-controls="f-demande">Vous avez un projet ?</button>
+      <button type="button" role="tab" id="tab-apport" aria-selected="false" aria-controls="f-apport">Signaler une information</button>
+    </div>
+
+    <form class="cform" id="f-demande" role="tabpanel" aria-labelledby="tab-demande" novalidate>
+      <div class="fields">
+        <fieldset class="field"><legend>C'est…</legend>
+          <div class="opts">
+            <label><input type="radio" name="type" id="d-type-projet" value="PROJET" checked> un projet</label>
+            <label><input type="radio" name="type" id="d-type-besoin" value="BESOIN"> un besoin</label>
+            <label><input type="radio" name="type" id="d-type-question" value="QUESTION"> une question</label>
+          </div></fieldset>
+        <label class="field"><span>Décrivez-le</span>
+          <textarea id="d-texte" required placeholder="Ex. : je voudrais organiser un atelier de réparation de vélos une fois par mois à Crossac."></textarea></label>
+        <fieldset class="field"><legend>Sujets</legend><div class="opts" id="d-doms"></div></fieldset>
+        <label class="field"><span>Ce que vous cherchez <small>(facultatif)</small></span>
+          <input id="d-recherche" placeholder="Ex. : une salle, une association partenaire, un financement"></label>
+        <label class="field"><span>Pour vous recontacter <small>(facultatif, jamais publié)</small></span>
+          <input id="d-contact" autocomplete="email" placeholder="Courriel ou téléphone"></label>
+        <label class="trap" aria-hidden="true">Site web <input id="d-site" tabindex="-1" autocomplete="off"></label>
+        <label class="consent"><input type="checkbox" id="d-accord"> J'accepte que ce message me soit transmis par courriel et relu avant toute utilisation. Rien n'est publié sans vérification.</label>
+        <div class="send"><button class="go" type="submit" id="d-send">Envoyer</button><span class="msg" id="d-msg" role="status"></span></div>
+      </div>
+      <div class="match" id="d-match" aria-live="polite">
+        <h3>Ce qui existe déjà</h3>
+        <p>Choisissez des sujets ou décrivez votre projet pour voir les acteurs, lieux et services qui pourraient vous aider.</p>
+      </div>
+    </form>
+
+    <form class="cform" id="f-apport" role="tabpanel" aria-labelledby="tab-apport" hidden novalidate>
+      <div class="fields">
+        <label class="field"><span>Vous signalez</span>
+          <select id="a-etape">
+            <option value="CONTEXTE">Une information sur le territoire</option>
+            <option value="ACTION">Une action ou une initiative</option>
+            <option value="PROBLÈME-BESOIN">Un problème, une difficulté</option>
+            <option value="SOUHAIT HABITANTS">Un souhait d'habitants</option>
+            <option value="OBSERVATION">Une observation, un chiffre</option>
+          </select></label>
+        <label class="field"><span>Votre message</span>
+          <textarea id="a-texte" required placeholder="Ex. : l'association X organise du covoiturage le mardi pour aller au marché de Pontchâteau."></textarea></label>
+        <div class="two">
+          <label class="field"><span>Sujet</span><select id="a-dom"><option value="">Non précisé</option></select></label>
+          <label class="field"><span>Lien ou document <small>(facultatif)</small></span><input id="a-preuve" placeholder="Adresse d'une page qui le montre"></label>
+        </div>
+        <div class="two">
+          <label class="field"><span>Vous êtes</span>
+            <select id="a-qualite"><option>Habitant·e</option><option>Association</option><option>Élu·e ou agent public</option><option>Entreprise</option><option>Autre</option></select></label>
+          <label class="field"><span>Organisation <small>(facultatif)</small></span><input id="a-org"></label>
+        </div>
+        <div class="two">
+          <label class="field"><span>Votre nom <small>(facultatif, jamais publié)</small></span><input id="a-nom" autocomplete="name"></label>
+          <label class="field"><span>Contact <small>(facultatif, jamais publié)</small></span><input id="a-contact" autocomplete="email"></label>
+        </div>
+        <input type="hidden" id="a-objet">
+        <label class="trap" aria-hidden="true">Site web <input id="a-site" tabindex="-1" autocomplete="off"></label>
+        <label class="consent"><input type="checkbox" id="a-accord"> J'accepte que ce message me soit transmis par courriel et relu avant toute utilisation. Rien n'est publié sans vérification.</label>
+        <div class="send"><button class="go" type="submit" id="a-send">Envoyer</button><span class="msg" id="a-msg" role="status"></span></div>
+      </div>
+      <div class="match" id="a-about">
+        <h3>Ce qui se passe ensuite</h3>
+        <p>Votre message est enregistré avec une référence. L'équipe le compare aux sources existantes, puis décide de l'ajouter à la carte, de le vérifier auprès d'une source publique ou de le garder comme information de contexte.</p>
+      </div>
+    </form>
+  </section>
+
+  </div>
+
+  <section id="themeview" hidden aria-live="polite"></section>
+
+  <footer class="foot" id="foot"></footer>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<p class="signe" aria-hidden="true">Carte territoriale · Povie-Skopein</p>
+<aside class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title"></aside>
+
+<script>
+/* ---------- 1. Socle : registre des territoires et données publiées ---------- */
+const REGISTRY = "territoires/index.json";
+const CATS = {
+  acteur:{label:"Acteurs",one:"Acteur",color:"var(--k-acteur)",hex:"#2c3e63"},
+  organisation:{label:"Organisations",one:"Organisation",color:"var(--k-organisation)",hex:"#a8822f"},
+  ressource:{label:"Ressources et lieux",one:"Ressource / lieu",color:"var(--k-ressource)",hex:"#5c7a52"},
+  projet:{label:"Projets",one:"Projet",color:"var(--k-projet)",hex:"#b5523b"},
+  evenement:{label:"Événements",one:"Événement",color:"var(--k-evenement)",hex:"#6c5b86"}
+};
+const ORDER = Object.keys(CATS);
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+const fmtDate = d => d ? new Date(d + "T12:00:00").toLocaleDateString("fr-FR", {day:"numeric",month:"long",year:"numeric"}) : "";
+
+let terrS = 1;
+let T = null, GEO = null, byId = {}, liensBy = {}, OBSX = {}, INDX = {};
+const st = { cats:new Set(ORDER), dom:"", zone:"", q:"", commune:null };
+
+const R = u => /^(https?:|\.\/|\.\.\/|data:)/.test(u) ? u : "../" + u;
+async function loadJSON(u){ const r = await fetch(R(u)); if(!r.ok) throw new Error(u + " : " + r.status); return r.json(); }
+
+async function boot(){
+  try { CONF = await loadJSON("./config.json"); GUICHET = CONF.guichet || ""; } catch(_) { GUICHET = ""; }
+  let reg;
+  try { reg = await loadJSON(REGISTRY); if (CONF.territoires) reg = reg.filter(t => CONF.territoires.includes(t.id)); if (!reg.length) throw new Error("vide"); }
+  catch(e){ $("#list").innerHTML = `<div class="state">Les données du territoire n'ont pas pu être chargées. Rechargez la page.</div>`; return; }
+  const sel = $("#terr");
+  sel.innerHTML = reg.map(t => `<option value="${esc(t.id)}">${esc(t.nom)}</option>`).join("");
+  $(".terr").hidden = reg.length < 2;
+  const [want, vue] = (location.hash || "").slice(1).split("/");
+  const first = reg.find(t => t.id === want) || reg[0];
+  sel.value = first.id;
+  sel.onchange = () => { const t = reg.find(x => x.id === sel.value); location.hash = t.id; openTerritory(t); };
+  await openTerritory(first, vue === "tout" ? "tout" : "une");
+}
+
+async function openTerritory(entry, page = "une"){
+  [T, GEO] = await Promise.all([loadJSON(entry.data), loadJSON(entry.geo)]);
+  byId = Object.fromEntries(T.items.map(i => [i.id, i]));
+  OBSX = Object.fromEntries((T.observations || []).map(o => [o.id, o]));
+  INDX = Object.fromEntries((T.indicateurs || []).map(i => [i.id, i]));
+  liensBy = {};
+  for (const l of T.liens) { (liensBy[l.a] ||= []).push({other:l.b, t:l.t, dir:1}); (liensBy[l.b] ||= []).push({other:l.a, t:l.t, dir:-1}); }
+  Object.assign(st, { cats:new Set(ORDER), dom:"", zone:"", q:"", commune:null });
+  $("#q").value = "";
+  document.title = "Découvrir " + T.territoire.nom;
+  $("#title").textContent = T.territoire.nom;
+  const lg = $("#tlogos"), logos = entry.logos || [];
+  lg.hidden = !logos.length;
+  lg.innerHTML = logos.length ? `<span>Avec</span>` + logos.map(l => `<div class="plate" title="${esc(l.nom)}"><img src="${esc(R(l.src))}" alt="${esc(l.alt)}" loading="lazy"></div>`).join("") : "";
+  UNE = entry.une && (!entry.une.projet || byId[entry.une.projet]) ? entry.une : null; // vue simplifiée, avec ou sans projet à la une
+  FOCUS = null; // la sélection « à la une » du territoire précédent ne vaut plus ici
+  renderUne(); setupMap(); renderStatic();
+  showPage(UNE ? page : "tout");
+}
+
+/* ---------- Vue « à la une » : un projet du territoire, sa carte, son inscription, la frise ---------- */
+let UNE = null, PAGE = "tout", FOCUS = null;
+function focusIds(){
+  // le projet et les lieux et événements qui lui sont reliés
+  if (!UNE.projet) return new Set(T.items.filter(i => UNE.zone ? i.zone === UNE.zone : i.com === T.territoire.nom).map(i => i.id)); // sans projet : un quartier (une.zone) ou la commune
+  const ids = new Set([UNE.projet]);
+  for (const l of liensBy[UNE.projet] || []) { const o = byId[l.other]; if (o && (o.k === "ressource" || o.k === "evenement")) ids.add(o.id); }
+  return ids;
+}
+function renderUne(){
+  $("#pages").hidden = !UNE;
+  if (!UNE) $("#une-credit").hidden = true;
+  const ib = $("#insc-top"), insc = UNE && UNE.inscription;
+  ib.hidden = !insc; $("#inscription").hidden = !insc;
+  if (!UNE) return;
+  const pr = byId[UNE.projet] || {};
+  $("#page-une").textContent = UNE.onglet || pr.nom || "La carte";
+  $("#page-tout").textContent = "Tout " + T.territoire.nom;
+  $("#une-kick").textContent = UNE.surtitre || T.territoire.nom;
+  $("#une-titre").textContent = UNE.titre || pr.nom || T.territoire.nom;
+  $("#une-texte").textContent = UNE.texte || pr.desc || "";
+  if (insc) {
+    ib.textContent = insc.bouton_court || insc.bouton;
+    $("#inscription").innerHTML = `<a class="go" href="${esc(insc.url)}" target="_blank" rel="noopener">${esc(insc.bouton)}</a><p>${esc(insc.texte || "")}</p>`;
+  }
+  $("#une-credit").hidden = true;
+  const nb = th => (T.observations || []).filter(o => inTheme(o, th)).length;
+  const dons = (UNE.donnees || []).filter(d => nb(d.theme) || (T.indicateurs || []).some(i => i.domaine === d.theme));
+  $("#dbtns").innerHTML = dons.map(d => `<button type="button" class="dbtn" data-theme="${esc(d.theme)}"><b>${esc(d.libelle)} ›</b><span>${nb(d.theme)} chiffre${nb(d.theme) > 1 ? "s" : ""} établi${nb(d.theme) > 1 ? "s" : ""}</span></button>`).join("")
+    + `<button type="button" class="dbtn tout" id="voir-tout"><b>Tout ${esc(T.territoire.nom)} ›</b><span>Acteurs, lieux, projets, recherche et tous les chiffres</span></button>`;
+  $("#voir-tout").onclick = () => { showPage("tout"); window.scrollTo({top:0}); };
+  renderFrise();
+}
+function showPage(page){
+  PAGE = page;
+  const une = page === "une" && UNE;
+  $("#une").hidden = !une; $("#home").hidden = !!une; $(".hero").hidden = !!une; $("#themeview").hidden = true;
+  $("#page-une").setAttribute("aria-pressed", String(!!une)); $("#page-tout").setAttribute("aria-pressed", String(!une));
+  $(une ? "#slot-une" : "#slot-tout").after($(".main"));
+  FOCUS = une ? focusIds() : null;
+  st.commune = null;
+  const h = T.territoire.id + (une || !UNE ? "" : "/tout");
+  if ((location.hash || "").slice(1) !== h) history.replaceState(null, "", "#" + h);
+  requestAnimationFrame(() => { fitHome(); render(); });
+}
+document.querySelectorAll("[data-page]").forEach(b => b.onclick = () => { showPage(b.dataset.page); window.scrollTo({top:0}); });
+
+async function renderFrise(){
+  if (BASE === undefined) { try { BASE = neutre(await loadJSON(TABLEAU + "data.json")); } catch(_) { BASE = null; } }
+  const today = new Date().toISOString().slice(0, 10);
+  const noms = new Set([T.territoire.nom, ...T.communes.map(c => c.nom)].map(norm));
+  const evs = T.items.filter(i => i.k === "evenement" && i.debut).map(i => ({ id: i.id, titre: i.nom, debut: i.debut, fin: i.fin || i.debut, ou: (byId[i.lieu] || {}).nom || i.commune || "" }));
+  const vus = new Set(evs.map(e => norm(e.titre) + e.debut));
+  for (const e of (BASE && BASE.evenements) || []) {
+    if (e.categorie === "equipe" || !noms.has(norm(e.territoire)) || vus.has(norm(e.titre) + e.debut)) continue;
+    evs.push({ titre: e.titre, debut: e.debut, fin: e.fin || e.debut, ou: e.lieu || e.territoire, url: e.src && e.src.url });
+  }
+  evs.sort((a, b) => a.debut.localeCompare(b.debut));
+  const box = $("#frise");
+  if (!evs.length) { box.innerHTML = `<p class="fr-empty">Aucun événement publié pour l'instant.</p>`; $("#fr-defile").hidden = true; return; }
+  const DAY = 864e5, t = d => Date.parse(d + "T12:00:00Z"), now = t(today);
+  const MOIS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+  const d0 = new Date(Math.min(t(evs[0].debut), now) - 20 * DAY), start = Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth(), 1);
+  const end = Math.max(t(evs[evs.length - 1].fin), now) + 40 * DAY;
+  const CW = 210, CH = 92, m = 14, W = Math.max(box.clientWidth, Math.round((end - start) / (30.4 * DAY) * 120), 600);
+  const x = v => m + (v - start) / (end - start) * (W - CW - 2 * m);
+  // placement : alterner au-dessus et en dessous de l'axe, sur plusieurs rangs si les cartes se touchent
+  const fins = [[], []];
+  const pl = evs.map((e, n) => {
+    const xx = x(t(e.debut)); let best = null;
+    for (const side of [n % 2, 1 - n % 2]) { let lv = fins[side].findIndex(f => f < xx - 8); if (lv < 0) lv = fins[side].length; if (!best || lv < best.lv) best = {side, lv}; }
+    fins[best.side][best.lv] = xx + CW; return {e, xx, ...best};
+  });
+  const A = Math.max(1, fins[0].length), B = Math.max(1, fins[1].length), LH = CH + 10;
+  const axeY = 26 + A * LH + 18, H = axeY + 22 + B * LH + 26;
+  const pos = (cls, l, tp, w, hh, txt) => `<div class="${cls}" style="left:${l}px;top:${tp}px${w != null ? `;width:${w}px` : ""}${hh != null ? `;height:${hh}px` : ""}">${txt || ""}</div>`;
+  let h = "";
+  for (let mo = start; mo <= end; ) { const dm = new Date(mo), xm = x(mo);
+    h += pos("fr-tick", xm, 20, null, H - 44) + pos("fr-mois", xm + 30, H - 20, null, null, MOIS[dm.getUTCMonth()] + (dm.getUTCMonth() === 0 || mo === start ? " " + dm.getUTCFullYear() : ""));
+    mo = Date.UTC(dm.getUTCFullYear(), dm.getUTCMonth() + 1, 1); }
+  h += pos("fr-axe", m, axeY - 2, W - 2 * m);
+  h += pos("fr-auj", x(now), 18, null, H - 40) + pos("fr-auj-l", x(now), 0, null, null, "Aujourd'hui");
+  const jour = e => { const f = d => { const v = new Date(t(d)); return v.getUTCDate() + " " + MOIS[v.getUTCMonth()] + " " + v.getUTCFullYear(); }; return e.fin && e.fin !== e.debut ? f(e.debut) + " → " + f(e.fin) : f(e.debut); };
+  for (const p of pl) {
+    const e = p.e, passe = e.fin < today, top = p.side === 0 ? axeY - 18 - p.lv * LH - CH : axeY + 22 + p.lv * LH;
+    const tTop = p.side === 0 ? top + CH : axeY, tH = p.side === 0 ? axeY - top - CH : top - axeY;
+    h += pos("fr-tige", p.xx, tTop, null, tH) + pos("fr-pt" + (passe ? " passe" : ""), p.xx, axeY);
+    const inner = `<span class="d">${esc(jour(e))}</span><span class="t">${esc(e.titre)}</span>${e.ou ? `<span class="w">${esc(e.ou)}</span>` : ""}`;
+    const sty = `left:${p.xx - 6}px;top:${top}px;height:${CH}px`;
+    h += e.id ? `<button type="button" class="fr-c${passe ? " passe" : ""}" data-id="${esc(e.id)}" style="${sty}">${inner}</button>`
+              : `<a class="fr-c${passe ? " passe" : ""}" href="${esc(e.url || "#")}" target="_blank" rel="noopener" style="${sty}">${inner}</a>`;
+  }
+  box.innerHTML = `<div class="fr-pz" style="width:${W}px;height:${H}px">${h}</div>`;
+  box.scrollLeft = Math.max(0, x(now) - box.clientWidth / 2);
+  $("#fr-defile").hidden = W <= box.clientWidth + 4;
+}
+$("#frise").addEventListener("click", e => { const b = e.target.closest("button[data-id]"); if (b) openSheet(b.dataset.id); });
+
+/* ---------- 2. Filtres et recherche ---------- */
+function haystack(i){
+  const parts = [i.nom, i.type, i.desc, i.fonction, i.commune, i.zone, i.periode, i.perimetre, ...(i.cats||[]), CATS[i.k].one];
+  if (i.org && byId[i.org]) parts.push(byId[i.org].nom);
+  if (i.gest && byId[i.gest]) parts.push(byId[i.gest].nom);
+  if (i.porteurs) i.porteurs.forEach(p => byId[p.id] && parts.push(byId[p.id].nom));
+  return norm(parts.join(" "));
+}
+function pass(i, skip){
+  if (FOCUS && !FOCUS.has(i.id)) return false;
+  if (skip !== "cat" && !st.cats.has(i.k)) return false;
+  if (skip !== "dom" && st.dom && !(i.cats||[]).includes(st.dom)) return false;
+  if (skip !== "zone" && st.zone && i.zone !== st.zone) return false;
+  if (st.q) { const words = norm(st.q).split(/\s+/).filter(Boolean); const h = i._h ||= haystack(i); if (!words.every(w => h.includes(w))) return false; }
+  return true;
+}
+
+/* ---------- 3. Rendu des contrôles, liste, sujets, repères ---------- */
+function renderStatic(){
+  const t = T.territoire, facts = [];
+  if (t.population) facts.push(t.population.id && OBSX[t.population.id]
+    ? `<button type="button" class="fact clk" data-obs="${esc(t.population.id)}" title="Comprendre ce chiffre"><b>${esc(t.population.v.replace(/ habitants?/,""))}</b><span>habitants (${esc(t.population.date.replace(/\s*\(.*\)/,""))})</span></button>`
+    : `<div class="fact"><b>${esc(t.population.v.replace(/ habitants?/,""))}</b><span>habitants (${esc(t.population.date.replace(/\s*\(.*\)/,""))})</span></div>`);
+  facts.push(`<div class="fact"><b>${T.items.length}</b><span>éléments présentés</span></div>`);
+  facts.push(`<div class="fact"><b>${t.rayon_km} km</b><span>autour de ${esc(t.nom)}</span></div>`);
+  $("#facts").innerHTML = facts.join("");
+
+  const doms = [...new Set(T.items.flatMap(i => i.cats||[]))].sort((a,b) => a.localeCompare(b,"fr"));
+  $("#fdom").innerHTML = `<option value="">Tous les sujets</option>` + doms.map(d => `<option>${esc(d)}</option>`).join("");
+  const zones = [...new Set(T.items.map(i => i.zone).filter(Boolean))];
+  const zorder = z => z.startsWith("À ") && !z.startsWith("À proximité") ? 0 : z === "À proximité" ? 1 : z.startsWith("Alentours") ? 2 : 3;
+  zones.sort((a,b) => zorder(a) - zorder(b));
+  $("#fzone").innerHTML = `<option value="">Tout le territoire</option>` + zones.map(z => `<option>${esc(z)}</option>`).join("");
+
+
+
+  renderGlance(); renderCoverage(); renderContrib(); renderBase();
+  $("#foot").innerHTML = `<span>Données publiques, instantané du ${esc(String(T.instantane).split(" ")[0])}. Seules les informations établies par une source sont affichées.</span><span>Povie-Skopein · <a href="#" id="contact">Contact</a></span>`;
+}
+const shortSrc = s => s.split(/ – | - /)[0];
+
+function render(){
+  // Catégories avec compteurs (tenant compte des autres filtres)
+  $("#cats").innerHTML = ORDER.map(k => {
+    const n = T.items.filter(i => i.k === k && pass(i, "cat")).length;
+    return `<button type="button" class="cat" data-k="${k}" aria-pressed="${st.cats.has(k)}"><i class="sw" style="background:${CATS[k].color}"></i><span class="lb">${CATS[k].label}</span><span class="n">${n}</span></button>`;
+  }).join("");
+  $("#fdom").value = st.dom; $("#fzone").value = st.zone;
+
+  const vis = T.items.filter(i => pass(i));
+  renderLegend();
+  drawMarkers(vis);
+  renderList(vis);
+  renderTopics();
+}
+
+function renderLegend(){
+  const tr = (T.traces || []).filter(t => !FOCUS || t.projet === UNE.projet).map(t => `<div><i style="background:${esc(t.couleur)};height:4px;border-radius:2px"></i>${esc(t.nom)}</div>`).join("");
+  $("#legend").innerHTML = FOCUS ? tr + `<div><i style="background:#fff;border:2px solid #111827;box-sizing:border-box"></i>${esc(UNE.legende || "Arrêt, école, garage")}</div>`
+    : ORDER.filter(k => k !== "projet").map(k => `<div><i style="background:${CATS[k].color}"></i>${CATS[k].label}</div>`).join("") + tr +
+      `<div style="color:var(--ink-3)">Cercle = tout ce qui est rattaché à une commune</div>`;
+  $("#hint").hidden = !!FOCUS;
+}
+
+function renderList(vis){
+  let rows = vis, head;
+  if (st.commune) {
+    rows = vis.filter(i => i.com === st.commune);
+    head = `<button class="back" type="button" id="back">← Tout</button><div><h2>${esc(st.commune)}</h2><p>${rows.length} élément${rows.length>1?"s":""} rattaché${rows.length>1?"s":""} à cette commune</p></div>`;
+  } else {
+    const off = vis.filter(i => !i.com && !i.pt).length;
+    const placed = FOCUS ? vis.filter(i => i.pt).length : 0, sansPt = vis.length - placed;
+    head = FOCUS ? `<div><h2>${esc(UNE.liste_titre || (byId[UNE.projet] || {}).nom || T.territoire.nom)}</h2><p>${placed} lieu${placed > 1 ? "x" : ""} sur la carte${sansPt ? `, ${sansPt} sans adresse précise` : ""}. Touchez-en un pour le détail.</p></div>`
+      : `<div><h2>${vis.length} élément${vis.length>1?"s":""}</h2><p>${off ? `dont ${off} sans point sur la carte (services, projets, organismes couvrant le territoire)` : "Tous situés sur la carte"}</p></div>`;
+  }
+  $("#sidehead").innerHTML = head;
+  const b = $("#back"); if (b) b.onclick = () => { st.commune = null; render(); };
+  if (!rows.length) { $("#list").innerHTML = `<div class="empty">Aucun élément ne correspond. Essayez un autre mot ou cliquez sur « Tout afficher ».</div>`; return; }
+  $("#list").innerHTML = ORDER.map(k => {
+    const g = rows.filter(i => i.k === k).sort((a,b) => a.nom.localeCompare(b.nom,"fr"));
+    if (!g.length) return "";
+    return `<div class="grp"><i style="background:${CATS[k].color}"></i>${FOCUS && UNE.projet && k === "ressource" ? "Arrêts, écoles et garage" : CATS[k].label} · ${g.length}</div>` + g.map(i => `
+      <button type="button" class="it" data-id="${esc(i.id)}"><div class="t">${esc(FOCUS ? i.nom.replace(/^Arrêt [^–]+– /, "") : i.nom)}</div><div class="s">${esc(FOCUS ? i.desc || subline(i) : subline(i))}</div></button>`).join("");
+  }).join("");
+}
+function subline(i){
+  const bits = [];
+  if (i.k === "acteur") { bits.push(i.fonction || i.type); if (i.org && byId[i.org]) bits.push(byId[i.org].nom); }
+  else if (i.k === "evenement") { bits.push(fmtDate(i.debut) + (i.passe ? " (passé)" : "")); bits.push(i.commune); }
+  else if (i.k === "projet") { bits.push(i.periode || i.type); }
+  else { bits.push(i.type); bits.push(i.commune || i.zone); }
+  return bits.filter(Boolean).join(" · ");
+}
+
+function renderTopics(){
+  const base = T.items.filter(i => pass(i, "dom"));
+  const c = {}; base.forEach(i => (i.cats||[]).forEach(d => c[d] = (c[d]||0) + 1));
+  const rows = Object.entries(c).sort((a,b) => b[1]-a[1] || a[0].localeCompare(b[0],"fr"));
+  const max = rows.length ? rows[0][1] : 1;
+  $("#topics").innerHTML = rows.length ? rows.map(([d,n]) => `
+    <button type="button" class="topic" data-dom="${esc(d)}" aria-pressed="${st.dom === d}"><div><div class="nm">${esc(d)}</div><div class="bar"><span style="width:${(n/max*100).toFixed(1)}%"></span></div></div><span class="c">${n}</span></button>`).join("")
+    : `<p class="empty">Aucun sujet pour cette sélection.</p>`;
+}
+
+/* ---------- 4. Carte (projection locale en km, aucun fond externe) ---------- */
+const svg = $("#map"), NS = "http://www.w3.org/2000/svg";
+let P, view = {s:1, tx:0, ty:0}, home, gBase, gMark, gTiles, gOver, comXY = {}, GEOREF;
+function setupMap(){
+  const [lat0, lon0] = T.territoire.centre, kx = Math.cos(lat0*Math.PI/180)*111.32, ky = 110.57;
+  P = (lat, lon) => [(lon-lon0)*kx, -(lat-lat0)*ky];
+  GEOREF = {lat0, lon0, kx, ky};
+  const path = rings => rings.map(r => "M" + r.map(([lo,la]) => P(la,lo).map(v => v.toFixed(2)).join(",")).join("L") + "Z").join("");
+  const line = l => "M" + l.map(([lo,la]) => P(la,lo).map(v => v.toFixed(2)).join(",")).join("L");
+  const nm = T.territoire.nom;
+  let h = `<rect x="-400" y="-400" width="800" height="800" fill="var(--sea)"/>`;
+  h += GEO.communes.map(c => `<path d="${path(c.r)}" fill="${c.n===nm?"var(--land-home)":"var(--land)"}" stroke="${c.n===nm?"var(--home-line)":"var(--land-line)"}" stroke-width="${c.n===nm?1.6:.8}" vector-effect="non-scaling-stroke"/>`).join("");
+  h += (GEO.rivers||[]).map(r => `<path d="${line(r.l)}" fill="none" stroke="var(--river)" stroke-width="1.2" vector-effect="non-scaling-stroke"/>`).join("");
+  h += (GEO.roads||[]).map(r => `<path d="${line(r.l)}" fill="none" stroke="var(--road)" stroke-width="${r.scalerank<=6?1.4:.8}" vector-effect="non-scaling-stroke"/>`).join("");
+  h += (GEO.rail||[]).map(r => `<path d="${line(r.l)}" fill="none" stroke="var(--rail)" stroke-width="1" stroke-dasharray="4 3" vector-effect="non-scaling-stroke"/>`).join("");
+  // Au-dessus du fond de carte : contour de la commune et périmètre d'exploration
+  const home0 = GEO.communes.find(c => c.n === nm);
+  const over = (home0 ? `<path d="${path(home0.r)}" fill="rgba(31,91,255,.05)" stroke="var(--home-line)" stroke-width="2" stroke-opacity=".7" vector-effect="non-scaling-stroke"/>` : "")
+    + `<circle cx="0" cy="0" r="${T.territoire.rayon_km}" fill="none" stroke="var(--ring)" stroke-width="1" stroke-dasharray="5 5" vector-effect="non-scaling-stroke"/>`;
+  // le fond vectoriel reste dessous : il s'affiche si les tuiles ne chargent pas
+  svg.innerHTML = `<g id="gbase">${h}</g><g id="gtiles"></g><g id="gover">${over}</g><g id="gmark"></g>`;
+  gBase = $("#gbase"); gMark = $("#gmark"); gTiles = $("#gtiles"); gOver = $("#gover"); TILES.clear();
+  comXY = Object.fromEntries(T.communes.map(c => [c.nom, P(c.lat, c.lon)]));
+  fitHome();
+}
+function fitHome(){
+  const r = svg.getBoundingClientRect(), R = T.territoire.rayon_km * 1.12;
+  terrS = Math.min(r.width, r.height) / (2*R);
+  home = {s:terrS, tx:r.width/2, ty:r.height/2};
+  if (FOCUS) { // vue à la une : cadrer les tracés et les lieux du projet
+    const pts = [...(T.traces || []).filter(t => t.projet === UNE.projet).flatMap(t => t.pts), ...[...FOCUS].map(id => byId[id].pt).filter(Boolean)].map(([la, lo]) => P(la, lo));
+    if (pts.length) {
+      const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]), x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+      const s = Math.min(r.width / ((x1 - x0) * 1.4 || 1), r.height / ((y1 - y0) * 1.3 || 1), terrS * 40);
+      home = {s, tx: r.width/2 - (x0 + x1)/2 * s, ty: r.height/2 - (y0 + y1)/2 * s};
+    }
+  }
+  view = {...home}; applyView();
+}
+function applyView(){
+  const tr = `translate(${view.tx},${view.ty}) scale(${view.s})`;
+  gBase.setAttribute("transform", tr); gOver.setAttribute("transform", tr);
+  drawTiles();
+  if (T) drawMarkers(T.items.filter(i => pass(i)));
+}
+
+/* Fond de carte : Plan IGN de la Géoplateforme (gratuit, sans clé, licence ouverte), adouci en CSS.
+   Chaque tuile est posée par ses deux coins, convertis dans la projection locale de la carte. */
+const TILE_URL = (z, x, y) => `https://data.geopf.fr/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=GEOGRAPHICALGRIDSYSTEMS.PLANIGNV2&STYLE=normal&TILEMATRIXSET=PM&FORMAT=image/png&TILEMATRIX=${z}&TILEROW=${y}&TILECOL=${x}`;
+const TILES = new Map();
+function drawTiles(){
+  if (!gTiles || !GEOREF) return;
+  const r = svg.getBoundingClientRect(), {lat0, lon0, kx, ky} = GEOREF;
+  const z = Math.max(5, Math.min(19, Math.round(Math.log2(view.s * 40075.017 * Math.cos(lat0 * Math.PI / 180) / 256))));
+  const n = 2 ** z, rad = Math.PI / 180;
+  const lonAt = sx => (sx - view.tx) / view.s / kx + lon0, latAt = sy => -(sy - view.ty) / view.s / ky + lat0;
+  const tx = lon => Math.floor((lon + 180) / 360 * n), ty = lat => Math.floor((1 - Math.log(Math.tan(lat * rad) + 1 / Math.cos(lat * rad)) / Math.PI) / 2 * n);
+  const lonOf = x => x / n * 360 - 180, latOf = y => Math.atan(Math.sinh(Math.PI * (1 - 2 * y / n))) / rad;
+  const x0 = tx(lonAt(0)), x1 = tx(lonAt(r.width)), y0 = ty(latAt(0)), y1 = ty(latAt(r.height));
+  if ((x1 - x0 + 1) * (y1 - y0 + 1) > 160) return;
+  const keep = new Set();
+  for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) {
+    if (y < 0 || y >= n) continue;
+    const k = `${z}/${x}/${y}`; keep.add(k);
+    let im = TILES.get(k);
+    if (!im) {
+      im = document.createElementNS(NS, "image");
+      im.setAttribute("href", TILE_URL(z, ((x % n) + n) % n, y)); im.setAttribute("preserveAspectRatio", "none");
+      im.addEventListener("error", () => im.remove());
+      TILES.set(k, im); gTiles.appendChild(im);
+    }
+    const [ax, ay] = scr(P(latOf(y), lonOf(x))), [bx, by] = scr(P(latOf(y + 1), lonOf(x + 1)));
+    im.setAttribute("x", ax.toFixed(1)); im.setAttribute("y", ay.toFixed(1));
+    im.setAttribute("width", (bx - ax + .6).toFixed(1)); im.setAttribute("height", (by - ay + .6).toFixed(1));
+  }
+  // les tuiles d'un autre niveau restent le temps que les nouvelles arrivent, puis disparaissent
+  for (const [k, im] of TILES) if (!keep.has(k)) { TILES.delete(k); if (k.startsWith(z + "/")) im.remove(); else setTimeout(() => im.remove(), 400); }
+}
+const scr = ([x,y]) => [view.tx + x*view.s, view.ty + y*view.s];
+
+function drawMarkers(vis){
+  if (!gMark) return;
+  const detail = view.s >= 70; // assez zoomé : les points précis se détachent de leur commune
+  const groups = {}, dots = [];
+  for (const i of vis) {
+    if (i.pt && (detail || FOCUS)) dots.push(i);
+    else if (FOCUS) continue; // vue à la une : seuls les lieux à leur adresse, la liste donne le reste
+    else if (i.com && comXY[i.com]) (groups[i.com] ||= []).push(i);
+    else if (i.pt) dots.push(i);
+  }
+  let h = "";
+  // Tracés (itinéraires) : affichés quand leur projet ou l'un de leurs arrêts passe les filtres
+  const visIds = new Set(vis.map(i => i.id));
+  for (const t of (T.traces || [])) {
+    if (!visIds.has(t.projet) && !(liensBy[t.projet] || []).some(l => visIds.has(l.other))) continue;
+    const d = "M" + t.pts.map(([la, lo]) => scr(P(la, lo)).map(v => v.toFixed(1)).join(",")).join("L");
+    h += `<g class="trace"><path d="${d}" fill="none" stroke="#ffffff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/><path d="${d}" fill="none" stroke="${esc(t.couleur)}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"><title>${esc(t.nom)}</title></path></g>`;
+  }
+  const boxes = []; // emprise des cercles et étiquettes déjà posés, pour éviter les chevauchements de noms
+  const hits = (b) => boxes.some(o => b[0] < o[2] && b[2] > o[0] && b[1] < o[3] && b[3] > o[1]);
+  for (const [com, arr] of Object.entries(groups)) { const [x,y] = scr(comXY[com]), r = 9 + 4.2*Math.sqrt(arr.length); boxes.push([x-r, y-r, x+r, y+r]); }
+  for (const [com, arr] of Object.entries(groups).sort((a,b) => b[1].length - a[1].length)) {
+    const [x,y] = scr(comXY[com]), n = arr.length, r = 9 + 4.2*Math.sqrt(n);
+    const lw = com.length*6.4, lb = [x-lw/2, y+r+3, x+lw/2, y+r+18], showLabel = st.commune === com || !hits(lb);
+    if (showLabel) boxes.push(lb);
+    const c = {}; arr.forEach(i => c[i.k] = (c[i.k]||0) + 1);
+    let a0 = -Math.PI/2, seg = "";
+    const circ = 2*Math.PI*(r-2.5);
+    let off = 0;
+    for (const k of ORDER) if (c[k]) {
+      const len = circ * c[k]/n;
+      seg += `<circle cx="${x}" cy="${y}" r="${r-2.5}" fill="none" stroke="${CATS[k].hex}" stroke-width="5" stroke-dasharray="${len.toFixed(2)} ${(circ-len).toFixed(2)}" stroke-dashoffset="${(-off).toFixed(2)}" transform="rotate(-90 ${x} ${y})"/>`;
+      off += len;
+    }
+    const sel = st.commune === com;
+    h += `<g class="bub" tabindex="0" role="button" data-com="${esc(com)}" aria-label="${esc(com)} : ${n} éléments">
+      <circle class="hit" cx="${x}" cy="${y}" r="${r}" fill="#ffffff" stroke="${sel?"#232323":"#9c978b"}" stroke-width="2"/>${seg}
+      <text x="${x}" y="${y+4.5}" text-anchor="middle" font-size="${n>=10?13:12}" font-weight="700" fill="#111827">${n}</text>
+      ${showLabel ? "" : "<!--"}<text x="${x}" y="${y+r+14}" text-anchor="middle" font-size="11.5" font-weight="600" fill="#465166" stroke="#ffffff" stroke-width="3" paint-order="stroke">${esc(com)}</text>${showLabel ? "" : "-->"}<title>${esc(com)}</title></g>`;
+  }
+  // plusieurs éléments à la même adresse : disposés en petit cercle autour du point, pour rester visibles et cliquables
+  const meme = {}; for (const i of dots) (meme[i.pt.join()] ||= []).push(i);
+  const pos = new Map();
+  for (const arr of Object.values(meme)) {
+    const [x0, y0] = scr(P(arr[0].pt[0], arr[0].pt[1])), n = arr.length, rr = n > 1 ? Math.max(11, 3.2 * n) : 0;
+    arr.forEach((i, k) => { const a = -Math.PI / 2 + 2 * Math.PI * k / n; pos.set(i.id, [x0 + rr * Math.cos(a), y0 + rr * Math.sin(a)]); });
+  }
+  for (const i of dots) { const [x, y] = pos.get(i.id); boxes.push([x - 8, y - 8, x + 8, y + 8]); }
+  for (const i of dots) {
+    const [x,y] = pos.get(i.id);
+    const nom = FOCUS ? i.nom.replace(/^Arrêt [^–]+– /, "") : i.nom, lb = [x + 10, y - 7, x + 12 + nom.length * 6.2, y + 7];
+    const label = view.s >= 140 && !hits(lb); if (label) boxes.push(lb);
+    h += `<g class="bub" tabindex="0" role="button" data-id="${esc(i.id)}" aria-label="${esc(i.nom)}"><circle class="hit" cx="${x}" cy="${y}" r="${FOCUS ? 7 : 8}" fill="${FOCUS ? "#ffffff" : CATS[i.k].hex}" stroke="${FOCUS ? "#111827" : "#ffffff"}" stroke-width="${FOCUS ? 2.5 : 2}"/>
+      ${label ? `<text x="${x+12}" y="${y+4}" font-size="11.5" fill="#111827" stroke="#ffffff" stroke-width="3" paint-order="stroke">${esc(nom)}</text>` : ""}<title>${esc(i.nom)}</title></g>`;
+  }
+  gMark.innerHTML = h;
+}
+
+/* Interactions carte : glisser, molette, pincer, boutons */
+const ptrs = new Map(); let drag = null, moved = false;
+svg.addEventListener("pointerdown", e => { svg.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]); moved = false;
+  if (ptrs.size === 1) drag = {x:e.clientX, y:e.clientY, tx:view.tx, ty:view.ty, target:e.target}; else drag = null; });
+svg.addEventListener("pointermove", e => {
+  if (!ptrs.has(e.pointerId)) return;
+  const prev = ptrs.get(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]);
+  if (ptrs.size === 2) {
+    const [a,b] = [...ptrs.values()], other = [...ptrs.entries()].find(([id]) => id !== e.pointerId)[1];
+    const d1 = Math.hypot(prev[0]-other[0], prev[1]-other[1]), d2 = Math.hypot(a[0]-b[0], a[1]-b[1]);
+    if (d1 > 0) { const r = svg.getBoundingClientRect(); zoomAt((a[0]+b[0])/2 - r.left, (a[1]+b[1])/2 - r.top, d2/d1); }
+    moved = true; return;
+  }
+  if (!drag) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if (Math.abs(dx) + Math.abs(dy) > 4) { moved = true; svg.classList.add("drag"); }
+  if (moved) { view.tx = drag.tx + dx; view.ty = drag.ty + dy; applyView(); }
+});
+const endPtr = e => { ptrs.delete(e.pointerId); svg.classList.remove("drag");
+  if (drag && !moved && e.type === "pointerup") clickAt(drag.target); if (!ptrs.size) drag = null; };
+svg.addEventListener("pointerup", endPtr); svg.addEventListener("pointercancel", endPtr);
+svg.addEventListener("wheel", e => { e.preventDefault(); const r = svg.getBoundingClientRect(); zoomAt(e.clientX - r.left, e.clientY - r.top, Math.exp(-e.deltaY*0.0015)); }, {passive:false});
+function zoomAt(px, py, f){ const s = Math.max(terrS*0.6, Math.min(terrS*40, view.s*f)); f = s/view.s;
+  view.tx = px - (px - view.tx)*f; view.ty = py - (py - view.ty)*f; view.s = s; applyView(); $("#hint").hidden = true; }
+$("#zin").onclick = () => { const r = svg.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, 1.6); };
+$("#zout").onclick = () => { const r = svg.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, 1/1.6); };
+$("#zhome").onclick = () => { view = {...home}; applyView(); };
+function clickAt(t){ const g = t.closest && t.closest(".bub"); if (!g) return; activate(g); }
+function activate(g){
+  if (g.dataset.id) return openSheet(g.dataset.id);
+  st.commune = st.commune === g.dataset.com ? null : g.dataset.com; $("#hint").hidden = true; render();
+}
+svg.addEventListener("keydown", e => { if ((e.key === "Enter" || e.key === " ") && e.target.closest(".bub")) { e.preventDefault(); activate(e.target.closest(".bub")); } });
+let rz; window.addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (T) { const keep = view.s/home.s; fitHome(); if (keep !== 1) { const r = svg.getBoundingClientRect(); zoomAt(r.width/2, r.height/2, keep); } } }, 150); });
+
+/* ---------- 5. Fiche synthétique ---------- */
+function openSheet(id, push = true){
+  const i = byId[id]; if (!i) return;
+  const C = CATS[i.k], ref = x => byId[x] ? `<button type="button" class="link" data-open="${esc(x)}">${esc(byId[x].nom)}</button>` : "";
+  const kv = [];
+  const add = (k, v) => { if (v) kv.push(`<dt>${k}</dt><dd>${v}</dd>`); };
+  if (i.k === "acteur") { add("Fonction", esc(i.fonction)); add("Au sein de", i.org ? ref(i.org) : ""); }
+  if (i.k === "evenement") {
+    const d = i.debut === i.fin || !i.fin ? fmtDate(i.debut) : `du ${fmtDate(i.debut)} au ${fmtDate(i.fin)}`;
+    add("Date", esc(d) + (i.passe === true ? `<span class="when past">Passé</span>` : i.passe === false ? `<span class="when next">À venir</span>` : ""));
+    add("Horaires", esc(i.heure)); add("Lieu", i.lieu ? ref(i.lieu) : ""); add("Organisé par", i.organisateur ? ref(i.organisateur) : "");
+  }
+  if (i.k === "projet") {
+    add("Période", esc(i.periode)); add("Périmètre", esc(i.perimetre)); add("Pour qui", esc(i.public)); add("Moyens", esc(i.moyens)); add("Résultats", esc(i.resultats));
+    if (i.porteurs && i.porteurs.length) add("Porté par", i.porteurs.map(p => ref(p.id) + (p.role ? ` <span style="color:var(--ink-3)">(${esc(p.role)})</span>` : "")).join("<br>"));
+    add("Non documenté", esc(i.manque));
+    const qs = (i.ind || []).filter(x => INDX[x]);
+    if (qs.length) add("Questions de suivi", qs.map(x => `<button type="button" class="link" data-ind="${esc(x)}">${esc(INDX[x].question)}</button>`).join("<br>"));
+  }
+  add("Adresse", esc(i.adresse)); add("Géré par", i.gest ? ref(i.gest) : "");
+  if (i.site) add("Site web", `<a href="${esc(i.site)}" target="_blank" rel="noopener">${esc(i.site.replace(/^https?:\/\/(www\.)?/,"").replace(/\/$/,""))}</a>`);
+
+  const rel = (liensBy[i.id] || []).filter(l => byId[l.other]);
+  const where = [i.commune, i.zone && i.zone !== "À " + (i.commune||"") ? i.zone : ""].filter(Boolean).join(" · ");
+  showSheet(`
+    <div class="head">${backBtn(push)}<div style="min-width:0">
+      <span class="pill"><i style="background:${C.color}"></i>${esc(C.one)}${i.type && i.type !== C.one && i.k !== "projet" ? " · " + esc(i.type) : ""}</span>
+      <h2 id="sheet-title">${esc(i.nom)}</h2>${where ? `<div class="where">${esc(where)}</div>` : ""}</div>
+      <button type="button" class="close" id="close" aria-label="Fermer">×</button></div>
+    <div class="body">
+      ${i.desc ? `<p class="lead">${esc(i.desc)}</p>` : ""}
+      ${kv.length ? `<dl class="kv">${kv.join("")}</dl>` : ""}
+      ${(i.cats||[]).length ? `<div class="sec"><h3>Sujets</h3><div class="tags">${i.cats.map(d => `<button type="button" class="tag" data-dom="${esc(d)}">${esc(d)}</button>`).join("")}</div></div>` : ""}
+      ${rel.length ? `<div class="sec"><h3>Liens</h3>${rel.map(l => `<div class="rel">${l.dir > 0 ? `<small>${esc(l.t)}</small>${ref(l.other)}` : `${ref(l.other)}<small>${esc(l.t)} ${esc(i.nom)}</small>`}</div>`).join("")}</div>` : ""}
+      ${i.src ? `<div class="srcline">Source : <a href="${esc(i.src.url)}" target="_blank" rel="noopener">${esc(i.src.nom)}</a></div>` : ""}
+      <button type="button" class="flag" data-signal="${esc(i.id)}">Signaler une correction ou un complément</button>
+    </div>`, ["item", id], push);
+}
+function closeSheet(){ $("#sheet").hidden = true; $("#scrim").hidden = true; sheetStack = []; }
+$("#scrim").onclick = closeSheet;
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#sheet").hidden) closeSheet(); });
+$("#sheet").addEventListener("click", e => {
+  const o = e.target.closest("[data-open]"); if (o) return openSheet(o.dataset.open);
+  const ob = e.target.closest("[data-obs]"); if (ob) return openObs(ob.dataset.obs);
+  const ix = e.target.closest("[data-ind]"); if (ix) return openInd(ix.dataset.ind);
+  const th = e.target.closest("[data-theme]"); if (th) { closeSheet(); return openTheme(th.dataset.theme); }
+  if (e.target.closest("#back2")) return sheetBack();
+  const sg = e.target.closest("[data-signal]"); if (sg) return signaler(sg.dataset.signal);
+  const d = e.target.closest("[data-dom]"); if (d) { st.dom = d.dataset.dom; closeSheet(); showHome(true); render(); $("#q").scrollIntoView({block:"start"}); }
+  if (e.target.id === "close") closeSheet();
+});
+
+/* ---------- 6. Événements d'interface ---------- */
+$("#cats").addEventListener("click", e => { const b = e.target.closest(".cat"); if (!b) return; const k = b.dataset.k;
+  // Premier clic quand tout est affiché : ne garder que cette catégorie ; ensuite, bascule.
+  if (st.cats.size === ORDER.length) st.cats = new Set([k]); else if (st.cats.has(k)) { st.cats.delete(k); if (!st.cats.size) st.cats = new Set(ORDER); } else st.cats.add(k);
+  render(); });
+$("#list").addEventListener("click", e => { const b = e.target.closest(".it"); if (b) openSheet(b.dataset.id); });
+$("#topics").addEventListener("click", e => { const b = e.target.closest(".topic"); if (!b) return; st.dom = st.dom === b.dataset.dom ? "" : b.dataset.dom; render(); });
+$("#fdom").onchange = e => { st.dom = e.target.value; render(); };
+$("#fzone").onchange = e => { st.zone = e.target.value; st.commune = null; render(); };
+let qt; $("#q").addEventListener("input", e => { clearTimeout(qt); qt = setTimeout(() => { st.q = e.target.value.trim(); render(); }, 120); });
+$("#reset").onclick = () => { Object.assign(st, {cats:new Set(ORDER), dom:"", zone:"", q:"", commune:null}); $("#q").value = ""; view = {...home}; applyView(); render(); };
+
+/* ---------- 7. Couche « comprendre » : coup d'œil, thèmes, cartes d'identité, couverture ----------
+   Tout vient de T.observations, T.indicateurs, T.couverture… produits par le script de génération
+   à partir du même instantané du tableur. Aucune valeur, définition ou phrase de résultat n'est écrite ici. */
+const ETATS = { disponible:"Données disponibles", partiel:"Données partielles", a_verifier:"Chiffre à vérifier", manquant:"Pas encore de données" };
+const chip = e => `<span class="chip ${e}"><i></i>${ETATS[e] || esc(e)}</span>`;
+const srcShort = s => String(s || "").split(/ – | - /)[0];
+const inTheme = (x, th) => (x.cats || []).includes(th);
+const themesOf = () => T.themes || (T.reperes || []).map(r => r.domaine);
+
+/* Fiche : pile de navigation (thème → chiffre → question → élément), avec retour. */
+let sheetStack = [];
+function backBtn(push){ return (sheetStack.length > (push ? 0 : 1)) ? `<button type="button" class="back2" id="back2" aria-label="Revenir à la fiche précédente">←</button>` : ""; }
+function showSheet(html, entry, push){
+  if (push) sheetStack.push(entry);
+  $("#sheet").innerHTML = html;
+  $("#sheet").hidden = false; $("#scrim").hidden = false;
+  ($("#back2") || $("#close")).focus();
+  const b = $("#sheet .body"); if (b) b.scrollTop = 0;
+}
+function sheetBack(){
+  sheetStack.pop(); const prev = sheetStack[sheetStack.length - 1]; if (!prev) return closeSheet();
+  const [kind, id] = prev;
+  if (kind === "item") openSheet(id, false); else if (kind === "obs") openObs(id, false); else if (kind === "ind") openInd(id, false);
+}
+function sheetHead(push, pill, title, where){
+  return `<div class="head">${backBtn(push)}<div style="min-width:0"><span class="pill">${pill}</span>
+    <h2 id="sheet-title">${esc(title)}</h2>${where ? `<div class="where">${esc(where)}</div>` : ""}</div>
+    <button type="button" class="close" id="close" aria-label="Fermer">×</button></div>`;
+}
+function srcBlock(list){
+  if (!list || !list.length) return "";
+  return `<div class="sec"><h3>Source${list.length > 1 ? "s" : ""}</h3><div class="srcs">${list.map(s => `<div>
+    <a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.nom)}</a>
+    <small>${[s.fiab, s.pub ? "publié le " + s.pub : "", s.consult ? "consulté le " + s.consult : ""].filter(Boolean).map(esc).join(" · ")}</small></div>`).join("")}</div></div>`;
+}
+
+/* Carte d'identité d'un chiffre */
+function openObs(id, push = true){
+  const o = OBSX[id]; if (!o) return;
+  const ind = o.ind && INDX[o.ind];
+  const kv = []; const add = (k, v) => { if (v) kv.push(`<dt>${k}</dt><dd>${v}</dd>`); };
+  add("Ce qu'il mesure", esc(o.indicateur) + (ind && ind.nom !== o.indicateur ? `<br><span style="color:var(--ink-3)">Indicateur suivi : ${esc(ind.nom)}</span>` : ""));
+  add("Question", ind ? `<button type="button" class="link" data-ind="${esc(ind.id)}">${esc(ind.question)}</button>` : "");
+  add("Échelle", esc(o.echelle));
+  add("Date", esc(o.date));
+  add("Fréquence", ind ? esc(ind.frequence) : "");
+  add("Fiabilité", o.statut === "VÉRIFIÉ" ? "Confirmé par une source officielle ou plusieurs sources" : "Relevé dans une source");
+  add("Limites", esc(o.limites));
+  showSheet(`${sheetHead(push, `<i style="background:var(--green-ink)"></i>Chiffre`, o.indicateur, (o.cats || []).join(" · "))}
+    <div class="body">
+      <p class="big">${esc(o.valeur)}</p>
+      <dl class="kv">${kv.join("")}</dl>
+      ${!ind ? `<p class="idnote">Ce chiffre n'est rattaché à aucune question suivie dans la base.</p>` : ""}
+      ${srcBlock(o.sources)}
+    </div>`, ["obs", id], push);
+}
+
+/* Carte d'identité d'une question suivie (indicateur) */
+function openInd(id, push = true){
+  const i = INDX[id]; if (!i) return;
+  const kv = []; const add = (k, v) => { if (v) kv.push(`<dt>${k}</dt><dd>${v}</dd>`); };
+  add("Indicateur", esc(i.nom)); add("Source prévue", esc(i.source)); add("Échelle", esc(i.echelle)); add("Fréquence", esc(i.frequence));
+  add("État", chip(i.etat) + `<br><span style="color:var(--ink-3)">${esc(i.etat_txt)}</span>`);
+  add("Pour compléter", esc(i.a_faire));
+  const obs = (i.obs || []).filter(x => OBSX[x]);
+  const projets = T.items.filter(x => x.k === "projet" && (x.ind || []).includes(id));
+  showSheet(`${sheetHead(push, `<i style="background:var(--blue)"></i>Question suivie · ${esc(i.domaine)}`, i.question, "")}
+    <div class="body">
+      <dl class="kv">${kv.join("")}</dl>
+      <div class="sec"><h3>Chiffres disponibles</h3>${obs.length ? obs.map(x => `<div class="rel"><button type="button" class="link" data-obs="${esc(x)}">${esc(OBSX[x].indicateur)}</button><small>${esc(OBSX[x].valeur)} · ${esc(OBSX[x].date)}</small></div>`).join("")
+        : `<p class="idnote">Aucun chiffre établi pour l'instant.</p>`}
+        ${i.obs_attente ? `<p class="idnote" style="margin-top:8px">${i.obs_attente} chiffre${i.obs_attente > 1 ? "s" : ""} en attente de vérification, non affiché${i.obs_attente > 1 ? "s" : ""}.</p>` : ""}</div>
+      ${projets.length ? `<div class="sec"><h3>Actions concernées</h3>${projets.map(x => `<div class="rel"><button type="button" class="link" data-open="${esc(x.id)}">${esc(x.nom)}</button></div>`).join("")}</div>` : ""}
+      ${themesOf().includes(i.domaine) ? `<button type="button" class="go" data-theme="${esc(i.domaine)}">Voir le thème ${esc(i.domaine)}</button>` : ""}
+    </div>`, ["ind", id], push);
+}
+
+/* Accueil : Crossac en un coup d'œil */
+function themeStats(th){
+  const ind = (T.indicateurs || []).filter(i => i.domaine === th);
+  return { n: T.items.filter(i => inTheme(i, th)).length, q: ind.length, sans: ind.filter(i => !(i.obs || []).length).length };
+}
+function renderGlance(){
+  const reps = T.reperes || [];
+  if (!reps.length) { $("#glance").hidden = true; return; }
+  $("#glance").hidden = false;
+  $("#glance").innerHTML = `<div class="glance-head"><h2 id="glance-title">${esc(T.territoire.nom)} en un coup d'œil</h2>
+      <p>Chiffres établis par une source. Touchez un chiffre pour voir ce qu'il mesure, sa date, sa source et ses limites.</p></div>
+    <div class="gl-grid">${reps.map(r => { const s = themeStats(r.domaine); return `<div class="gl-theme">
+      <h3>${esc(r.domaine)}</h3>
+      <div class="gl-cards">${r.valeurs.map(v => `<button type="button" class="gl-card" ${v.id && OBSX[v.id] ? `data-obs="${esc(v.id)}"` : "disabled"}>
+        <b>${esc(v.v)}</b><span class="gl">${esc(v.l)}</span>
+        <small>${[v.echelle, v.date, v.src ? srcShort(v.src.nom) : ""].filter(Boolean).map(esc).join(" · ")}</small>
+        ${v.id && OBSX[v.id] ? `<span class="more">Comprendre ce chiffre ›</span>` : ""}</button>`).join("")}</div>
+      <div class="gl-foot"><span>${s.n} élément${s.n > 1 ? "s" : ""} sur la carte · ${s.q} questions suivies, dont ${s.sans} encore sans chiffre</span>
+        <button type="button" class="go" data-theme="${esc(r.domaine)}">Ouvrir le thème ›</button></div>
+    </div>`; }).join("")}</div>`;
+}
+
+/* Accueil : lien avec la base commune (projection publique du tableau de bord) */
+const TABLEAU = "../tableau-de-bord/";
+let BASE;
+function neutre(o){
+  return JSON.parse(JSON.stringify(o)
+    .replace(/\s*\((?:équipe )?Ci\x76ip[ée]dia\)/gi, "")
+    .replace(/Participation de Ci\x76ip[ée]dia/gi, "Participation de l'équipe")
+    .replace(/Ci\x76ip[ée]dia/gi, "la base commune"));
+}
+async function renderBase(){
+  if (BASE === undefined) { try { BASE = neutre(await loadJSON(TABLEAU + "data.json")); } catch(_) { BASE = null; } }
+  const box = $("#base");
+  if (!BASE || !T) { box.hidden = true; return; }
+  const nom = T.territoire.nom, noms = new Set([nom, ...T.communes.map(c => c.nom)].map(norm));
+  const terr = BASE.territoires.filter(t => noms.has(norm(t.nom)) && (t.organisations + t.personnes + t.projets + t.evenements));
+  terr.sort((a, b) => (norm(b.nom) === norm(nom)) - (norm(a.nom) === norm(nom)) || a.nom.localeCompare(b.nom, "fr"));
+  const today = new Date().toISOString().slice(0, 10);
+  const evts = BASE.evenements.filter(e => noms.has(norm(e.territoire)) && (e.fin || e.debut) >= today).sort((a, b) => a.debut.localeCompare(b.debut));
+  const nb = (n, mot) => `${n} ${mot}${n > 1 ? "s" : ""}`;
+  const lien = `${TABLEAU}?territoire=${encodeURIComponent(nom)}`;
+  $("#base-body").innerHTML = `<div class="base-grid">
+      <div><h3>Territoires reliés</h3>${terr.length ? `<ul>${terr.map(t => `<li><b>${esc(t.nom)}</b><small>${[
+        t.organisations && nb(t.organisations, "organisation"), t.personnes && nb(t.personnes, "personne"),
+        t.projets && nb(t.projets, "projet"), t.evenements && nb(t.evenements, "événement")].filter(Boolean).join(" · ")}</small></li>`).join("")}</ul>`
+        : `<p class="base-muted">Aucune fiche de la base commune n'est encore reliée à ce périmètre.</p>`}</div>
+      <div><h3>Rendez-vous à venir</h3>${evts.length ? `<ul>${evts.map(e => `<li><a href="${esc(e.src.url)}" target="_blank" rel="noopener">${esc(e.titre)}</a><small>${esc(fmtDate(e.debut))} · ${esc(e.lieu || e.territoire)}</small></li>`).join("")}</ul>`
+        : `<p class="base-muted">Aucun rendez-vous vérifié à venir dans la base commune pour ce périmètre.</p>`}</div>
+      <div><h3>Appels qui reviennent</h3><p class="base-muted">${nb(BASE.appels.length, "appel")} à projets suivi${BASE.appels.length > 1 ? "s" : ""}, ouverts à tous les territoires.</p></div>
+    </div>
+    <p class="base-foot"><span class="base-muted">· données au ${esc(fmtDate(BASE.genere_le))}</span></p>`;
+  box.hidden = false;
+}
+
+/* Accueil : couverture par sujet */
+function renderCoverage(){
+  const rows = T.couverture || [];
+  if (!rows.length) { $("#couverture").innerHTML = `<p class="empty">Pas encore de mesure de couverture pour ce territoire.</p>`; return; }
+  const th = new Set(themesOf()), z = n => n ? n : `<span class="zero">0</span>`;
+  $("#couverture").innerHTML = `<div class="covwrap"><table class="cov"><thead><tr>
+      <th scope="col">Sujet</th><th scope="col">Éléments</th><th scope="col">Placés sur la carte</th><th scope="col">En vérification</th><th scope="col">Chiffres</th><th scope="col">Questions avec chiffre</th></tr></thead>
+    <tbody>${rows.filter(r => r.elements || r.chiffres || r.indicateurs).map(r => {
+      const placed = r.precis + r.commune, pct = r.elements ? placed / r.elements : 0;
+      const ind = r.indicateurs ? Object.values(r.indicateurs).reduce((a, b) => a + b, 0) : 0;
+      const withObs = (T.indicateurs || []).filter(i => i.domaine === r.cat && (i.obs || []).length).length;
+      return `<tr><td>${th.has(r.cat) ? `<button type="button" data-theme="${esc(r.cat)}">${esc(r.cat)} ›</button>` : esc(r.cat)}</td>
+        <td>${z(r.elements)}</td>
+        <td title="${r.precis} à l'adresse, ${r.commune} au centre de la commune, ${r.sans_position} sans position">${r.elements ? `${placed}<span class="placebar" aria-hidden="true"><span style="width:${(pct*100).toFixed(0)}%;background:var(--k-ressource)"></span></span>` : z(0)}</td>
+        <td>${z(r.en_verification + r.chiffres_attente)}</td><td>${z(r.chiffres)}</td>
+        <td>${ind ? `${withObs} / ${ind}` : "—"}</td></tr>`; }).join("")}</tbody></table></div>
+    <p class="caveat">« Placés sur la carte » compte les éléments situés à leur adresse ou au centre de leur commune ; les services couvrant tout le territoire n'ont pas de point. « — » : aucune question suivie n'est encore définie pour ce sujet.</p>`;
+}
+
+/* Page thème */
+function showHome(scroll){ if (PAGE !== "tout") showPage("tout"); $("#home").hidden = false; $("#themeview").hidden = true; $(".hero").hidden = false; if (scroll) window.scrollTo({top:0}); }
+function openTheme(th){
+  const items = T.items.filter(i => inTheme(i, th));
+  const obs = (T.observations || []).filter(o => inTheme(o, th));
+  const inds = (T.indicateurs || []).filter(i => i.domaine === th);
+  const cov = (T.couverture || []).find(r => r.cat === th);
+  const s = themeStats(th);
+
+  const repHtml = obs.length ? `<div class="obsl">${obs.map(o => `<button type="button" class="obsr" data-obs="${esc(o.id)}">
+      <span class="on">${esc(o.indicateur)}</span><span class="ov">${esc(o.valeur)}</span>
+      <small>${[o.echelle, o.date].filter(Boolean).map(esc).join(" · ")}</small></button>`).join("")}</div>`
+    : `<p class="idnote">Aucun chiffre établi pour ce thème.</p>`;
+
+  const order = {disponible:0, partiel:1, a_verifier:2, manquant:3};
+  const qHtml = inds.length ? [...inds].sort((a,b) => order[a.etat] - order[b.etat]).map(i => `<button type="button" class="qrow" data-ind="${esc(i.id)}">
+      <span class="qq">${esc(i.question)}</span>${chip(i.etat)}<small>${esc(i.nom)} · ${esc(i.source)}</small></button>`).join("")
+    : `<p class="idnote">Aucune question suivie n'est définie pour ce thème.</p>`;
+
+  const whoHtml = ORDER.map(k => {
+    const g = items.filter(i => i.k === k).sort((a,b) => a.nom.localeCompare(b.nom,"fr"));
+    if (!g.length) return "";
+    return `<div class="grp"><i style="background:${CATS[k].color}"></i>${CATS[k].label} · ${g.length}</div>` + g.map(i => `
+      <button type="button" class="it" data-open="${esc(i.id)}"><div class="t">${esc(i.nom)}</div><div class="s">${esc(subline(i))}</div></button>`).join("");
+  }).join("") || `<p class="idnote">Aucun élément publié pour ce thème.</p>`;
+
+  // Ce que nous ne savons pas : uniquement ce que la base consigne elle-même.
+  const noData = inds.filter(i => !(i.obs || []).length);
+  const partial = inds.filter(i => (i.obs || []).length && i.etat !== "disponible");
+  const manques = items.filter(i => i.k === "projet" && i.manque);
+  const attendues = (T.attendues || []).filter(a => inTheme(a, th));
+  const attente = (T.en_attente || []).filter(a => inTheme(a, th));
+  const ouverts = (T.ouverts || []).filter(a => inTheme(a, th));
+  const li = arr => `<ul>${arr.join("")}</ul>`;
+  const unk = [];
+  if (noData.length) unk.push(`<div><h3>Questions encore sans chiffre</h3>${li(noData.map(i => `<li><b>${esc(i.question)}</b><br>${esc(i.etat_txt)}${i.a_faire ? ` — ${esc(i.a_faire)}` : ""}</li>`))}</div>`);
+  if (partial.length) unk.push(`<div><h3>Réponses incomplètes</h3>${li(partial.map(i => `<li><b>${esc(i.question)}</b><br>${esc(i.etat_txt)}${i.a_faire ? ` — ${esc(i.a_faire)}` : ""}</li>`))}</div>`);
+  if (attente.length) unk.push(`<div><h3>Chiffres en attente de vérification (non affichés)</h3>${li(attente.map(a => `<li><b>${esc(a.indicateur)}</b>${a.raison ? ` : ${esc(a.raison)}` : ""}</li>`))}</div>`);
+  if (manques.length) unk.push(`<div><h3>Ce que les sources ne disent pas des actions</h3>${li(manques.map(i => `<li><button type="button" class="link" data-open="${esc(i.id)}">${esc(i.nom)}</button> : ${esc(i.manque)}</li>`))}</div>`);
+  if (attendues.length) unk.push(`<div><h3>Actions annoncées, non documentées</h3>${li(attendues.map(a => `<li><b>${esc(a.nom)}</b> : ${esc(a.note || a.statut)}</li>`))}</div>`);
+  if (ouverts.length) unk.push(`<div><h3>Points à vérifier</h3>${li(ouverts.map(a => `<li><b>${esc(a.sujet)}</b> : ${esc(a.motif)}</li>`))}</div>`);
+
+  const srcMap = new Map();
+  obs.forEach(o => (o.sources || []).forEach(x => srcMap.set(x.url, x)));
+  items.forEach(i => i.src && !srcMap.has(i.src.url) && srcMap.set(i.src.url, i.src));
+
+  $("#themeview").innerHTML = `
+    <nav class="crumb" aria-label="Fil d'Ariane"><button type="button" id="th-home">${esc(T.territoire.nom)}</button><span aria-hidden="true">›</span><span>${esc(th)}</span></nav>
+    <div class="th-head"><div><h1>${esc(th)}</h1>
+      <p>${s.n} élément${s.n > 1 ? "s" : ""} publié${s.n > 1 ? "s" : ""}, ${obs.length} chiffre${obs.length > 1 ? "s" : ""} établi${obs.length > 1 ? "s" : ""}, ${s.q} question${s.q > 1 ? "s" : ""} suivie${s.q > 1 ? "s" : ""}. Touchez une ligne pour voir le détail et sa source.</p></div>
+      <button type="button" class="go" id="th-map">Voir ce thème sur la carte ›</button></div>
+    <div class="th-body">
+      <div class="th-col">
+        <section class="blk"><h2>Repères</h2><p class="sub">Les chiffres établis sur ce thème, à leur échelle et à leur date.</p>${repHtml}</section>
+        <section class="blk"><h2>Questions suivies</h2><p class="sub">Ce que l'on cherche à savoir, et ce que les données permettent de dire aujourd'hui.</p>${qHtml}</section>
+        <section class="blk"><h2>Ce que nous ne savons pas encore</h2><p class="sub">Relevé dans la base : données absentes, incomplètes ou en attente de vérification.</p>
+          ${unk.length ? `<div class="unk">${unk.join("")}</div>` : `<p class="idnote">La base ne signale aucun manque pour ce thème.</p>`}</section>
+      </div>
+      <div class="th-col">
+        <section class="blk"><h2>Qui agit, où</h2><p class="sub">Acteurs, organisations, ressources, projets et événements rattachés à ce thème.</p><div class="who">${whoHtml}</div></section>
+        ${cov ? `<section class="blk"><h2>Documentation du thème</h2><div class="cov-mini">
+          <div><b>${cov.elements}</b><span>éléments publiés</span></div>
+          <div><b>${cov.precis + cov.commune}</b><span>placés sur la carte (${cov.precis} à l'adresse)</span></div>
+          <div><b>${cov.avec_source}</b><span>avec une source en ligne</span></div>
+          <div><b>${cov.en_verification + cov.chiffres_attente}</b><span>en vérification, non affichés</span></div></div>
+          <p class="caveat">Ces nombres décrivent l'état de notre collecte, pas la situation du territoire.</p></section>` : ""}
+        <section class="blk"><h2>Sources</h2><div class="srcs">${[...srcMap.values()].map(x => `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.nom)}</a>`).join("") || `<p class="idnote">Aucune source en ligne.</p>`}</div></section>
+      </div>
+    </div>`;
+  const retour = PAGE;
+  $("#une").hidden = true; $("#home").hidden = true; $(".hero").hidden = true; $("#themeview").hidden = false;
+  window.scrollTo({top:0});
+  $("#th-home").onclick = () => { if (retour === "une" && UNE) { showPage("une"); window.scrollTo({top:0}); } else showHome(true); };
+  $("#th-map").onclick = () => { Object.assign(st, {dom: th, commune: null}); showHome(false); render(); $("#q").scrollIntoView({block:"start"}); };
+}
+$("#themeview").addEventListener("click", e => {
+  const o = e.target.closest("[data-open]"); if (o) return openSheet(o.dataset.open);
+  const ob = e.target.closest("[data-obs]"); if (ob) return openObs(ob.dataset.obs);
+  const ix = e.target.closest("[data-ind]"); if (ix) return openInd(ix.dataset.ind);
+});
+/* ---------- 8. Contribuer ----------
+   Les envois partent vers le guichet du tableur privé (adresse dans config.json). Ils y arrivent au statut
+   « déclaré » et ne deviennent visibles qu'après vérification et export. Le rapprochement affiché est un calcul
+   de la page (sujets et mots en commun), jamais une mise en relation. */
+let GUICHET = "", CONF = {};
+const t0 = { "f-demande": 0, "f-apport": 0 };
+function renderContrib(){
+  const doms = [...new Set(T.items.flatMap(i => i.cats||[]))].sort((a,b) => a.localeCompare(b,"fr"));
+  $("#d-doms").innerHTML = doms.map((d, n) => `<label><input type="checkbox" id="d-dom-${n}" value="${esc(d)}"> ${esc(d)}</label>`).join("");
+  $("#a-dom").innerHTML = `<option value="">Non précisé</option>` + doms.map(d => `<option>${esc(d)}</option>`).join("");
+  for (const id of ["d-send", "a-send"]) $("#" + id).disabled = false;
+  for (const id of ["d-msg", "a-msg"]) { $("#" + id).className = "msg"; $("#" + id).textContent = ""; }
+  matchDemande();
+}
+function showTab(which){
+  for (const k of ["demande", "apport"]) { $("#tab-" + k).setAttribute("aria-selected", String(k === which)); $("#f-" + k).hidden = k !== which; }
+}
+$("#tab-demande").onclick = () => showTab("demande");
+$("#tab-apport").onclick = () => showTab("apport");
+for (const f of ["f-demande", "f-apport"]) $("#" + f).addEventListener("focusin", () => { if (!t0[f]) t0[f] = Date.now(); });
+
+let proposees = [];
+function matchDemande(){
+  const doms = [...document.querySelectorAll("#d-doms input:checked")].map(x => x.value);
+  const words = norm($("#d-texte").value + " " + $("#d-recherche").value).split(/[^a-z0-9]+/).filter(w => w.length >= 4);
+  const scored = T.items.map(i => {
+    const h = i._h ||= haystack(i);
+    const s = doms.filter(d => (i.cats||[]).includes(d)).length * 2 + new Set(words.filter(w => h.includes(w))).size;
+    return [s, i];
+  }).filter(([s]) => s > 0).sort((a,b) => b[0] - a[0] || a[1].nom.localeCompare(b[1].nom,"fr"))
+    // Varier les réponses : au plus deux éléments du même type (par ex. deux aires de covoiturage).
+    .filter((x, n, arr) => arr.slice(0, n).filter(y => y[1].type === x[1].type).length < 2).slice(0, 6).map(([, i]) => i);
+  proposees = scored.map(i => i.id);
+  $("#d-match").innerHTML = `<h3>Ce qui existe déjà</h3>` + (scored.length
+    ? scored.map(i => `<div class="rel"><button type="button" class="link" data-open="${esc(i.id)}">${esc(i.nom)}</button><small>${esc(CATS[i.k].one)} · ${esc(subline(i))}</small></div>`).join("")
+      + `<p>Rapprochement automatique par sujets et mots communs. Ce n'est pas une mise en relation : ces acteurs n'ont pas été contactés.</p>`
+    : `<p>Choisissez des sujets ou décrivez votre projet pour voir les acteurs, lieux et services qui pourraient vous aider.</p>`);
+}
+let mt; for (const id of ["d-texte", "d-recherche"]) $("#" + id).addEventListener("input", () => { clearTimeout(mt); mt = setTimeout(matchDemande, 200); });
+$("#d-doms").addEventListener("change", matchDemande);
+$("#d-match").addEventListener("click", e => { const o = e.target.closest("[data-open]"); if (o) openSheet(o.dataset.open); });
+
+/* Adresse de contact, assemblée au moment du clic (moins exposée aux robots). */
+const ADRESSE = () => ["anne.povie.44600", "gmail.com"].join("@");
+const LIBELLES = { type:"Type", texte:"Message", domaines:"Sujets", recherche:"Ce que je cherche", etape:"Étape",
+  domaine:"Sujet", preuve:"Source ou preuve", qualite:"Je suis", organisation:"Organisation", nom:"Nom",
+  contact:"Contact", objet:"Objet" };
+function courriel(p){
+  const lignes = [`Territoire : ${p.territoire}`];
+  for (const [k, lib] of Object.entries(LIBELLES)) {
+    const v = Array.isArray(p[k]) ? p[k].join(", ") : (p[k] || "");
+    if (String(v).trim()) lignes.push(`${lib} : ${v}`);
+  }
+  const sujet = `[Carte ${p.territoire}] ${p.genre === "demande" ? "Projet" : "Information à signaler"}`;
+  return `mailto:${ADRESSE()}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(lignes.join("\n"))}`;
+}
+document.addEventListener("click", e => {
+  const c = e.target.closest("#contact"); if (!c) return;
+  e.preventDefault(); location.href = `mailto:${ADRESSE()}?subject=${encodeURIComponent("Carte territoriale")}`;
+});
+async function envoyer(form, payload, msg, btn){
+  const m = $(msg);
+  if (payload.texte.trim().length < 10) { m.className = "msg err"; m.textContent = "Écrivez au moins une phrase."; return; }
+  if (!payload.accord) { m.className = "msg err"; m.textContent = "Cochez la case d'accord pour envoyer."; return; }
+  if (payload.site_web) return;
+  if (!GUICHET) {
+    location.href = courriel(payload);
+    m.className = "msg ok"; m.textContent = "Votre messagerie s'ouvre avec le message prêt : il ne reste qu'à l'envoyer.";
+    return;
+  }
+  $(btn).disabled = true; m.className = "msg"; m.textContent = "Envoi…";
+  try {
+    const r = await fetch(GUICHET, { method:"POST", body: JSON.stringify(payload) });
+    const res = await r.json();
+    if (!res.ok) throw new Error(res.erreur || "Envoi refusé.");
+    m.className = "msg ok";
+    m.textContent = "Merci, c'est enregistré" + (res.reference ? " sous la référence " + res.reference : "") + ". Il sera relu avant toute publication.";
+    $(form).reset(); t0[form.slice(1)] = 0; if (form === "#f-demande") matchDemande();
+  } catch (err) {
+    m.className = "msg err";
+    m.textContent = (err && err.message && !/fetch|network|Load failed/i.test(err.message)) ? err.message : "L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez.";
+  } finally { $(btn).disabled = false; }
+}
+$("#f-demande").addEventListener("submit", e => { e.preventDefault();
+  envoyer("#f-demande", { genre:"demande", territoire:T.territoire.nom, type:(document.querySelector("#f-demande input[name=type]:checked")||{}).value,
+    texte:$("#d-texte").value, domaines:[...document.querySelectorAll("#d-doms input:checked")].map(x => x.value),
+    recherche:$("#d-recherche").value, contact:$("#d-contact").value, proposees, accord:$("#d-accord").checked,
+    site_web:$("#d-site").value, duree_ms: t0["f-demande"] ? Date.now() - t0["f-demande"] : 0 }, "#d-msg", "#d-send"); });
+$("#f-apport").addEventListener("submit", e => { e.preventDefault();
+  envoyer("#f-apport", { genre:"apport", territoire:T.territoire.nom, etape:$("#a-etape").value, texte:$("#a-texte").value,
+    domaine:$("#a-dom").value, preuve:$("#a-preuve").value, qualite:$("#a-qualite").value, organisation:$("#a-org").value,
+    nom:$("#a-nom").value, contact:$("#a-contact").value, objet:$("#a-objet").value, accord:$("#a-accord").checked,
+    site_web:$("#a-site").value, duree_ms: t0["f-apport"] ? Date.now() - t0["f-apport"] : 0 }, "#a-msg", "#a-send"); });
+function signaler(id){
+  closeSheet(); showHome(false); showTab("apport");
+  $("#a-objet").value = id; $("#a-etape").value = "CONTEXTE";
+  $("#a-texte").value = byId[id] ? `À propos de « ${byId[id].nom} » : ` : "";
+  $("#contribuer").scrollIntoView({block:"start"}); $("#a-texte").focus();
+}
+
+document.addEventListener("click", e => {
+  if (e.target.closest("#sheet, #themeview")) return;
+  const ob = e.target.closest("[data-obs]"); if (ob) return openObs(ob.dataset.obs);
+  const th = e.target.closest("[data-theme]"); if (th) return openTheme(th.dataset.theme);
+});
+
+boot();
+</script>
+
+<script>
+document.getElementById('insc-top').addEventListener('click',function(e){e.preventDefault();if(PAGE!=='une')showPage('une');document.getElementById('inscription').scrollIntoView({behavior:'smooth',block:'center'});});
+</script>
+</body></html>

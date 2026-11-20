@@ -1,0 +1,32 @@
+# Carte épurée
+
+Version épurée, au style « carnet », de la carte territoriale de Crossac. Adresse : `sobre/` (par exemple `…/sobre/#crossac`).
+
+Elle lit les **mêmes données publiées** que la carte principale (`territoires/`, `tableau-de-bord/data.json`). Elle reste donc reliée à la grande base et se met à jour en même temps. Elle n'affiche ni le nom de l'association ni celui de l'animateur du projet. Les logos des collectivités sont conservés.
+
+## Fichiers
+
+| Fichier | Rôle |
+|---|---|
+| `index.html` | La page. **Ne pas modifier à la main** : elle est produite par `generer.py`. |
+| `generer.py` | Produit `index.html` à partir de la carte principale (`../index.html`). Relancer après toute modification de la carte principale : `python3 sobre/generer.py`. |
+| `config.json` | `territoires` : territoires proposés (par défaut `["crossac"]`). `guichet` : adresse du guichet courriel (vide tant qu'il n'est pas installé). |
+| `guichet-mail.gs` | Script Google qui reçoit le formulaire et l'envoie par courriel. |
+
+## Formulaire « Contribuer »
+
+- **Tant que `guichet` est vide** : le bouton « Envoyer » ouvre la messagerie du visiteur avec un message prêt, adressé à la signataire de la carte. Le visiteur n'a plus qu'à l'envoyer.
+- **Une fois le guichet installé** : le message part directement, sans ouvrir la messagerie, et arrive dans la boîte Gmail du compte qui a installé le guichet.
+
+### Installer le guichet (une fois, environ 5 minutes)
+
+1. Connectée au compte Gmail qui doit recevoir les messages, ouvrir <https://script.google.com> → **Nouveau projet**.
+2. Remplacer le contenu de `Code.gs` par celui de `guichet-mail.gs`, puis enregistrer.
+3. **Déployer → Nouveau déploiement** → type **Application Web**. Exécuter en tant que : **Moi**. Qui a accès : **Tout le monde**. Autoriser l'envoi de courriels quand Google le demande.
+4. Copier l'adresse de l'application Web (elle finit par `/exec`) et la coller dans `sobre/config.json`, à la place de `""` après `"guichet":`.
+
+Le guichet ne stocke rien : chaque envoi devient un courriel. Si le visiteur a laissé une adresse électronique, « Répondre » lui écrit directement.
+
+## Signature
+
+La page est signée « Povie-Skopein ». Le lien « Contact » ouvre un courriel vers l'adresse de la signataire. Elle n'est pas écrite telle quelle dans la page, ce qui limite sa collecte par les robots.

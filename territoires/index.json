@@ -61,6 +61,21 @@
   }
  },
  {
+  "id": "pontchateau",
+  "nom": "Pontchâteau",
+  "data": "territoires/pontchateau.json",
+  "geo": "territoires/pontchateau.geo.json",
+  "instantane": "2026-11-17 (tableur MASECOTE_POC_PONTCHATEAU, première version)",
+  "logos": [
+   {
+    "src": "territoires/logos/cc-pont-chateau-saint-gildas.png",
+    "alt": "Logo de la Communauté de communes du Pays de Pont-Château Saint-Gildas-des-Bois",
+    "nom": "Communauté de communes du Pays de Pont-Château Saint-Gildas-des-Bois",
+    "origine": "Fichier transmis par Samuel Tiercelin-Moreau, mail du 13/10/2026"
+   }
+  ]
+ },
+ {
   "id": "chevaigne",
   "nom": "Chevaigné",
   "data": "territoires/chevaigne.json",
