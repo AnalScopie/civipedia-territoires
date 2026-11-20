@@ -1,8 +1,10 @@
 # Carte épurée
 
-Version épurée, au style « carnet », de la carte territoriale de Crossac. Adresse : `sobre/` (par exemple `…/sobre/#crossac`).
+Version épurée, au style « carnet », des cartes territoriales : Crossac, Pontchâteau, Chevaigné, Vertou et tout territoire ajouté au registre. Adresse : `sobre/`, avec le territoire après `#` (par exemple `…/sobre/#vertou`). Le menu « Territoire » permet de passer de l'un à l'autre.
 
 Elle lit les **mêmes données publiées** que la carte principale (`territoires/`, `tableau-de-bord/data.json`). Elle reste donc reliée à la grande base et se met à jour en même temps. Elle n'affiche ni le nom de l'association ni celui de l'animateur du projet. Les logos des collectivités sont conservés.
+
+Elle montre le territoire lui-même : associations, lieux, services, chiffres. Un projet mis « à la une » sur la carte principale (le WoodyBus à Crossac) n'y figure pas : le projet, ses lieux propres (arrêts, garage), ses itinéraires et ses indicateurs sont retirés à l'affichage. Les vues simplifiées sans projet (« Le bourg » à Chevaigné, « Beautour » à Vertou) sont conservées.
 
 ## Fichiers
 
@@ -10,7 +12,7 @@ Elle lit les **mêmes données publiées** que la carte principale (`territoires
 |---|---|
 | `index.html` | La page. **Ne pas modifier à la main** : elle est produite par `generer.py`. |
 | `generer.py` | Produit `index.html` à partir de la carte principale (`../index.html`). Relancer après toute modification de la carte principale : `python3 sobre/generer.py`. |
-| `config.json` | `territoires` : territoires proposés (par défaut `["crossac"]`). `guichet` : adresse du guichet courriel (vide tant qu'il n'est pas installé). |
+| `config.json` | `territoires` (facultatif) : limiter la carte à certains territoires, par exemple `["crossac"]` ; sans cette ligne, tous les territoires du registre sont proposés. `guichet` : adresse du guichet courriel (vide tant qu'il n'est pas installé). |
 | `guichet-mail.gs` | Script Google qui reçoit le formulaire et l'envoie par courriel. |
 
 ## Formulaire « Contribuer »
