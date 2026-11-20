@@ -6,6 +6,7 @@ const BASE = [
   './', './index.html', './config.json', './manifest.webmanifest',
   './territoires/index.json', './territoires/crossac.json', './territoires/crossac.geo.json',
   './territoires/pontchateau.json', './territoires/pontchateau.geo.json',
+  './territoires/chevaigne.json', './territoires/chevaigne.geo.json',
   './icones/icone-192.png', './icones/icone-512.png'
 ];
 

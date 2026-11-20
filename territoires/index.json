@@ -74,5 +74,58 @@
     "origine": "Fichier transmis par Samuel Tiercelin-Moreau, mail du 13/10/2026"
    }
   ]
+ },
+ {
+  "id": "chevaigne",
+  "nom": "Chevaigné",
+  "data": "territoires/chevaigne.json",
+  "geo": "territoires/chevaigne.geo.json",
+  "instantane": "2026-11-20 (tableur CIVIPEDIA_POC_CHEVAIGNE)",
+  "une": {
+   "onglet": "Le bourg",
+   "surtitre": "Chevaigné · Rennes Métropole",
+   "titre": "Les associations et services de Chevaigné",
+   "texte": "Les associations, écoles, services et lieux du bourg sur la carte. Touchez un point pour voir sa fiche, et retrouvez juste en dessous les événements à venir.",
+   "donnees": [
+    {
+     "theme": "Démographie et dynamiques territoriales",
+     "libelle": "Les habitants"
+    },
+    {
+     "theme": "Logement",
+     "libelle": "Le logement"
+    },
+    {
+     "theme": "Mobilités",
+     "libelle": "Les déplacements"
+    },
+    {
+     "theme": "Éducation",
+     "libelle": "L'école et la petite enfance"
+    },
+    {
+     "theme": "Vivre ensemble",
+     "libelle": "La vie locale"
+    },
+    {
+     "theme": "Pouvoir d'achat",
+     "libelle": "Le pouvoir d'achat"
+    },
+    {
+     "theme": "Emploi",
+     "libelle": "L'emploi"
+    },
+    {
+     "theme": "Environnement",
+     "libelle": "L'environnement"
+    },
+    {
+     "theme": "Gouvernance, finances publiques et action collective",
+     "libelle": "La participation"
+    }
+   ],
+   "liste_titre": "Associations et services",
+   "legende": "Association, service ou lieu"
+  }
  }
 ]

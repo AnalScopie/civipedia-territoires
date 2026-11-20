@@ -220,7 +220,7 @@ def verifier(entree, idx):
         une = entree.get("une")
         if une:
             projets = {i.get("id") for i in d.get("items", []) if i.get("k") == "projet"}
-            if une.get("projet") not in projets:
+            if une.get("projet") and une["projet"] not in projets:
                 erreur("index.json", f"{tid} : projet à la une « {une.get('projet')} » absent de la carte")
             insc = une.get("inscription")
             if insc and (not str(insc.get("url", "")).startswith("https://") or not insc.get("bouton")):
