@@ -5,6 +5,7 @@ Version épurée, au style « carnet », des cartes territoriales : Crossac, Pon
 Elle lit les **mêmes données publiées** que la carte principale (`territoires/`, `tableau-de-bord/data.json`). Elle reste donc reliée à la grande base et se met à jour en même temps. Elle n'affiche ni le nom de l'association ni celui de l'animateur du projet. Les logos des collectivités sont conservés.
 
 Elle montre le territoire lui-même : associations, lieux, services, chiffres. Un projet mis « à la une » sur la carte principale (le WoodyBus à Crossac) n'y figure pas : le projet, ses lieux propres (arrêts, garage), ses itinéraires et ses indicateurs sont retirés à l'affichage. Les vues simplifiées sans projet (« Le bourg » à Chevaigné, « Beautour » à Vertou) sont conservées.
+
 ## Fichiers
 
 | Fichier | Rôle |
