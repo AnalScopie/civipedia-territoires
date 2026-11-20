@@ -151,6 +151,35 @@ remplacer('let GUICHET = "";', 'let GUICHET = "", CONF = {};')
 remplacer('try { reg = await loadJSON(REGISTRY); }',
           'try { reg = await loadJSON(REGISTRY); if (CONF.territoires) reg = reg.filter(t => CONF.territoires.includes(t.id)); if (!reg.length) throw new Error("vide"); }')
 
+# Pas de projet « à la une » (le WoodyBus à Crossac) : la carte montre le territoire
+# lui-même. Le projet, ses lieux propres (arrêts, garage), ses tracés et ses
+# indicateurs sont retirés ; les vues simplifiées sans projet (Chevaigné, Vertou) restent.
+remplacer('[T, GEO] = await Promise.all([loadJSON(entry.data), loadJSON(entry.geo)]);',
+          '[T, GEO] = await Promise.all([loadJSON(entry.data), loadJSON(entry.geo)]);\n  entry = retirerUne(entry);')
+remplacer('async function openTerritory(', r'''function retirerUne(entry){
+  const pid = entry.une && entry.une.projet;
+  if (!pid) return entry;
+  const projet = T.items.find(i => i.id === pid);
+  const retires = new Set([pid]);
+  for (const l of T.liens) {
+    const o = l.a === pid ? l.b : l.b === pid ? l.a : null;
+    const it = o && T.items.find(i => i.id === o);
+    // Un lieu ou un événement relié seulement à ce projet lui appartient.
+    if (it && (it.k === "ressource" || it.k === "evenement") && T.liens.every(x => (x.a !== o && x.b !== o) || x.a === pid || x.b === pid)) retires.add(o);
+  }
+  for (const i of T.items.filter(i => retires.has(i.id))) for (const cat of i.cats || []) {
+    const c = (T.couverture || []).find(c => c.cat === cat); if (!c) continue;
+    c.elements--; if (i.src) c.avec_source--;
+    if (i.pt) c.precis--; else if (/^Sans adresse/.test(i.zone || "")) c.sans_position--; else c.commune--;
+  }
+  T.items = T.items.filter(i => !retires.has(i.id));
+  T.liens = T.liens.filter(l => !retires.has(l.a) && !retires.has(l.b));
+  T.traces = (T.traces || []).filter(t => t.projet !== pid);
+  if (projet) T.indicateurs = (T.indicateurs || []).filter(i => !(i.nom || "").includes(projet.nom));
+  return { ...entry, une: null };
+}
+async function openTerritory(''')
+
 # Grande base : même projection publique, sans le nom de l'association.
 remplacer('try { BASE = await loadJSON(TABLEAU + "data.json"); } catch(_) { BASE = null; }',
           'try { BASE = neutre(await loadJSON(TABLEAU + "data.json")); } catch(_) { BASE = null; }', nb=2)
