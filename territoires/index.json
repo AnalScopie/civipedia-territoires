@@ -65,6 +65,50 @@
   "nom": "Chevaigné",
   "data": "territoires/chevaigne.json",
   "geo": "territoires/chevaigne.geo.json",
-  "instantane": "2026-11-20 (annuaire Chevaigné v20/11/2026)"
+  "instantane": "2026-11-20 (tableur CIVIPEDIA_POC_CHEVAIGNE)",
+  "une": {
+   "onglet": "La carte",
+   "surtitre": "Chevaigné · Rennes Métropole",
+   "titre": "Qui agit à Chevaigné",
+   "texte": "Les associations, services et lieux de la commune sur la carte. Touchez un point pour voir sa fiche, et retrouvez juste en dessous les événements à venir.",
+   "donnees": [
+    {
+     "theme": "Démographie et dynamiques territoriales",
+     "libelle": "Les habitants"
+    },
+    {
+     "theme": "Logement",
+     "libelle": "Le logement"
+    },
+    {
+     "theme": "Mobilités",
+     "libelle": "Les déplacements"
+    },
+    {
+     "theme": "Éducation",
+     "libelle": "L'école et la petite enfance"
+    },
+    {
+     "theme": "Vivre ensemble",
+     "libelle": "La vie locale"
+    },
+    {
+     "theme": "Pouvoir d'achat",
+     "libelle": "Le pouvoir d'achat"
+    },
+    {
+     "theme": "Emploi",
+     "libelle": "L'emploi"
+    },
+    {
+     "theme": "Environnement",
+     "libelle": "L'environnement"
+    },
+    {
+     "theme": "Gouvernance, finances publiques et action collective",
+     "libelle": "La participation"
+    }
+   ]
+  }
  }
 ]

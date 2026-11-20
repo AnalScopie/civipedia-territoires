@@ -299,7 +299,7 @@ fieldset.field{border:0;padding:0;margin:0}
 .pages button[aria-pressed="true"]{background:var(--blue-soft);color:var(--blue-ink)}
 .une-head{padding-block:14px 10px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 16px}
 .une-head .kick{margin:0;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue-ink);flex-basis:100%}
-.une-head h1{margin:0;font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.015em;line-height:1.1;text-wrap:balance}
+.une-head h1{flex-basis:100%;margin:0;font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.015em;line-height:1.1;text-wrap:balance}
 .une-head p{margin:0;color:var(--ink-2);max-width:70ch;font-size:15px}
 @media (max-width:620px){.une-head p{display:none}}
 .cta{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:18px;border:1px solid var(--line);border-radius:var(--r);background:var(--blue-soft)}
@@ -569,7 +569,7 @@ async function openTerritory(entry, page = "une"){
   const lg = $("#tlogos"), logos = entry.logos || [];
   lg.hidden = !logos.length;
   lg.innerHTML = logos.length ? `<span>Avec</span>` + logos.map(l => `<div class="plate" title="${esc(l.nom)}"><img src="${esc(l.src)}" alt="${esc(l.alt)}" loading="lazy"></div>`).join("") : "";
-  UNE = entry.une && byId[entry.une.projet] ? entry.une : null;
+  UNE = entry.une && (!entry.une.projet || byId[entry.une.projet]) ? entry.une : null; // vue simplifiée, avec ou sans projet à la une
   renderUne(); setupMap(); renderStatic();
   showPage(UNE ? page : "tout");
 }
@@ -588,11 +588,11 @@ function renderUne(){
   const ib = $("#insc-top"), insc = UNE && UNE.inscription;
   ib.hidden = !insc; $("#inscription").hidden = !insc;
   if (!UNE) return;
-  const pr = byId[UNE.projet];
-  $("#page-une").textContent = UNE.onglet || pr.nom;
+  const pr = byId[UNE.projet] || {};
+  $("#page-une").textContent = UNE.onglet || pr.nom || "La carte";
   $("#page-tout").textContent = "Tout " + T.territoire.nom;
   $("#une-kick").textContent = UNE.surtitre || T.territoire.nom;
-  $("#une-titre").textContent = UNE.titre || pr.nom;
+  $("#une-titre").textContent = UNE.titre || pr.nom || T.territoire.nom;
   $("#une-texte").textContent = UNE.texte || pr.desc || "";
   if (insc) {
     ib.textContent = insc.bouton_court || insc.bouton;
@@ -612,7 +612,7 @@ function showPage(page){
   $("#une").hidden = !une; $("#home").hidden = !!une; $(".hero").hidden = !!une; $("#themeview").hidden = true;
   $("#page-une").setAttribute("aria-pressed", String(!!une)); $("#page-tout").setAttribute("aria-pressed", String(!une));
   $(une ? "#slot-une" : "#slot-tout").after($(".main"));
-  FOCUS = une ? focusIds() : null;
+  FOCUS = une && UNE.projet ? focusIds() : null; // sans projet : toute la carte du territoire
   st.commune = null;
   const h = T.territoire.id + (une || !UNE ? "" : "/tout");
   if ((location.hash || "").slice(1) !== h) history.replaceState(null, "", "#" + h);
