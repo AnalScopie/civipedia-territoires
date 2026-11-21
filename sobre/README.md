@@ -13,6 +13,7 @@ Elle montre le territoire lui-même : associations, lieux, services, chiffres. U
 | `index.html` | La page. **Ne pas modifier à la main** : elle est produite par `generer.py`. |
 | `generer.py` | Produit `index.html` à partir de la carte principale (`../index.html`). Relancer après toute modification de la carte principale : `python3 sobre/generer.py`. |
 | `config.json` | `territoires` (facultatif) : limiter la carte à certains territoires, par exemple `["crossac"]` ; sans cette ligne, tous les territoires du registre sont proposés. `guichet` : adresse du guichet courriel (vide tant qu'il n'est pas installé). |
+| `manifest.webmanifest`, `sw.js`, `icones/` | Application installable : nom « Carte », icône carte au trésor. Le service worker garde une copie de la page et des données de chaque territoire du registre, pour ouvrir la carte sans réseau ; en ligne, il charge toujours la dernière version publiée. Les icônes sont dessinées à partir de l'emblème de l'en-tête. |
 | `guichet-mail.gs` | Script Google qui reçoit le formulaire et l'envoie par courriel. |
 
 ## Formulaire « Contribuer »
@@ -32,3 +33,10 @@ Le guichet ne stocke rien : chaque envoi devient un courriel. Si le visiteur a l
 ## Signature
 
 La page est signée « Povie-Skopein ». Le lien « Contact » ouvre un courriel vers l'adresse de la signataire. Elle n'est pas écrite telle quelle dans la page, ce qui limite sa collecte par les robots.
+
+## Installer la carte sur un téléphone
+
+- **Android (Chrome)** : ouvrir `…/sobre/`. Un bandeau « Installer la carte » apparaît en bas de l'écran ; sinon, menu ⋮ → « Installer l'application » ou « Ajouter à l'écran d'accueil ».
+- **iPhone (Safari)** : ouvrir `…/sobre/`, toucher Partager ↑ puis « Sur l'écran d'accueil ».
+
+L'icône « Carte » s'ajoute à l'écran d'accueil. La carte s'ouvre en plein écran, sans barre de navigateur, et reste consultable sans réseau. Elle est indépendante de l'appli de la carte principale.
