@@ -1,0 +1,341 @@
+{
+ "territoire": {
+  "id": "saint-nazaire",
+  "nom": "Saint-Nazaire",
+  "centre": [
+   47.2736,
+   -2.2139
+  ],
+  "rayon_km": 15
+ },
+ "instantane": "2026-11-21 (grande base Civipédia, première version)",
+ "genere_le": "2026-11-21",
+ "communes": [
+  {
+   "nom": "Saint-Nazaire",
+   "lat": 47.2736,
+   "lon": -2.2139,
+   "km": 0.0,
+   "zone": "À Saint-Nazaire"
+  },
+  {
+   "nom": "Trignac",
+   "lat": 47.3158,
+   "lon": -2.2099,
+   "km": 4.7,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-Brevin-les-Pins",
+   "lat": 47.2332,
+   "lon": -2.1473,
+   "km": 6.7,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Pornichet",
+   "lat": 47.2622,
+   "lon": -2.3123,
+   "km": 7.5,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Montoir-de-Bretagne",
+   "lat": 47.3322,
+   "lon": -2.1543,
+   "km": 7.9,
+   "zone": "À proximité"
+  },
+  {
+   "nom": "Saint-André-des-Eaux",
+   "lat": 47.325,
+   "lon": -2.3079,
+   "km": 9.1,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Corsept",
+   "lat": 47.2613,
+   "lon": -2.0939,
+   "km": 9.2,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Saint-Malo-de-Guersac",
+   "lat": 47.3551,
+   "lon": -2.1701,
+   "km": 9.6,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Saint-Joachim",
+   "lat": 47.3664,
+   "lon": -2.2534,
+   "km": 10.7,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Baule-Escoublac",
+   "lat": 47.2925,
+   "lon": -2.3585,
+   "km": 11.1,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Saint-Père-en-Retz",
+   "lat": 47.2269,
+   "lon": -2.0622,
+   "km": 12.6,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Donges",
+   "lat": 47.3453,
+   "lon": -2.0849,
+   "km": 12.6,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Saint-Michel-Chef-Chef",
+   "lat": 47.1718,
+   "lon": -2.127,
+   "km": 13.1,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Paimbœuf",
+   "lat": 47.2903,
+   "lon": -2.0249,
+   "km": 14.4,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Plaine-sur-Mer",
+   "lat": 47.1435,
+   "lon": -2.1845,
+   "km": 14.6,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Saint-Lyphard",
+   "lat": 47.3745,
+   "lon": -2.3402,
+   "km": 14.7,
+   "zone": "Alentours (≈ 15 km)"
+  },
+  {
+   "nom": "Crossac",
+   "lat": 47.4035,
+   "lon": -2.1484,
+   "km": 15.3,
+   "zone": "Alentours (≈ 15 km)"
+  }
+ ],
+ "items": [
+  {
+   "id": "SN-ORG-001",
+   "k": "organisation",
+   "nom": "Ville de Saint-Nazaire (Mairie)",
+   "type": "Collectivité",
+   "desc": "Commune de Loire-Atlantique, ville-centre de Saint-Nazaire Agglomération (la CARENE).",
+   "cats": [
+    "Gouvernance, finances publiques et action collective"
+   ],
+   "site": "https://www.saintnazaire.fr",
+   "src": {
+    "nom": "Ville de Saint-Nazaire – site officiel",
+    "url": "https://www.saintnazaire.fr"
+   },
+   "com": "Saint-Nazaire",
+   "zone": "À Saint-Nazaire",
+   "commune": "Saint-Nazaire"
+  },
+  {
+   "id": "SN-ORG-002",
+   "k": "organisation",
+   "nom": "Saint-Nazaire Agglomération – la CARENE",
+   "type": "Collectivité",
+   "desc": "Communauté d'agglomération de la région nazairienne et de l'estuaire : 10 communes autour de Saint-Nazaire. Compétente notamment pour l'assainissement des eaux usées ; organise les Audacity Awards.",
+   "adresse": "4 avenue du Commandant l'Herminier, 44605 Saint-Nazaire",
+   "cats": [
+    "Gouvernance, finances publiques et action collective",
+    "Accès à l'eau"
+   ],
+   "site": "https://www.saintnazaireagglo.fr",
+   "src": {
+    "nom": "Saint-Nazaire Agglomération – délibération D2025.00044 (modification n° 3 du PLUi)",
+    "url": "https://www.saintnazaireagglo.fr/wp-content/uploads/sites/2/2025/03/D2025.00044_PLUi_Modification-n%C2%B03_APPRO.pdf"
+   },
+   "pt": [
+    47.285748,
+    -2.212411
+   ],
+   "zone": "À Saint-Nazaire",
+   "commune": "Saint-Nazaire"
+  },
+  {
+   "id": "SN-ORG-003",
+   "k": "organisation",
+   "nom": "Couleur Talents",
+   "type": "Tiers-lieu et organisme de formation",
+   "desc": "Tiers-lieu et organisme de formation certifié Qualiopi, installé à Saint-Nazaire.",
+   "adresse": "18 rue René Guillouzo, 44600 Saint-Nazaire",
+   "cats": [
+    "Éducation",
+    "Économie locale et tissu productif"
+   ],
+   "site": "https://couleur-talents.fr",
+   "src": {
+    "nom": "Couleur Talents – site",
+    "url": "https://couleur-talents.fr"
+   },
+   "com": "Saint-Nazaire",
+   "zone": "À Saint-Nazaire",
+   "commune": "Saint-Nazaire"
+  },
+  {
+   "id": "SN-ORG-004",
+   "k": "organisation",
+   "nom": "Cigales À bon port",
+   "type": "Club d'investisseurs citoyens",
+   "desc": "Club Cigales créé en janvier 2024 à Saint-Nazaire : ses membres prêtent de 2 500 à 4 000 € à des activités locales d'utilité sociale, environnementale ou culturelle, à moins de 25 km de Saint-Nazaire. Membre de l'association régionale des Cigales des Pays de la Loire.",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "site": "https://abonport.cigales-paysdelaloire.fr/",
+   "src": {
+    "nom": "Cigales À bon port – site du club",
+    "url": "https://abonport.cigales-paysdelaloire.fr/"
+   },
+   "com": "Saint-Nazaire",
+   "zone": "À Saint-Nazaire",
+   "commune": "Saint-Nazaire"
+  },
+  {
+   "id": "SN-EVT-001",
+   "k": "evenement",
+   "nom": "Rencontre avec des porteurs de projets d'activité",
+   "type": "Rencontre",
+   "desc": "Les porteurs de projets présentent leur activité au club Cigales À bon port et peuvent être orientés vers d'autres partenaires. Entrée gratuite.",
+   "cats": [
+    "Économie locale et tissu productif"
+   ],
+   "site": "https://abonport.cigales-paysdelaloire.fr/",
+   "src": {
+    "nom": "Cigales À bon port – site du club",
+    "url": "https://abonport.cigales-paysdelaloire.fr/"
+   },
+   "debut": "2026-11-21",
+   "fin": "2026-11-21",
+   "heure": "10h-18h",
+   "passe": false,
+   "lieu": "Le Garage, 40 rue des Halles, Saint-Nazaire",
+   "organisateur": "SN-ORG-004",
+   "com": "Saint-Nazaire",
+   "zone": "À Saint-Nazaire",
+   "commune": "Saint-Nazaire"
+  }
+ ],
+ "liens": [
+  {
+   "a": "SN-ORG-001",
+   "b": "SN-ORG-002",
+   "t": "Membre de"
+  }
+ ],
+ "reperes": [],
+ "themes": [],
+ "indicateurs": [],
+ "observations": [],
+ "en_attente": [],
+ "ouverts": [
+  {
+   "sujet": "Associations nazairiennes",
+   "motif": "Quelques structures seulement sont relevées à ce stade",
+   "suite": "Compléter à partir de l'annuaire des associations de la ville",
+   "cats": [
+    "Vivre ensemble"
+   ]
+  },
+  {
+   "sujet": "Mairie, maisons de quartier et équipements publics",
+   "motif": "Lieux connus mais pas encore relevés ni placés précisément sur la carte",
+   "suite": "Relever les adresses sur le site de la ville et les géocoder",
+   "cats": [
+    "Vivre ensemble"
+   ]
+  },
+  {
+   "sujet": "Quartiers",
+   "motif": "La carte couvre la ville entière",
+   "suite": "Ajouter les quartiers un par un, en commençant par un premier quartier",
+   "cats": [
+    "Vivre ensemble"
+   ]
+  },
+  {
+   "sujet": "Autres clubs Cigales de la région nazairienne",
+   "motif": "Cités par une source secondaire, non vérifiés",
+   "suite": "Vérifier sur le site des Cigales des Pays de la Loire",
+   "cats": [
+    "Économie locale et tissu productif"
+   ]
+  },
+  {
+   "sujet": "Chiffres du territoire",
+   "motif": "Population, emploi et logement pas encore relevés",
+   "suite": "Relever les chiffres de l'INSEE pour la commune",
+   "cats": [
+    "Démographie et dynamiques territoriales"
+   ]
+  }
+ ],
+ "attendues": [],
+ "couverture": [
+  {
+   "cat": "Économie locale et tissu productif",
+   "elements": 3,
+   "en_verification": 0,
+   "precis": 0,
+   "commune": 3,
+   "sans_position": 0,
+   "avec_source": 3,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Gouvernance, finances publiques et action collective",
+   "elements": 2,
+   "en_verification": 0,
+   "precis": 1,
+   "commune": 1,
+   "sans_position": 0,
+   "avec_source": 2,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Accès à l'eau",
+   "elements": 1,
+   "en_verification": 0,
+   "precis": 1,
+   "commune": 0,
+   "sans_position": 0,
+   "avec_source": 1,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  },
+  {
+   "cat": "Éducation",
+   "elements": 1,
+   "en_verification": 0,
+   "precis": 0,
+   "commune": 1,
+   "sans_position": 0,
+   "avec_source": 1,
+   "chiffres": 0,
+   "chiffres_attente": 0
+  }
+ ],
+ "traces": []
+}

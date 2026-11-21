@@ -149,5 +149,12 @@
     }
    ]
   }
+ },
+ {
+  "id": "saint-nazaire",
+  "nom": "Saint-Nazaire",
+  "data": "territoires/saint-nazaire.json",
+  "geo": "territoires/saint-nazaire.geo.json",
+  "instantane": "2026-11-21 (grande base Civipédia, première version)"
  }
 ]
