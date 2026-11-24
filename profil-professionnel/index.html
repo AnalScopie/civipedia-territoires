@@ -184,7 +184,10 @@ var CT_SITE = {
     { label: "Formations professionnelles", url: "https://couleur-talents.fr/accueil-2-2-2/" },
     { label: "Ateliers", url: "https://couleur-talents.fr/ateliers-2/" }
   ],
-  coordonnees: "06 63 29 16 61 · contact@couleur-talents.fr · 18 rue René Guillouzo, Saint-Nazaire"
+  coordonnees: "06 63 29 16 61 · contact@couleur-talents.fr · 18 rue René Guillouzo, Saint-Nazaire",
+  // Adresse du guichet Google (Apps Script) qui ajoute les scores au tableau de l'équipe.
+  // Vide : le bouton copie la ligne à coller à la main. Voir technique/profil-equipe-apps-script/LISEZMOI.md
+  guichetScores: ""
 };
 </script>
 <script>/* Instantané du référentiel Google Sheets « Profil professionnel Couleur Talents — Référentiel V1 »
@@ -734,7 +737,8 @@ function ctTestAnswers(id) {
       'Autres exemples : ' + ["TEST-001", "TEST-002", "TEST-003"].filter(function (t) { return t !== state.example; }).map(function (t) { return '<button class="linkbtn" data-ex="' + t + '">' + t + '</button>'; }).join(" · ") + '</div>';
     html += '<header class="rhead"><span class="eyebrow">Votre profil professionnel</span><h1>' + esc(r.profile.titre) + '</h1>' +
       '<div class="row"><span class="badge ' + c.code + '">Profil ' + esc(c.niveau.toLowerCase()) + '</span><span class="small muted">' + new Date(r.meta.generated_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) + ' · modèle ' + esc(r.meta.model_version) + '</span></div>' +
-      '<div class="row"><button class="btn" id="pdf">Télécharger mon rapport (PDF)</button><button class="btn ghost" id="restart">Recommencer</button>' + (state.example ? '' : '<button class="btn ghost" id="copyscores">Copier mes scores pour l\'équipe</button>') + '</div><p class="small muted" id="pdfmsg" role="status"></p><textarea id="scoresbox" hidden readonly rows="2" style="min-height:0"></textarea>' +
+      '<div class="row"><button class="btn" id="pdf">Télécharger mon rapport (PDF)</button><button class="btn ghost" id="restart">Recommencer</button>' + (state.example ? '' : '<button class="btn ghost" id="copyscores">' + (CT_SITE.guichetScores ? 'Envoyer mes scores au tableau de l\'équipe' : 'Copier mes scores pour l\'équipe') + '</button>') + '</div><p class="small muted" id="pdfmsg" role="status"></p><textarea id="scoresbox" hidden readonly rows="2" style="min-height:0"></textarea>' +
+      (state.example || !CT_SITE.guichetScores ? '' : '<div id="sendbox" class="notice stack" hidden style="gap:10px"><label for="prenom"><b>Votre prénom</b></label><div class="row"><input id="prenom" maxlength="40" autocomplete="given-name" style="font:inherit;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);flex:1 1 180px"><button class="btn" id="sendscores">Envoyer</button></div><p class="small muted">Seuls vos scores, vos 3 familles et votre niveau de confiance sont envoyés au tableau de l\'équipe Couleur Talents. Vos réponses et vos notes restent sur votre appareil.</p></div>') +
       (state.example ? '' : '<p class="small muted">Votre résultat reste enregistré sur cet appareil, dans ce navigateur : si vous quittez la page, vous pourrez y revenir et télécharger le PDF plus tard. Rien n\'est envoyé à Couleur Talents.</p>') +
       '<nav class="toc" aria-label="Sections"><a href="#synthese">Synthèse</a><a href="#signature">Signature</a><a href="#caracteristiques">Caractéristiques</a><a href="#environnement">Environnement</a><a href="#familles">Familles</a><a href="#appuis">Points d\'appui</a><a href="#vigilance">Vigilance</a><a href="#confiance">Confiance</a></nav></header>';
 
@@ -823,7 +827,24 @@ function ctTestAnswers(id) {
     document.getElementById("restart").onclick = function () { if (!state.example) clearSaved(); state = { view: "home", i: 0, answers: {}, open: {}, result: null, example: null, radar: "RAD_FONCT" }; render(); scrollTop(); };
     document.getElementById("pdf").onclick = function () { makePDF(state.result); };
     var cs = document.getElementById("copyscores");
-    if (cs) cs.onclick = function () {
+    if (cs && CT_SITE.guichetScores) cs.onclick = function () {
+      var box = document.getElementById("sendbox"); box.hidden = false; document.getElementById("prenom").focus();
+    };
+    var ss = document.getElementById("sendscores");
+    if (ss) ss.onclick = function () {
+      var prenom = document.getElementById("prenom").value.trim();
+      if (!prenom) { pdfStatus("Écrivez votre prénom, puis cliquez sur Envoyer."); return; }
+      ss.disabled = true; pdfStatus("Envoi en cours…");
+      var payload = { prenom: prenom,
+        scores: r.dimensions.map(function (x) { return x.score == null ? null : Math.round(x.score); }),
+        familles: [0, 1, 2].map(function (k) { return r.familles_restituees[k] ? r.familles_restituees[k].famille : ""; }),
+        confiance: c.niveau };
+      if (payload.scores.some(function (v) { return v == null; })) { ss.disabled = false; pdfStatus("Il manque des scores : répondez à toutes les questions pour pouvoir les envoyer."); return; }
+      fetch(CT_SITE.guichetScores, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) })
+        .then(function () { document.getElementById("sendbox").hidden = true; cs.disabled = true; cs.textContent = "Scores envoyés"; pdfStatus("Merci " + prenom + " : vos scores ont été ajoutés au tableau de l'équipe."); },
+              function () { ss.disabled = false; pdfStatus("L'envoi n'a pas marché. Vérifiez votre connexion et réessayez."); });
+    };
+    if (cs && !CT_SITE.guichetScores) cs.onclick = function () {
       // Une ligne à coller dans l'onglet Scores du tableau de l'équipe (colonnes A à X) : date, prénom (à écrire), accord (à écrire),
       // les 17 scores dans l'ordre du référentiel, les 3 familles, le niveau de confiance. Aucune réponse aux questions.
       var d = new Date(), pad = function (n) { return String(n).padStart(2, "0"); };
