@@ -10,44 +10,76 @@
 <meta property="og:image" content="https://analscopie.github.io/civipedia-territoires/decouvrir/partage.png">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#F4B61F">
+<meta name="theme-color" content="#FCD15B">
 <link rel="icon" href="icones/icone-192.png">
 <link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ocre:#F4B61F;--prune:#6B1D5C;--rose:#D81B60;--orange:#F37021;--fond:#FFFDF7;--texte:#2B2B2B}
+/* Style des fiches d'analyse Couleur Talents : bandeau jaune arrondi, titres Lora prune,
+   petites étiquettes en capitales, encadrés pastel, bandeau violet en pied de page. */
+:root{--jaune:#FCD15B;--prune:#6B1D5C;--rose:#D81B60;--orange:#F37021;--fond:#FFFDF7;--texte:#2B2B2B;--pj:#FEF3CF;--pr:#F6E6EF;--trait:#F1E6CF}
 *{box-sizing:border-box}
-body{margin:0;background:var(--fond);color:var(--texte);font:18px/1.55 Montserrat,system-ui,sans-serif;min-height:100vh;display:flex;flex-direction:column}
-header{background:var(--ocre);padding:34px 22px 40px;text-align:center}
-header img{width:76px;height:76px;border-radius:20px}
-.marque{font-family:Caveat,cursive;font-size:32px;color:var(--prune);margin-top:6px;line-height:1}
-main{flex:1;max-width:620px;margin:0 auto;padding:30px 22px 40px;text-align:center}
-h1{font-family:Lora,Georgia,serif;color:var(--prune);font-size:clamp(30px,6vw,42px);line-height:1.12;margin:0 0 14px;text-wrap:balance}
-.lead{font-size:20px;font-weight:600;margin:0 0 12px}
-.texte{margin:0 auto 28px;max-width:52ch}
-.mots{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 30px}
-.mots span{background:#F6E6EF;color:var(--prune);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:600}
-.bouton{display:inline-block;background:var(--prune);color:#fff;text-decoration:none;font-weight:600;font-size:21px;border-radius:22px;padding:20px 34px;min-height:64px;box-shadow:0 6px 0 rgb(0 0 0 / .15)}
-.bouton:active{transform:translateY(3px);box-shadow:0 3px 0 rgb(0 0 0 / .15)}
+body{margin:0;background:var(--fond);color:var(--texte);font:17px/1.55 Montserrat,system-ui,sans-serif}
+header{background:var(--jaune);border-radius:0 0 34px 34px;padding:26px 22px 34px}
+.haut{max-width:720px;margin:0 auto}
+.etiquette{font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--prune);margin:0 0 10px}
+.ligne{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+h1{font-family:Lora,Georgia,serif;color:var(--prune);font-size:clamp(32px,7vw,48px);line-height:1.08;margin:0;text-wrap:balance}
+.logo{flex:none;text-align:right;font-family:Lora,Georgia,serif;color:var(--prune);font-size:17px;line-height:1.1}
+.logo svg{display:block;margin:0 0 4px auto;width:44px;height:52px}
+.sous{font-weight:600;margin:12px 0 22px;font-size:18px}
+.bouton{display:block;text-align:center;background:var(--prune);color:#fff;text-decoration:none;font-weight:700;font-size:22px;border-radius:20px;padding:20px 24px;box-shadow:0 6px 0 rgb(0 0 0 / .18)}
+.bouton:active{transform:translateY(3px);box-shadow:0 3px 0 rgb(0 0 0 / .18)}
 .bouton:focus-visible{outline:4px solid var(--orange);outline-offset:4px}
-.infos{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 20px;margin:22px 0 0;font-size:15px;color:#5a5157}
-footer{text-align:center;font-size:15px;color:#5a5157;padding:0 20px 30px}
-footer a{color:var(--prune)}
+.infos{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 0;font-size:14px;font-weight:600;color:var(--prune)}
+.infos span::before{content:"● ";color:var(--orange)}
+main{max-width:720px;margin:0 auto;padding:26px 22px 34px}
+h2{font-family:Lora,Georgia,serif;color:var(--prune);font-size:24px;margin:0 0 12px}
+.cartes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:12px}
+.carte{background:#fff;border:1.5px solid var(--trait);border-radius:16px;padding:14px 16px}
+.carte b{display:block;color:var(--prune);font-size:16px}
+.carte b::before{content:"● ";color:var(--orange)}
+.carte span{font-size:14px;color:#5a5157}
+.duo{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;margin-top:18px}
+.boite{border-radius:18px;padding:16px 18px}
+.boite.j{background:var(--pj)}.boite.r{background:var(--pr)}
+.boite p{margin:0;font-size:15px}
+.boite .t{font-weight:700;margin-bottom:4px}.boite.j .t{color:var(--rose)}.boite.r .t{color:var(--prune)}
+.encore{margin:24px 0 0}
+footer{background:var(--prune);color:var(--jaune);padding:16px 22px;font-size:14px;font-weight:600}
+footer div{max-width:720px;margin:0 auto;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+footer a{color:var(--jaune)}
 </style>
 </head>
 <body>
 <header>
-  <img src="icones/icone-192.png" alt="">
-  <div class="marque">Couleur Talents</div>
+  <div class="haut">
+    <p class="etiquette">Questionnaire d'orientation · gratuit</p>
+    <div class="ligne">
+      <h1>Découvrez votre fonctionnement professionnel</h1>
+      <div class="logo"><svg viewBox="0 0 44 52" aria-hidden="true"><path d="M22 52C21 40 23 30 21 20" stroke="#6B1D5C" stroke-width="2.5" fill="none"/><path d="M21 24C14 18 10 12 9 6" stroke="#6B1D5C" stroke-width="2" fill="none"/><path d="M22 22C28 16 33 12 37 5" stroke="#6B1D5C" stroke-width="2" fill="none"/><circle cx="9" cy="6" r="4.5" fill="#F37021"/><circle cx="37" cy="5" r="5" fill="#D81B60"/><circle cx="21" cy="17" r="3.5" fill="#F37021"/></svg>Couleur<br>Talents</div>
+    </div>
+    <p class="sous">53 questions pour comprendre comment vous aimez travailler.</p>
+    <a class="bouton" href="../profil-professionnel/">Faire le test maintenant</a>
+    <div class="infos"><span>Environ 15 minutes</span><span>Résultat en PDF</span><span>Aucune donnée personnelle</span></div>
+  </div>
 </header>
+
 <main>
-  <h1>Découvrez votre fonctionnement professionnel</h1>
-  <p class="lead">53 questions pour comprendre comment vous aimez travailler.</p>
-  <p class="texte">Explorez vos préférences, votre rapport au collectif, à l'autonomie, à la créativité, au rythme et aux environnements de travail.</p>
-  <div class="mots"><span>Collectif</span><span>Autonomie</span><span>Créativité</span><span>Rythme</span><span>Environnement</span></div>
-  <a class="bouton" href="../profil-professionnel/">Faire le test</a>
-  <div class="infos"><span>Gratuit</span><span>Environ 15 minutes</span><span>Votre résultat en PDF</span><span>Aucune donnée personnelle demandée</span></div>
+  <h2>Ce que vous allez découvrir</h2>
+  <div class="cartes">
+    <div class="carte"><b>Le collectif</b><span>Seul ou en équipe ?</span></div>
+    <div class="carte"><b>L'autonomie</b><span>Cadre clair ou grande liberté ?</span></div>
+    <div class="carte"><b>La créativité</b><span>Méthodes éprouvées ou idées neuves ?</span></div>
+    <div class="carte"><b>Le rythme</b><span>Calme ou effervescence ?</span></div>
+  </div>
+  <div class="duo">
+    <div class="boite j"><p class="t">Votre profil</p><p>Vos points d'appui, et les environnements de travail où vous êtes à votre meilleur.</p></div>
+    <div class="boite r"><p class="t">Vos pistes</p><p>Trois familles de métiers à explorer, et un échange possible avec Couleur Talents.</p></div>
+  </div>
+  <p class="encore"><a class="bouton" href="../profil-professionnel/">Je commence</a></p>
 </main>
-<footer>Proposé par <a href="https://couleur-talents.fr/" target="_blank" rel="noopener">Couleur Talents</a>, Saint-Nazaire</footer>
+
+<footer><div><span>Couleur Talents · Saint-Nazaire</span><a href="https://couleur-talents.fr/" target="_blank" rel="noopener">couleur-talents.fr</a></div></footer>
 </body>
 </html>
