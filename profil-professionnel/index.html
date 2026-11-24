@@ -734,7 +734,7 @@ function ctTestAnswers(id) {
       'Autres exemples : ' + ["TEST-001", "TEST-002", "TEST-003"].filter(function (t) { return t !== state.example; }).map(function (t) { return '<button class="linkbtn" data-ex="' + t + '">' + t + '</button>'; }).join(" · ") + '</div>';
     html += '<header class="rhead"><span class="eyebrow">Votre profil professionnel</span><h1>' + esc(r.profile.titre) + '</h1>' +
       '<div class="row"><span class="badge ' + c.code + '">Profil ' + esc(c.niveau.toLowerCase()) + '</span><span class="small muted">' + new Date(r.meta.generated_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) + ' · modèle ' + esc(r.meta.model_version) + '</span></div>' +
-      '<div class="row"><button class="btn" id="pdf">Télécharger mon rapport (PDF)</button><button class="btn ghost" id="restart">Recommencer</button></div><p class="small muted" id="pdfmsg" role="status"></p>' +
+      '<div class="row"><button class="btn" id="pdf">Télécharger mon rapport (PDF)</button><button class="btn ghost" id="restart">Recommencer</button>' + (state.example ? '' : '<button class="btn ghost" id="copyscores">Copier mes scores pour l\'équipe</button>') + '</div><p class="small muted" id="pdfmsg" role="status"></p><textarea id="scoresbox" hidden readonly rows="2" style="min-height:0"></textarea>' +
       (state.example ? '' : '<p class="small muted">Votre résultat reste enregistré sur cet appareil, dans ce navigateur : si vous quittez la page, vous pourrez y revenir et télécharger le PDF plus tard. Rien n\'est envoyé à Couleur Talents.</p>') +
       '<nav class="toc" aria-label="Sections"><a href="#synthese">Synthèse</a><a href="#signature">Signature</a><a href="#caracteristiques">Caractéristiques</a><a href="#environnement">Environnement</a><a href="#familles">Familles</a><a href="#appuis">Points d\'appui</a><a href="#vigilance">Vigilance</a><a href="#confiance">Confiance</a></nav></header>';
 
@@ -822,6 +822,23 @@ function ctTestAnswers(id) {
     app.querySelectorAll("[data-ex]").forEach(function (b) { b.onclick = function () { showExample(b.dataset.ex); }; });
     document.getElementById("restart").onclick = function () { if (!state.example) clearSaved(); state = { view: "home", i: 0, answers: {}, open: {}, result: null, example: null, radar: "RAD_FONCT" }; render(); scrollTop(); };
     document.getElementById("pdf").onclick = function () { makePDF(state.result); };
+    var cs = document.getElementById("copyscores");
+    if (cs) cs.onclick = function () {
+      // Une ligne à coller dans l'onglet Scores du tableau de l'équipe (colonnes A à X) : date, prénom (à écrire), accord (à écrire),
+      // les 17 scores dans l'ordre du référentiel, les 3 familles, le niveau de confiance. Aucune réponse aux questions.
+      var d = new Date(), pad = function (n) { return String(n).padStart(2, "0"); };
+      var cells = [pad(d.getDate()) + "/" + pad(d.getMonth() + 1) + "/" + d.getFullYear(), "", ""]
+        .concat(r.dimensions.map(function (x) { return x.score == null ? "" : String(Math.round(x.score)); }))
+        .concat([0, 1, 2].map(function (k) { return r.familles_restituees[k] ? r.familles_restituees[k].famille : ""; }))
+        .concat([c.niveau]);
+      var line = cells.join("\t");
+      var box = document.getElementById("scoresbox");
+      var done = function () { pdfStatus("Scores copiés. Collez-les dans la colonne A d'une ligne vide de l'onglet Scores, puis écrivez votre prénom et « Oui »."); };
+      (navigator.clipboard ? navigator.clipboard.writeText(line) : Promise.reject()).then(done, function () {
+        box.value = line; box.hidden = false; box.focus(); box.select();
+        pdfStatus("Copiez cette ligne (Ctrl+C ou Cmd+C), puis collez-la dans l'onglet Scores.");
+      });
+    };
   }
 
   /* ---------- Rapport PDF (généré dans le navigateur, rien n'est envoyé) ---------- */

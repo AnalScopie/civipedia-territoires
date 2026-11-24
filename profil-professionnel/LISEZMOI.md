@@ -32,3 +32,7 @@ La page envoie sa hauteur au site pour que le cadre s'ajuste sans barre de défi
 ## Lien avec le reste
 
 Les 11 familles doivent mener aux offres de Couleur Talents que l'équipe peut réellement assurer (modèle F3 du dépôt privé `civipedia-conseil`). Le champ « offre » de chaque famille est vide tant que la table familles → offres n'est pas validée par Couleur Talents. Les noms des intervenants n'apparaissent jamais dans cette page.
+
+## Tableau de l'équipe (volontaire)
+
+À la fin du questionnaire, le bouton « Copier mes scores pour l'équipe » copie une ligne (date, 17 scores, 3 familles, niveau de confiance ; aucune réponse aux questions) à coller dans l'onglet Scores du tableau « Profil professionnel – scores de l'équipe (volontaire) », rangé dans le Drive Couleur Talents, dossier « Profil professionnel – résultats de l'équipe ». Rien n'est envoyé automatiquement : c'est la personne qui choisit de coller sa ligne.
