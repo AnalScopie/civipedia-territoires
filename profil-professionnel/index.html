@@ -355,7 +355,7 @@ var CT_REF = {
     "TIT-EX": "Profil en cours d'exploration",
     "TIT-STD": "Profil {QUALIF_1} et {QUALIF_2}",
     "LECT-COMPAT": "Correspondance calculée entre vos réponses et les caractéristiques définies pour cette famille. Ce n'est pas une probabilité de réussite.",
-    "MENTION-DONNEES": "Aucune de vos réponses n'est conservée : ce document a été généré pendant votre session et n'existe que sur votre appareil."
+    "MENTION-DONNEES": "Aucune de vos réponses n'est envoyée ni conservée par Couleur Talents : ce document a été calculé sur votre appareil, où vos réponses restent enregistrées dans votre navigateur jusqu'à ce que vous les effaciez (bouton « Effacer et recommencer » sur la page d'accueil)."
   }
 };
 
@@ -566,6 +566,22 @@ function ctTestAnswers(id) {
   var BLOCS = []; QS.forEach(function (q) { if (BLOCS.indexOf(q.bloc) < 0) BLOCS.push(q.bloc); });
   var state = { view: "home", i: 0, answers: {}, open: {}, result: null, example: null, radar: "RAD_FONCT" };
 
+  /* ---------- Sauvegarde sur l'appareil de la personne (rien n'est envoyé) ----------
+     Les réponses sont gardées dans le navigateur pour pouvoir reprendre le questionnaire
+     ou revenir à son résultat et retélécharger le PDF. Le résultat est recalculé à partir des réponses. */
+  var SAVE_KEY = "ct-profil-" + REF.meta.questionnaire_version;
+  function loadSaved() { try { var x = JSON.parse(localStorage.getItem(SAVE_KEY) || "null"); return x && x.answers ? x : null; } catch (e) { return null; } }
+  function saveState() {
+    if (state.example) return;
+    var n = Object.keys(state.answers).length;
+    try {
+      if (!n && !Object.keys(state.open).length) return;
+      localStorage.setItem(SAVE_KEY, JSON.stringify({ answers: state.answers, open: state.open, i: state.i, done: state.view === "result", t: Date.now() }));
+    } catch (e) {}
+  }
+  function clearSaved() { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} }
+  function savedDate(t) { try { return new Date(t).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }); } catch (e) { return ""; } }
+
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function fmt(n) { return n == null ? "—" : String(Math.round(n)); }
 
@@ -616,8 +632,12 @@ function ctTestAnswers(id) {
   /* ---------- Accueil ---------- */
   function renderHome() {
     var ex = CT_ENGINE.compute(REF, ctTestAnswers("TEST-001"));
+    var sv = loadSaved(), resume = "";
+    if (sv) resume = '<div class="notice stack" style="gap:10px;border-color:var(--accent)"><h3>' + (sv.done ? "Votre dernier résultat est gardé sur cet appareil" : "Vous aviez commencé le questionnaire") + '</h3>' +
+      '<p class="small">' + (sv.done ? "Questionnaire terminé le " + esc(savedDate(sv.t)) + ". Vous pouvez revoir votre profil et télécharger le PDF sans tout refaire." : "Vous en étiez à la question " + (sv.i + 1) + " sur " + QS.length + " (" + esc(savedDate(sv.t)) + ").") + '</p>' +
+      '<div class="row"><button class="btn" id="resume">' + (sv.done ? "Revoir mon résultat" : "Reprendre où j'en étais") + '</button><button class="btn ghost" id="forget">Effacer et recommencer</button></div></div>';
     app.innerHTML =
-      '<div class="stack" style="gap:30px">' +
+      '<div class="stack" style="gap:30px">' + resume +
       '<div class="hero"><div class="stack" style="gap:18px">' +
       '<span class="eyebrow">' + esc(CT_SITE.organisation) + ' · Exploration professionnelle</span>' +
       '<h1>Profil professionnel</h1>' +
@@ -625,11 +645,17 @@ function ctTestAnswers(id) {
       '<div class="row"><button class="btn" id="start">Commencer le questionnaire</button><button class="btn ghost" id="example">Voir un exemple de résultat</button></div>' +
       '</div><figure class="example-fig" style="margin:0">' + radarSVG(ex.radar.RAD_FONCT, { label: "Exemple de radar pour un profil fictif" }) +
       '<figcaption>Exemple : profil fictif « analytique et rigoureux »</figcaption></figure></div>' +
-      '<ul class="facts"><li><b>12 à 15 min</b>53 questions en 6 parties</li><li><b>Aucune donnée conservée</b>Vos réponses restent sur votre appareil</li><li><b>Un rapport PDF</b>À télécharger à la fin</li></ul>' +
+      '<ul class="facts"><li><b>12 à 15 min</b>53 questions en 6 parties</li><li><b>Rien n\'est envoyé</b>Vos réponses restent sur votre appareil, vous pouvez y revenir</li><li><b>Un rapport PDF</b>À télécharger à la fin</li></ul>' +
       '<div class="notice stack" style="gap:8px"><h3>À savoir avant de commencer</h3>' +
       '<p class="small">Cet outil d\'exploration décrit des préférences et des tendances que vous déclarez. Ce n\'est ni un test psychologique, ni un diagnostic, ni une prédiction de réussite. Il n\'y a pas de bonne ou de mauvaise réponse : répondez selon ce qui vous ressemble le plus aujourd\'hui. Aucune information personnelle (nom, adresse, santé) n\'est demandée.</p></div>' +
       '</div>';
-    document.getElementById("start").onclick = function () { state.view = "quiz"; state.i = 0; render(); };
+    document.getElementById("start").onclick = function () { if (loadSaved()) { clearSaved(); state.answers = {}; state.open = {}; } state.view = "quiz"; state.i = 0; render(); };
+    var rb = document.getElementById("resume");
+    if (rb) rb.onclick = function () { var x = loadSaved(); if (!x) return; state.answers = x.answers || {}; state.open = x.open || {}; state.example = null;
+      if (x.done) { state.result = CT_ENGINE.compute(REF, state.answers); state.view = "result"; } else { state.i = Math.min(x.i || 0, QS.length - 1); state.view = "quiz"; }
+      render(); scrollTop(); };
+    var fb = document.getElementById("forget");
+    if (fb) fb.onclick = function () { clearSaved(); state.answers = {}; state.open = {}; state.i = 0; state.view = "home"; render(); };
     document.getElementById("example").onclick = function () { showExample("TEST-001"); };
   }
 
@@ -665,7 +691,7 @@ function ctTestAnswers(id) {
     app.querySelectorAll(".opt").forEach(function (b) {
       b.onclick = function () { state.answers[q.id] = b.dataset.v; app.querySelectorAll(".opt").forEach(function (x) { x.setAttribute("aria-pressed", x === b); }); setTimeout(next, 220); };
     });
-    var ta = document.getElementById("free"); if (ta) ta.oninput = function () { state.open[q.id] = ta.value; };
+    var ta = document.getElementById("free"); if (ta) ta.oninput = function () { state.open[q.id] = ta.value; saveState(); };
     document.getElementById("prev").onclick = function () { if (state.i === 0) { state.view = "home"; } else state.i--; render(); };
     var nb = document.getElementById("next"); if (nb) nb.onclick = next;
     var qt = document.getElementById("qt"); if (state.focus && qt) qt.focus({ preventScroll: true });
@@ -709,6 +735,7 @@ function ctTestAnswers(id) {
     html += '<header class="rhead"><span class="eyebrow">Votre profil professionnel</span><h1>' + esc(r.profile.titre) + '</h1>' +
       '<div class="row"><span class="badge ' + c.code + '">Profil ' + esc(c.niveau.toLowerCase()) + '</span><span class="small muted">' + new Date(r.meta.generated_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) + ' · modèle ' + esc(r.meta.model_version) + '</span></div>' +
       '<div class="row"><button class="btn" id="pdf">Télécharger mon rapport (PDF)</button><button class="btn ghost" id="restart">Recommencer</button></div><p class="small muted" id="pdfmsg" role="status"></p>' +
+      (state.example ? '' : '<p class="small muted">Votre résultat reste enregistré sur cet appareil, dans ce navigateur : si vous quittez la page, vous pourrez y revenir et télécharger le PDF plus tard. Rien n\'est envoyé à Couleur Talents.</p>') +
       '<nav class="toc" aria-label="Sections"><a href="#synthese">Synthèse</a><a href="#signature">Signature</a><a href="#caracteristiques">Caractéristiques</a><a href="#environnement">Environnement</a><a href="#familles">Familles</a><a href="#appuis">Points d\'appui</a><a href="#vigilance">Vigilance</a><a href="#confiance">Confiance</a></nav></header>';
 
     html += '<section class="block" id="synthese"><h2>Synthèse</h2><div class="synth">' + r.profile.synthese_blocs.map(function (b) { return '<p>' + esc(b.texte) + '</p>'; }).join("") + '</div>' +
@@ -793,7 +820,7 @@ function ctTestAnswers(id) {
 
     app.querySelectorAll("[data-r]").forEach(function (b) { b.onclick = function () { state.radar = b.dataset.r; var y = window.scrollY; render(); window.scrollTo(0, y); }; });
     app.querySelectorAll("[data-ex]").forEach(function (b) { b.onclick = function () { showExample(b.dataset.ex); }; });
-    document.getElementById("restart").onclick = function () { state = { view: "home", i: 0, answers: {}, open: {}, result: null, example: null, radar: "RAD_FONCT" }; render(); scrollTop(); };
+    document.getElementById("restart").onclick = function () { if (!state.example) clearSaved(); state = { view: "home", i: 0, answers: {}, open: {}, result: null, example: null, radar: "RAD_FONCT" }; render(); scrollTop(); };
     document.getElementById("pdf").onclick = function () { makePDF(state.result); };
   }
 
@@ -905,6 +932,7 @@ function ctTestAnswers(id) {
 
   function render() {
     if (state.view === "home") renderHome(); else if (state.view === "quiz") renderQuiz(); else renderResult();
+    saveState();
   }
   render();
 
