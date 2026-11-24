@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"></head><body>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><meta name="theme-color" content="#F4B61F"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icones/icone-192.png"><link rel="apple-touch-icon" href="icones/apple-touch-icon.png"><meta name="apple-mobile-web-app-title" content="Orientation"></head><body>
 <title>Profil professionnel Couleur Talents</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -345,20 +345,20 @@ var CT_REF = {
   textes: {
     "SYN-INTRO-RC": "Vos réponses dessinent un profil relativement convergent : les tendances décrites ci-dessous ressortent de façon cohérente.",
     "SYN-INTRO-MC": "Vos réponses dessinent un profil modérément convergent : plusieurs tendances ressortent nettement, d'autres restent à préciser.",
-    "SYN-INTRO-EX": "Vos réponses ne permettent pas encore de dégager un profil net. Les éléments ci-dessous sont des pistes à explorer, idéalement avec un·e conseiller·ère.",
+    "SYN-INTRO-EX": "Votre profil est riche et ouvert : plusieurs pistes se dessinent. Un échange avec Couleur Talents vous aidera à repérer celle qui vous ressemble le plus.",
     "SYN-DOM": "Vos réponses font principalement ressortir : {DOMINANTES}.",
     "SYN-ENV": "Les environnements de travail les plus en phase avec vos réponses offrent notamment : {ENVIRONNEMENTS}.",
     "SYN-FAM": "Parmi les familles professionnelles étudiées, la correspondance calculée est la plus élevée pour : {FAMILLES}.",
     "SYN-FAM-EXAEQUO": "Plusieurs familles ressortent à un niveau proche ({FAMILLES}) : le questionnaire ne permet pas encore de les départager clairement.",
     "SYN-FAM-AUCUNE": "Aucune famille professionnelle ne se dégage nettement à ce stade ; un échange avec un·e conseiller·ère peut aider à préciser vos pistes.",
-    "SYN-LECTURE": "Ces résultats décrivent des préférences et des tendances que vous avez déclarées ; ce ne sont ni un bilan psychologique ni une prédiction de réussite.",
+    "SYN-LECTURE": "Ce profil vous aide à repérer les environnements de travail où vous êtes le plus à l'aise : un bon point de départ pour en parler avec Couleur Talents.",
     "CONF-RC": "Vos réponses sont cohérentes entre elles et les principales orientations se distinguent nettement.",
     "CONF-MC": "Les grandes tendances sont lisibles, mais certains points restent à préciser : {MOTIFS}.",
-    "CONF-EX": "Vos réponses ne permettent pas encore une lecture fiable ({MOTIFS}). Il est conseillé de reprendre ces pistes avec un·e conseiller·ère.",
+    "CONF-EX": "Plusieurs pistes restent ouvertes : un échange avec un·e conseiller·ère Couleur Talents permettra de les affiner.",
     "TIT-EX": "Profil en cours d'exploration",
     "TIT-STD": "Profil {QUALIF_1} et {QUALIF_2}",
     "LECT-COMPAT": "Correspondance calculée entre vos réponses et les caractéristiques définies pour cette famille. Ce n'est pas une probabilité de réussite.",
-    "MENTION-DONNEES": "Aucune de vos réponses n'est envoyée ni conservée par Couleur Talents : ce document a été calculé sur votre appareil, où vos réponses restent enregistrées dans votre navigateur jusqu'à ce que vous les effaciez (bouton « Effacer et recommencer » sur la page d'accueil)."
+    "MENTION-DONNEES": "Vos réponses restent sur votre appareil, dans votre navigateur, jusqu'à ce que vous les effaciez (bouton « Effacer et recommencer » sur la page d'accueil). Rien n'est envoyé, sauf vos scores si vous choisissez vous-même de les partager avec l'équipe."
   }
 };
 
@@ -649,8 +649,8 @@ function ctTestAnswers(id) {
       '</div><figure class="example-fig" style="margin:0">' + radarSVG(ex.radar.RAD_FONCT, { label: "Exemple de radar pour un profil fictif" }) +
       '<figcaption>Exemple : profil fictif « analytique et rigoureux »</figcaption></figure></div>' +
       '<ul class="facts"><li><b>12 à 15 min</b>53 questions en 6 parties</li><li><b>Rien n\'est envoyé</b>Vos réponses restent sur votre appareil, vous pouvez y revenir</li><li><b>Un rapport PDF</b>À télécharger à la fin</li></ul>' +
-      '<div class="notice stack" style="gap:8px"><h3>À savoir avant de commencer</h3>' +
-      '<p class="small">Cet outil d\'exploration décrit des préférences et des tendances que vous déclarez. Ce n\'est ni un test psychologique, ni un diagnostic, ni une prédiction de réussite. Il n\'y a pas de bonne ou de mauvaise réponse : répondez selon ce qui vous ressemble le plus aujourd\'hui. Aucune information personnelle (nom, adresse, santé) n\'est demandée.</p></div>' +
+      '<div class="notice stack" style="gap:8px"><h3>Trouvez l\'environnement où vous donnez le meilleur</h3>' +
+      '<p class="small">Ce questionnaire vous aide à savoir dans quel environnement vous aimez travailler, et où vos talents s\'expriment le mieux. Il n\'y a pas de bonne ou de mauvaise réponse : répondez simplement selon ce qui vous ressemble aujourd\'hui. Aucune information personnelle n\'est demandée.</p></div>' +
       '</div>';
     document.getElementById("start").onclick = function () { if (loadSaved()) { clearSaved(); state.answers = {}; state.open = {}; } state.view = "quiz"; state.i = 0; render(); };
     var rb = document.getElementById("resume");
@@ -788,7 +788,7 @@ function ctTestAnswers(id) {
           '<dl class="kv"><dt>Ce qui rapproche</dt><dd><div class="chips">' + (f.favorables.length ? f.favorables.map(function (x) { return '<span class="chip">' + esc(x.texte) + '</span>'; }).join("") : '<span class="empty">—</span>') + '</div></dd>' +
           (f.limitants.length ? '<dt>Ce qui éloigne</dt><dd><div class="chips">' + f.limitants.map(function (x) { return '<span class="chip neg">' + esc(x.texte) + '</span>'; }).join("") + '</div></dd>' : '') +
           '<dt>Exemples de métiers</dt><dd>' + esc(f.exemples_metiers) + '</dd><dt>Réalités du métier</dt><dd>' + esc(f.contraintes) + '</dd><dt>Pour explorer</dt><dd>' + esc(f.pistes) + '</dd></dl>' +
-          '<p class="note">Familles et correspondances définies à dire d\'expert (hypothèses non validées sur un échantillon).</p></article>';
+          '<p class="note">Une piste à explorer, à affiner avec Couleur Talents.</p></article>';
       }).join("") +
       '<details><summary>Voir les ' + r.familles.length + ' familles étudiées</summary><div class="alllist" style="margin-top:10px">' + r.familles.map(function (f) {
         return '<div class="allrow"><span>' + esc(f.famille) + '</span><div class="meter"><i style="width:' + f.compatibilite + '%"></i></div><span class="num">' + fmt(f.compatibilite) + '</span></div>';
@@ -818,7 +818,7 @@ function ctTestAnswers(id) {
       (CT_SITE.liens || []).map(function (l) { return '<a class="btn ghost" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a>'; }).join("") + '</div>' +
       (CT_SITE.coordonnees ? '<p class="contact">' + esc(CT_SITE.coordonnees) + '</p>' : '') + '</section>';
 
-    html += '<footer class="foot"><p>' + esc(r.mentions.donnees) + '</p><p>Outil d\'exploration professionnelle, prototype non validé empiriquement. Les scores indiquent une position dans l\'échelle du questionnaire, pas une comparaison avec d\'autres personnes. Modèle ' + esc(r.meta.model_version) + ' · questionnaire ' + esc(r.meta.questionnaire_version) + ' · restitution ' + esc(r.meta.restitution_version) + '.</p>' +
+    html += '<footer class="foot"><p>' + esc(r.mentions.donnees) + '</p><p>Questionnaire d\'orientation Couleur Talents. Les scores (0 à 100) situent vos réponses dans l\'échelle du questionnaire. Modèle ' + esc(r.meta.model_version) + ' · questionnaire ' + esc(r.meta.questionnaire_version) + ' · restitution ' + esc(r.meta.restitution_version) + '.</p>' +
       '<p>Inspiré de LOGIQ+ (A. Povie, 2025), <a href="https://doi.org/10.5281/zenodo.17782246" target="_blank" rel="noopener">doi.org/10.5281/zenodo.17782246</a>, licence CC BY 4.0.</p></footer></div>';
     app.innerHTML = html;
 
@@ -937,7 +937,7 @@ function ctTestAnswers(id) {
     if (openIds.length) { h2("Vos notes (non utilisées dans le calcul)"); openIds.forEach(function (id) { txt(qShort(id), 9, "italic", MUT, 0.5); txt(state.open[id], 9.5, "normal", INK, 2.5); }); }
 
     h2("Méthode");
-    txt("Outil d'exploration professionnelle Couleur Talents, prototype non validé empiriquement. Les résultats décrivent des préférences déclarées ; ce ne sont ni un bilan psychologique ni une prédiction de réussite. Les scores (0 à 100) indiquent une position dans l'échelle du questionnaire, pas une comparaison avec d'autres personnes. Les familles professionnelles et leurs correspondances sont des hypothèses d'expert.", 9, "normal", MUT, 2);
+    txt("Questionnaire d'orientation Couleur Talents. Il décrit vos préférences de travail et les environnements où vous êtes le plus à l'aise. Les scores (0 à 100) situent vos réponses dans l'échelle du questionnaire ; les familles de métiers sont des pistes à explorer avec Couleur Talents.", 9, "normal", MUT, 2);
     txt(r.mentions.donnees, 9, "normal", MUT, 2);
     h2("Pour aller plus loin avec " + CT_SITE.organisation);
     txt("Un échange avec un·e conseiller·ère permet de confronter ces résultats à votre parcours et d'identifier les formations ou accompagnements utiles.", 9.5, "normal", INK, 1.5);
