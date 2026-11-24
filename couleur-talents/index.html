@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Couleur Talents – Mes outils</title>
+<meta name="theme-color" content="#FCD15B">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icones/icone-192.png">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Couleur Talents">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--safran:#FCD15B;--prune:#6B1D5C;--orange:#F37021;--rose:#D81B60;--fond:#FFFDF7;--texte:#2B2B2B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font:18px/1.5 Montserrat,system-ui,sans-serif;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+header{background:var(--safran);padding:28px 22px 26px;text-align:center}
+header img{width:72px;height:72px;border-radius:18px}
+.marque{font-family:Caveat,cursive;font-size:34px;color:var(--prune);line-height:1;margin-top:6px}
+h1{font-family:Lora,Georgia,serif;color:var(--prune);font-size:26px;margin:6px 0 0}
+main{max-width:560px;margin:0 auto;padding:24px 18px 40px;display:grid;gap:18px}
+.gros{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;text-decoration:none;color:#fff;
+  border-radius:26px;padding:22px 20px;min-height:116px;box-shadow:0 6px 0 rgb(0 0 0 / .12)}
+.gros:active{transform:translateY(3px);box-shadow:0 3px 0 rgb(0 0 0 / .12)}
+.gros:focus-visible{outline:4px solid var(--orange);outline-offset:3px}
+.gros svg{width:64px;height:64px}
+.gros b{display:block;font-family:Lora,Georgia,serif;font-size:23px;line-height:1.15}
+.gros span{display:block;font-size:16px;opacity:.95;margin-top:4px}
+.b1{background:var(--prune)}.b2{background:var(--rose)}.b3{background:#fff;color:var(--prune);border:3px solid var(--prune)}
+.aide{background:#FEF3CF;border-radius:22px;padding:18px 20px;font-size:16px}
+.aide h2{font-family:Lora,Georgia,serif;color:var(--prune);font-size:20px;margin:0 0 6px}
+.aide ol{margin:6px 0 0;padding-left:22px}.aide li{margin:4px 0}
+#installer{display:none;font:600 18px Montserrat,sans-serif;background:var(--prune);color:#fff;border:0;border-radius:18px;padding:14px 20px;min-height:52px;margin-top:10px;cursor:pointer}
+footer{text-align:center;font-size:14px;color:#6b5f66;padding:0 18px 30px}
+</style>
+</head>
+<body>
+<header>
+  <img src="icones/icone-192.png" alt="">
+  <div class="marque">Couleur Talents</div>
+  <h1>Mes outils</h1>
+</header>
+
+<main id="boutons"></main>
+
+<main style="padding-top:0">
+  <section class="aide" id="aide">
+    <h2>Mettre cette page sur mon téléphone</h2>
+    <p id="aide-texte">Elle s'ouvrira ensuite comme une application, avec l'icône de la fleur.</p>
+    <button id="installer" type="button">Installer l'application</button>
+    <ol id="aide-iphone" hidden>
+      <li>Appuyez sur le bouton <b>Partager</b> (le carré avec une flèche vers le haut), en bas de l'écran.</li>
+      <li>Choisissez <b>Sur l'écran d'accueil</b>.</li>
+      <li>Appuyez sur <b>Ajouter</b>.</li>
+    </ol>
+    <ol id="aide-autre" hidden>
+      <li>Ouvrez le menu du navigateur (les trois petits points).</li>
+      <li>Choisissez <b>Installer l'application</b> ou <b>Ajouter à l'écran d'accueil</b>.</li>
+    </ol>
+  </section>
+</main>
+
+<footer>Couleur Talents · Saint-Nazaire</footer>
+
+<script>
+/* Les 3 outils. Pour changer un lien ou un texte, modifier seulement cette liste. */
+var OUTILS = [
+  { titre: "Le questionnaire d'orientation", texte: "53 questions, un profil et des pistes de métiers. À faire passer aux personnes.",
+    lien: "../profil-professionnel/", classe: "b1",
+    icone: '<circle cx="32" cy="32" r="26" fill="none" stroke="#FCD15B" stroke-width="5"/><path d="M32 14v18l12 8" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round"/>' },
+  { titre: "L'équipe et les missions", texte: "Qui sait faire quoi, à qui confier une demande, et le journal.",
+    lien: "https://claude.ai/artifact/JT1uQif8qMg4bHy7GPrAig", classe: "b2", externe: true,
+    icone: '<circle cx="22" cy="24" r="9" fill="#FCD15B"/><circle cx="42" cy="24" r="9" fill="#fff"/><path d="M8 52c0-10 6-16 14-16s14 6 14 16M28 52c0-10 6-16 14-16s14 6 14 16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/>' },
+  { titre: "Le site Couleur Talents", texte: "Les formations, les bilans et les ateliers.",
+    lien: "https://couleur-talents.fr/", classe: "b3", externe: true,
+    icone: '<circle cx="32" cy="22" r="8" fill="#F37021"/><circle cx="22" cy="30" r="8" fill="#D81B60"/><circle cx="42" cy="30" r="8" fill="#D81B60"/><circle cx="32" cy="38" r="8" fill="#6B1D5C"/><path d="M32 44v16" stroke="#6B1D5C" stroke-width="4"/>' }
+];
+document.getElementById("boutons").innerHTML = OUTILS.map(function (o) {
+  return '<a class="gros ' + o.classe + '" href="' + o.lien + '"' + (o.externe ? ' target="_blank" rel="noopener"' : '') + '>' +
+    '<svg viewBox="0 0 64 64" aria-hidden="true">' + o.icone + '</svg><div><b>' + o.titre + '</b><span>' + o.texte + '</span></div></a>';
+}).join("");
+
+/* Installation */
+var standalone = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone;
+var iphone = /iphone|ipad|ipod/i.test(navigator.userAgent);
+if (standalone) document.getElementById("aide").hidden = true;
+else if (iphone) document.getElementById("aide-iphone").hidden = false;
+else document.getElementById("aide-autre").hidden = false;
+var invite = null, btn = document.getElementById("installer");
+window.addEventListener("beforeinstallprompt", function (e) {
+  e.preventDefault(); invite = e; btn.style.display = "inline-block"; document.getElementById("aide-autre").hidden = true;
+});
+btn.addEventListener("click", function () {
+  if (!invite) return; invite.prompt();
+  invite.userChoice.then(function () { invite = null; btn.style.display = "none"; });
+});
+window.addEventListener("appinstalled", function () { document.getElementById("aide").hidden = true; });
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+</script>
+</body>
+</html>

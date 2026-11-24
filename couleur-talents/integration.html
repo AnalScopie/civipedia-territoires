@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Intégrer le questionnaire au site – Couleur Talents</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FFFDF7;color:#2B2B2B;font:17px/1.6 Montserrat,system-ui,sans-serif}
+header{background:#FCD15B;padding:26px 20px}header>div,main{max-width:760px;margin:0 auto}
+h1,h2{font-family:Lora,Georgia,serif;color:#6B1D5C;line-height:1.15}h1{margin:0;font-size:30px}h2{font-size:21px;margin:28px 0 8px}
+main{padding:10px 20px 40px}
+ol li{margin:8px 0}
+pre{background:#2B2B2B;color:#FEF3CF;padding:16px;border-radius:14px;overflow-x:auto;font-size:13px;white-space:pre-wrap;word-break:break-all}
+button{font:600 16px Montserrat,sans-serif;background:#6B1D5C;color:#fff;border:0;border-radius:14px;padding:12px 18px;min-height:46px;cursor:pointer}
+.note{background:#F6E6EF;border-radius:16px;padding:14px 16px;font-size:15px}
+</style>
+</head>
+<body>
+<header><div><p style="margin:0 0 4px;color:#6B1D5C;font-weight:600">Pour la personne qui gère le site couleur-talents.fr</p><h1>Ajouter le questionnaire d'orientation au site</h1></div></header>
+<main>
+<p>Le questionnaire s'affiche dans une page du site, comme s'il en faisait partie. Il faut seulement coller un petit code. Comptez 5 minutes.</p>
+
+<h2>1. Copier le code</h2>
+<pre id="code">&lt;iframe id="ct-profil" src="https://analscopie.github.io/civipedia-territoires/profil-professionnel/"
+  style="width:100%;border:0;min-height:900px" title="Questionnaire d'orientation Couleur Talents"
+  allow="clipboard-write"&gt;&lt;/iframe&gt;
+&lt;script&gt;
+addEventListener("message", function (e) {
+  if (e.origin === "https://analscopie.github.io" &amp;&amp; e.data &amp;&amp; e.data.type === "ct-profil-height")
+    document.getElementById("ct-profil").style.height = e.data.height + "px";
+});
+&lt;/script&gt;</pre>
+<p><button id="copier" type="button">Copier le code</button> <span id="ok" role="status"></span></p>
+
+<h2>2. Le coller dans WordPress</h2>
+<ol>
+  <li>Dans WordPress, créer une nouvelle page (ou ouvrir la page choisie), par exemple « Questionnaire d'orientation ».</li>
+  <li>Cliquer sur <b>+</b> pour ajouter un bloc, chercher <b>HTML personnalisé</b>.</li>
+  <li>Coller le code dans ce bloc.</li>
+  <li>Cliquer sur <b>Aperçu</b> pour vérifier, puis sur <b>Publier</b>.</li>
+</ol>
+
+<h2>3. Vérifier</h2>
+<ol>
+  <li>Ouvrir la page publiée, sur ordinateur et sur téléphone.</li>
+  <li>Le questionnaire doit s'afficher en entier, sans deuxième barre de défilement : la hauteur s'ajuste toute seule.</li>
+  <li>Répondre à 2 ou 3 questions, fermer la page, la rouvrir : « Reprendre où j'en étais » doit apparaître.</li>
+</ol>
+
+<div class="note"><b>Bon à savoir.</b> Le questionnaire ne demande ni nom ni adresse, et n'envoie aucune réponse au site ni à Couleur Talents : tout reste dans le navigateur de la personne. Il n'y a donc rien à ajouter à la politique de confidentialité pour la collecte de données. Si le site utilise une extension de sécurité qui bloque les « iframes », autoriser l'adresse <b>analscopie.github.io</b>.</div>
+
+<h2>Une question ?</h2>
+<p>Contacter Anne Povie, qui a conçu l'outil.</p>
+</main>
+<script>
+document.getElementById("copier").addEventListener("click", function () {
+  var t = document.getElementById("code").textContent, ok = document.getElementById("ok");
+  (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { ok.textContent = "Code copié."; },
+    function () { ok.textContent = "Sélectionnez le code à la main et copiez-le."; });
+});
+</script>
+</body>
+</html>
