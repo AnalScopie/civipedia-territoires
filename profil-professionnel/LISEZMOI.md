@@ -35,4 +35,6 @@ Les 11 familles doivent mener aux offres de Couleur Talents que l'équipe peut r
 
 ## Tableau de l'équipe (volontaire)
 
-À la fin du questionnaire, le bouton « Copier mes scores pour l'équipe » copie une ligne (date, 17 scores, 3 familles, niveau de confiance ; aucune réponse aux questions) à coller dans l'onglet Scores du tableau « Profil professionnel – scores de l'équipe (volontaire) », rangé dans le Drive Couleur Talents, dossier « Profil professionnel – résultats de l'équipe ». Rien n'est envoyé automatiquement : c'est la personne qui choisit de coller sa ligne.
+À la fin du questionnaire, le bouton « Envoyer mes scores au tableau de l'équipe » demande seulement le prénom, puis ajoute tout seul une ligne (date, 17 scores, 3 familles, niveau de confiance ; aucune réponse ni note) dans l'onglet Scores du tableau « Profil professionnel – scores de l'équipe (volontaire) », dans le Drive Couleur Talents.
+
+L'envoi passe par un petit script Google à installer une fois : voir `technique/profil-equipe-apps-script/LISEZMOI.md`. Son adresse se colle dans `CT_SITE.guichetScores`. Tant qu'elle est vide, le bouton se contente de copier la ligne à coller à la main.
