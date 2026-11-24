@@ -1,0 +1,17 @@
+{
+  "name": "Couleur Talents – Mes outils",
+  "short_name": "Couleur Talents",
+  "description": "Les outils de Couleur Talents : questionnaire d'orientation, équipe et missions, site.",
+  "lang": "fr",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFFDF7",
+  "theme_color": "#FCD15B",
+  "icons": [
+    { "src": "icones/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icones/icone-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
