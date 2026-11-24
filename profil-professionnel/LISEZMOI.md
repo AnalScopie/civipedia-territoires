@@ -22,7 +22,7 @@ Dans la page WordPress, ajouter un bloc « HTML personnalisé » avec :
   style="width:100%;border:0;min-height:900px" title="Profil professionnel Couleur Talents"></iframe>
 <script>
 addEventListener("message", function (e) {
-  if (e.data && e.data.type === "ct-profil-height") document.getElementById("ct-profil").style.height = e.data.height + "px";
+  if (e.origin === "https://analscopie.github.io" && e.data && e.data.type === "ct-profil-height") document.getElementById("ct-profil").style.height = e.data.height + "px";
 });
 </script>
 ```

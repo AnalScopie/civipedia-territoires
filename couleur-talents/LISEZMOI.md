@@ -18,3 +18,7 @@ Pour changer un bouton : modifier la liste `OUTILS` en haut du script de `index.
 
 - **Android / Chrome :** ouvrir la page, appuyer sur « Installer l'application ».
 - **iPhone / Safari :** bouton Partager, puis « Sur l'écran d'accueil », puis « Ajouter ».
+
+## Intégrer le questionnaire au site couleur-talents.fr
+
+Consignes pour la personne qui gère le site, avec le code à copier : `couleur-talents/integration.html` (adresse : `https://analscopie.github.io/civipedia-territoires/couleur-talents/integration.html`).
