@@ -35,10 +35,10 @@ a.gros:active{transform:translateY(3px);box-shadow:0 3px 0 rgb(0 0 0 / .12)}
 .b1{background:var(--prune)}.b4{background:#2B2B2B}.b2{background:var(--rose)}.b3{background:#fff;color:var(--prune);border:3px solid var(--prune)}
 .badge{display:inline-block;background:var(--safran);color:var(--prune);font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;margin-left:6px;vertical-align:middle}
 .b4{background:#2B2B2B}
-details{display:grid;gap:10px}
+details{display:block}
 summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:none}
 details[open] summary{transform:translateY(3px);box-shadow:0 3px 0 rgb(0 0 0 / .12)}
-.texte{background:#fff;border:2px solid #EADFE6;border-radius:20px;padding:14px 18px;font-size:16px}
+.texte{margin-top:12px;background:#fff;border:2px solid #EADFE6;border-radius:20px;padding:14px 18px;font-size:16px}
 .texte p{margin:0 0 8px}
 .texte a{display:inline-block;margin-top:4px;background:var(--prune);color:#fff;font-weight:600;text-decoration:none;border-radius:14px;padding:10px 16px}
 footer{text-align:center;font-size:14px;color:#6b5f66;padding:0 18px 30px}
@@ -55,7 +55,7 @@ footer a{color:inherit}
 <main>
   <a class="gros b1" href="../profil-professionnel/">
     <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="26" fill="none" stroke="#FCD15B" stroke-width="5"/><path d="M26 20l18 12-18 12z" fill="#fff"/></svg>
-    <div><b>Faire le test <span class="badge">gratuit</span></b><span>53 questions, environ 15 minutes. Résultat en PDF.</span></div>
+    <div><b>Faire le test <span class="badge">gratuit</span></b><span>53 questions pour comprendre comment vous aimez travailler.</span></div>
   </a>
 
   <details>
@@ -78,6 +78,17 @@ footer a{color:inherit}
     <div class="texte">
       <p>À partir de vos réponses, le questionnaire propose trois familles de métiers à explorer, et explique pourquoi chacune ressort.</p>
       <p>Ce sont des pistes pour réfléchir et en parler, avec votre résultat à garder en PDF.</p>
+      <a href="../profil-professionnel/">Faire le test →</a>
+    </div>
+  </details>
+  <details>
+    <summary class="gros b4">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="8" width="36" height="48" rx="6" fill="#FCD15B"/><path d="M22 22h20M22 31h20M22 40h12" stroke="#2B2B2B" stroke-width="4" stroke-linecap="round"/></svg>
+      <div><b>Votre résultat en PDF <span class="badge">gratuit</span></b><span>Environ 15 minutes, sans inscription.</span></div>
+    </summary>
+    <div class="texte">
+      <p>Le test est gratuit et prend environ 15 minutes. Aucune inscription, aucune donnée personnelle demandée.</p>
+      <p>À la fin, vous téléchargez votre résultat en PDF : vous le gardez, vous pouvez le relire ou le montrer à un conseiller.</p>
       <a href="../profil-professionnel/">Faire le test →</a>
     </div>
   </details>
