@@ -65,10 +65,11 @@ var OUTILS = [
   { titre: "Scores de l'équipe", texte: "Les résultats du questionnaire de chacun, et la comparaison de l'équipe.", lien: "https://docs.google.com/spreadsheets/d/14p47Ep-bInkJSIbaqQvluqj2zbPwVzHIdi9_0IxHOWc/edit", classe: "b1", icone: TABLEAU },
   { titre: "Documents à analyser", texte: "Déposez ici un CV ou un profil : Anne en fera une fiche.", lien: "https://drive.google.com/drive/folders/1uLxEp7xKp2LZE3jMmGDx65STxXh1fLZ2", classe: "b2", icone: DOSSIER },
   { titre: "Références et contexte", texte: "Présentations, catalogues et documents de Couleur Talents.", lien: "https://drive.google.com/drive/folders/11dG6kt2FESfWO5Hv41Ksz3APzdedmlX8", classe: "b3", icone: DOSSIER },
+  { titre: "Comment tout est relié", texte: "Le schéma de Couleur Talents, avec tous les liens.", lien: "schema.html", classe: "b4", icone: '<rect x="22" y="22" width="20" height="20" fill="#FCD15B"/><rect x="4" y="26" width="10" height="12" fill="#fff"/><rect x="50" y="26" width="10" height="12" fill="#fff"/><rect x="27" y="4" width="10" height="10" fill="#fff"/><rect x="27" y="50" width="10" height="10" fill="#fff"/><path d="M14 32h8M42 32h8M32 14v8M42 42" stroke="#fff" stroke-width="3"/><path d="M32 42v8" stroke="#fff" stroke-width="3"/>' },
   { titre: "Tout le Drive Couleur Talents", texte: "Le dossier partagé complet.", lien: "https://drive.google.com/drive/folders/1xoB-foka3NMHlHD-PL1-Ksz-pPj5IWXe", classe: "b3", icone: DOSSIER }
 ];
 document.getElementById("boutons").innerHTML = OUTILS.map(function (o) {
-  return '<a class="gros ' + o.classe + '" href="' + o.lien + '" target="_blank" rel="noopener"><svg viewBox="0 0 64 64" aria-hidden="true">' + o.icone + '</svg><div><b>' + o.titre + '</b><span>' + o.texte + '</span></div></a>';
+  return '<a class="gros ' + o.classe + '" href="' + o.lien + '" ' + (o.lien.indexOf("http") === 0 ? 'target="_blank" rel="noopener"' : '') + '><svg viewBox="0 0 64 64" aria-hidden="true">' + o.icone + '</svg><div><b>' + o.titre + '</b><span>' + o.texte + '</span></div></a>';
 }).join("");
 if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
 </script>
