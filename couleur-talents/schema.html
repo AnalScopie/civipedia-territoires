@@ -8,169 +8,121 @@
 <meta name="theme-color" content="#F4B61F">
 <link rel="icon" href="icones/icone-192.png">
 <style>
-/* Même esprit que le schéma d'architecture Civipédia : sobre, cases, flèches, liens bleus. */
 *{box-sizing:border-box}
-body{margin:0;background:#fff;color:#111;font:16px/1.45 Georgia,"Times New Roman",serif}
-.page{max-width:1120px;margin:0 auto;padding:28px 20px 40px}
-h1{font-size:30px;margin:0 0 4px}
-.sous-titre{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:26px}
+body{margin:0;background:#fff;color:#111;font:16px/1.4 Georgia,"Times New Roman",serif}
+.page{max-width:1180px;margin:0 auto;padding:24px 18px 36px}
+h1{font-size:28px;margin:0 0 4px}
+.sous-titre{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:16px}
 .sous-titre em{font-size:17px}.etat{font-size:14px}
 a{color:#1a4fbf}
-.retour{display:inline-block;margin-bottom:14px;font-size:15px}
-.schema{display:grid;grid-template-columns:minmax(0,1fr) 120px minmax(0,1.1fr) 120px minmax(0,1fr);grid-template-areas:
- ".     .   haut   .   ."
- ".     .   fh     .   ."
- "gauche fg centre fd droite"
- ".     .   fb     .   ."
- ".     .   bas    .   .";align-items:center}
-.case{border:1px solid #111;padding:14px 16px;background:#fff}
-.case .statut{font-style:italic;font-size:13px;margin:0 0 4px}
-.case h2{font-size:19px;margin:0 0 4px}
-.case p{margin:0 0 8px;font-size:14px}
-.case ul{list-style:none;margin:0;padding:10px 0 0;border-top:1px solid #111;font-size:15px}
-.case li{margin:3px 0}.case li::before{content:"– "}
-.centre{grid-area:centre;border:3px double #111;padding:18px}
-.centre h2{font-size:23px}
-.haut{grid-area:haut}.gauche{grid-area:gauche}.droite{grid-area:droite}.bas{grid-area:bas}
-.discret{border-style:dashed;color:#555}
-.discret h2{font-size:16px}
-.fl{font-size:12.5px;text-align:center;color:#111}
-.fl svg{display:block;margin:2px auto}
-.fh{grid-area:fh;display:flex;justify-content:center;gap:34px;padding:8px 0}
-.fb{grid-area:fb;display:flex;justify-content:center;gap:34px;padding:8px 0}
-.fg{grid-area:fg;padding:0 6px}.fd{grid-area:fd;padding:0 6px}
-.fg .fl,.fd .fl{margin:8px 0}
-h3{font-size:17px;border-bottom:1px solid #111;padding-bottom:6px;margin:34px 0 14px}
-.autres{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px}
-.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;border-top:1px solid #111;margin-top:34px;padding-top:6px}
-.cols ul{padding-left:20px;margin:6px 0}.cols li{margin:5px 0}
-.chaine{font-size:14px;margin:10px 0 0}
-@media(max-width:860px){
- .schema{grid-template-columns:minmax(0,1fr);grid-template-areas:"haut" "fh" "centre" "fg" "gauche" "fd" "droite" "fb" "bas"}
- .fg,.fd{display:flex;justify-content:center;gap:28px;padding:8px 0}
- .fg .fl,.fd .fl{margin:0}
- .haut-tel{transform:rotate(-90deg);margin:40px auto!important}.bas-tel{transform:rotate(90deg);margin:40px auto!important}
- .cols{grid-template-columns:1fr}
-}
+.retour{display:inline-block;margin-bottom:12px;font-size:15px}
+svg.toile{width:100%;height:auto;display:block}
+.n{width:100%;height:100%;border:2px solid #111;border-radius:14px;padding:10px 12px;font-size:14px;overflow:hidden}
+.n b{display:block;font-size:17px;margin-bottom:3px}
+.n i{display:block;font-size:12px;margin-bottom:4px}
+.n a{display:inline-block;margin:1px 0}
+.centre{background:#F4B61F;border-width:3px;font-size:15px}.centre b{font-size:22px}
+.outil{background:#F3E6F0;border-color:#6B1D5C}
+.range{background:#FFF1DC;border-color:#E0781F}
+.site{background:#E9F0FB;border-color:#1a4fbf}
+.admin{background:#2B2B2B;color:#fff;border-color:#2B2B2B}.admin a{color:#FCD15B}
+.bientot{background:#fff;border-style:dashed;color:#555}
+.civi{background:#f4f4f4;border-style:dashed;border-color:#888;color:#555;font-size:13px}
+.lab{font:13px Georgia,serif;fill:#111}
+.legende{display:flex;flex-wrap:wrap;gap:10px 22px;margin:14px 0 0;font-size:15px}
+.legende span{display:inline-flex;align-items:center;gap:8px}
+.legende i{width:22px;height:16px;border:2px solid #111;border-radius:4px;display:inline-block}
+.principe{border-top:1px solid #111;margin-top:18px;padding-top:6px}
+.principe ul{padding-left:20px;margin:6px 0}.principe li{margin:4px 0}
 </style>
 </head>
 <body>
 <div class="page">
 <a class="retour" href="corine.html">← Retour à l'Accès Corine</a>
 <h1>Couleur Talents · comment tout est relié</h1>
-<div class="sous-titre"><em>Un seul endroit pour tout ranger, de petits outils autour. Chaque case donne ses liens.</em><span class="etat">État au 24/11/2026 · interne</span></div>
+<div class="sous-titre"><em>Au centre, la page où tu cliques. Autour, ce qui se passe en coulisses. Les liens bleus s'ouvrent.</em><span class="etat">État au 24/11/2026 · interne</span></div>
 
-<div class="schema">
+<svg class="toile" viewBox="0 0 1140 800" role="img" aria-label="Schéma : la page Mes outils au centre, reliée au questionnaire, au Drive, à l'outil Équipe et missions, à l'Accès Corine, au site et au futur tableau de bord.">
+  <defs>
+    <marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#111"/></marker>
+    <marker id="fo" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#E0781F"/></marker>
+  </defs>
 
-  <div class="case haut">
-    <p class="statut">En ligne · installable sur le téléphone</p>
-    <h2>Mes outils</h2>
-    <p>La porte d'entrée : 4 gros boutons.</p>
-    <ul>
-      <li><a href="./">Ouvrir Mes outils</a></li>
-      <li><a href="corine.html">Accès Corine</a></li>
-    </ul>
-  </div>
+  <g stroke="#111" stroke-width="2" fill="none">
+    <path d="M570 335V190" marker-end="url(#f)"/>
+    <path d="M570 455V560" marker-end="url(#f)"/>
+    <path d="M685 395H835" marker-end="url(#f)"/>
+    <path d="M455 395H305" marker-end="url(#f)"/>
+    <path d="M450 110H330" marker-end="url(#f)"/>
+    <path d="M960 175V315" stroke-dasharray="6 5" stroke="#888" marker-end="url(#f)"/>
+    <path d="M180 455C200 560 300 640 430 650" marker-end="url(#f)"/>
+    <path d="M705 660H835" stroke-dasharray="6 5" stroke="#888" marker-end="url(#f)"/>
+  </g>
+  <path d="M690 140C790 170 800 300 770 470C755 545 735 580 712 590" stroke="#E0781F" stroke-width="2.5" fill="none" marker-end="url(#fo)"/>
 
-  <div class="fh">
-    <div class="fl"><svg width="14" height="34"><path d="M7 0v26" stroke="#111"/><path d="M1 24l6 9 6-9z"/></svg>ouvre</div>
-  </div>
+  <text class="lab" x="580" y="270">bouton 1</text>
+  <text class="lab" x="580" y="515">bouton 2</text>
+  <text class="lab" x="720" y="385">bouton 3</text>
+  <text class="lab" x="340" y="385">bouton 4</text>
+  <text class="lab" x="340" y="100">à la fin du résultat</text>
+  <text class="lab" x="140" y="680">raccourcis</text>
+  <text class="lab" x="972" y="250" fill="#555">liste de l'équipe</text>
+  <text class="lab" x="745" y="650" fill="#555">bientôt</text>
+  <text class="lab" x="795" y="215" fill="#E0781F">envoie les scores</text>
+  <text class="lab" x="795" y="231" fill="#E0781F">(si la personne le veut)</text>
 
-  <div class="case centre">
-    <p class="statut">En service · là où tout est rangé</p>
-    <h2>Le Drive Couleur Talents</h2>
-    <p>Dossier partagé Google Drive : documents, fiches et tableaux.</p>
-    <ul>
-      <li><a href="https://drive.google.com/drive/folders/1xoB-foka3NMHlHD-PL1-Ksz-pPj5IWXe"><b>Ouvrir le Drive Couleur Talents</b></a></li>
-      <li><a href="https://drive.google.com/drive/folders/1VtR93HMY6_ngwbR14RlAusVXTHt0A3VB">Fiches des partenaires</a> · <a href="https://docs.google.com/spreadsheets/d/1VoNa1jNLr5-b3z4BOlDVWT-noDNPcu9oHuQOkEo027c/edit">Répertoire des profils</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1y_fAkXsPvNDN9v2UGPv4ecsmQbvUjIli">Résultats de l'équipe</a> · <a href="https://docs.google.com/spreadsheets/d/14p47Ep-bInkJSIbaqQvluqj2zbPwVzHIdi9_0IxHOWc/edit">Scores et comparaison</a></li>
-      <li><a href="https://drive.google.com/drive/folders/1uLxEp7xKp2LZE3jMmGDx65STxXh1fLZ2">Documents à analyser</a></li>
-      <li><a href="https://drive.google.com/drive/folders/11dG6kt2FESfWO5Hv41Ksz3APzdedmlX8">Références et contexte</a></li>
-    </ul>
-  </div>
+  <foreignObject x="455" y="335" width="230" height="120"><div xmlns="http://www.w3.org/1999/xhtml" class="n centre">
+    <b>Mes outils</b>Ta page d'entrée : 4 gros boutons.<br><a href="./">Ouvrir Mes outils</a>
+  </div></foreignObject>
 
-  <div class="fg">
-    <div class="fl"><svg class="haut-tel" width="100" height="14"><path d="M0 7h92" stroke="#111"/><path d="M90 1l9 6-9 6z"/></svg>envoie les scores<br>(si la personne le veut)</div>
-  </div>
+  <foreignObject x="450" y="40" width="240" height="150"><div xmlns="http://www.w3.org/1999/xhtml" class="n outil">
+    <b>Le questionnaire</b><i>pour les personnes accompagnées</i>53 questions, un profil, des pistes de métiers et un PDF.<br><a href="../profil-professionnel/">Ouvrir le questionnaire</a><br><a href="integration.html">Le mettre sur le site</a>
+  </div></foreignObject>
 
-  <div class="case gauche">
-    <p class="statut">En ligne · pour les personnes accompagnées</p>
-    <h2>Questionnaire d'orientation</h2>
-    <p>53 questions, un profil, des pistes de métiers et un PDF.</p>
-    <ul>
-      <li><a href="../profil-professionnel/"><b>Le questionnaire</b></a></li>
-      <li><a href="integration.html">Le mettre sur le site</a> (consignes)</li>
-      <li>À la fin, il mène vers <a href="https://couleur-talents.fr/contact/">le contact</a> et <a href="https://couleur-talents.fr/bilan-de-competences/">le bilan de compétences</a></li>
-    </ul>
-  </div>
+  <foreignObject x="70" y="40" width="260" height="140"><div xmlns="http://www.w3.org/1999/xhtml" class="n site">
+    <b>Le site Couleur Talents</b><i>là où la personne prend contact</i><a href="https://couleur-talents.fr/contact/">Contact</a> · <a href="https://couleur-talents.fr/bilan-de-competences/">Bilan de compétences</a><br><a href="https://couleur-talents.fr/accueil-2-2-2/">Formations</a> · <a href="https://couleur-talents.fr/ateliers-2/">Ateliers</a>
+  </div></foreignObject>
 
-  <div class="fd">
-    <div class="fl"><svg class="bas-tel" width="100" height="14"><path d="M0 7h92" stroke="#111"/><path d="M90 1l9 6-9 6z"/></svg>mêmes familles<br>de métiers</div>
-  </div>
+  <foreignObject x="430" y="560" width="275" height="200"><div xmlns="http://www.w3.org/1999/xhtml" class="n range">
+    <b>Le Drive Couleur Talents</b><i>là où tout est rangé</i><a href="https://drive.google.com/drive/folders/1xoB-foka3NMHlHD-PL1-Ksz-pPj5IWXe"><b style="display:inline;font-size:14px">Ouvrir le Drive</b></a><br>
+    <a href="https://drive.google.com/drive/folders/1VtR93HMY6_ngwbR14RlAusVXTHt0A3VB">Fiches des partenaires</a><br>
+    <a href="https://docs.google.com/spreadsheets/d/1VoNa1jNLr5-b3z4BOlDVWT-noDNPcu9oHuQOkEo027c/edit">Répertoire des profils</a><br>
+    <a href="https://docs.google.com/spreadsheets/d/14p47Ep-bInkJSIbaqQvluqj2zbPwVzHIdi9_0IxHOWc/edit">Scores de l'équipe</a><br>
+    <a href="https://drive.google.com/drive/folders/1uLxEp7xKp2LZE3jMmGDx65STxXh1fLZ2">Documents à analyser</a> · <a href="https://drive.google.com/drive/folders/11dG6kt2FESfWO5Hv41Ksz3APzdedmlX8">Références</a>
+  </div></foreignObject>
 
-  <div class="case droite">
-    <p class="statut">Première version</p>
-    <h2>L'équipe et les missions</h2>
-    <p>Qui sait faire quoi, à qui confier une demande, et le journal.</p>
-    <ul>
-      <li><a href="https://claude.ai/artifact/JT1uQif8qMg4bHy7GPrAig"><b>Ouvrir l'outil</b></a></li>
-      <li>Les familles de métiers et les offres Couleur Talents</li>
-    </ul>
-  </div>
+  <foreignObject x="835" y="315" width="250" height="150"><div xmlns="http://www.w3.org/1999/xhtml" class="n outil">
+    <b>L'équipe et les missions</b><i>première version</i>Qui sait faire quoi, à qui confier une demande, et le journal.<br><a href="https://claude.ai/artifact/JT1uQif8qMg4bHy7GPrAig">Ouvrir l'outil</a>
+  </div></foreignObject>
 
-  <div class="fb">
-    <div class="fl"><svg width="14" height="34"><path d="M7 0v26" stroke="#111"/><path d="M1 24l6 9 6-9z"/></svg>tout réunir</div>
-  </div>
+  <foreignObject x="850" y="95" width="220" height="80"><div xmlns="http://www.w3.org/1999/xhtml" class="n civi">
+    <b style="font-size:14px">Base Civipédia</b>La liste des compétences de l'équipe, tenue à jour par Anne.
+  </div></foreignObject>
 
-  <div class="case bas discret">
-    <p class="statut">En construction</p>
-    <h2>Le tableau de bord de Corine</h2>
-    <p>Une application avec mot de passe : l'équipe, les profils, les scores, le journal, au même endroit. Bientôt.</p>
-  </div>
+  <foreignObject x="55" y="330" width="250" height="125"><div xmlns="http://www.w3.org/1999/xhtml" class="n admin">
+    <b>Accès Corine</b>Ton espace : les fiches, le répertoire, les scores et ce schéma.<br><a href="corine.html">Ouvrir l'Accès Corine</a>
+  </div></foreignObject>
 
+  <foreignObject x="835" y="600" width="250" height="120"><div xmlns="http://www.w3.org/1999/xhtml" class="n bientot">
+    <b>Ton tableau de bord</b><i>en construction</i>Une application avec mot de passe qui réunira tout au même endroit.
+  </div></foreignObject>
+</svg>
+
+<div class="legende">
+  <span><i style="background:#F4B61F"></i>Là où tu cliques</span>
+  <span><i style="background:#F3E6F0;border-color:#6B1D5C"></i>Les outils</span>
+  <span><i style="background:#FFF1DC;border-color:#E0781F"></i>Là où tout est rangé</span>
+  <span><i style="background:#2B2B2B"></i>Ton espace</span>
+  <span><i style="background:#E9F0FB;border-color:#1a4fbf"></i>Le site Couleur Talents</span>
+  <span><i style="border-style:dashed;border-color:#888"></i>Bientôt, ou géré à part</span>
 </div>
 
-<h3>Les petits chemins</h3>
-<div class="autres">
-  <div class="case">
-    <h2>Analyser un profil</h2>
-    <p class="chaine">On dépose un CV dans <a href="https://drive.google.com/drive/folders/1uLxEp7xKp2LZE3jMmGDx65STxXh1fLZ2">Documents à analyser</a> → Anne en fait une fiche PDF dans <a href="https://drive.google.com/drive/folders/1VtR93HMY6_ngwbR14RlAusVXTHt0A3VB">Fiches des partenaires</a> → une ligne s'ajoute au <a href="https://docs.google.com/spreadsheets/d/1VoNa1jNLr5-b3z4BOlDVWT-noDNPcu9oHuQOkEo027c/edit">Répertoire</a>.</p>
-  </div>
-  <div class="case">
-    <h2>Les scores de l'équipe</h2>
-    <p class="chaine">Un membre passe le <a href="../profil-professionnel/">questionnaire</a> → il envoie ses scores → ils arrivent dans <a href="https://docs.google.com/spreadsheets/d/14p47Ep-bInkJSIbaqQvluqj2zbPwVzHIdi9_0IxHOWc/edit">Scores et comparaison</a>, qui calcule les forces de l'équipe.</p>
-  </div>
-  <div class="case">
-    <h2>Le site Couleur Talents</h2>
-    <ul>
-      <li><a href="https://couleur-talents.fr/contact/">Contact</a> · <a href="https://couleur-talents.fr/bilan-de-competences/">Bilan de compétences</a></li>
-      <li><a href="https://couleur-talents.fr/accueil-2-2-2/">Formations</a> · <a href="https://couleur-talents.fr/ateliers-2/">Ateliers</a></li>
-    </ul>
-  </div>
-  <div class="case discret">
-    <h2>La liste de l'équipe (base Civipédia)</h2>
-    <p>Les compétences de chacun viennent de la base commune Civipédia, tenue à jour par Anne. Elle nourrit « L'équipe et les missions ».</p>
-  </div>
-</div>
-
-<div class="cols">
-  <div>
-    <h3 style="border:0;margin:10px 0 0">Le principe</h3>
-    <ul>
-      <li>On range tout une seule fois, dans le Drive Couleur Talents.</li>
-      <li>Les outils lisent le Drive : rien n'est recopié ailleurs.</li>
-      <li>Le questionnaire garde les réponses sur l'appareil de la personne ; seuls les scores partagés volontairement arrivent dans le Drive.</li>
-      <li>Corine a sa porte d'entrée : <a href="corine.html">l'Accès Corine</a>.</li>
-    </ul>
-  </div>
-  <div>
-    <h3 style="border:0;margin:10px 0 0">Ce qui arrive ensuite</h3>
-    <ul>
-      <li>Le tableau de bord de Corine, avec mot de passe.</li>
-      <li>Relier chaque famille de métiers à une offre Couleur Talents.</li>
-      <li>Mettre le questionnaire sur le site couleur-talents.fr.</li>
-    </ul>
-  </div>
+<div class="principe">
+  <ul>
+    <li>Tout est rangé une seule fois, dans le Drive Couleur Talents.</li>
+    <li>Le questionnaire garde les réponses sur l'appareil de la personne : seuls les scores qu'elle choisit de partager arrivent dans le Drive.</li>
+    <li>Tu pars toujours du même endroit : la page Mes outils.</li>
+  </ul>
 </div>
 </div>
 </body>
