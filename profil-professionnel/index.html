@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"></head><body>
+<title>Profil professionnel Couleur Talents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Baloo+2:wght@500;600;700&display=swap">
+<style>
+/* Mise en page : un « dossier d'orientation » sur une seule colonne ; le questionnaire avance une question à la fois,
+   la restitution se lit comme un rapport, de la synthèse vers le détail.
+   Charte Couleur Talents : violet profond (repères, radar), jaune safran (bandeau, appel à l'action), orange et magenta (accents de la fleur). */
+:root {
+  --paper: #FBF9F6; --surface: #FFFFFF; --ink: #24152C; --muted: #6A5C70; --line: #E7DFE9;
+  --accent: #5B1F7A; --accent-ink: #4A1764; --accent-soft: #F1E8F5; --on-accent: #FFFFFF;
+  --saffron: #F3BD3E; --on-saffron: #3D1252; --orange: #E2691D; --magenta: #D23A8E;
+  --warm: #B4500F; --warm-soft: #FCEBDD; --good: #2F7A4E; --good-soft: #E3F2E8;
+  --font-display: "Baloo 2", "Trebuchet MS", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --radius: 12px; --measure: 68ch;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #18111D; --surface: #221829; --ink: #F3ECF5; --muted: #B3A5B9; --line: #3A2C42;
+  --accent: #C79BE0; --accent-ink: #DDBDF0; --accent-soft: #33223D; --on-accent: #24102F;
+  --saffron: #F3BD3E; --on-saffron: #3D1252; --orange: #F08A4B; --magenta: #EB6AAE;
+  --warm: #F2A060; --warm-soft: #3A2414; --good: #72C995; --good-soft: #17301F; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #18111D; --surface: #221829; --ink: #F3ECF5; --muted: #B3A5B9; --line: #3A2C42;
+  --accent: #C79BE0; --accent-ink: #DDBDF0; --accent-soft: #33223D; --on-accent: #24102F;
+  --saffron: #F3BD3E; --on-saffron: #3D1252; --orange: #F08A4B; --magenta: #EB6AAE;
+  --warm: #F2A060; --warm-soft: #3A2414; --good: #72C995; --good-soft: #17301F; color-scheme: dark }
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; margin: 0; }
+.brandrule { height: 6px; background: linear-gradient(90deg, var(--saffron) 0 40%, var(--orange) 40% 60%, var(--magenta) 60% 78%, var(--accent) 78% 100%); }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 56px; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2rem, 4.4vw, 2.9rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
+h2 { font-size: 1.4rem; font-weight: 600; }
+h3 { font-size: 1.08rem; font-weight: 600; }
+p { margin: 0; max-width: var(--measure); }
+.eyebrow { font-family: var(--font-display); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm); }
+.muted { color: var(--muted); }
+.small { font-size: 0.88rem; }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+button, .btn { font: inherit; cursor: pointer; border-radius: var(--radius); }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border: 1.5px solid var(--accent); background: var(--accent); color: var(--on-accent); font-family: var(--font-display); font-weight: 600; text-decoration: none; }
+.btn.ghost { background: transparent; color: var(--accent-ink); border-color: var(--line); }
+.btn:hover { filter: brightness(1.06); }
+.btn.ghost:hover { border-color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.linkbtn { background: none; border: 0; padding: 0; color: var(--accent-ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Accueil */
+.hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0; padding: 0; list-style: none; }
+.facts li { border-top: 3px solid var(--saffron); padding-top: 8px; }
+.facts b { display: block; font-family: var(--font-display); font-size: 1.35rem; }
+.notice { border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); padding: 16px 18px; }
+.example-fig { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 12px; }
+.example-fig figcaption { font-size: 0.82rem; color: var(--muted); text-align: center; }
+
+/* Questionnaire */
+.progress { display: grid; gap: 4px; }
+.segs { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+.seg { height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.seg i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .25s; }
+.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 26px 24px; display: flex; flex-direction: column; gap: 20px; }
+.qtext:focus { outline: none; }
+.qtext { font-family: var(--font-display); font-size: 1.32rem; font-weight: 500; line-height: 1.35; max-width: 40ch; }
+.opts { display: grid; gap: 10px; }
+.opts.likert { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.opt { text-align: left; background: var(--paper); color: var(--ink); border: 1.5px solid var(--line); padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; line-height: 1.4; }
+.opt:hover { border-color: var(--accent); }
+.opt[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.opt .key { flex: none; width: 26px; height: 26px; border-radius: 50%; border: 1.5px solid currentColor; display: grid; place-items: center; font-size: 0.8rem; font-weight: 700; color: var(--accent-ink); }
+.likert .opt { flex-direction: column; align-items: center; text-align: center; font-size: 0.9rem; padding: 14px 8px; }
+textarea { font: inherit; width: 100%; min-height: 130px; padding: 12px; border-radius: var(--radius); border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); }
+.qnav { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+/* Restitution */
+.report { display: flex; flex-direction: column; gap: 44px; }
+.rhead { display: flex; flex-direction: column; gap: 14px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px; font-size: 0.86rem; font-weight: 700; }
+.badge::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: currentColor; }
+.badge.RC { background: var(--good-soft); color: var(--good); }
+.badge.MC { background: var(--accent-soft); color: var(--accent-ink); }
+.badge.EX { background: var(--warm-soft); color: var(--warm); }
+.toc { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 0.9rem; }
+.toc a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+.toc a:hover { color: var(--accent-ink); border-color: var(--accent); }
+section.block { display: flex; flex-direction: column; gap: 16px; scroll-margin-top: 16px; }
+.synth { font-size: 1.12rem; line-height: 1.65; display: flex; flex-direction: column; gap: 10px; }
+.tabs { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.tabs button { border: 0; border-radius: 0; background: var(--surface); color: var(--muted); padding: 8px 14px; font-size: 0.9rem; }
+.tabs button[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
+.sig { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.radar-box { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px; }
+.radar-box svg { width: 100%; height: auto; display: block; }
+.legend { display: flex; flex-direction: column; gap: 8px; font-size: 0.88rem; color: var(--muted); }
+.legend span { display: inline-flex; gap: 8px; align-items: center; }
+.bars { display: flex; flex-direction: column; gap: 14px; }
+.bipolar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr); gap: 10px; align-items: center; font-size: 0.85rem; }
+.bipolar .pl { color: var(--muted); text-align: right; }
+.bipolar .pr { color: var(--muted); }
+.track { position: relative; height: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; }
+.track .mark40, .track .mark60 { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--line); }
+.track .mark40 { left: 40%; } .track .mark60 { left: 60%; }
+.track .dot { position: absolute; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); }
+.track .dot.lim { background: var(--surface); border: 2px dashed var(--accent); }
+.bipolar .name { grid-column: 1 / -1; font-weight: 700; font-size: 0.95rem; display: flex; justify-content: space-between; gap: 8px; }
+.charlist { display: grid; gap: 12px; }
+.char { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 8px; }
+.char header { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.score { font-family: var(--font-display); font-weight: 700; font-variant-numeric: tabular-nums; }
+.meter { height: 6px; background: var(--paper); border-radius: 3px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); }
+.tag { display: inline-block; font-size: 0.78rem; padding: 2px 8px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); color: var(--muted); }
+.tag.lim { color: var(--warm); border-color: var(--warm); background: var(--warm-soft); }
+details summary { cursor: pointer; color: var(--accent-ink); font-size: 0.9rem; }
+details ul { margin: 8px 0 0; padding-left: 18px; font-size: 0.9rem; color: var(--muted); display: grid; gap: 4px; }
+.subhead { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; color: var(--muted); margin-top: 6px; }
+.fam { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 12px; }
+.fam .top { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+.fam .big { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; white-space: nowrap; }
+.fam .big small { font-size: 0.9rem; color: var(--muted); font-weight: 500; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 0.85rem; padding: 3px 10px; border-radius: 999px; background: var(--good-soft); color: var(--good); }
+.chip.neg { background: var(--warm-soft); color: var(--warm); }
+.note { font-size: 0.84rem; color: var(--muted); border-left: 3px solid var(--line); padding-left: 10px; }
+.kv { display: grid; grid-template-columns: minmax(0, 9rem) minmax(0, 1fr); gap: 4px 14px; font-size: 0.92rem; }
+.kv dt { color: var(--muted); } .kv dd { margin: 0; }
+.alllist { display: grid; gap: 6px; }
+.allrow { display: grid; grid-template-columns: minmax(0, 1fr) 7rem 3rem; gap: 10px; align-items: center; font-size: 0.9rem; }
+.allrow .num { text-align: right; font-variant-numeric: tabular-nums; }
+.card-list { display: grid; gap: 10px; }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; display: grid; gap: 6px; }
+.item.tension { border-color: var(--orange); }
+.item .q { font-style: italic; color: var(--muted); font-size: 0.92rem; }
+.conf { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 14px; }
+.indic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.indic div { border-top: 1px solid var(--line); padding-top: 6px; font-size: 0.82rem; color: var(--muted); }
+.indic b { display: block; font-family: var(--font-display); font-size: 1.15rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.cta { background: var(--saffron); color: var(--on-saffron); border-radius: 14px; padding: 24px; display: grid; gap: 12px; }
+.cta p { color: inherit; }
+.cta .btn { background: #5B1F7A; color: #FFFFFF; border-color: #5B1F7A; }
+.cta .btn.ghost { background: transparent; color: var(--on-saffron); border-color: var(--on-saffron); }
+.cta .contact { font-size: 0.92rem; user-select: all; }
+.empty { color: var(--muted); font-style: italic; }
+.loading { min-height: 50vh; display: grid; place-items: center; text-align: center; }
+.foot a { color: inherit; }
+.foot { font-size: 0.82rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 6px; }
+
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  .wrap { padding-inline: 16px; }
+  .hero, .sig { grid-template-columns: minmax(0, 1fr); }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .opts.likert { grid-template-columns: minmax(0, 1fr); }
+  .likert .opt { flex-direction: row; text-align: left; }
+  .indic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bipolar { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .bipolar .track { grid-column: 1 / -1; grid-row: 2; }
+  .bipolar .pl { text-align: left; }
+  .bipolar .pr { text-align: right; }
+  .allrow { grid-template-columns: minmax(0, 1fr) 3rem; }
+  .allrow .meter { display: none; }
+  .qcard { padding: 20px 16px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="brandrule" aria-hidden="true"></div>
+<div class="wrap" id="app" aria-live="polite"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+/* ========== Réglages du site (à adapter par Couleur Talents) ========== */
+var CT_SITE = {
+  organisation: "Couleur Talents",
+  contactUrl: "https://couleur-talents.fr/contact/",
+  contactLabel: "Échanger avec un·e conseiller·ère",
+  liens: [
+    { label: "Bilan de compétences", url: "https://couleur-talents.fr/bilan-de-competences/" },
+    { label: "Formations professionnelles", url: "https://couleur-talents.fr/accueil-2-2-2/" },
+    { label: "Ateliers", url: "https://couleur-talents.fr/ateliers-2/" }
+  ],
+  coordonnees: "06 63 29 16 61 · contact@couleur-talents.fr · 18 rue René Guillouzo, Saint-Nazaire"
+};
+</script>
+<script>/* Instantané du référentiel Google Sheets « Profil professionnel Couleur Talents — Référentiel V1 »
+   (id 17KyEMsjDOwsOwrEY4cPJ8efZuLmmdZ647ASMZOichhU). Généré le 2026-10-13.
+   Ne pas modifier à la main : toute évolution se fait dans le classeur, puis l'instantané est régénéré. */
+var CT_REF = {
+  meta: { model_version: "CT-PP-0.1", questionnaire_version: "Q-0.1", restitution_version: "R-0.1", snapshot_date: "2026-10-13" },
+  config: {
+    SEUIL_BAS: 40, SEUIL_HAUT: 60, SEUIL_SECONDAIRE: 50, MIN_ITEMS_DIMENSION: 3, SEUIL_COHERENCE: 0.5,
+    SEUIL_COMPLETUDE: 0.9, SEUIL_ACQUIESCEMENT: 4, SEUIL_COMPAT_ELEVEE: 65, SEUIL_COMPAT_MODEREE: 50,
+    ECART_DEPARTAGE: 5, NB_FAMILLES_RESTITUEES: 3, NB_DIM_DOMINANTES: 4, NB_DIM_SECONDAIRES: 4,
+    SEUIL_ENV_RECHERCHE: 60, SEUIL_ENV_EVITE: 40, SEUIL_FACTEUR_FAVORABLE: 0.6, SEUIL_FACTEUR_DEFAVORABLE: 0.4,
+    NB_POINTS_APPUI: 4, NB_ENV_AFFICHES: 4
+  },
+  modalites: {
+    LIKERT5: { "1": 0, "2": 0.25, "3": 0.5, "4": 0.75, "5": 1 },
+    CHOIX_FORCE: { A: 0, B: 1 },
+    SITUATION4: { A: 0, B: 0.3333, C: 0.6667, D: 1 }
+  },
+  likertLabels: ["Pas du tout d'accord", "Plutôt pas d'accord", "Neutre", "Plutôt d'accord", "Tout à fait d'accord"],
+  // [id, nom, couche, libelle_court, qualificatif, pole_bas_court, pole_haut_court, interp_bas, interp_moy, interp_haut, limites, texte_point_appui]
+  dimensions: [
+    ["PREF_AUTONOMIE","Autonomie dans l'organisation du travail","A","Autonomie","autonome","Consignes et validations","Grande latitude","Préfère des consignes et des validations régulières.","Accepte l'autonomie sur certains sujets, apprécie des points d'appui.","Recherche une latitude importante sur la manière de travailler.","Préférence déclarée ≠ capacité à travailler en autonomie.","Vous indiquez être à l'aise pour organiser vous-même votre travail : un appui dans les fonctions qui laissent de la latitude sur les méthodes."],
+    ["PREF_CADRE","Besoin de cadre et de repères","A","Cadre","attaché au cadre","Flou accepté","Cadre explicite","Supporte bien le flou, peut ressentir les procédures comme contraignantes.","Apprécie quelques repères sans cadre rigide.","Est plus à l'aise lorsque le cadre est explicite.","Ne mesure pas la « rigidité » ; un cadre clair peut aller avec une forte autonomie.","Vous accordez de l'importance à des règles et des rôles clairs : un appui dans les organisations structurées et les fonctions de conformité."],
+    ["PREF_VARIETE","Recherche de variété","A","Variété","polyvalent","Périmètre stable","Tâches variées","Préfère approfondir un périmètre stable.","Apprécie un équilibre entre routine et nouveauté.","Recherche des situations changeantes et diversifiées.","Ne mesure pas l'« ouverture » au sens de la personnalité.","Vous recherchez des sujets et des tâches qui changent : un appui dans les fonctions à missions diversifiées."],
+    ["PREF_STABILITE","Recherche de stabilité et de visibilité","A","Stabilité","constant","Changements fréquents","Continuité","Supporte bien, voire recherche, les changements fréquents.","Accepte le changement s'il est expliqué.","Accorde une grande importance à la continuité et à la visibilité.","Peut refléter une situation de vie plutôt qu'une préférence durable.","Vous accordez de l'importance à la continuité et à la visibilité : un appui dans les fonctions qui demandent de la constance dans la durée."],
+    ["PREF_RYTHME","Aisance avec un rythme soutenu","A","Rythme soutenu","réactif","Rythme régulier","Rythme soutenu","Préfère un rythme régulier et anticipé.","S'adapte à des pics d'activité ponctuels.","Se dit à l'aise avec l'urgence et la simultanéité.","Préférence déclarée, ne mesure pas la tolérance réelle au stress ni la santé.","Vous vous dites à l'aise avec les délais courts et les imprévus : un appui dans les environnements à forte réactivité."],
+    ["PREF_RELATION","Orientation relationnelle","A","Relationnel","relationnel","Données, objets","Contact fréquent","Préfère des activités centrées sur les objets, données ou documents.","Apprécie des échanges ponctuels.","Recherche un contact fréquent avec des personnes.","Ne mesure ni l'empathie ni la compétence relationnelle.","Vous recherchez le contact avec des publics, clients ou usagers : un appui dans les fonctions d'accueil, de conseil ou d'accompagnement."],
+    ["PREF_COLLECTIF","Travail en équipe","A","Travail en équipe","coopératif","Travail en solo","Travail en équipe","Préfère avancer seul·e sur ses dossiers.","Alterne volontiers travail seul et collectif.","Recherche le travail en équipe.","Dépend fortement des expériences d'équipe passées.","Vous appréciez de travailler en coordination étroite avec d'autres : un appui dans les fonctions très collaboratives."],
+    ["PREF_DECISION","Appétence pour la décision et la responsabilité","A","Décision","décisionnaire","Contribuer à la décision","Porter la décision","Préfère contribuer à la décision sans la porter.","Prend des décisions dans un périmètre défini.","Recherche des postes de décision et de responsabilité.","Ne mesure pas la compétence managériale.","Vous recherchez des situations où vous portez les décisions : un appui pour les fonctions à responsabilité."],
+    ["PREF_CONCRET","Orientation vers le concret","A","Concret","tourné vers le concret","Résultats abstraits","Résultats concrets","À l'aise avec des résultats abstraits (idées, analyses, documents).","Équilibre conception / réalisation.","Recherche un résultat tangible et visible.","Dimension bipolaire : un score bas n'est pas un déficit.","Vous recherchez des résultats tangibles et visibles : un appui dans les fonctions de réalisation, d'installation ou d'intervention."],
+    ["FCT_ANALYSE","Raisonnement analytique","B","Analyse","analytique","Approche globale, intuitive","Approche analytique","Aborde les problèmes de façon plutôt globale ou intuitive.","Utilise l'analyse quand la situation l'exige.","Décompose spontanément les problèmes et s'appuie sur les données.","Mesure une tendance, pas une aptitude.","Vous décrivez une tendance à décomposer les problèmes et à vous appuyer sur des faits : un appui dans les fonctions d'étude, d'analyse ou de diagnostic de situations."],
+    ["FCT_ORGANISATION","Organisation et planification","B","Organisation","organisé","Au fil de l'eau","Planifié","Avance plutôt au fil de l'eau.","Planifie l'essentiel.","Planifie et suit systématiquement.","Déclaratif ; ne mesure pas l'efficacité organisationnelle.","Vous décrivez une tendance à planifier et à suivre l'avancement de votre travail : un appui dans la conduite de projets et la gestion d'activités."],
+    ["FCT_CREATIVITE_STRUCT","Créativité structurée","B","Créativité structurée","créatif","Méthodes éprouvées","Solutions nouvelles","Préfère appliquer des méthodes éprouvées.","Innove ponctuellement dans un cadre connu.","Recherche des problèmes ouverts et construit ses propres méthodes.","Concept composite dont la validité n'est pas démontrée.","Vous aimez construire des solutions nouvelles à des problèmes ouverts : un appui dans les fonctions de conception et d'innovation."],
+    ["FCT_SYNTHESE_CRITIQUE","Synthèse critique","B","Synthèse critique","synthétique","Information par information","Synthèse critique","Préfère traiter les informations une à une.","Synthétise lorsque c'est demandé.","Recherche la mise en perspective et l'évaluation critique.","Déclaratif ; sensible à la désirabilité sociale.","Vous décrivez une tendance à évaluer les arguments et à condenser l'information : un appui dans les fonctions de conseil, d'expertise ou de rédaction."],
+    ["FCT_TRANSVERSALITE","Pensée analogique et transversalité","B","Transversalité","transversal","Spécialiste d'un domaine","Liens entre domaines","Préfère approfondir un domaine de spécialité.","Fait des liens entre domaines proches.","Relie spontanément des domaines éloignés.","Un score bas traduit une orientation « spécialiste », pas un manque.","Vous faites volontiers des liens entre des domaines différents : un appui dans les fonctions d'interface, de coordination ou de médiation."],
+    ["FCT_APPRENTISSAGE","Appétence pour l'apprentissage","B","Apprentissage","apprenant","Se forme si nécessaire","Apprend activement","Se forme lorsque c'est nécessaire.","Apprend volontiers sur des sujets utiles.","Recherche activement l'apprentissage.","Ne mesure pas la capacité d'apprentissage.","Vous décrivez une forte appétence pour apprendre au-delà de ce qui est demandé : un appui dans les métiers dont les savoirs évoluent vite, et pour vous former."],
+    ["FCT_REFLEXIVITE","Réflexivité professionnelle","B","Réflexivité","réflexif","Tourné vers l'action","Analyse sa pratique","Se tourne rapidement vers l'action suivante.","Prend du recul ponctuellement.","Analyse régulièrement sa pratique.","Déclaratif ; forte désirabilité sociale.","Vous décrivez une tendance à analyser votre pratique et à solliciter des retours : un appui pour progresser et dans les métiers d'accompagnement."],
+    ["FCT_PRECISION","Rigueur et précision","B","Précision","rigoureux","Essentiel et rapidité","Exactitude du détail","Privilégie l'essentiel et la rapidité.","Vérifie les points importants.","Vérifie systématiquement les détails.","Ne mesure pas la fiabilité réelle.","Vous décrivez une attention marquée à l'exactitude et aux détails : un appui dans les fonctions où la fiabilité est essentielle."]
+  ],
+  // [id, texte, bloc, type, dim, dim2, sens, coef, obligatoire, inversee, sens2, coef2]
+  questions: [
+    ["Q01","J'apprécie organiser moi-même mon travail, sans qu'on me précise chaque étape.","B1 – Manière de travailler","LIKERT5","PREF_AUTONOMIE","",1,1,1,0,0,0],
+    ["Q02","Je travaille mieux lorsqu'une personne valide régulièrement mes choix.","B1 – Manière de travailler","LIKERT5","PREF_AUTONOMIE","PREF_CADRE",1,1,1,1,1,0],
+    ["Q03","Laquelle de ces deux situations vous correspond le mieux ? A. Recevoir des consignes précises et les appliquer avec soin. B. Recevoir un objectif et choisir vous-même comment l'atteindre.","B1 – Manière de travailler","CHOIX_FORCE","PREF_AUTONOMIE","PREF_CADRE",1,1,1,0,-1,0],
+    ["Q04","Je me sens plus efficace quand les règles, les rôles et les procédures sont clairement définis.","B1 – Manière de travailler","LIKERT5","PREF_CADRE","",1,1,1,0,0,0],
+    ["Q05","Les procédures détaillées me donnent souvent l'impression de freiner mon travail.","B1 – Manière de travailler","LIKERT5","PREF_CADRE","",1,1,1,1,0,0],
+    ["Q06","Vous arrivez dans un nouveau poste. Qu'est-ce qui vous aiderait le plus les premières semaines ? A. Qu'on me laisse découvrir par moi-même. B. Quelques repères généraux, puis de la liberté. C. Un plan d'intégration avec des étapes. D. Des procédures écrites, des objectifs précis et des points de suivi réguliers.","B1 – Manière de travailler","SITUATION4","PREF_CADRE","",1,1,1,0,0,0],
+    ["Q07","J'aime que mes journées de travail ne se ressemblent pas.","B1 – Manière de travailler","LIKERT5","PREF_VARIETE","",1,1,1,0,0,0],
+    ["Q08","Je préfère approfondir un même type de tâches plutôt que passer souvent d'un sujet à l'autre.","B1 – Manière de travailler","LIKERT5","PREF_VARIETE","",1,1,1,1,0,0],
+    ["Q09","Laquelle de ces deux situations vous correspond le mieux ? A. Un poste où vous maîtrisez parfaitement un domaine précis. B. Un poste où les sujets changent souvent et vous obligent à vous adapter.","B1 – Manière de travailler","CHOIX_FORCE","PREF_VARIETE","FCT_TRANSVERSALITE",1,1,1,0,1,0],
+    ["Q10","La visibilité sur mes missions à moyen terme compte beaucoup pour mon engagement.","B1 – Manière de travailler","LIKERT5","PREF_STABILITE","",1,1,1,0,0,0],
+    ["Q11","Les réorganisations fréquentes me stimulent plus qu'elles ne me fatiguent.","B1 – Manière de travailler","LIKERT5","PREF_STABILITE","",1,1,1,1,0,0],
+    ["Q12","Votre service annonce un changement important d'organisation dans un mois. Quelle réaction vous ressemble le plus ? A. J'y vois surtout l'occasion de faire autrement. B. Je suis curieux·se, j'attends de voir. C. J'ai besoin de savoir précisément ce qui va changer pour moi. D. Je préférerais que l'organisation actuelle soit maintenue autant que possible.","B1 – Manière de travailler","SITUATION4","PREF_STABILITE","",1,1,1,0,0,0],
+    ["Q13","Je suis à l'aise lorsque plusieurs demandes urgentes arrivent en même temps.","B1 – Manière de travailler","LIKERT5","PREF_RYTHME","",1,1,1,0,0,0],
+    ["Q14","Je donne le meilleur de moi-même quand j'ai du temps devant moi pour chaque tâche.","B1 – Manière de travailler","LIKERT5","PREF_RYTHME","",1,1,1,1,0,0],
+    ["Q15","Laquelle de ces deux situations vous correspond le mieux ? A. Un environnement calme, avec des échéances prévues longtemps à l'avance. B. Un environnement dynamique, avec des délais courts et des imprévus.","B1 – Manière de travailler","CHOIX_FORCE","PREF_RYTHME","",1,1,1,0,0,0],
+    ["Q16","J'aime que mon travail comporte des échanges fréquents avec des clients, usagers ou publics.","B2 – Relations et responsabilités","LIKERT5","PREF_RELATION","",1,1,1,0,0,0],
+    ["Q17","Je préfère les tâches que je peux réaliser sans avoir à interagir avec d'autres personnes.","B2 – Relations et responsabilités","LIKERT5","PREF_RELATION","PREF_COLLECTIF",1,1,1,1,-1,0],
+    ["Q18","Une personne que vous ne connaissez pas vous sollicite pour un problème qui ne relève pas directement de votre poste. A. Je l'oriente rapidement vers le bon interlocuteur. B. Je lui donne l'information utile puis je reprends mon travail. C. Je prends le temps de comprendre sa situation avant de l'orienter. D. Je l'accompagne jusqu'à ce que sa demande soit traitée.","B2 – Relations et responsabilités","SITUATION4","PREF_RELATION","",1,1,1,0,0,0],
+    ["Q19","Je préfère réaliser un projet en équipe plutôt que seul·e.","B2 – Relations et responsabilités","LIKERT5","PREF_COLLECTIF","",1,1,1,0,0,0],
+    ["Q20","Je suis plus efficace quand je peux avancer seul·e sur mes propres dossiers.","B2 – Relations et responsabilités","LIKERT5","PREF_COLLECTIF","PREF_AUTONOMIE",1,1,1,1,1,0],
+    ["Q21","Laquelle de ces deux situations vous correspond le mieux ? A. Être responsable d'un dossier du début à la fin, seul·e. B. Contribuer à un dossier collectif, en coordination étroite avec d'autres.","B2 – Relations et responsabilités","CHOIX_FORCE","PREF_COLLECTIF","",1,1,1,0,0,0],
+    ["Q22","J'accepte volontiers d'avoir le dernier mot sur une décision, même si elle engage d'autres personnes.","B2 – Relations et responsabilités","LIKERT5","PREF_DECISION","",1,1,1,0,0,0],
+    ["Q23","Je préfère contribuer à une décision plutôt que la porter.","B2 – Relations et responsabilités","LIKERT5","PREF_DECISION","",1,1,1,1,0,0],
+    ["Q24","Un choix doit être fait rapidement et votre responsable est absent. A. J'attends son retour. B. Je prépare les options et je les lui transmets. C. Je propose une décision à l'équipe et la mets en œuvre si elle est validée. D. Je décide et j'en assume la responsabilité.","B2 – Relations et responsabilités","SITUATION4","PREF_DECISION","",1,1,1,0,0,0],
+    ["Q25","J'ai besoin de voir le résultat concret et tangible de mon travail.","B3 – Nature des tâches","LIKERT5","PREF_CONCRET","",1,1,1,0,0,0],
+    ["Q26","Je suis à l'aise avec un travail dont les résultats restent principalement des idées, des analyses ou des documents.","B3 – Nature des tâches","LIKERT5","PREF_CONCRET","",1,1,1,1,0,0],
+    ["Q27","Laquelle de ces deux activités préférez-vous ? A. Concevoir un plan ou une méthode. B. Réaliser, fabriquer, installer ou mettre en œuvre concrètement.","B3 – Nature des tâches","CHOIX_FORCE","PREF_CONCRET","",1,1,1,0,0,0],
+    ["Q28","Je vérifie spontanément les détails avant de considérer un travail comme terminé.","B3 – Nature des tâches","LIKERT5","FCT_PRECISION","",1,1,1,0,0,0],
+    ["Q29","Une petite erreur dans un document ne me paraît pas grave si l'essentiel est juste.","B3 – Nature des tâches","LIKERT5","FCT_PRECISION","",1,1,1,1,0,0],
+    ["Q30","Vous devez rendre un document important ce soir et vous repérez une incohérence mineure dans un tableau. A. Je rends le document tel quel. B. Je signale l'incohérence dans une note. C. Je corrige le tableau, quitte à rendre un peu plus tard. D. Je reprends l'ensemble des tableaux pour vérifier qu'il n'y a pas d'autres erreurs.","B3 – Nature des tâches","SITUATION4","FCT_PRECISION","",1,1,1,0,0,0],
+    ["Q31","Avant de commencer un travail, je planifie les étapes et les échéances.","B3 – Nature des tâches","LIKERT5","FCT_ORGANISATION","",1,1,1,0,0,0],
+    ["Q32","Je tiens à jour des listes, outils ou tableaux pour suivre l'avancement de mon travail.","B3 – Nature des tâches","LIKERT5","FCT_ORGANISATION","",1,1,1,0,0,0],
+    ["Q33","Laquelle de ces deux manières d'avancer vous ressemble le plus ? A. Avancer au fil de l'eau et ajuster selon ce qui se présente. B. Établir un planning et le suivre en le mettant à jour.","B3 – Nature des tâches","CHOIX_FORCE","FCT_ORGANISATION","",1,1,1,0,0,0],
+    ["Q34","Face à un problème, je cherche d'abord à le décomposer en éléments plus simples.","B4 – Manière de raisonner","LIKERT5","FCT_ANALYSE","",1,1,1,0,0,0],
+    ["Q35","J'aime travailler avec des chiffres, des données ou des faits pour comprendre une situation.","B4 – Manière de raisonner","LIKERT5","FCT_ANALYSE","",1,1,1,0,0,0],
+    ["Q36","Un indicateur de votre service se dégrade sans explication évidente. A. Je signale le problème à la personne concernée. B. Je recueille l'avis de collègues. C. Je compare les données avant/après pour repérer ce qui a changé. D. Je formule des hypothèses et je les teste une à une avec les données disponibles.","B4 – Manière de raisonner","SITUATION4","FCT_ANALYSE","",1,1,1,0,0,0],
+    ["Q37","Je repère facilement les points faibles d'un raisonnement ou d'une argumentation.","B4 – Manière de raisonner","LIKERT5","FCT_SYNTHESE_CRITIQUE","",1,1,1,0,0,0],
+    ["Q38","Je sais résumer en quelques idées clés un ensemble d'informations dispersées.","B4 – Manière de raisonner","LIKERT5","FCT_SYNTHESE_CRITIQUE","",1,1,1,0,0,0],
+    ["Q39","Laquelle de ces deux tâches préférez-vous ? A. Produire une analyse détaillée et exhaustive d'un sujet. B. Rassembler plusieurs analyses et en tirer une position argumentée.","B4 – Manière de raisonner","CHOIX_FORCE","FCT_SYNTHESE_CRITIQUE","FCT_ANALYSE",1,1,1,0,-1,0],
+    ["Q40","Il m'arrive souvent d'appliquer à mon travail une idée venue d'un tout autre domaine.","B4 – Manière de raisonner","LIKERT5","FCT_TRANSVERSALITE","",1,1,1,0,0,0],
+    ["Q41","J'utilise volontiers des comparaisons ou des analogies pour expliquer une situation complexe.","B4 – Manière de raisonner","LIKERT5","FCT_TRANSVERSALITE","",1,1,1,0,0,0],
+    ["Q42","Je préfère rester dans mon domaine de spécialité plutôt que faire des liens avec d'autres disciplines.","B4 – Manière de raisonner","LIKERT5","FCT_TRANSVERSALITE","",1,1,1,1,0,0],
+    ["Q43","Je préfère résoudre un problème dont la solution n'est pas encore définie.","B4 – Manière de raisonner","LIKERT5","FCT_CREATIVITE_STRUCT","",1,1,1,0,0,0],
+    ["Q44","Quand je propose une idée nouvelle, je cherche aussi comment la mettre en œuvre concrètement.","B4 – Manière de raisonner","LIKERT5","FCT_CREATIVITE_STRUCT","FCT_ORGANISATION",1,1,1,0,1,0],
+    ["Q45","Laquelle de ces deux situations préférez-vous ? A. Un projet parfaitement défini avec une méthode claire. B. Un problème complexe dont vous devez construire vous-même la méthode.","B4 – Manière de raisonner","CHOIX_FORCE","FCT_CREATIVITE_STRUCT","PREF_AUTONOMIE",1,1,1,0,1,0],
+    ["Q46","J'aime apprendre de nouvelles méthodes ou de nouveaux outils, même sans y être obligé·e.","B5 – Apprendre et prendre du recul","LIKERT5","FCT_APPRENTISSAGE","",1,1,1,0,0,0],
+    ["Q47","Une fois que je maîtrise mon travail, je ne ressens pas le besoin de me former davantage.","B5 – Apprendre et prendre du recul","LIKERT5","FCT_APPRENTISSAGE","",1,1,1,1,0,0],
+    ["Q48","Un nouvel outil est déployé dans votre service. A. J'attends qu'on me forme. B. J'apprends ce qui est nécessaire au fur et à mesure. C. Je l'explore par moi-même dès qu'il est disponible. D. Je l'explore puis je propose des façons de mieux l'utiliser.","B5 – Apprendre et prendre du recul","SITUATION4","FCT_APPRENTISSAGE","",1,1,1,0,0,0],
+    ["Q49","Après un projet, je prends le temps d'analyser ce qui a fonctionné et ce que je ferais autrement.","B5 – Apprendre et prendre du recul","LIKERT5","FCT_REFLEXIVITE","",1,1,1,0,0,0],
+    ["Q50","Je sollicite volontiers des retours sur ma façon de travailler.","B5 – Apprendre et prendre du recul","LIKERT5","FCT_REFLEXIVITE","",1,1,1,0,0,0],
+    ["Q51","Un projet que vous avez mené n'a pas atteint son objectif. A. Je passe rapidement au projet suivant. B. J'identifie les causes extérieures qui ont joué. C. Je fais le point sur mes propres choix et sur le contexte. D. Je formalise des enseignements et je les partage avec l'équipe.","B5 – Apprendre et prendre du recul","SITUATION4","FCT_REFLEXIVITE","",1,1,1,0,0,0],
+    ["Q52","Décrivez une activité (professionnelle, bénévole ou personnelle) dans laquelle vous vous êtes senti·e particulièrement engagé·e. Qu'est-ce qui vous plaisait ? (N'indiquez ni nom, ni lieu, ni information personnelle.)","B6 – Expression libre","OUVERTE","","",0,0,0,0,0,0],
+    ["Q53","Y a-t-il une condition de travail qui vous semble indispensable, ou au contraire à éviter ? (N'indiquez pas d'information de santé ou personnelle.)","B6 – Expression libre","OUVERTE","","",0,0,0,0,0,0]
+  ],
+  // [id, caracteristique, definition, pole_bas, pole_haut]
+  environnements: [
+    ["ENV_AUTONOMIE","Latitude d'autonomie","Degré de liberté laissé sur les méthodes, l'ordre et le rythme des tâches.","Travail très encadré, validations fréquentes","Grande latitude sur la manière de travailler"],
+    ["ENV_STRUCTURE","Degré de structuration","Présence de procédures, rôles et règles explicites.","Organisation souple, peu formalisée","Procédures et rôles très définis"],
+    ["ENV_VARIETE","Variété des activités","Fréquence de changement des sujets, tâches ou interlocuteurs.","Activités récurrentes, périmètre stable","Sujets et missions très changeants"],
+    ["ENV_STABILITE","Stabilité et visibilité","Continuité des missions et de l'organisation, visibilité à moyen terme.","Réorganisations et changements fréquents","Organisation stable, missions prévisibles"],
+    ["ENV_COMPLEXITE","Complexité intellectuelle","Fréquence de problèmes non routiniers nécessitant analyse, synthèse ou jugement.","Problèmes connus, solutions établies","Problèmes ouverts et complexes"],
+    ["ENV_RELATIONNEL","Intensité relationnelle","Fréquence et importance des échanges avec des clients, usagers ou publics.","Peu de contacts extérieurs","Contact permanent avec des publics"],
+    ["ENV_COLLABORATION","Niveau de collaboration","Degré d'interdépendance avec une équipe dans la réalisation du travail.","Travail majoritairement individuel","Travail en équipe très interdépendant"],
+    ["ENV_RYTHME","Rythme et urgence","Fréquence des délais courts, urgences et imprévus.","Rythme régulier et anticipé","Rythme soutenu, urgences fréquentes"],
+    ["ENV_CREATIVITE","Besoin de créativité","Attente de solutions, contenus ou méthodes nouvelles.","Application de méthodes établies","Innovation et création attendues"],
+    ["ENV_PRECISION","Exigence de précision","Importance de l'exactitude et du contrôle des détails.","Tolérance à l'approximation","Zéro erreur attendu"],
+    ["ENV_RESPONSABILITE","Niveau de responsabilité décisionnelle","Portée des décisions prises et de leurs conséquences sur d'autres personnes.","Exécution de décisions prises par d'autres","Décisions engageant une équipe ou une organisation"],
+    ["ENV_CONCRET","Caractère tangible des réalisations","Part des résultats directement visibles et matériels (objets, installations, interventions).","Résultats essentiellement intellectuels","Résultats essentiellement matériels et visibles"],
+    ["ENV_APPRENTISSAGE","Renouvellement des savoirs","Fréquence à laquelle le poste exige d'apprendre de nouvelles méthodes, outils ou connaissances.","Savoirs stables","Mise à jour permanente des savoirs"]
+  ],
+  // [id, famille, description, contraintes, exemples, pistes, offre]
+  familles: [
+    ["FAM_DATA","Analyse de données, études et statistiques","Fonctions consistant à collecter, traiter et interpréter des données pour éclairer des décisions.","Travail souvent sur écran ; livrables abstraits ; montée en compétences techniques continue.","Chargé·e d'études, analyste de données, contrôleur·se de gestion","Consulter les fiches métiers (ROME) des métiers cités ; échanger avec un·e chargé·e d'études ou un·e contrôleur·se de gestion ; tester une formation courte en tableur avancé ou en statistiques.",""],
+    ["FAM_RECHERCHE","Recherche, veille et documentation","Fonctions consistant à rechercher, évaluer et organiser des connaissances.","Temporalité longue ; résultats parfois incertains ; accès souvent conditionné par un diplôme élevé.","Chargé·e de veille, documentaliste, chargé·e de recherche","Identifier les centres de documentation, de veille ou de recherche de votre secteur ; vérifier les niveaux de diplôme requis ; essayer une mission de veille sur un sujet qui vous intéresse.",""],
+    ["FAM_CONSEIL","Conseil, audit et expertise","Fonctions consistant à diagnostiquer une situation et recommander des actions à un client interne ou externe.","Déplacements et rythme de mission ; exigence de résultats visibles par le client.","Consultant·e, auditeur·rice, chargé·e de mission","Rencontrer des consultant·es (cabinet ou interne) sur leur rythme réel ; repérer les domaines d'expertise que vous maîtrisez déjà ; explorer les postes de chargé·e de mission comme porte d'entrée.",""],
+    ["FAM_ACCOMPAGNEMENT","Accompagnement des personnes (insertion, social, orientation, RH)","Fonctions consistant à accompagner des personnes dans leur parcours professionnel, social ou personnel.","Charge émotionnelle possible ; cadre déontologique ; souvent qualification réglementée.","Conseiller·ère en insertion, chargé·e d'accompagnement, conseiller·ère RH","Se renseigner sur les qualifications réglementées (ex. CIP, travail social) ; faire une immersion dans une structure d'insertion ou un service RH ; évaluer votre rapport à la charge émotionnelle.",""],
+    ["FAM_FORMATION","Formation, enseignement et transmission","Fonctions consistant à concevoir et animer des situations d'apprentissage.","Prise de parole en groupe ; préparation importante ; parfois statut ou concours.","Formateur·rice, ingénieur·e pédagogique, tuteur·rice","Animer une courte séance devant un groupe pour tester l'exercice ; explorer la formation de formateur ; distinguer animation, conception pédagogique et enseignement statutaire.",""],
+    ["FAM_GESTION","Gestion administrative, comptable et financière","Fonctions consistant à assurer la fiabilité et la conformité des opérations administratives et financières.","Tâches récurrentes ; pics d'activité (clôtures, échéances légales).","Gestionnaire administratif·ve, comptable, assistant·e de gestion","Comparer les métiers de gestion selon leur part de routine ; explorer les formations en comptabilité ou gestion administrative ; échanger sur les périodes de pic (clôtures, échéances).",""],
+    ["FAM_PROJET","Coordination de projets et organisation","Fonctions consistant à planifier, coordonner et piloter des projets impliquant plusieurs intervenants.","Responsabilité sans autorité hiérarchique fréquente ; gestion des imprévus.","Chef·fe de projet, coordinateur·rice, chargé·e de projet","Repérer les projets que vous avez déjà coordonnés, même informellement ; explorer une formation en gestion de projet ; vérifier votre aisance face à la responsabilité sans autorité hiérarchique.",""],
+    ["FAM_CREATION","Création, conception et communication","Fonctions consistant à concevoir des contenus, des messages ou des objets nouveaux.","Subjectivité des évaluations ; marché parfois concurrentiel ; statuts variés.","Chargé·e de communication, designer, rédacteur·rice","Constituer un petit portfolio ; explorer les statuts (salarié, indépendant) ; échanger avec des professionnel·les sur la part de création réelle dans le métier.",""],
+    ["FAM_TECHNIQUE","Métiers techniques, production et maintenance","Fonctions consistant à réaliser, installer, régler ou maintenir des équipements et ouvrages.","Contraintes physiques et horaires possibles ; normes de sécurité ; habilitations.","Technicien·ne de maintenance, opérateur·rice, installateur·rice","Faire une immersion en atelier, sur chantier ou en maintenance ; vérifier les habilitations et conditions physiques ; explorer les formations qualifiantes courtes du secteur.",""],
+    ["FAM_RELATION_CLIENT","Relation client, commerce et négociation","Fonctions consistant à conseiller, vendre et fidéliser des clients.","Objectifs chiffrés fréquents ; horaires parfois décalés.","Conseiller·ère clientèle, commercial·e, chargé·e d'accueil","Tester une expérience d'accueil ou de vente ; se renseigner sur les objectifs chiffrés et les horaires ; distinguer conseil clientèle et prospection commerciale.",""],
+    ["FAM_ENCADREMENT","Encadrement et direction d'équipes","Fonctions consistant à organiser, animer et décider pour une équipe.","Responsabilité sur les personnes et les résultats ; arbitrages difficiles ; généralement après une première expérience.","Responsable d'équipe, manager de proximité, directeur·rice de structure","Repérer vos expériences d'animation ou de coordination d'équipe ; explorer une formation au management ; échanger avec des managers de proximité sur leurs arbitrages quotidiens.",""]
+  ],
+  // [ligne_id, dimension, environnement, famille, poids, sens]
+  matrice: [
+    ["MC-T01","PREF_AUTONOMIE","ENV_AUTONOMIE","TRANSVERSAL",3,1],["MC-T02","PREF_CADRE","ENV_STRUCTURE","TRANSVERSAL",3,1],["MC-T03","FCT_ORGANISATION","ENV_STRUCTURE","TRANSVERSAL",1,1],["MC-T04","PREF_VARIETE","ENV_VARIETE","TRANSVERSAL",3,1],["MC-T05","PREF_STABILITE","ENV_VARIETE","TRANSVERSAL",1,-1],["MC-T06","FCT_TRANSVERSALITE","ENV_VARIETE","TRANSVERSAL",1,1],["MC-T07","PREF_STABILITE","ENV_STABILITE","TRANSVERSAL",3,1],["MC-T08","PREF_VARIETE","ENV_STABILITE","TRANSVERSAL",1,-1],["MC-T09","FCT_ANALYSE","ENV_COMPLEXITE","TRANSVERSAL",2,1],["MC-T10","FCT_SYNTHESE_CRITIQUE","ENV_COMPLEXITE","TRANSVERSAL",2,1],["MC-T11","FCT_CREATIVITE_STRUCT","ENV_COMPLEXITE","TRANSVERSAL",1,1],["MC-T12","FCT_APPRENTISSAGE","ENV_COMPLEXITE","TRANSVERSAL",1,1],["MC-T13","PREF_RELATION","ENV_RELATIONNEL","TRANSVERSAL",3,1],["MC-T14","PREF_COLLECTIF","ENV_COLLABORATION","TRANSVERSAL",3,1],["MC-T15","PREF_RYTHME","ENV_RYTHME","TRANSVERSAL",3,1],["MC-T16","FCT_CREATIVITE_STRUCT","ENV_CREATIVITE","TRANSVERSAL",3,1],["MC-T17","FCT_TRANSVERSALITE","ENV_CREATIVITE","TRANSVERSAL",1,1],["MC-T18","FCT_PRECISION","ENV_PRECISION","TRANSVERSAL",3,1],["MC-T19","PREF_DECISION","ENV_RESPONSABILITE","TRANSVERSAL",3,1],["MC-T20","PREF_CONCRET","ENV_CONCRET","TRANSVERSAL",3,1],["MC-T21","FCT_APPRENTISSAGE","ENV_APPRENTISSAGE","TRANSVERSAL",3,1],["MC-T22","FCT_REFLEXIVITE","ENV_APPRENTISSAGE","TRANSVERSAL",1,1],
+    ["MC-F001","FCT_ANALYSE","ENV_COMPLEXITE","FAM_DATA",3,1],["MC-F002","FCT_PRECISION","ENV_PRECISION","FAM_DATA",2,1],["MC-F003","PREF_AUTONOMIE","ENV_AUTONOMIE","FAM_DATA",1,1],["MC-F004","FCT_APPRENTISSAGE","ENV_APPRENTISSAGE","FAM_DATA",1,1],["MC-F005","PREF_CONCRET","ENV_CONCRET","FAM_DATA",1,-1],["MC-F006","PREF_RELATION","ENV_RELATIONNEL","FAM_DATA",1,-1],
+    ["MC-F007","FCT_SYNTHESE_CRITIQUE","ENV_COMPLEXITE","FAM_RECHERCHE",3,1],["MC-F008","FCT_ANALYSE","ENV_COMPLEXITE","FAM_RECHERCHE",2,1],["MC-F009","FCT_APPRENTISSAGE","ENV_APPRENTISSAGE","FAM_RECHERCHE",2,1],["MC-F010","PREF_AUTONOMIE","ENV_AUTONOMIE","FAM_RECHERCHE",2,1],["MC-F011","FCT_TRANSVERSALITE","ENV_CREATIVITE","FAM_RECHERCHE",1,1],["MC-F012","PREF_CONCRET","ENV_CONCRET","FAM_RECHERCHE",1,-1],
+    ["MC-F013","FCT_SYNTHESE_CRITIQUE","ENV_COMPLEXITE","FAM_CONSEIL",3,1],["MC-F014","FCT_ANALYSE","ENV_COMPLEXITE","FAM_CONSEIL",2,1],["MC-F015","PREF_RELATION","ENV_RELATIONNEL","FAM_CONSEIL",2,1],["MC-F016","PREF_VARIETE","ENV_VARIETE","FAM_CONSEIL",2,1],["MC-F017","FCT_TRANSVERSALITE","ENV_VARIETE","FAM_CONSEIL",1,1],["MC-F018","PREF_RYTHME","ENV_RYTHME","FAM_CONSEIL",1,1],["MC-F019","PREF_STABILITE","ENV_STABILITE","FAM_CONSEIL",1,-1],
+    ["MC-F020","PREF_RELATION","ENV_RELATIONNEL","FAM_ACCOMPAGNEMENT",3,1],["MC-F021","FCT_REFLEXIVITE","ENV_APPRENTISSAGE","FAM_ACCOMPAGNEMENT",2,1],["MC-F022","PREF_COLLECTIF","ENV_COLLABORATION","FAM_ACCOMPAGNEMENT",1,1],["MC-F023","PREF_VARIETE","ENV_VARIETE","FAM_ACCOMPAGNEMENT",1,1],
+    ["MC-F024","PREF_RELATION","ENV_RELATIONNEL","FAM_FORMATION",3,1],["MC-F025","FCT_SYNTHESE_CRITIQUE","ENV_COMPLEXITE","FAM_FORMATION",2,1],["MC-F026","FCT_APPRENTISSAGE","ENV_APPRENTISSAGE","FAM_FORMATION",2,1],["MC-F027","FCT_TRANSVERSALITE","ENV_CREATIVITE","FAM_FORMATION",1,1],["MC-F028","FCT_ORGANISATION","ENV_STRUCTURE","FAM_FORMATION",1,1],["MC-F029","FCT_REFLEXIVITE","ENV_APPRENTISSAGE","FAM_FORMATION",1,1],
+    ["MC-F030","FCT_PRECISION","ENV_PRECISION","FAM_GESTION",3,1],["MC-F031","PREF_CADRE","ENV_STRUCTURE","FAM_GESTION",3,1],["MC-F032","FCT_ORGANISATION","ENV_STRUCTURE","FAM_GESTION",2,1],["MC-F033","PREF_STABILITE","ENV_STABILITE","FAM_GESTION",1,1],["MC-F034","PREF_VARIETE","ENV_VARIETE","FAM_GESTION",1,-1],["MC-F035","FCT_ANALYSE","ENV_COMPLEXITE","FAM_GESTION",1,1],
+    ["MC-F036","FCT_ORGANISATION","ENV_STRUCTURE","FAM_PROJET",3,1],["MC-F037","PREF_COLLECTIF","ENV_COLLABORATION","FAM_PROJET",2,1],["MC-F038","PREF_DECISION","ENV_RESPONSABILITE","FAM_PROJET",2,1],["MC-F039","PREF_VARIETE","ENV_VARIETE","FAM_PROJET",1,1],["MC-F040","PREF_RYTHME","ENV_RYTHME","FAM_PROJET",1,1],["MC-F041","FCT_SYNTHESE_CRITIQUE","ENV_COMPLEXITE","FAM_PROJET",1,1],
+    ["MC-F042","FCT_CREATIVITE_STRUCT","ENV_CREATIVITE","FAM_CREATION",3,1],["MC-F043","FCT_TRANSVERSALITE","ENV_CREATIVITE","FAM_CREATION",2,1],["MC-F044","PREF_AUTONOMIE","ENV_AUTONOMIE","FAM_CREATION",1,1],["MC-F045","PREF_VARIETE","ENV_VARIETE","FAM_CREATION",1,1],["MC-F046","PREF_CADRE","ENV_STRUCTURE","FAM_CREATION",1,-1],
+    ["MC-F047","PREF_CONCRET","ENV_CONCRET","FAM_TECHNIQUE",3,1],["MC-F048","FCT_PRECISION","ENV_PRECISION","FAM_TECHNIQUE",2,1],["MC-F049","FCT_ANALYSE","ENV_COMPLEXITE","FAM_TECHNIQUE",1,1],["MC-F050","PREF_CADRE","ENV_STRUCTURE","FAM_TECHNIQUE",1,1],["MC-F051","FCT_APPRENTISSAGE","ENV_APPRENTISSAGE","FAM_TECHNIQUE",1,1],
+    ["MC-F052","PREF_RELATION","ENV_RELATIONNEL","FAM_RELATION_CLIENT",3,1],["MC-F053","PREF_RYTHME","ENV_RYTHME","FAM_RELATION_CLIENT",2,1],["MC-F054","PREF_DECISION","ENV_RESPONSABILITE","FAM_RELATION_CLIENT",1,1],["MC-F055","PREF_VARIETE","ENV_VARIETE","FAM_RELATION_CLIENT",1,1],
+    ["MC-F056","PREF_DECISION","ENV_RESPONSABILITE","FAM_ENCADREMENT",3,1],["MC-F057","PREF_COLLECTIF","ENV_COLLABORATION","FAM_ENCADREMENT",2,1],["MC-F058","FCT_ORGANISATION","ENV_STRUCTURE","FAM_ENCADREMENT",2,1],["MC-F059","PREF_RELATION","ENV_RELATIONNEL","FAM_ENCADREMENT",1,1],["MC-F060","FCT_REFLEXIVITE","ENV_APPRENTISSAGE","FAM_ENCADREMENT",1,1],["MC-F061","PREF_RYTHME","ENV_RYTHME","FAM_ENCADREMENT",1,1]
+  ],
+  // [id, dim1, op1, seuil1, dim2, op2, seuil2, message, question adaptative]
+  tensions: [
+    ["T-01","PREF_AUTONOMIE",">=",60,"PREF_CADRE",">=",60,"Vous semblez rechercher à la fois un cadre clair et une grande autonomie. Ces deux attentes peuvent coexister (un cadre sur les objectifs, de la liberté sur les méthodes) : c'est un point à préciser.","Vous semblez rechercher à la fois un cadre clair et une grande autonomie. Pouvez-vous préciser ce que vous entendez par là ?"],
+    ["T-02","PREF_VARIETE",">=",60,"PREF_STABILITE",">=",60,"Vous recherchez de la variété dans les tâches tout en appréciant une organisation stable : les environnements combinant missions diversifiées et cadre durable sont à privilégier.","Quand vous parlez de variété et de stabilité, laquelle compte le plus pour vous au quotidien : la diversité des tâches ou la continuité de l'organisation ?"],
+    ["T-03","PREF_RELATION",">=",60,"PREF_COLLECTIF","<",40,"Vous appréciez le contact avec des publics mais moins le travail en équipe : les relations individuelles (conseil, accompagnement) semblent plus en phase que les dispositifs très collectifs.","Vous aimez le contact avec des publics. Préférez-vous les échanges en face-à-face, individuels, ou l'animation de groupes ?"],
+    ["T-04","PREF_DECISION",">=",60,"PREF_COLLECTIF","<",40,"Votre appétence pour la décision s'accompagne d'une préférence pour le travail individuel : les fonctions d'encadrement d'équipe peuvent demander une attention particulière à la dimension collective.",""],
+    ["T-05","PREF_RYTHME",">=",60,"FCT_PRECISION",">=",60,"Vous êtes à l'aise avec un rythme soutenu et exigeant sur la précision : dans les contextes très urgents, ces deux attentes peuvent entrer en tension.",""],
+    ["T-06","FCT_CREATIVITE_STRUCT",">=",60,"PREF_CADRE",">=",60,"Vous aimez construire des solutions nouvelles tout en appréciant un cadre clair : les environnements où l'innovation est organisée (projets, méthodes définies) semblent plus favorables que les contextes très normatifs.","Dans quelles conditions avez-vous le plus de facilité à proposer des idées nouvelles : avec une méthode imposée, ou avec un objectif clair et la liberté sur la méthode ?"]
+  ],
+  radar: {
+    RAD_FONCT: ["FCT_ANALYSE","FCT_SYNTHESE_CRITIQUE","FCT_PRECISION","FCT_ORGANISATION","FCT_REFLEXIVITE","FCT_APPRENTISSAGE","FCT_TRANSVERSALITE","FCT_CREATIVITE_STRUCT"],
+    RAD_PREF: ["PREF_AUTONOMIE","PREF_CADRE","PREF_STABILITE","PREF_VARIETE","PREF_RYTHME","PREF_RELATION","PREF_COLLECTIF","PREF_DECISION","PREF_CONCRET"]
+  },
+  textes: {
+    "SYN-INTRO-RC": "Vos réponses dessinent un profil relativement convergent : les tendances décrites ci-dessous ressortent de façon cohérente.",
+    "SYN-INTRO-MC": "Vos réponses dessinent un profil modérément convergent : plusieurs tendances ressortent nettement, d'autres restent à préciser.",
+    "SYN-INTRO-EX": "Vos réponses ne permettent pas encore de dégager un profil net. Les éléments ci-dessous sont des pistes à explorer, idéalement avec un·e conseiller·ère.",
+    "SYN-DOM": "Vos réponses font principalement ressortir : {DOMINANTES}.",
+    "SYN-ENV": "Les environnements de travail les plus en phase avec vos réponses offrent notamment : {ENVIRONNEMENTS}.",
+    "SYN-FAM": "Parmi les familles professionnelles étudiées, la correspondance calculée est la plus élevée pour : {FAMILLES}.",
+    "SYN-FAM-EXAEQUO": "Plusieurs familles ressortent à un niveau proche ({FAMILLES}) : le questionnaire ne permet pas encore de les départager clairement.",
+    "SYN-FAM-AUCUNE": "Aucune famille professionnelle ne se dégage nettement à ce stade ; un échange avec un·e conseiller·ère peut aider à préciser vos pistes.",
+    "SYN-LECTURE": "Ces résultats décrivent des préférences et des tendances que vous avez déclarées ; ce ne sont ni un bilan psychologique ni une prédiction de réussite.",
+    "CONF-RC": "Vos réponses sont cohérentes entre elles et les principales orientations se distinguent nettement.",
+    "CONF-MC": "Les grandes tendances sont lisibles, mais certains points restent à préciser : {MOTIFS}.",
+    "CONF-EX": "Vos réponses ne permettent pas encore une lecture fiable ({MOTIFS}). Il est conseillé de reprendre ces pistes avec un·e conseiller·ère.",
+    "TIT-EX": "Profil en cours d'exploration",
+    "TIT-STD": "Profil {QUALIF_1} et {QUALIF_2}",
+    "LECT-COMPAT": "Correspondance calculée entre vos réponses et les caractéristiques définies pour cette famille. Ce n'est pas une probabilité de réussite.",
+    "MENTION-DONNEES": "Aucune de vos réponses n'est conservée : ce document a été généré pendant votre session et n'existe que sur votre appareil."
+  }
+};
+
+</script>
+<script>/* Moteur de calcul — reproduit les formules du classeur (règles R-SC, R-NIV, R-CONF, R-CORR, T-xx, R-QUAL, R-INC, R-TIT, R-APP, R-VIG, R-SYN).
+   Entrée : réponses { Q01: "4", Q03: "B", ... }. Sortie : objet résultat temporaire (jamais stocké). */
+var CT_ENGINE = (function () {
+  // Arrondi identique à ROUND() de Google Sheets (évite les erreurs de virgule flottante, ex. 35.45 → 35.5)
+  function rd(x, n) { var p = Math.pow(10, n); var y = Number((Math.abs(x) * p).toPrecision(12)); return Math.sign(x) * Math.round(y) / p; }
+  function r1(x) { return rd(x, 1); }
+  function r2(x) { return rd(x, 2); }
+
+  function compute(REF, answers, opts) {
+    opts = opts || {};
+    var C = REF.config;
+    var D = {}; REF.dimensions.forEach(function (d) {
+      D[d[0]] = { id: d[0], nom: d[1], couche: d[2], court: d[3], qualif: d[4], poleBas: d[5], poleHaut: d[6], interp: [d[7], d[8], d[9]], limites: d[10], appui: d[11] };
+    });
+    var dimOrder = REF.dimensions.map(function (d) { return d[0]; });
+    var Q = REF.questions.map(function (q) {
+      return { id: q[0], texte: q[1], bloc: q[2], type: q[3], dim: q[4], dim2: q[5], sens: q[6], coef: q[7], oblig: q[8], inv: q[9], sens2: q[10], coef2: q[11] };
+    });
+
+    // 1. Items → valeurs orientées (R-SC-01/02/03)
+    var items = {}; dimOrder.forEach(function (id) { items[id] = []; });
+    var sec = {}; dimOrder.forEach(function (id) { sec[id] = []; });
+    var nbOblig = 0, nbObligRep = 0, likDir = [], likInv = [];
+    Q.forEach(function (q) {
+      if (q.type === "OUVERTE") return;
+      if (q.oblig) nbOblig++;
+      var a = answers[q.id];
+      if (a === undefined || a === null || a === "") return;
+      var x = REF.modalites[q.type][String(a)];
+      if (x === undefined) return;
+      if (q.oblig) nbObligRep++;
+      if (q.type === "LIKERT5") (q.inv ? likInv : likDir).push(Number(a));
+      var flip = (q.inv ? 1 : 0) ^ (q.sens === -1 ? 1 : 0);
+      var xo = flip ? 1 - x : x;
+      items[q.dim].push({ q: q.id, x: xo, coef: q.coef, brut: String(a) });
+      if (q.dim2) {
+        var flip2 = (q.inv ? 1 : 0) ^ (q.sens2 === -1 ? 1 : 0);
+        sec[q.dim2].push({ q: q.id, x: flip2 ? 1 - x : x, coef: q.coef2 });
+      }
+    });
+
+    // 2. Scores par dimension (R-SC-04, R-NIV-01, R-CONF-01/02)
+    var scores = {};
+    dimOrder.forEach(function (id) {
+      var it = items[id], s = sec[id];
+      var num = 0, den = 0;
+      it.forEach(function (i) { num += i.coef * i.x; den += i.coef; });
+      s.forEach(function (i) { num += i.coef * i.x; den += i.coef; });
+      var adj = (opts.adjustments && opts.adjustments[id]) || 0;
+      adj = Math.max(-10, Math.min(10, adj));
+      var base = den > 0 ? r1(100 * num / den) : null;
+      var score = base === null ? null : Math.max(0, Math.min(100, r1(base + adj)));
+      var n = it.length, coh = null;
+      if (n > 0) {
+        var m = it.reduce(function (a, i) { return a + i.x; }, 0) / n;
+        var v = it.reduce(function (a, i) { return a + (i.x - m) * (i.x - m); }, 0) / n;
+        coh = r2(1 - Math.sqrt(v) / 0.5);
+      }
+      var conf = n < C.MIN_ITEMS_DIMENSION ? "Insuffisante" : (coh < C.SEUIL_COHERENCE ? "Limitée" : "Suffisante");
+      var niveau = score === null ? "—" : (score < C.SEUIL_BAS ? "Bas" : (score >= C.SEUIL_HAUT ? "Élevé" : "Intermédiaire"));
+      var d = D[id];
+      scores[id] = {
+        dimension_id: id, nom: d.nom, couche: d.couche, libelle_court: d.court,
+        score: score, score_questionnaire: base, ajustement: adj, niveau: niveau, coherence: coh, confiance: conf,
+        nb_items: n, interpretation: niveau === "Bas" ? d.interp[0] : (niveau === "Élevé" ? d.interp[2] : d.interp[1]),
+        pole_bas: d.poleBas, pole_haut: d.poleHaut, limites: d.limites,
+        contributions: it.map(function (i) { return { question_id: i.q, valeur_orientee: r2(i.x), reponse: i.brut }; })
+      };
+    });
+
+    function aligned(dim, sens) { var s = scores[dim].score; if (s === null) return null; s = s / 100; return sens === -1 ? 1 - s : s; }
+
+    // 3. Environnements (R-CORR-01)
+    var environnements = REF.environnements.map(function (e) {
+      var rows = REF.matrice.filter(function (m) { return m[3] === "TRANSVERSAL" && m[2] === e[0]; });
+      var num = 0, den = 0, contrib = [];
+      rows.forEach(function (m) { var a = aligned(m[1], m[5]); if (a === null) return; num += m[4] * a; den += m[4]; contrib.push({ dimension_id: m[1], poids: m[4], sens: m[5], score_aligne: r1(a * 100) }); });
+      var aff = den ? r1(100 * num / den) : null;
+      return { environnement_id: e[0], caracteristique: e[1], definition: e[2], pole_bas: e[3], pole_haut: e[4], affinite: aff,
+        lecture: aff === null ? "—" : (aff >= C.SEUIL_ENV_RECHERCHE ? "Recherché" : (aff < C.SEUIL_ENV_EVITE ? "Moins recherché" : "Neutre")), contributions: contrib };
+    });
+
+    // 4. Familles (R-CORR-02/03/04)
+    var familles = REF.familles.map(function (f) {
+      var rows = REF.matrice.filter(function (m) { return m[3] === f[0]; });
+      var num = 0, den = 0, fav = [], lim = [];
+      rows.forEach(function (m) {
+        var a = aligned(m[1], m[5]); if (a === null) return;
+        num += m[4] * a; den += m[4];
+        var nom = D[m[1]].nom;
+        if (a >= C.SEUIL_FACTEUR_FAVORABLE) fav.push({ dimension_id: m[1], poids: m[4], texte: m[5] === -1 ? nom + " (peu marqué, ce qui convient ici)" : nom });
+        else if (a < C.SEUIL_FACTEUR_DEFAVORABLE) lim.push({ dimension_id: m[1], poids: m[4], texte: m[5] === -1 ? nom + " (élevé alors que la famille demande l'inverse)" : nom + " (peu marqué)" });
+      });
+      var comp = den ? r1(100 * num / den) : 0;
+      return { famille_id: f[0], famille: f[1], description: f[2], contraintes: f[3], exemples_metiers: f[4], pistes: f[5], offre_ct: f[6] || null,
+        compatibilite: comp, niveau: comp >= C.SEUIL_COMPAT_ELEVEE ? "Relativement élevée" : (comp >= C.SEUIL_COMPAT_MODEREE ? "Modérée" : "Faible"),
+        favorables: fav, limitants: lim, poids_total: den };
+    });
+    familles.forEach(function (f) { f.rang = 1 + familles.filter(function (g) { return g.compatibilite > f.compatibilite; }).length; });
+    var famTri = familles.slice().sort(function (a, b) { return a.rang - b.rang || REF.familles.findIndex(function (x) { return x[0] === a.famille_id; }) - REF.familles.findIndex(function (x) { return x[0] === b.famille_id; }); });
+    var restituees = famTri.filter(function (f) { return f.rang <= C.NB_FAMILLES_RESTITUEES; });
+
+    // 5. Tensions (T-xx)
+    function test(v, op, s) { if (v === null) return false; return op === ">=" ? v >= s : (op === "<" ? v < s : (op === ">" ? v > s : v <= s)); }
+    var tensions = REF.tensions.filter(function (t) { return test(scores[t[1]].score, t[2], t[3]) && test(scores[t[4]].score, t[5], t[6]); })
+      .map(function (t) { return { regle_id: t[0], dimensions: [t[1], t[4]], scores: [scores[t[1]].score, scores[t[4]].score], message: t[7], question_adaptative: t[8] || null }; });
+
+    // 6. Contrôles qualité et confiance (R-QUAL-01, R-CONF-03/04, R-INC-01/02)
+    var completude = nbOblig ? nbObligRep / nbOblig : 0;
+    var nonSuff = dimOrder.filter(function (id) { return scores[id].confiance !== "Suffisante"; });
+    var mean = function (a) { return a.length ? a.reduce(function (x, y) { return x + y; }, 0) / a.length : 0; };
+    var moyDir = r2(mean(likDir)), moyInv = r2(mean(likInv));
+    var acq = mean(likDir) >= C.SEUIL_ACQUIESCEMENT && mean(likInv) >= C.SEUIL_ACQUIESCEMENT;
+    var comps = familles.map(function (f) { return f.compatibilite; }).sort(function (a, b) { return b - a; });
+    var ecart = r1(comps[0] - comps[1]);
+    var departage = ecart >= C.ECART_DEPARTAGE;
+    var cmax = comps[0];
+    var motifs = [];
+    if (completude < C.SEUIL_COMPLETUDE) motifs.push({ code: "COMPLETUDE", texte: "questionnaire incomplet (" + Math.round(completude * 100) + " % des questions obligatoires)" });
+    if (nonSuff.length) motifs.push({ code: "DIM_LIMITEE", texte: nonSuff.length + " dimension(s) à confiance limitée ou insuffisante" });
+    if (tensions.length) motifs.push({ code: "TENSION", texte: tensions.length + " tension(s) détectée(s)" });
+    if (acq) motifs.push({ code: "ACQUIESCEMENT", texte: "acquiescement possible" });
+    if (!departage) motifs.push({ code: "DEPARTAGE", texte: "familles non départagées" });
+    if (cmax < C.SEUIL_COMPAT_MODEREE) motifs.push({ code: "AUCUNE_FAMILLE", texte: "aucune famille au-dessus du seuil de compatibilité modérée" });
+    var niveauConf;
+    if (completude < C.SEUIL_COMPLETUDE || nonSuff.length >= 3 || acq || cmax < C.SEUIL_COMPAT_MODEREE) niveauConf = "Exploratoire";
+    else if (nonSuff.length >= 1 || tensions.length >= 1 || !departage) niveauConf = "Modérément convergent";
+    else niveauConf = "Relativement convergent";
+    var code = niveauConf === "Relativement convergent" ? "RC" : (niveauConf === "Modérément convergent" ? "MC" : "EX");
+    var motifsTxt = motifs.map(function (m) { return m.texte; }).join("; ");
+    var T = REF.textes;
+
+    // 7. Dominantes, secondaires, points d'appui, intitulé (R-TIT-01, R-APP-01)
+    var cohOf = function (id) { return scores[id].coherence || 0; };
+    var bySc = function (a, b) { return scores[b].score - scores[a].score || cohOf(b) - cohOf(a) || dimOrder.indexOf(a) - dimOrder.indexOf(b); };
+    var suff = dimOrder.filter(function (id) { return scores[id].confiance === "Suffisante" && scores[id].score !== null; }).sort(bySc);
+    var eleveSuff = suff.filter(function (id) { return scores[id].niveau === "Élevé"; });
+    var dominantes = eleveSuff.slice(0, C.NB_DIM_DOMINANTES);
+    var secondaires = dimOrder.filter(function (id) { return dominantes.indexOf(id) < 0 && scores[id].score !== null && scores[id].score >= C.SEUIL_SECONDAIRE; }).sort(bySc).slice(0, C.NB_DIM_SECONDAIRES);
+    dimOrder.forEach(function (id) { scores[id].role = dominantes.indexOf(id) >= 0 ? "dominante" : (secondaires.indexOf(id) >= 0 ? "secondaire" : "autre"); });
+    var enTete = suff.length >= 2 ? suff.filter(function (id) { return scores[id].score >= scores[suff[1]].score; }).length : suff.length;
+    var titre = (niveauConf === "Exploratoire" || suff.length < 2) ? T["TIT-EX"]
+      : T["TIT-STD"].replace("{QUALIF_1}", D[suff[0]].qualif).replace("{QUALIF_2}", D[suff[1]].qualif);
+    var appuis = eleveSuff.slice(0, C.NB_POINTS_APPUI).map(function (id) { return { dimension_id: id, libelle: D[id].court, texte: D[id].appui, regle: "R-APP-01" }; });
+
+    // 8. Vigilance de compatibilité (R-VIG-01) + qualité de mesure
+    var vigilance = [];
+    restituees.forEach(function (f) {
+      f.limitants.forEach(function (l) { vigilance.push({ type: "LIMITANT", famille_id: f.famille_id, famille: f.famille, texte: l.texte, regle: "R-VIG-01" }); });
+    });
+    var qualite = nonSuff.map(function (id) { return { dimension_id: id, nom: D[id].nom, confiance: scores[id].confiance, texte: "Réponses dispersées sur cette dimension : à préciser." }; });
+
+    // 9. Synthèse (R-SYN-01)
+    var envRech = environnements.filter(function (e) { return e.lecture === "Recherché"; }).sort(function (a, b) { return b.affinite - a.affinite; }).slice(0, C.NB_ENV_AFFICHES);
+    var famNoms = restituees.map(function (f) { return f.famille; }).join(" ; ");
+    var blocs = [{ bloc_id: "SYN-INTRO-" + code, nature: "calculé", texte: T["SYN-INTRO-" + code] }];
+    if (dominantes.length) blocs.push({ bloc_id: "SYN-DOM", nature: "calculé", texte: T["SYN-DOM"].replace("{DOMINANTES}", dominantes.map(function (id) { return D[id].nom.toLowerCase(); }).join(", ")) });
+    if (envRech.length) blocs.push({ bloc_id: "SYN-ENV", nature: "interprété", texte: T["SYN-ENV"].replace("{ENVIRONNEMENTS}", envRech.map(function (e) { return e.caracteristique.toLowerCase(); }).join(", ")) });
+    if (cmax < C.SEUIL_COMPAT_MODEREE) blocs.push({ bloc_id: "SYN-FAM-AUCUNE", nature: "hypothèse", texte: T["SYN-FAM-AUCUNE"] });
+    else if (!departage) blocs.push({ bloc_id: "SYN-FAM-EXAEQUO", nature: "hypothèse", texte: T["SYN-FAM-EXAEQUO"].replace("{FAMILLES}", famNoms) });
+    else blocs.push({ bloc_id: "SYN-FAM", nature: "hypothèse", texte: T["SYN-FAM"].replace("{FAMILLES}", famNoms) });
+    blocs.push({ bloc_id: "SYN-LECTURE", nature: "lecture", texte: T["SYN-LECTURE"] });
+
+    var radar = {};
+    Object.keys(REF.radar).forEach(function (rid) {
+      radar[rid] = REF.radar[rid].map(function (id, i) { return { ordre: i + 1, dimension_id: id, libelle: D[id].court, valeur: scores[id].score, valeur_avant_ajustement: scores[id].score_questionnaire, trace: scores[id].confiance === "Suffisante" ? "plein" : "pointillé" }; });
+    });
+
+    return {
+      meta: { generated_at: new Date().toISOString(), model_version: REF.meta.model_version, questionnaire_version: REF.meta.questionnaire_version, restitution_version: REF.meta.restitution_version, snapshot_date: REF.meta.snapshot_date, statut_modele: "Prototype non validé empiriquement" },
+      profile: { titre: titre, titre_dimensions: suff.slice(0, 2), nb_dim_en_tete: enTete, synthese_blocs: blocs, synthese: blocs.map(function (b) { return b.texte; }).join(" ") },
+      dimensions: dimOrder.map(function (id) { return scores[id]; }),
+      dominantes: dominantes, secondaires: secondaires,
+      radar: radar, environnements: environnements, familles: famTri, familles_restituees: restituees,
+      points_appui: appuis, tensions: tensions, vigilance: vigilance, qualite_mesure: qualite,
+      confiance: { niveau: niveauConf, code: code, indicateurs: { completude: r2(completude), dim_non_suffisantes: nonSuff.length, tensions: tensions.length, acquiescement: acq, moy_likert_directs: moyDir, moy_likert_inverses: moyInv, ecart_top2: ecart, compatibilite_max: cmax, departage: departage },
+        motifs: motifs, texte: T["CONF-" + code].replace("{MOTIFS}", motifsTxt) },
+      ajustements: [],
+      mentions: { lecture_compat: T["LECT-COMPAT"], donnees: T["MENTION-DONNEES"] }
+    };
+  }
+  return { compute: compute };
+})();
+
+</script>
+<script>/* Profils FICTIFS du banc d'essai (onglet REPONSES) — Q01→Q51 */
+var CT_TESTS = {
+  "TEST-001": "5 2 B 2 4 A 3 3 A 4 3 B 2 4 A 2 4 B 2 5 A 3 3 B 2 5 A 5 1 D 4 5 B 5 5 D 4 4 B 3 3 3 4 3 B 5 1 C 4 3 C",
+  "TEST-002": "3 3 B 4 3 C 5 2 B 5 2 C 3 3 A 5 1 D 5 2 B 3 4 C 4 3 A 3 3 B 3 2 A 2 2 B 3 4 B 4 5 2 3 4 A 4 2 C 5 5 D",
+  "TEST-003": "5 5 B 5 5 D 5 5 B 5 5 D 5 5 B 5 5 D 5 5 B 5 5 D 5 5 B 5 5 D 5 5 B 5 5 D 5 5 B 5 5 5 5 5 B 5 5 D 5 5 D"
+};
+function ctTestAnswers(id) {
+  var v = CT_TESTS[id].split(" "), a = {};
+  v.forEach(function (x, i) { a["Q" + String(i + 1).padStart(2, "0")] = x; });
+  return a;
+}
+
+</script>
+<script>
+(function () {
+  var REF = CT_REF, app = document.getElementById("app");
+  var DIM = {}; REF.dimensions.forEach(function (d) { DIM[d[0]] = d; });
+  var QS = REF.questions.map(function (q) { return { id: q[0], texte: q[1], bloc: q[2], type: q[3], oblig: q[8] }; });
+  var BLOCS = []; QS.forEach(function (q) { if (BLOCS.indexOf(q.bloc) < 0) BLOCS.push(q.bloc); });
+  var state = { view: "home", i: 0, answers: {}, open: {}, result: null, example: null, radar: "RAD_FONCT" };
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function fmt(n) { return n == null ? "—" : String(Math.round(n)); }
+
+  // Sépare l'énoncé et les options « A. … B. … » tels qu'écrits dans le référentiel
+  function parseQ(q) {
+    if (q.type === "LIKERT5" || q.type === "OUVERTE") return { stem: q.texte, opts: [] };
+    var parts = q.texte.split(/\s(?=[A-D]\.\s)/);
+    var stem = parts.shift();
+    return { stem: stem, opts: parts.map(function (p) { return { key: p[0], label: p.slice(3).trim() }; }) };
+  }
+  // Ordre d'affichage mélangé (fixe par question) pour les situations : l'ordre A→D encode l'intensité
+  function shuffled(arr, seed) {
+    var a = arr.slice(), s = 0; for (var k = 0; k < seed.length; k++) s = (s * 31 + seed.charCodeAt(k)) >>> 0;
+    for (var i = a.length - 1; i > 0; i--) { s = (s * 1103515245 + 12345) >>> 0; var j = s % (i + 1); var t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a;
+  }
+
+  /* ---------- Radar ---------- */
+  function radarSVG(axes, opts) {
+    opts = opts || {};
+    var W = 560, H = 430, cx = W / 2, cy = H / 2 + 2, R = 126, n = axes.length;
+    var pt = function (i, v) { var a = -Math.PI / 2 + 2 * Math.PI * i / n; return [cx + Math.cos(a) * R * v / 100, cy + Math.sin(a) * R * v / 100]; };
+    var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(opts.label || "Graphique radar") + '">';
+    [20, 40, 60, 80, 100].forEach(function (lv) {
+      var p = axes.map(function (_, i) { return pt(i, lv).join(","); }).join(" ");
+      var strong = lv === 40 || lv === 60;
+      s += '<polygon points="' + p + '" fill="none" stroke="var(--line)" stroke-width="' + (strong ? 1.6 : 0.8) + '"' + (strong ? ' stroke-dasharray="4 3"' : '') + '/>';
+    });
+    axes.forEach(function (_, i) { var e = pt(i, 100); s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e[0] + '" y2="' + e[1] + '" stroke="var(--line)" stroke-width="0.8"/>'; });
+    [40, 60, 100].forEach(function (lv) { var p = pt(0, lv); s += '<text x="' + (p[0] + 5) + '" y="' + (p[1] + 4) + '" font-size="10" fill="var(--muted)" font-family="var(--font-body)">' + lv + '</text>'; });
+    var poly = axes.map(function (a, i) { return pt(i, a.valeur || 0).join(","); }).join(" ");
+    s += '<polygon points="' + poly + '" fill="var(--accent)" fill-opacity="0.16" stroke="var(--accent)" stroke-width="2.2" stroke-linejoin="round"/>';
+    axes.forEach(function (a, i) {
+      var p = pt(i, a.valeur || 0);
+      if (a.trace === "plein") s += '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="4.5" fill="var(--accent)" stroke="var(--surface)" stroke-width="1.5"/>';
+      else s += '<rect x="' + (p[0] - 5) + '" y="' + (p[1] - 5) + '" width="10" height="10" transform="rotate(45 ' + p[0] + ' ' + p[1] + ')" fill="var(--surface)" stroke="var(--accent)" stroke-width="2"/>';
+      var l = pt(i, 116), anchor = Math.abs(l[0] - cx) < 8 ? "middle" : (l[0] > cx ? "start" : "end");
+      var words = String(a.libelle).split(" "), l1 = words.length > 1 ? words[0] : a.libelle, l2 = words.length > 1 ? words.slice(1).join(" ") + " " : "";
+      var top = l[1] < cy - R * 0.9, bottom = l[1] > cy + R * 0.9;
+      var y0 = top ? l[1] - 22 : (bottom ? l[1] + 14 : l[1] - 6);
+      s += '<text x="' + l[0] + '" y="' + y0 + '" text-anchor="' + anchor + '" font-size="15" fill="var(--ink)" font-family="var(--font-body)">' +
+        '<tspan x="' + l[0] + '">' + esc(l1) + (l2 ? '' : ' ') + (l2 ? '' : '<tspan font-weight="700" fill="var(--accent-ink)">' + fmt(a.valeur) + '</tspan>') + '</tspan>' +
+        (l2 ? '<tspan x="' + l[0] + '" dy="17">' + esc(l2) + '<tspan font-weight="700" fill="var(--accent-ink)">' + fmt(a.valeur) + '</tspan></tspan>' : '<tspan x="' + l[0] + '" dy="17"> </tspan>') + '</text>';
+    });
+    return s + "</svg>";
+  }
+
+  /* ---------- Accueil ---------- */
+  function renderHome() {
+    var ex = CT_ENGINE.compute(REF, ctTestAnswers("TEST-001"));
+    app.innerHTML =
+      '<div class="stack" style="gap:30px">' +
+      '<div class="hero"><div class="stack" style="gap:18px">' +
+      '<span class="eyebrow">' + esc(CT_SITE.organisation) + ' · Exploration professionnelle</span>' +
+      '<h1>Profil professionnel</h1>' +
+      '<p style="font-size:1.12rem">Répondez à une cinquantaine de questions sur votre manière de travailler. Vous obtiendrez une lecture de vos préférences, des environnements de travail qui vous correspondent et des familles de métiers à explorer.</p>' +
+      '<div class="row"><button class="btn" id="start">Commencer le questionnaire</button><button class="btn ghost" id="example">Voir un exemple de résultat</button></div>' +
+      '</div><figure class="example-fig" style="margin:0">' + radarSVG(ex.radar.RAD_FONCT, { label: "Exemple de radar pour un profil fictif" }) +
+      '<figcaption>Exemple : profil fictif « analytique et rigoureux »</figcaption></figure></div>' +
+      '<ul class="facts"><li><b>12 à 15 min</b>53 questions en 6 parties</li><li><b>Aucune donnée conservée</b>Vos réponses restent sur votre appareil</li><li><b>Un rapport PDF</b>À télécharger à la fin</li></ul>' +
+      '<div class="notice stack" style="gap:8px"><h3>À savoir avant de commencer</h3>' +
+      '<p class="small">Cet outil d\'exploration décrit des préférences et des tendances que vous déclarez. Ce n\'est ni un test psychologique, ni un diagnostic, ni une prédiction de réussite. Il n\'y a pas de bonne ou de mauvaise réponse : répondez selon ce qui vous ressemble le plus aujourd\'hui. Aucune information personnelle (nom, adresse, santé) n\'est demandée.</p></div>' +
+      '</div>';
+    document.getElementById("start").onclick = function () { state.view = "quiz"; state.i = 0; render(); };
+    document.getElementById("example").onclick = function () { showExample("TEST-001"); };
+  }
+
+  /* ---------- Questionnaire ---------- */
+  function renderQuiz() {
+    var q = QS[state.i], P = parseQ(q), bi = BLOCS.indexOf(q.bloc);
+    var segs = BLOCS.map(function (b) {
+      var inB = QS.filter(function (x) { return x.bloc === b; }), done = inB.filter(function (x) { return QS.indexOf(x) < state.i; }).length;
+      return '<div class="seg"><i style="width:' + Math.round(100 * done / inB.length) + '%"></i></div>';
+    }).join("");
+    var cur = state.answers[q.id], body = "";
+    if (q.type === "LIKERT5") {
+      body = '<div class="opts likert" role="group" aria-label="Votre réponse">' + REF.likertLabels.map(function (l, k) {
+        var v = String(k + 1); return '<button class="opt" data-v="' + v + '" aria-pressed="' + (cur === v) + '"><span class="key">' + v + '</span><span>' + esc(l) + '</span></button>';
+      }).join("") + '</div>';
+    } else if (q.type === "OUVERTE") {
+      body = '<label class="small muted" for="free">Facultatif. Cette réponse n\'est pas utilisée dans le calcul et n\'est envoyée nulle part ; elle apparaîtra seulement dans votre rapport.</label>' +
+        '<textarea id="free" maxlength="1200">' + esc(state.open[q.id] || "") + '</textarea>';
+    } else {
+      var opts = q.type === "SITUATION4" ? shuffled(P.opts, q.id) : P.opts;
+      body = '<div class="opts" role="group" aria-label="Votre réponse">' + opts.map(function (o, k) {
+        return '<button class="opt" data-v="' + o.key + '" aria-pressed="' + (cur === o.key) + '"><span class="key">' + (k + 1) + '</span><span>' + esc(o.label) + '</span></button>';
+      }).join("") + '</div>';
+    }
+    var hint = q.type === "LIKERT5" ? "Dans quelle mesure êtes-vous d'accord ?" : (q.type === "CHOIX_FORCE" ? "Choisissez l'option la plus proche de vous, même si aucune n'est parfaite." : (q.type === "SITUATION4" ? "Choisissez la réaction qui vous ressemble le plus. Toutes sont acceptables." : "Question ouverte"));
+    app.innerHTML =
+      '<div class="stack" style="gap:22px"><div class="progress"><div class="row" style="justify-content:space-between"><span class="eyebrow">' + esc(q.bloc.replace(/^B\d – /, "")) + '</span>' +
+      '<span class="small muted">Question ' + (state.i + 1) + ' sur ' + QS.length + '</span></div><div class="segs" aria-hidden="true">' + segs + '</div></div>' +
+      '<div class="qcard"><p class="small muted">' + hint + '</p><p class="qtext" id="qt" tabindex="-1">' + esc(P.stem) + '</p>' + body + '</div>' +
+      '<div class="qnav"><button class="btn ghost" id="prev">' + (state.i === 0 ? "Retour à l'accueil" : "Question précédente") + '</button>' +
+      (q.type === "OUVERTE" ? '<button class="btn" id="next">' + (state.i === QS.length - 1 ? "Voir mon profil" : "Continuer") + '</button>' :
+        (cur ? '<button class="btn" id="next">Question suivante</button>' : '')) + '</div></div>';
+    app.querySelectorAll(".opt").forEach(function (b) {
+      b.onclick = function () { state.answers[q.id] = b.dataset.v; app.querySelectorAll(".opt").forEach(function (x) { x.setAttribute("aria-pressed", x === b); }); setTimeout(next, 220); };
+    });
+    var ta = document.getElementById("free"); if (ta) ta.oninput = function () { state.open[q.id] = ta.value; };
+    document.getElementById("prev").onclick = function () { if (state.i === 0) { state.view = "home"; } else state.i--; render(); };
+    var nb = document.getElementById("next"); if (nb) nb.onclick = next;
+    var qt = document.getElementById("qt"); if (state.focus && qt) qt.focus({ preventScroll: true });
+    state.focus = true;
+  }
+  function next() {
+    if (state.i < QS.length - 1) { state.i++; render(); scrollTop(); }
+    else finish();
+  }
+  function finish() {
+    app.innerHTML = '<div class="loading"><div class="stack" style="align-items:center"><span class="eyebrow">Calcul en cours</span><h2>Nous préparons votre profil</h2></div></div>';
+    setTimeout(function () { state.result = CT_ENGINE.compute(REF, state.answers); state.example = null; state.view = "result"; render(); scrollTop(); }, 500);
+  }
+  function showExample(id) { state.result = CT_ENGINE.compute(REF, ctTestAnswers(id)); state.example = id; state.view = "result"; render(); scrollTop(); }
+  function scrollTop() { try { window.scrollTo(0, 0); } catch (e) {} }
+  document.addEventListener("keydown", function (e) {
+    if (state.view !== "quiz" || e.target.tagName === "TEXTAREA") return;
+    var n = parseInt(e.key, 10), btns = app.querySelectorAll(".opt");
+    if (n >= 1 && n <= btns.length) btns[n - 1].click();
+  });
+
+  /* ---------- Restitution ---------- */
+  function bipolar(name, val, pb, ph, lim, extra) {
+    return '<div class="bipolar"><div class="name"><span>' + esc(name) + '</span><span class="score">' + fmt(val) + (extra || "") + '</span></div>' +
+      '<span class="pl">' + esc(pb) + '</span><div class="track" role="img" aria-label="' + esc(name) + ' : ' + fmt(val) + ' sur 100"><span class="mark40"></span><span class="mark60"></span>' +
+      '<span class="dot' + (lim ? " lim" : "") + '" style="left:' + (val || 0) + '%"></span></div><span class="pr">' + esc(ph) + '</span></div>';
+  }
+  function qShort(id) { var q = QS.filter(function (x) { return x.id === id; })[0]; return parseQ(q).stem; }
+  function ansLabel(id, v) {
+    var q = QS.filter(function (x) { return x.id === id; })[0];
+    if (q.type === "LIKERT5") return REF.likertLabels[Number(v) - 1];
+    var o = parseQ(q).opts.filter(function (x) { return x.key === v; })[0]; return o ? o.label : v;
+  }
+
+  function renderResult() {
+    var r = state.result, c = r.confiance;
+    var byId = {}; r.dimensions.forEach(function (d) { byId[d.dimension_id] = d; });
+    var html = '<div class="report">';
+    if (state.example) html += '<div class="notice small"><b>Exemple à partir d\'un profil fictif</b> (' + esc(state.example) + '). Ces réponses ont été construites pour tester l\'outil. ' +
+      'Autres exemples : ' + ["TEST-001", "TEST-002", "TEST-003"].filter(function (t) { return t !== state.example; }).map(function (t) { return '<button class="linkbtn" data-ex="' + t + '">' + t + '</button>'; }).join(" · ") + '</div>';
+    html += '<header class="rhead"><span class="eyebrow">Votre profil professionnel</span><h1>' + esc(r.profile.titre) + '</h1>' +
+      '<div class="row"><span class="badge ' + c.code + '">Profil ' + esc(c.niveau.toLowerCase()) + '</span><span class="small muted">' + new Date(r.meta.generated_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) + ' · modèle ' + esc(r.meta.model_version) + '</span></div>' +
+      '<div class="row"><button class="btn" id="pdf">Télécharger mon rapport (PDF)</button><button class="btn ghost" id="restart">Recommencer</button></div><p class="small muted" id="pdfmsg" role="status"></p>' +
+      '<nav class="toc" aria-label="Sections"><a href="#synthese">Synthèse</a><a href="#signature">Signature</a><a href="#caracteristiques">Caractéristiques</a><a href="#environnement">Environnement</a><a href="#familles">Familles</a><a href="#appuis">Points d\'appui</a><a href="#vigilance">Vigilance</a><a href="#confiance">Confiance</a></nav></header>';
+
+    html += '<section class="block" id="synthese"><h2>Synthèse</h2><div class="synth">' + r.profile.synthese_blocs.map(function (b) { return '<p>' + esc(b.texte) + '</p>'; }).join("") + '</div>' +
+      (r.profile.nb_dim_en_tete > 2 && c.code !== "EX" ? '<p class="note">Plusieurs dimensions arrivent à égalité en tête de votre profil : l\'intitulé en retient deux, mais les autres comptent autant.</p>' : '') + '</section>';
+
+    html += '<section class="block" id="signature"><div class="row" style="justify-content:space-between"><h2>Signature professionnelle</h2>' +
+      '<div class="tabs" role="tablist"><button role="tab" data-r="RAD_FONCT" aria-selected="' + (state.radar === "RAD_FONCT") + '">Modes de fonctionnement</button><button role="tab" data-r="RAD_PREF" aria-selected="' + (state.radar === "RAD_PREF") + '">Préférences</button></div></div>';
+    if (state.radar === "RAD_FONCT") {
+      html += '<div class="sig"><div class="radar-box">' + radarSVG(r.radar.RAD_FONCT, { label: "Radar des 8 modes de fonctionnement : " + r.radar.RAD_FONCT.map(function (a) { return a.libelle + " " + fmt(a.valeur); }).join(", ") }) + '</div>' +
+        '<div class="legend"><p>Chaque axe reprend le score calculé (0 à 100) d\'une dimension, sans transformation.</p>' +
+        '<span><svg width="26" height="10" aria-hidden="true"><line x1="0" y1="5" x2="26" y2="5" stroke="var(--muted)" stroke-dasharray="4 3" stroke-width="1.6"/></svg>Repères 40 (bas) et 60 (élevé)</span>' +
+        '<span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" fill="var(--accent)"/></svg>Réponses cohérentes</span>' +
+        '<span><svg width="14" height="14" aria-hidden="true"><rect x="3" y="3" width="8" height="8" transform="rotate(45 7 7)" fill="none" stroke="var(--accent)" stroke-width="2"/></svg>Réponses dispersées : à interpréter avec prudence</span>' +
+        '<p class="small">Une surface plus grande ne signifie pas un « meilleur » profil. Il n\'existe pas de moyenne de référence.</p></div></div>';
+    } else {
+      html += '<p class="muted small">Les préférences se lisent entre deux pôles : aucun des deux n\'est préférable.</p><div class="bars">' +
+        r.radar.RAD_PREF.map(function (a) { var d = byId[a.dimension_id]; return bipolar(d.nom, d.score, d.pole_bas, d.pole_haut, d.confiance !== "Suffisante"); }).join("") + '</div>';
+    }
+    html += '</section>';
+
+    var shown = r.dominantes.concat(r.secondaires);
+    html += '<section class="block" id="caracteristiques"><h2>Vos principales caractéristiques</h2><div class="charlist">' +
+      shown.map(function (id, k) {
+        var d = byId[id];
+        return (k === 0 ? '<p class="subhead">Les plus marquées</p>' : (k === r.dominantes.length ? '<p class="subhead">Également présentes</p>' : '')) +
+          '<article class="char"><header><h3>' + esc(d.nom) + '</h3><span><span class="score">' + fmt(d.score) + '</span><span class="muted small"> /100 · ' + esc(d.niveau) + '</span></span></header>' +
+          '<div class="meter"><i style="width:' + d.score + '%"></i></div><p>' + esc(d.interpretation) + '</p>' +
+          (d.confiance !== "Suffisante" ? '<span><span class="tag lim">Confiance ' + esc(d.confiance.toLowerCase()) + ' : réponses dispersées</span></span>' : '') +
+          '<details><summary>Sur quelles réponses repose ce résultat ?</summary><ul>' + d.contributions.map(function (ct) { return '<li>« ' + esc(qShort(ct.question_id)) + ' » : <b>' + esc(ansLabel(ct.question_id, ct.reponse)) + '</b></li>'; }).join("") +
+          '</ul><p class="small muted" style="margin-top:6px">Limite : ' + esc(d.limites) + '</p></details></article>';
+      }).join("") + (shown.length ? '' : '<p class="empty">Aucune dimension ne ressort nettement de vos réponses.</p>') + '</div></section>';
+
+    var groups = [["Recherché", "Ce que vous semblez rechercher"], ["Neutre", "Ni recherché ni évité"], ["Moins recherché", "Moins en phase avec vos réponses"]];
+    html += '<section class="block" id="environnement"><h2>Votre environnement professionnel compatible</h2><p class="muted">Conditions de travail qui semblent les plus en phase avec vos réponses. Chaque barre se lit entre deux types d\'environnement.</p>' +
+      groups.map(function (g) {
+        var list = r.environnements.filter(function (e) { return e.lecture === g[0]; }).sort(function (a, b) { return b.affinite - a.affinite; });
+        if (!list.length) return "";
+        return '<p class="subhead">' + g[1] + '</p><div class="bars">' + list.map(function (e) { return bipolar(e.caracteristique, e.affinite, e.pole_bas, e.pole_haut, false); }).join("") + '</div>';
+      }).join("") + '</section>';
+
+    html += '<section class="block" id="familles"><h2>Familles professionnelles à explorer</h2><p class="muted">' + esc(r.mentions.lecture_compat) + '</p>' +
+      (!c.indicateurs.departage ? '<p class="note">Votre profil présente plusieurs orientations proches. Le questionnaire ne permet pas encore de les départager clairement.</p>' : '') +
+      r.familles_restituees.map(function (f) {
+        return '<article class="fam"><div class="top"><div class="stack" style="gap:4px"><h3>' + esc(f.famille) + '</h3><span class="small muted">' + esc(f.description) + '</span></div>' +
+          '<div class="big">' + fmt(f.compatibilite) + '<small> /100</small></div></div><div class="meter"><i style="width:' + f.compatibilite + '%"></i></div>' +
+          '<dl class="kv"><dt>Ce qui rapproche</dt><dd><div class="chips">' + (f.favorables.length ? f.favorables.map(function (x) { return '<span class="chip">' + esc(x.texte) + '</span>'; }).join("") : '<span class="empty">—</span>') + '</div></dd>' +
+          (f.limitants.length ? '<dt>Ce qui éloigne</dt><dd><div class="chips">' + f.limitants.map(function (x) { return '<span class="chip neg">' + esc(x.texte) + '</span>'; }).join("") + '</div></dd>' : '') +
+          '<dt>Exemples de métiers</dt><dd>' + esc(f.exemples_metiers) + '</dd><dt>Réalités du métier</dt><dd>' + esc(f.contraintes) + '</dd><dt>Pour explorer</dt><dd>' + esc(f.pistes) + '</dd></dl>' +
+          '<p class="note">Familles et correspondances définies à dire d\'expert (hypothèses non validées sur un échantillon).</p></article>';
+      }).join("") +
+      '<details><summary>Voir les ' + r.familles.length + ' familles étudiées</summary><div class="alllist" style="margin-top:10px">' + r.familles.map(function (f) {
+        return '<div class="allrow"><span>' + esc(f.famille) + '</span><div class="meter"><i style="width:' + f.compatibilite + '%"></i></div><span class="num">' + fmt(f.compatibilite) + '</span></div>';
+      }).join("") + '</div></details></section>';
+
+    html += '<section class="block" id="appuis"><h2>Vos points d\'appui</h2><div class="card-list">' +
+      (r.points_appui.length ? r.points_appui.map(function (a) { return '<div class="item"><h3>' + esc(a.libelle) + '</h3><p>' + esc(a.texte) + '</p></div>'; }).join("") : '<p class="empty">Aucun point d\'appui ne ressort avec suffisamment de netteté pour l\'instant.</p>') + '</div></section>';
+
+    html += '<section class="block" id="vigilance"><h2>Tensions et points de vigilance</h2>';
+    if (r.tensions.length) html += '<p class="subhead">Tensions à explorer</p><p class="muted small">Ces combinaisons ne sont pas des erreurs : elles méritent d\'être précisées, par exemple avec un·e conseiller·ère.</p><div class="card-list">' +
+      r.tensions.map(function (t) { return '<div class="item tension"><p>' + esc(t.message) + '</p>' + (t.question_adaptative ? '<p class="q">Pour y réfléchir : ' + esc(t.question_adaptative) + '</p>' : '') + '</div>'; }).join("") + '</div>';
+    if (r.vigilance.length) html += '<p class="subhead">Points de vigilance pour les familles proposées</p><div class="card-list">' +
+      r.vigilance.map(function (v) { return '<div class="item"><p><b>' + esc(v.famille) + '</b> : ' + esc(v.texte) + '</p></div>'; }).join("") + '</div>';
+    if (!r.tensions.length && !r.vigilance.length) html += '<p class="empty">Aucune tension ni point de vigilance particulier n\'a été détecté dans vos réponses.</p>';
+    html += '</section>';
+
+    var I = c.indicateurs;
+    html += '<section class="block" id="confiance"><h2>Niveau de confiance</h2><div class="conf"><div class="row"><span class="badge ' + c.code + '">Profil ' + esc(c.niveau.toLowerCase()) + '</span></div><p>' + esc(c.texte) + '</p>' +
+      '<div class="indic"><div><b>' + Math.round(I.completude * 100) + ' %</b>questions répondues</div><div><b>' + I.dim_non_suffisantes + '</b>dimension(s) à réponses dispersées</div><div><b>' + I.tensions + '</b>tension(s) détectée(s)</div><div><b>' + fmt(I.ecart_top2) + ' pts</b>écart entre les 2 premières familles</div></div>' +
+      (r.qualite_mesure.length ? '<p class="small muted">Réponses dispersées sur : ' + esc(r.qualite_mesure.map(function (x) { return x.nom; }).join(", ")) + '.</p>' : '') + '</div></section>';
+
+    var openTxt = ["Q52", "Q53"].filter(function (id) { return (state.open[id] || "").trim(); });
+    if (openTxt.length) html += '<section class="block"><h2>Vos notes</h2><p class="muted small">Vos réponses libres, non utilisées dans le calcul.</p>' + openTxt.map(function (id) { return '<div class="item"><p class="q">' + esc(qShort(id)) + '</p><p>' + esc(state.open[id]) + '</p></div>'; }).join("") + '</section>';
+
+    html += '<section class="cta"><h2>Et maintenant ?</h2><p>Ces résultats sont un point de départ. Un échange avec un·e conseiller·ère ' + esc(CT_SITE.organisation) + ' permet de les confronter à votre parcours, de travailler les tensions repérées et d\'identifier les formations ou accompagnements utiles.</p>' +
+      '<div class="row">' + (CT_SITE.contactUrl ? '<a class="btn" href="' + esc(CT_SITE.contactUrl) + '" target="_blank" rel="noopener">' + esc(CT_SITE.contactLabel) + '</a>' : '') +
+      (CT_SITE.liens || []).map(function (l) { return '<a class="btn ghost" href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a>'; }).join("") + '</div>' +
+      (CT_SITE.coordonnees ? '<p class="contact">' + esc(CT_SITE.coordonnees) + '</p>' : '') + '</section>';
+
+    html += '<footer class="foot"><p>' + esc(r.mentions.donnees) + '</p><p>Outil d\'exploration professionnelle, prototype non validé empiriquement. Les scores indiquent une position dans l\'échelle du questionnaire, pas une comparaison avec d\'autres personnes. Modèle ' + esc(r.meta.model_version) + ' · questionnaire ' + esc(r.meta.questionnaire_version) + ' · restitution ' + esc(r.meta.restitution_version) + '.</p>' +
+      '<p>Inspiré de LOGIQ+ (A. Povie, 2025), <a href="https://doi.org/10.5281/zenodo.17782246" target="_blank" rel="noopener">doi.org/10.5281/zenodo.17782246</a>, licence CC BY 4.0.</p></footer></div>';
+    app.innerHTML = html;
+
+    app.querySelectorAll("[data-r]").forEach(function (b) { b.onclick = function () { state.radar = b.dataset.r; var y = window.scrollY; render(); window.scrollTo(0, y); }; });
+    app.querySelectorAll("[data-ex]").forEach(function (b) { b.onclick = function () { showExample(b.dataset.ex); }; });
+    document.getElementById("restart").onclick = function () { state = { view: "home", i: 0, answers: {}, open: {}, result: null, example: null, radar: "RAD_FONCT" }; render(); scrollTop(); };
+    document.getElementById("pdf").onclick = function () { makePDF(state.result); };
+  }
+
+  /* ---------- Rapport PDF (généré dans le navigateur, rien n'est envoyé) ---------- */
+  function pdfText(s) { return String(s).replace(/‖/g, "|").replace(/≥/g, ">=").replace(/≠/g, "<>").replace(/→/g, "->").replace(/[  ]/g, " "); }
+  function makePDF(r) {
+    if (!window.jspdf) { pdfStatus("Le module PDF n'a pas pu se charger. Vérifiez votre connexion puis réessayez."); return; }
+    var doc = new window.jspdf.jsPDF({ unit: "mm", format: "a4" });
+    var M = 18, W = 210 - 2 * M, y = M, ACC = [91, 31, 122], INK = [36, 21, 44], MUT = [106, 92, 112], LINE = [231, 223, 233], WARM = [180, 80, 15];
+    function need(h) { if (y + h > 297 - 16) { doc.addPage(); y = M; } }
+    function txt(s, size, style, color, gap) {
+      doc.setFont("helvetica", style || "normal"); doc.setFontSize(size); doc.setTextColor.apply(doc, color || INK);
+      var lines = doc.splitTextToSize(pdfText(s), W); var lh = size * 0.42;
+      lines.forEach(function (l) { need(lh); doc.text(l, M, y); y += lh; }); y += (gap == null ? 2 : gap);
+    }
+    function h2(s) { need(16); y += 4; doc.setDrawColor.apply(doc, LINE); doc.line(M, y, M + W, y); y += 7; txt(s, 14, "bold", ACC, 2); }
+    [[243, 189, 62, 0, 84], [226, 105, 29, 84, 42], [210, 58, 142, 126, 38], [91, 31, 122, 164, 46]].forEach(function (b) { doc.setFillColor(b[0], b[1], b[2]); doc.rect(b[3], 0, b[4], 4, "F"); });
+    txt("COULEUR TALENTS · PROFIL PROFESSIONNEL", 8, "bold", WARM, 3);
+    txt(r.profile.titre, 22, "bold", INK, 2);
+    txt("Profil " + r.confiance.niveau.toLowerCase() + " · " + new Date(r.meta.generated_at).toLocaleDateString("fr-FR") + " · modèle " + r.meta.model_version, 9, "normal", MUT, 4);
+    h2("Synthèse"); r.profile.synthese_blocs.forEach(function (b) { txt(b.texte, 10.5, "normal", INK, 2.5); });
+
+    h2("Signature professionnelle : modes de fonctionnement");
+    need(92); var axes = r.radar.RAD_FONCT, n = axes.length, cx = M + W / 2, cy = y + 44, R = 33;
+    var P = function (i, v) { var a = -Math.PI / 2 + 2 * Math.PI * i / n; return [cx + Math.cos(a) * R * v / 100, cy + Math.sin(a) * R * v / 100]; };
+    [20, 40, 60, 80, 100].forEach(function (lv) { doc.setDrawColor.apply(doc, LINE); doc.setLineWidth(lv === 40 || lv === 60 ? 0.45 : 0.2);
+      for (var i = 0; i < n; i++) { var a = P(i, lv), b = P((i + 1) % n, lv); doc.line(a[0], a[1], b[0], b[1]); } });
+    for (var i = 0; i < n; i++) { var e = P(i, 100); doc.setLineWidth(0.2); doc.line(cx, cy, e[0], e[1]); }
+    doc.setDrawColor.apply(doc, ACC); doc.setLineWidth(0.7);
+    for (i = 0; i < n; i++) { var p = P(i, axes[i].valeur || 0), q = P((i + 1) % n, axes[(i + 1) % n].valeur || 0); doc.line(p[0], p[1], q[0], q[1]); }
+    doc.setFontSize(8.5);
+    for (i = 0; i < n; i++) {
+      p = P(i, axes[i].valeur || 0); doc.setFillColor.apply(doc, axes[i].trace === "plein" ? ACC : [255, 255, 255]); doc.circle(p[0], p[1], 1, "FD");
+      var l = P(i, 122), al = Math.abs(l[0] - cx) < 3 ? "center" : (l[0] > cx ? "left" : "right");
+      doc.setTextColor.apply(doc, INK); doc.setFont("helvetica", "normal"); doc.text(pdfText(axes[i].libelle + " " + Math.round(axes[i].valeur)), l[0], l[1] + 1, { align: al });
+    }
+    y = cy + 46; txt("Chaque axe reprend le score calculé (0 à 100). Repères renforcés à 40 et 60. Point creux : réponses dispersées.", 8, "normal", MUT, 3);
+
+    h2("Préférences de travail");
+    r.radar.RAD_PREF.forEach(function (a) { var d = r.dimensions.filter(function (x) { return x.dimension_id === a.dimension_id; })[0];
+      txt(d.nom + " : " + Math.round(d.score) + "/100 (" + d.pole_bas + " <-> " + d.pole_haut + ")" + (d.confiance !== "Suffisante" ? " · réponses dispersées" : ""), 9.5, "normal", INK, 1); });
+
+    h2("Principales caractéristiques");
+    r.dominantes.concat(r.secondaires).forEach(function (id) { var d = r.dimensions.filter(function (x) { return x.dimension_id === id; })[0];
+      txt(d.nom + " · " + Math.round(d.score) + "/100 · " + d.niveau, 10.5, "bold", INK, 0.5); txt(d.interpretation + " (questions " + d.contributions.map(function (c) { return c.question_id; }).join(", ") + ")", 9.5, "normal", MUT, 2.5); });
+
+    h2("Environnement professionnel compatible");
+    ["Recherché", "Neutre", "Moins recherché"].forEach(function (g) {
+      var list = r.environnements.filter(function (e) { return e.lecture === g; }); if (!list.length) return;
+      txt(g, 10, "bold", INK, 0.5); txt(list.map(function (e) { return e.caracteristique + " (" + Math.round(e.affinite) + ")"; }).join(" ; "), 9.5, "normal", INK, 2.5); });
+
+    h2("Familles professionnelles à explorer");
+    txt(r.mentions.lecture_compat, 8.5, "italic", MUT, 2);
+    r.familles_restituees.forEach(function (f) {
+      txt(f.famille + " · " + Math.round(f.compatibilite) + "/100 (" + f.niveau + ")", 11, "bold", INK, 0.5);
+      txt("Ce qui rapproche : " + (f.favorables.map(function (x) { return x.texte; }).join(", ") || "-"), 9.5, "normal", INK, 0.5);
+      if (f.limitants.length) txt("Ce qui éloigne : " + f.limitants.map(function (x) { return x.texte; }).join(", "), 9.5, "normal", INK, 0.5);
+      txt("Exemples de métiers : " + f.exemples_metiers, 9.5, "normal", INK, 0.5);
+      txt("Réalités du métier : " + f.contraintes, 9.5, "normal", MUT, 0.5);
+      txt("Pour explorer : " + f.pistes, 9.5, "normal", MUT, 3);
+    });
+
+    h2("Points d'appui");
+    if (r.points_appui.length) r.points_appui.forEach(function (a) { txt("• " + a.texte, 9.5, "normal", INK, 1.5); }); else txt("Aucun point d'appui ne ressort nettement.", 9.5, "italic", MUT);
+    h2("Tensions et points de vigilance");
+    r.tensions.forEach(function (t) { txt("• " + t.message, 9.5, "normal", INK, 0.5); if (t.question_adaptative) txt("Pour y réfléchir : " + t.question_adaptative, 9, "italic", MUT, 2); });
+    r.vigilance.forEach(function (v) { txt("• " + v.famille + " : " + v.texte, 9.5, "normal", INK, 1.5); });
+    if (!r.tensions.length && !r.vigilance.length) txt("Aucune tension ni point de vigilance détecté.", 9.5, "italic", MUT);
+
+    h2("Niveau de confiance : " + r.confiance.niveau);
+    txt(r.confiance.texte, 10, "normal", INK, 2);
+    var I = r.confiance.indicateurs;
+    txt("Questions répondues : " + Math.round(I.completude * 100) + " % · dimensions à réponses dispersées : " + I.dim_non_suffisantes + " · tensions : " + I.tensions + " · écart entre les 2 premières familles : " + I.ecart_top2 + " pts", 9, "normal", MUT, 2);
+
+    var openIds = ["Q52", "Q53"].filter(function (id) { return (state.open[id] || "").trim(); });
+    if (openIds.length) { h2("Vos notes (non utilisées dans le calcul)"); openIds.forEach(function (id) { txt(qShort(id), 9, "italic", MUT, 0.5); txt(state.open[id], 9.5, "normal", INK, 2.5); }); }
+
+    h2("Méthode");
+    txt("Outil d'exploration professionnelle Couleur Talents, prototype non validé empiriquement. Les résultats décrivent des préférences déclarées ; ce ne sont ni un bilan psychologique ni une prédiction de réussite. Les scores (0 à 100) indiquent une position dans l'échelle du questionnaire, pas une comparaison avec d'autres personnes. Les familles professionnelles et leurs correspondances sont des hypothèses d'expert.", 9, "normal", MUT, 2);
+    txt(r.mentions.donnees, 9, "normal", MUT, 2);
+    h2("Pour aller plus loin avec " + CT_SITE.organisation);
+    txt("Un échange avec un·e conseiller·ère permet de confronter ces résultats à votre parcours et d'identifier les formations ou accompagnements utiles.", 9.5, "normal", INK, 1.5);
+    if (CT_SITE.contactUrl) txt("Contact : " + CT_SITE.contactUrl, 9.5, "normal", ACC, 0.5);
+    (CT_SITE.liens || []).forEach(function (l) { txt(l.label + " : " + l.url, 9, "normal", MUT, 0.5); });
+    if (CT_SITE.coordonnees) txt(CT_SITE.coordonnees, 9, "normal", MUT, 2);
+    txt("Inspiré de LOGIQ+ (A. Povie, 2025), https://doi.org/10.5281/zenodo.17782246, licence CC BY 4.0.", 8.5, "normal", MUT, 1);
+    txt("Modèle " + r.meta.model_version + " · questionnaire " + r.meta.questionnaire_version + " · restitution " + r.meta.restitution_version + " · référentiel du " + r.meta.snapshot_date, 8, "normal", MUT, 0);
+    var pages = doc.getNumberOfPages();
+    for (var pg = 1; pg <= pages; pg++) { doc.setPage(pg); doc.setFontSize(7.5); doc.setTextColor.apply(doc, MUT); doc.text("Profil professionnel Couleur Talents · " + pg + "/" + pages, 210 - M, 290, { align: "right" }); }
+    var fname = "profil-professionnel-couleur-talents.pdf";
+    deliverPDF(doc, fname);
+  }
+  // Téléchargement : sur le site, téléchargement direct ; dans l'aperçu claude.ai, passage par la fenêtre de confirmation de la plateforme
+  function pdfStatus(msg) { var el = document.getElementById("pdfmsg"); if (el) el.textContent = msg; }
+  function deliverPDF(doc, fname) {
+    var tryUse = window.claude && typeof window.claude.use === "function";
+    if (!tryUse) { doc.save(fname); pdfStatus("Rapport téléchargé. Vérifiez votre dossier Téléchargements."); return; }
+    pdfStatus("Préparation du téléchargement…");
+    Promise.resolve(DL || window.claude.use("downloads")).then(function (dl) {
+      if (!dl) { doc.save(fname); pdfStatus("Si rien ne s'est passé, ce mode d'aperçu bloque les téléchargements : le PDF fonctionnera une fois l'outil installé sur le site."); return; }
+      return dl.save({ filename: fname, data: doc.output("blob") }).then(function () { pdfStatus("Rapport téléchargé."); }, function (e) {
+        pdfStatus(e && e.code === "declined" ? "Téléchargement annulé." : "Le téléchargement n'a pas pu se faire ici (" + (e && e.code || "erreur") + ").");
+      });
+    });
+  }
+
+  var DL = null;
+  try { if (window.claude && typeof window.claude.use === "function") window.claude.use("downloads").then(function (d) { DL = d; }, function () {}); } catch (e) {}
+
+  function render() {
+    if (state.view === "home") renderHome(); else if (state.view === "quiz") renderQuiz(); else renderResult();
+  }
+  render();
+
+  // Hauteur transmise à la page parente pour ajuster l'iframe automatiquement
+  function postHeight() { try { if (window.parent !== window) window.parent.postMessage({ type: "ct-profil-height", height: document.documentElement.scrollHeight }, "*"); } catch (e) {} }
+  if (window.ResizeObserver) new ResizeObserver(postHeight).observe(document.body); else setInterval(postHeight, 800);
+})();
+</script>
+
+</body></html>
