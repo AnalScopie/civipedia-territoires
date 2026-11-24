@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Accès Corine – Couleur Talents</title>
+<meta name="theme-color" content="#F4B61F">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icones/icone-192.png">
+<link rel="apple-touch-icon" href="icones/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Couleur Talents">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Montserrat:wght@500;600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--safran:#FCD15B;--prune:#6B1D5C;--orange:#F37021;--rose:#D81B60;--fond:#FFFDF7;--texte:#2B2B2B}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font:18px/1.5 Montserrat,system-ui,sans-serif;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+header{background:var(--safran);padding:28px 22px 26px;text-align:center}
+header img{width:72px;height:72px;border-radius:18px}
+.marque{font-family:Caveat,cursive;font-size:34px;color:var(--prune);line-height:1;margin-top:6px}
+h1{font-family:Lora,Georgia,serif;color:var(--prune);font-size:26px;margin:6px 0 0}
+main{max-width:560px;margin:0 auto;padding:24px 18px 40px;display:grid;gap:18px}
+.gros{display:grid;grid-template-columns:64px 1fr;gap:16px;align-items:center;text-decoration:none;color:#fff;
+  border-radius:26px;padding:22px 20px;min-height:116px;box-shadow:0 6px 0 rgb(0 0 0 / .12)}
+.gros:active{transform:translateY(3px);box-shadow:0 3px 0 rgb(0 0 0 / .12)}
+.gros:focus-visible{outline:4px solid var(--orange);outline-offset:3px}
+.gros svg{width:64px;height:64px}
+.gros b{display:block;font-family:Lora,Georgia,serif;font-size:23px;line-height:1.15}
+.gros span{display:block;font-size:16px;opacity:.95;margin-top:4px}
+.b1{background:var(--prune)}.b4{background:#2B2B2B}.b2{background:var(--rose)}.b3{background:#fff;color:var(--prune);border:3px solid var(--prune)}
+.encours{background:#F6E6EF;border-radius:22px;padding:16px 20px;font-size:16px;color:#2B2B2B}
+.encours b{color:var(--prune)}
+.sous{display:grid;gap:8px;margin:-6px 0 4px 18px;padding-left:16px;border-left:4px solid var(--safran)}
+.sous a{display:block;background:#fff;border:2px solid #EADFE6;border-radius:16px;padding:12px 16px;color:var(--prune);font-weight:600;text-decoration:none;font-size:16px;min-height:48px}
+.sous a span{display:block;font-weight:500;color:#5a5157;font-size:14px}
+.gros b .badge,.badge{display:inline-block;background:var(--safran);color:var(--prune);font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;margin-left:6px;vertical-align:middle}
+.aide{background:#FEF3CF;border-radius:22px;padding:18px 20px;font-size:16px}
+.aide h2{font-family:Lora,Georgia,serif;color:var(--prune);font-size:20px;margin:0 0 6px}
+.aide ol{margin:6px 0 0;padding-left:22px}.aide li{margin:4px 0}
+#installer{display:none;font:600 18px Montserrat,sans-serif;background:var(--prune);color:#fff;border:0;border-radius:18px;padding:14px 20px;min-height:52px;margin-top:10px;cursor:pointer}
+.retour{display:inline-block;color:var(--prune);font-weight:600;text-decoration:none;font-size:17px;padding:8px 0;min-height:44px}
+footer{text-align:center;font-size:14px;color:#6b5f66;padding:0 18px 30px}
+</style>
+</head>
+<body>
+<header>
+  <img src="icones/icone-192.png" alt="">
+  <div class="marque">Couleur Talents</div>
+  <h1>Accès Corine</h1>
+</header>
+<main>
+  <a class="retour" href="./">← Retour à Mes outils</a>
+  <div class="encours"><b>Votre espace.</b> Tous les documents et tableaux de Couleur Talents, rangés dans le Drive partagé. Votre tableau de bord complet arrive bientôt.</div>
+  <div id="boutons" style="display:grid;gap:18px"></div>
+</main>
+<footer>Couleur Talents · document interne · Saint-Nazaire</footer>
+<script>
+var DOSSIER = '<path d="M8 18h18l5 6h25v26a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4z" fill="#FCD15B"/><path d="M8 28h48" stroke="#fff" stroke-width="4"/>';
+var TABLEAU = '<rect x="10" y="12" width="44" height="40" rx="6" fill="#FCD15B"/><path d="M10 24h44M10 36h44M26 12v40" stroke="#fff" stroke-width="4"/>';
+var OUTILS = [
+  { titre: "Fiches des partenaires", texte: "Une fiche PDF par personne analysée.", lien: "https://drive.google.com/drive/folders/1VtR93HMY6_ngwbR14RlAusVXTHt0A3VB", classe: "b1", icone: DOSSIER },
+  { titre: "Répertoire des profils", texte: "Le tableau de toutes les personnes analysées, avec l'avis et la prochaine étape.", lien: "https://docs.google.com/spreadsheets/d/1VoNa1jNLr5-b3z4BOlDVWT-noDNPcu9oHuQOkEo027c/edit", classe: "b2", icone: TABLEAU },
+  { titre: "Scores de l'équipe", texte: "Les résultats du questionnaire de chacun, et la comparaison de l'équipe.", lien: "https://docs.google.com/spreadsheets/d/14p47Ep-bInkJSIbaqQvluqj2zbPwVzHIdi9_0IxHOWc/edit", classe: "b1", icone: TABLEAU },
+  { titre: "Documents à analyser", texte: "Déposez ici un CV ou un profil : Anne en fera une fiche.", lien: "https://drive.google.com/drive/folders/1uLxEp7xKp2LZE3jMmGDx65STxXh1fLZ2", classe: "b2", icone: DOSSIER },
+  { titre: "Références et contexte", texte: "Présentations, catalogues et documents de Couleur Talents.", lien: "https://drive.google.com/drive/folders/11dG6kt2FESfWO5Hv41Ksz3APzdedmlX8", classe: "b3", icone: DOSSIER },
+  { titre: "Tout le Drive Couleur Talents", texte: "Le dossier partagé complet.", lien: "https://drive.google.com/drive/folders/1xoB-foka3NMHlHD-PL1-Ksz-pPj5IWXe", classe: "b3", icone: DOSSIER }
+];
+document.getElementById("boutons").innerHTML = OUTILS.map(function (o) {
+  return '<a class="gros ' + o.classe + '" href="' + o.lien + '" target="_blank" rel="noopener"><svg viewBox="0 0 64 64" aria-hidden="true">' + o.icone + '</svg><div><b>' + o.titre + '</b><span>' + o.texte + '</span></div></a>';
+}).join("");
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js", { scope: "./" }).catch(function () {});
+</script>
+</body>
+</html>
