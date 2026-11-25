@@ -35,6 +35,12 @@ a.gros:active{transform:translateY(3px);box-shadow:0 3px 0 rgb(0 0 0 / .12)}
 .b1{background:var(--prune)}.b4{background:#2B2B2B}.b2{background:var(--rose)}.b3{background:#fff;color:var(--prune);border:3px solid var(--prune)}
 .badge{display:inline-block;background:var(--safran);color:var(--prune);font-size:13px;font-weight:600;border-radius:999px;padding:2px 10px;margin-left:6px;vertical-align:middle}
 .b4{background:#2B2B2B}
+details{display:block}
+summary{list-style:none;cursor:pointer}summary::-webkit-details-marker{display:none}
+details[open] summary{transform:translateY(3px);box-shadow:0 3px 0 rgb(0 0 0 / .12)}
+.texte{margin-top:12px;background:#fff;border:2px solid #EADFE6;border-radius:20px;padding:14px 18px;font-size:16px}
+.texte p{margin:0 0 8px}
+.texte a{display:inline-block;margin-top:4px;background:var(--prune);color:#fff;font-weight:600;text-decoration:none;border-radius:14px;padding:10px 16px}
 footer{text-align:center;font-size:14px;color:#6b5f66;padding:0 18px 30px}
 footer a{color:inherit}
 </style>
@@ -52,19 +58,40 @@ footer a{color:inherit}
     <div><b>Faire le test <span class="badge">gratuit</span></b><span>53 questions pour comprendre comment vous aimez travailler.</span></div>
   </a>
 
-  <a class="gros b2" href="../profil-professionnel/">
-    <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="26" r="9" fill="#FCD15B"/><circle cx="42" cy="26" r="9" fill="#fff"/><path d="M8 54c0-10 6-16 14-16s14 6 14 16M28 54c0-10 6-16 14-16s14 6 14 16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
-    <div><b>Votre façon de travailler</b><span>Seul ou en équipe, cadre ou liberté, calme ou effervescence.</span></div>
-  </a>
+  <details>
+    <summary class="gros b2">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="22" cy="26" r="9" fill="#FCD15B"/><circle cx="42" cy="26" r="9" fill="#fff"/><path d="M8 54c0-10 6-16 14-16s14 6 14 16M28 54c0-10 6-16 14-16s14 6 14 16" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+      <div><b>Votre façon de travailler</b><span>Seul ou en équipe, cadre ou liberté, calme ou effervescence.</span></div>
+    </summary>
+    <div class="texte">
+      <p>Le questionnaire décrit l'environnement où vous êtes le plus à l'aise : autonomie ou cadre, variété ou stabilité, rythme, place du relationnel et du travail en équipe.</p>
+      <p>Vous le voyez sous la forme d'un graphique en toile d'araignée, avec quelques phrases pour le lire.</p>
+      <a href="../profil-professionnel/">Faire le test →</a>
+    </div>
+  </details>
 
-  <a class="gros b3" href="../profil-professionnel/">
-    <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="22" r="8" fill="#F37021"/><circle cx="22" cy="30" r="8" fill="#D81B60"/><circle cx="42" cy="30" r="8" fill="#D81B60"/><circle cx="32" cy="38" r="8" fill="#6B1D5C"/><path d="M32 44v16" stroke="#6B1D5C" stroke-width="4"/></svg>
-    <div><b>Vos pistes de métiers</b><span>Votre profil, vos points d'appui et trois familles de métiers à explorer.</span></div>
-  </a>
-  <a class="gros b4" href="../profil-professionnel/">
-    <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="8" width="36" height="48" rx="6" fill="#FCD15B"/><path d="M22 22h20M22 31h20M22 40h12" stroke="#2B2B2B" stroke-width="4" stroke-linecap="round"/></svg>
-    <div><b>Votre résultat en PDF</b><span>Environ 15 minutes, sans inscription. Vous gardez votre profil.</span></div>
-  </a>
+  <details>
+    <summary class="gros b3">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="22" r="8" fill="#F37021"/><circle cx="22" cy="30" r="8" fill="#D81B60"/><circle cx="42" cy="30" r="8" fill="#D81B60"/><circle cx="32" cy="38" r="8" fill="#6B1D5C"/><path d="M32 44v16" stroke="#6B1D5C" stroke-width="4"/></svg>
+      <div><b>Vos pistes de métiers</b><span>Votre profil, vos points d'appui et trois familles de métiers à explorer.</span></div>
+    </summary>
+    <div class="texte">
+      <p>À partir de vos réponses, le questionnaire propose trois familles de métiers à explorer, et explique pourquoi chacune ressort.</p>
+      <p>Ce sont des pistes pour réfléchir et en parler, avec votre résultat à garder en PDF.</p>
+      <a href="../profil-professionnel/">Faire le test →</a>
+    </div>
+  </details>
+  <details>
+    <summary class="gros b4">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="14" y="8" width="36" height="48" rx="6" fill="#FCD15B"/><path d="M22 22h20M22 31h20M22 40h12" stroke="#2B2B2B" stroke-width="4" stroke-linecap="round"/></svg>
+      <div><b>Votre résultat en PDF <span class="badge">gratuit</span></b><span>Environ 15 minutes, sans inscription.</span></div>
+    </summary>
+    <div class="texte">
+      <p>Le test est gratuit et prend environ 15 minutes. Aucune inscription, aucune donnée personnelle demandée.</p>
+      <p>À la fin, vous téléchargez votre résultat en PDF : vous le gardez, vous pouvez le relire ou le montrer à un conseiller.</p>
+      <a href="../profil-professionnel/">Faire le test →</a>
+    </div>
+  </details>
 </main>
 
 <footer>Proposé par <a href="https://couleur-talents.fr/" target="_blank" rel="noopener">Couleur Talents</a> · Saint-Nazaire · aucune donnée personnelle demandée</footer>
