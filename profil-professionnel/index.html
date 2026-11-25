@@ -366,7 +366,7 @@ var CT_REF = {
     "SYN-FAM": "Parmi les familles professionnelles étudiées, la correspondance calculée est la plus élevée pour : {FAMILLES}.",
     "SYN-FAM-EXAEQUO": "Plusieurs familles ressortent à un niveau proche ({FAMILLES}) : le questionnaire ne permet pas encore de les départager clairement.",
     "SYN-FAM-AUCUNE": "Aucune famille professionnelle ne se dégage nettement à ce stade ; un échange avec un·e conseiller·ère peut aider à préciser vos pistes.",
-    "SYN-LECTURE": "Ce profil vous aide à repérer les environnements de travail où vous êtes le plus à l'aise : un bon point de départ pour en parler avec Couleur Talents.",
+    "SYN-LECTURE": "Ce profil décrit votre manière de fonctionner au travail, telle que vous l'avez décrite. Ce sont des pistes à explorer, un bon point de départ pour en parler avec Couleur Talents.",
     "CONF-RC": "Vos réponses sont cohérentes entre elles et les principales orientations se distinguent nettement.",
     "CONF-MC": "Les grandes tendances sont lisibles, mais certains points restent à préciser : {MOTIFS}.",
     "CONF-EX": "Plusieurs pistes restent ouvertes : un échange avec un·e conseiller·ère Couleur Talents permettra de les affiner.",
@@ -659,13 +659,15 @@ function ctTestAnswers(id) {
       '<div class="hero"><div class="stack" style="gap:18px">' +
       '<span class="eyebrow">' + esc(CT_SITE.organisation) + ' · Exploration professionnelle</span>' +
       '<h1>Profil professionnel</h1>' +
-      '<p style="font-size:1.12rem">Répondez à une cinquantaine de questions sur votre manière de travailler. Vous obtiendrez une lecture de vos préférences, des environnements de travail qui vous correspondent et des familles de métiers à explorer.</p>' +
+      '<p style="font-size:1.12rem">Comment aimez-vous travailler ? Dans quel environnement vous sentez-vous bien ? En une cinquantaine de questions, découvrez votre façon de fonctionner au travail, les environnements qui vous correspondent et les familles de métiers où vos particularités peuvent devenir des atouts.</p>' +
       '<div class="row"><button class="btn" id="start">Commencer le questionnaire</button><button class="btn ghost" id="example">Voir un exemple de résultat</button></div>' +
       '</div><figure class="example-fig" style="margin:0">' + radarSVG(ex.radar.RAD_FONCT, { label: "Exemple de radar pour un profil fictif" }) +
       '<figcaption>Exemple : profil fictif « analytique et rigoureux »</figcaption></figure></div>' +
       '<ul class="facts"><li><b>12 à 15 min</b>53 questions en 6 parties</li><li><b>Rien n\'est envoyé</b>Vos réponses restent sur votre appareil, vous pouvez y revenir</li><li><b>Un rapport PDF</b>À télécharger à la fin</li></ul>' +
-      '<div class="notice stack" style="gap:8px"><h3>Trouvez l\'environnement où vous donnez le meilleur</h3>' +
-      '<p class="small">Ce questionnaire vous aide à savoir dans quel environnement vous aimez travailler, et où vos talents s\'expriment le mieux. Il n\'y a pas de bonne ou de mauvaise réponse : répondez simplement selon ce qui vous ressemble aujourd\'hui. Aucune information personnelle n\'est demandée.</p></div>' +
+      '<div class="notice stack" style="gap:8px"><h3>Un bilan de fonctionnement professionnel</h3>' +
+      '<p class="small">Ce questionnaire n\'est ni un bilan de compétences, ni un test de personnalité, ni un test de QI. C\'est un bilan de fonctionnement : il part de votre manière de travailler, de votre rythme, de ce qui vous motive, de votre rapport à l\'autonomie et au collectif.</p>' +
+      '<p class="small">Il s\'inscrit dans la démarche de Couleur Talents, qui cherche un juste milieu : offrir à chacun un environnement adapté à ses particularités, et trouver les domaines où ces particularités deviennent utiles.</p>' +
+      '<p class="small">Il n\'y a pas de bonne ou de mauvaise réponse : répondez simplement selon ce qui vous ressemble aujourd\'hui. Aucune information personnelle n\'est demandée.</p></div>' +
       '</div>';
     document.getElementById("start").onclick = function () { if (loadSaved()) { clearSaved(); state.answers = {}; state.open = {}; } state.view = "quiz"; state.i = 0; render(); };
     var rb = document.getElementById("resume");
