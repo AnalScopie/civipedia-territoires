@@ -1,6 +1,6 @@
 // Couleur Talents — service worker de la page « Mes outils ».
 // Le réseau d'abord ; la copie locale ne sert que hors connexion. Aucune donnée n'est gardée.
-const CACHE = 'ct-outils-v3';
+const CACHE = 'ct-outils-v4';
 const BASE = ['./', './index.html', './manifest.webmanifest', './icones/icone-192.png', './icones/icone-512.png', '../profil-professionnel/', './corine.html'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(BASE)).catch(() => {}).then(() => self.skipWaiting()));
