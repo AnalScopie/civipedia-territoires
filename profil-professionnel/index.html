@@ -819,6 +819,7 @@ function ctTestAnswers(id) {
       (CT_SITE.coordonnees ? '<p class="contact">' + esc(CT_SITE.coordonnees) + '</p>' : '') + '</section>';
 
     html += '<footer class="foot"><p>' + esc(r.mentions.donnees) + '</p><p>Questionnaire d\'orientation Couleur Talents. Les scores (0 à 100) situent vos réponses dans l\'échelle du questionnaire. Modèle ' + esc(r.meta.model_version) + ' · questionnaire ' + esc(r.meta.questionnaire_version) + ' · restitution ' + esc(r.meta.restitution_version) + '.</p>' +
+      '<p>Référence Couleur Talents : C. Navarro, <i>Le sens de votre projet professionnel : outil pédagogique d\'accompagnement à l\'orientation et à l\'évolution professionnelle</i>, 2026, <a href="https://doi.org/10.5281/zenodo.20557802" target="_blank" rel="noopener">doi.org/10.5281/zenodo.20557802</a>.</p>' +
       '<p>Inspiré de LOGIQ+ (A. Povie, 2025), <a href="https://doi.org/10.5281/zenodo.17782246" target="_blank" rel="noopener">doi.org/10.5281/zenodo.17782246</a>, licence CC BY 4.0.</p></footer></div>';
     app.innerHTML = html;
 
@@ -944,6 +945,7 @@ function ctTestAnswers(id) {
     if (CT_SITE.contactUrl) txt("Contact : " + CT_SITE.contactUrl, 9.5, "normal", ACC, 0.5);
     (CT_SITE.liens || []).forEach(function (l) { txt(l.label + " : " + l.url, 9, "normal", MUT, 0.5); });
     if (CT_SITE.coordonnees) txt(CT_SITE.coordonnees, 9, "normal", MUT, 2);
+    txt("Référence Couleur Talents : C. Navarro, Le sens de votre projet professionnel : outil pédagogique d'accompagnement à l'orientation et à l'évolution professionnelle, 2026, https://doi.org/10.5281/zenodo.20557802.", 8.5, "normal", MUT, 1);
     txt("Inspiré de LOGIQ+ (A. Povie, 2025), https://doi.org/10.5281/zenodo.17782246, licence CC BY 4.0.", 8.5, "normal", MUT, 1);
     txt("Modèle " + r.meta.model_version + " · questionnaire " + r.meta.questionnaire_version + " · restitution " + r.meta.restitution_version + " · référentiel du " + r.meta.snapshot_date, 8, "normal", MUT, 0);
     var pages = doc.getNumberOfPages();
