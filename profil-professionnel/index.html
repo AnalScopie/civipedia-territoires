@@ -200,8 +200,10 @@ var CT_SITE = {
   // Adresse du guichet Google (Apps Script) qui ajoute les scores au tableau de l'équipe.
   // Vide : le bouton copie la ligne à coller à la main. Voir technique/profil-equipe-apps-script/LISEZMOI.md
   guichetScores: "",
-  // Adresse qui reçoit les résultats envoyés volontairement (bouton « Envoyer mon résultat »). Vide : le bouton n'apparaît pas.
-  envoiResultats: "anne@civipedia.org"
+  // Formulaire Google qui reçoit les résultats envoyés volontairement (bouton « Envoyer mon résultat »)
+  // et les range dans le tableau « Profil professionnel – tous les résultats ». Vide : le bouton n'apparaît pas.
+  envoiResultats: "https://docs.google.com/forms/d/e/1FAIpQLScIgZXsFwiBHV1KtkjsdGW4yw3pYcmS3qVa9N0XqmwzOqAYtA/formResponse",
+  envoiResultatsChamp: "entry.1285807583"
 };
   /* Le bouton « scores pour l'équipe » n'apparaît que pour l'équipe : lien terminé par ?equipe (mémorisé sur l'appareil). */
   var EQUIPE = false;
@@ -771,7 +773,7 @@ function ctTestAnswers(id) {
     html += '<header class="rhead"><span class="eyebrow">Votre profil professionnel</span><h1>' + esc(r.profile.titre) + '</h1>' +
       '<div class="row"><span class="badge ' + c.code + '">Profil ' + esc(c.niveau.toLowerCase()) + '</span><span class="small muted">' + new Date(r.meta.generated_at).toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" }) + ' · modèle ' + esc(r.meta.model_version) + '</span></div>' +
       '<div class="row"><button class="btn" id="pdf">Télécharger mon rapport (PDF)</button><button class="btn ghost" id="restart">Recommencer</button>' + (state.example || !EQUIPE ? '' : '<button class="btn ghost" id="copyscores">' + (CT_SITE.guichetScores ? 'Envoyer mes scores au tableau de l\'équipe' : 'Copier mes scores pour l\'équipe') + '</button>') + '</div><p class="small muted" id="pdfmsg" role="status"></p><textarea id="scoresbox" hidden readonly rows="2" style="min-height:0"></textarea>' +
-      (state.example || !CT_SITE.envoiResultats ? '' : '<div class="notice stack" style="gap:10px"><p><b>Envie de contribuer ?</b> Ce questionnaire fait partie d\'un projet humaniste : aider chacun à trouver sa place. Si vous le souhaitez, envoyez-nous votre résultat pour nous aider à l\'améliorer.</p><label for="prenomenvoi"><b>Votre prénom</b> (facultatif, si vous souhaitez qu\'on reconnaisse votre résultat)</label><div class="row"><input id="prenomenvoi" maxlength="40" autocomplete="given-name" style="font:inherit;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);flex:1 1 180px"><button class="btn" id="sendmail">Envoyer mon résultat</button></div><p class="small muted">Cela ouvre votre messagerie avec un message déjà rempli, que vous pouvez relire avant de l\'envoyer. Il contient vos réponses aux questions à choix et vos scores, pas vos réponses libres. Sans prénom, votre résultat reste anonyme.</p></div>') +
+      (state.example || !CT_SITE.envoiResultats ? '' : '<div class="notice stack" style="gap:10px"><p><b>Envie de contribuer ?</b> Ce questionnaire fait partie d\'un projet humaniste : aider chacun à trouver sa place. Si vous le souhaitez, envoyez-nous votre résultat pour nous aider à l\'améliorer.</p><label for="prenomenvoi"><b>Votre prénom</b> (facultatif, si vous souhaitez qu\'on reconnaisse votre résultat)</label><div class="row"><input id="prenomenvoi" maxlength="40" autocomplete="given-name" style="font:inherit;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);flex:1 1 180px"><button class="btn" id="sendmail">Envoyer mon résultat</button></div><p class="small muted">Rien ne part sans votre clic. Sont envoyés : vos réponses aux questions à choix, vos scores, vos familles de métiers et votre prénom si vous l\'avez écrit. Vos réponses libres restent sur votre appareil. Sans prénom, votre résultat reste anonyme.</p></div>') +
       (state.example || !EQUIPE || !CT_SITE.guichetScores ? '' : '<div id="sendbox" class="notice stack" hidden style="gap:10px"><label for="prenom"><b>Votre prénom</b></label><div class="row"><input id="prenom" maxlength="40" autocomplete="given-name" style="font:inherit;padding:10px 12px;border-radius:12px;border:1.5px solid var(--line);flex:1 1 180px"><button class="btn" id="sendscores">Envoyer</button></div><p class="small muted">Seuls vos scores, vos 3 familles et votre niveau de confiance sont envoyés au tableau de l\'équipe Couleur Talents. Vos réponses et vos notes restent sur votre appareil.</p></div>') +
       (state.example ? '' : '<p class="small muted">Votre résultat reste enregistré sur cet appareil, dans ce navigateur : si vous quittez la page, vous pourrez y revenir et télécharger le PDF plus tard. Rien n\'est envoyé sans votre accord.</p>') +
       '<nav class="toc" aria-label="Sections"><a href="#synthese">Synthèse</a><a href="#signature">Signature</a><a href="#caracteristiques">Caractéristiques</a><a href="#environnement">Environnement</a><a href="#familles">Familles</a><a href="#appuis">Points d\'appui</a><a href="#vigilance">Vigilance</a><a href="#confiance">Confiance</a></nav></header>';
@@ -881,7 +883,7 @@ function ctTestAnswers(id) {
     };
     var sm = document.getElementById("sendmail");
     if (sm) sm.onclick = function () {
-      // Envoi volontaire par e-mail. La ligne CODE suit les colonnes du tableau « tous les résultats » :
+      // Envoi volontaire vers le formulaire Google. La ligne CODE suit les colonnes du tableau « tous les résultats » :
       // mois, version, prénom (facultatif), Q01 à Q51, les 17 scores, les 3 familles, le niveau de confiance.
       var d = new Date(), pad = function (n) { return String(n).padStart(2, "0"); };
       var prenom = document.getElementById("prenomenvoi").value.replace(/[;\r\n]/g, " ").trim();
@@ -890,10 +892,11 @@ function ctTestAnswers(id) {
       var cells = [pad(d.getMonth() + 1) + "/" + d.getFullYear(), r.meta.questionnaire_version, prenom].concat(qs)
         .concat(r.dimensions.map(function (x) { return x.score == null ? "" : String(Math.round(x.score)); }))
         .concat(fams).concat([c.niveau]);
-      var body = (prenom ? "Prénom : " + prenom + "\n" : "") + "Familles : " + fams.filter(Boolean).join(" / ") + "\nNiveau de confiance : " + c.niveau +
-        "\n\nCODE: " + cells.join(";") + "\n\n(Merci de ne pas modifier la ligne CODE : elle sert à ranger votre résultat dans le tableau.)";
-      location.href = "mailto:" + CT_SITE.envoiResultats + "?subject=" + encodeURIComponent("Profil professionnel – résultat" + (prenom ? " de " + prenom : "")) + "&body=" + encodeURIComponent(body);
-      pdfStatus("Votre messagerie s'ouvre : relisez le message, puis appuyez sur Envoyer. Merci !");
+      sm.disabled = true; pdfStatus("Envoi en cours…");
+      var fd = new URLSearchParams(); fd.append(CT_SITE.envoiResultatsChamp, cells.join(";"));
+      fetch(CT_SITE.envoiResultats, { method: "POST", mode: "no-cors", body: fd })
+        .then(function () { sm.textContent = "Résultat envoyé"; pdfStatus("Merci" + (prenom ? " " + prenom : "") + " : votre résultat a bien été envoyé."); },
+              function () { sm.disabled = false; pdfStatus("L'envoi n'a pas marché. Vérifiez votre connexion et réessayez."); });
     };
     if (cs && !CT_SITE.guichetScores) cs.onclick = function () {
       // Une ligne à coller dans l'onglet Scores du tableau de l'équipe (colonnes A à X) : date, prénom (à écrire), accord (à écrire),
