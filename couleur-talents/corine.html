@@ -48,11 +48,11 @@ footer{text-align:center;font-size:14px;color:#6b5f66;padding:0 18px 30px}
 <header>
   <img src="icones/icone-192.png" alt="">
   <div class="marque">Couleur Talents</div>
-  <h1>Accès Corine</h1>
+  <h1>Espace administrateur</h1>
 </header>
 <main>
   <a class="retour" href="./">← Retour à Mes outils</a>
-  <div class="encours"><b>Votre espace.</b> Tous les documents et tableaux de Couleur Talents, rangés dans le Drive partagé. Votre tableau de bord complet arrive bientôt.</div>
+  <div class="encours"><b>Espace réservé à Corine, Anne-Laure et Anne.</b> Demander l'analyse d'un profil, retrouver les fiches et les résultats du questionnaire. Les tableaux ne s'ouvrent qu'avec vos adresses.</div>
   <div id="boutons" style="display:grid;gap:18px"></div>
 </main>
 <footer>Couleur Talents · document interne · Saint-Nazaire</footer>
@@ -60,11 +60,12 @@ footer{text-align:center;font-size:14px;color:#6b5f66;padding:0 18px 30px}
 var DOSSIER = '<path d="M8 18h18l5 6h25v26a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4z" fill="#FCD15B"/><path d="M8 28h48" stroke="#fff" stroke-width="4"/>';
 var TABLEAU = '<rect x="10" y="12" width="44" height="40" rx="6" fill="#FCD15B"/><path d="M10 24h44M10 36h44M26 12v40" stroke="#fff" stroke-width="4"/>';
 var OUTILS = [
+  { titre: "Demander l'analyse d'un profil", texte: "Écrivez le nom de la personne (et son lien LinkedIn si vous l'avez). La fiche est prête le lendemain.", lien: "https://docs.google.com/spreadsheets/d/1VoNa1jNLr5-b3z4BOlDVWT-noDNPcu9oHuQOkEo027c/edit#gid=50", classe: "b1", icone: TABLEAU },
   { titre: "Fiches des partenaires", texte: "Une fiche PDF par personne analysée.", lien: "https://drive.google.com/drive/folders/1VtR93HMY6_ngwbR14RlAusVXTHt0A3VB", classe: "b1", icone: DOSSIER },
   { titre: "Répertoire des profils", texte: "Le tableau de toutes les personnes analysées, avec l'avis et la prochaine étape.", lien: "https://docs.google.com/spreadsheets/d/1VoNa1jNLr5-b3z4BOlDVWT-noDNPcu9oHuQOkEo027c/edit", classe: "b2", icone: TABLEAU },
-  { titre: "Le test pour l'équipe", texte: "Le questionnaire avec le bouton pour ajouter ses scores au tableau de l'équipe.", lien: "../profil-professionnel/?equipe", classe: "b2", icone: TABLEAU },
-  { titre: "Scores de l'équipe", texte: "Les résultats du questionnaire de chacun, et la comparaison de l'équipe.", lien: "https://docs.google.com/spreadsheets/d/14p47Ep-bInkJSIbaqQvluqj2zbPwVzHIdi9_0IxHOWc/edit", classe: "b1", icone: TABLEAU },
-  { titre: "Documents à analyser", texte: "Déposez ici un CV ou un profil : Anne en fera une fiche.", lien: "https://drive.google.com/drive/folders/1uLxEp7xKp2LZE3jMmGDx65STxXh1fLZ2", classe: "b2", icone: DOSSIER },
+  { titre: "Le questionnaire", texte: "Le Profil professionnel, à faire soi-même ou à partager. Chacun peut envoyer son résultat au tableau.", lien: "../profil-professionnel/", classe: "b2", icone: TABLEAU },
+  { titre: "Résultats du questionnaire", texte: "Tous les résultats envoyés, avec ou sans prénom, et les tendances.", lien: "https://docs.google.com/spreadsheets/d/1FsMiH_kzXtVTL9WGEa4P-VWdvtvhbYbTK3sktzyLWH4/edit", classe: "b1", icone: TABLEAU },
+  { titre: "Documents à analyser", texte: "Déposez ici le CV (depuis l'ordinateur ou votre Drive). Il est analysé le soir même.", lien: "https://drive.google.com/drive/folders/1uLxEp7xKp2LZE3jMmGDx65STxXh1fLZ2", classe: "b2", icone: DOSSIER },
   { titre: "Références et contexte", texte: "Présentations, catalogues et documents de Couleur Talents.", lien: "https://drive.google.com/drive/folders/11dG6kt2FESfWO5Hv41Ksz3APzdedmlX8", classe: "b3", icone: DOSSIER },
   { titre: "Comment tout est relié", texte: "Le schéma de Couleur Talents, avec tous les liens.", lien: "schema.html", classe: "b4", icone: '<rect x="22" y="22" width="20" height="20" fill="#FCD15B"/><rect x="4" y="26" width="10" height="12" fill="#fff"/><rect x="50" y="26" width="10" height="12" fill="#fff"/><rect x="27" y="4" width="10" height="10" fill="#fff"/><rect x="27" y="50" width="10" height="10" fill="#fff"/><path d="M14 32h8M42 32h8M32 14v8M42 42" stroke="#fff" stroke-width="3"/><path d="M32 42v8" stroke="#fff" stroke-width="3"/>' },
   { titre: "Tout le Drive Couleur Talents", texte: "Le dossier partagé complet.", lien: "https://drive.google.com/drive/folders/1xoB-foka3NMHlHD-PL1-Ksz-pPj5IWXe", classe: "b3", icone: DOSSIER }
